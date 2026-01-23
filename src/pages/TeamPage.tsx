@@ -6,9 +6,9 @@ import { MotionFadeUp, MotionStagger, AnimatedHeading } from '../components/Anim
 import SEO from '../components/SEO';
 // ourTeamIcon removed: using shared HeroSection component instead
 import manojImg from '../assets/team/manoj-tiwari.jpeg';
-import vijayImg from '../assets/team/vijay-tiwari-2.jpg';
-import office2 from '../assets/Office-2.png';
-import reception from '../assets/reception.png';
+import vijayImg from '../assets/team/vijay-tiwari.jpeg';
+import office2 from '../assets/Office-2.jpeg';
+import reception from '../assets/reception.jpeg';
 
 function OfficeImages() {
   const imageReveal = {
@@ -152,20 +152,30 @@ export default function TeamPage() {
               >
 
 
-                {member.photo ? (
-                  <img
-                    src={member.photo}
-                    alt={`${member.name} - ${member.role} at Orbit Engineering Group Bhopal`}
-                    className="w-36 h-36 rounded-full object-cover mx-auto mb-6 ring-4 ring-[#0073bc]/10 shadow-sm"
-                    loading="lazy"
-                  />
-                ) : (
-                  <div className="bg-gradient-to-br from-[#0073bc] to-[#005a94] rounded-full w-24 h-24 flex items-center justify-center mx-auto mb-6">
-                    <span className="text-3xl font-bold text-white">
-                      {member.name.split(' ').map(n => n[0]).join('')}
-                    </span>
+                <div className="relative w-64 h-64 mx-auto mb-10 group">
+                  {/* Decorative background shapes */}
+                  <div className="absolute inset-0 bg-[#0073bc]/10 rounded-[3rem] rotate-6 transform group-hover:rotate-12 transition-transform duration-500 ease-out"></div>
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#0073bc]/20 to-transparent rounded-[3rem] -rotate-3 transform group-hover:-rotate-6 transition-transform duration-500 ease-out"></div>
+
+                  {/* Main image container */}
+                  <div className="relative w-full h-full overflow-hidden rounded-[2.5rem] border-4 border-white shadow-2xl z-10">
+                    {member.photo ? (
+                      <img
+                        src={member.photo}
+                        alt={`${member.name} - ${member.role} at Orbit Engineering Group Bhopal`}
+                        className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-in-out"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <div className="w-full h-full bg-gradient-to-br from-[#0073bc] to-[#005a94] flex items-center justify-center">
+                        <span className="text-7xl font-bold text-white">
+                          {member.name.split(' ').map(n => n[0]).join('')}
+                        </span>
+                      </div>
+                    )}
                   </div>
-                )}
+                </div>
+
                 <h3 className="text-2xl font-bold text-gray-900 text-center mb-2">
                   {member.name}
                 </h3>
