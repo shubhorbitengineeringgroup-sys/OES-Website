@@ -6,7 +6,7 @@ export default defineConfig(({ command }) => {
   const isProduction = command === 'build';
   return {
     plugins: [react()],
-    base: isProduction ? '/OrbitEngineering-group/' : '/',
+    base: isProduction ? '/OES-Website/' : '/',
     optimizeDeps: {
       exclude: ['lucide-react'],
     },

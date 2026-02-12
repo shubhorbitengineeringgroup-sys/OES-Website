@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { Menu, X, ChevronDown, Waves, Activity, Settings, Cpu, Camera, Wrench, Gauge, Droplets, Grid, Zap, Sun, RotateCw, FlaskConical } from 'lucide-react';
-import logo2 from '/src/assets/Orbit LOGO.png';
+import logo2 from '../assets/Orbit LOGO.png';
 
 interface HeaderProps {
   onNavigate: (page: string) => void;
@@ -122,10 +122,6 @@ export default function Header({ onNavigate, currentPage }: HeaderProps) {
                     key={item.page}
                     onClick={() => {
                       onNavigate(item.page);
-                      if (item.page === 'clients') {
-                        // update URL to /clients so react-router route matches
-                        window.history.pushState({}, '', '/clients');
-                      }
                     }}
                     className={`relative px-6 py-3 mx-1 rounded-full text-sm font-medium transition-all duration-300 ease-in-out transform ${isActive
                       ? 'bg-[#005B9A] text-white shadow-lg scale-105'
@@ -241,9 +237,6 @@ export default function Header({ onNavigate, currentPage }: HeaderProps) {
                     key={item.page}
                     onClick={() => {
                       onNavigate(item.page);
-                      if (item.page === 'clients') {
-                        window.history.pushState({}, '', '/clients');
-                      }
                     }}
                     className={`relative px-6 py-3 mx-1 rounded-full text-sm font-medium transition-all duration-300 ease-in-out transform ${isActive
                       ? 'bg-[#005B9A] text-white shadow-lg scale-105'
@@ -286,9 +279,6 @@ export default function Header({ onNavigate, currentPage }: HeaderProps) {
                   onClick={() => {
                     onNavigate(item.page);
                     setMobileMenuOpen(false);
-                    if (item.page === 'clients') {
-                      window.history.pushState({}, '', '/clients');
-                    }
                   }}
                   className={`block w-full text-left px-4 py-3 rounded-full text-sm font-medium transition-all duration-300 ${isActive
                     ? 'bg-[#005B9A] text-white shadow-lg'
@@ -378,9 +368,6 @@ export default function Header({ onNavigate, currentPage }: HeaderProps) {
                   onClick={() => {
                     onNavigate(item.page);
                     setMobileMenuOpen(false);
-                    if (item.page === 'clients') {
-                      window.history.pushState({}, '', '/clients');
-                    }
                   }}
                   className={`block w-full text-left px-4 py-3 rounded-full text-sm font-medium transition-all duration-300 ${isActive
                     ? 'bg-[#005B9A] text-white shadow-lg'
