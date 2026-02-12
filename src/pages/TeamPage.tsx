@@ -6,15 +6,28 @@ import { MotionFadeUp, MotionStagger, AnimatedHeading } from '../components/Anim
 import SEO from '../components/SEO';
 // ourTeamIcon removed: using shared HeroSection component instead
 import manojImg from '../assets/team/manoj-tiwari.jpeg';
-import vijayImg from '../assets/team/vijay-tiwari.jpeg';
+import vijayImg from '../assets/team/vijay-tiwari-2.jpg';
 import office2 from '../assets/Office-2.jpeg';
 import reception from '../assets/reception.jpeg';
 
 function OfficeImages() {
-  const imageReveal = {
-    hidden: { y: "100%" },
+  const slideRight = {
+    hidden: { x: -100, opacity: 0 },
     visible: {
-      y: "0%",
+      x: 0,
+      opacity: 1,
+      transition: {
+        duration: 1.2,
+        ease: [0.25, 0.1, 0.25, 1.0] as const
+      }
+    }
+  };
+
+  const slideLeft = {
+    hidden: { x: 100, opacity: 0 },
+    visible: {
+      x: 0,
+      opacity: 1,
       transition: {
         duration: 1.2,
         ease: [0.25, 0.1, 0.25, 1.0] as const
@@ -31,7 +44,7 @@ function OfficeImages() {
             alt="Orbit Engineering Group Office"
             loading="lazy"
             className="w-full h-full object-cover"
-            variants={imageReveal}
+            variants={slideRight}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-10%" }}
@@ -46,7 +59,7 @@ function OfficeImages() {
             alt="Orbit Engineering Reception"
             loading="lazy"
             className="w-full h-full object-cover"
-            variants={imageReveal}
+            variants={slideLeft}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-10%" }}
@@ -73,7 +86,8 @@ export default function TeamPage() {
       experience: '18+ Years Experience',
       email: 'vijay@orbitengineerings.com',
       description: 'Technical expert specializing in automation, IoT, and advanced water treatment systems',
-      photo: vijayImg
+      photo: vijayImg,
+      imagePosition: 'top'
     }
   ];
 
@@ -141,6 +155,7 @@ export default function TeamPage() {
           </div>
 
           <MotionStagger className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto" stagger={0.06}>
+            {/* @ts-ignore */}
             {team.map((member, index) => (
               <motion.div
                 key={index}
@@ -152,30 +167,23 @@ export default function TeamPage() {
               >
 
 
-                <div className="relative w-64 h-64 mx-auto mb-10 group">
-                  {/* Decorative background shapes */}
-                  <div className="absolute inset-0 bg-[#0073bc]/10 rounded-[3rem] rotate-6 transform group-hover:rotate-12 transition-transform duration-500 ease-out"></div>
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#0073bc]/20 to-transparent rounded-[3rem] -rotate-3 transform group-hover:-rotate-6 transition-transform duration-500 ease-out"></div>
-
-                  {/* Main image container */}
-                  <div className="relative w-full h-full overflow-hidden rounded-[2.5rem] border-4 border-white shadow-2xl z-10">
-                    {member.photo ? (
-                      <img
-                        src={member.photo}
-                        alt={`${member.name} - ${member.role} at Orbit Engineering Group Bhopal`}
-                        className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-in-out"
-                        loading="lazy"
-                      />
-                    ) : (
-                      <div className="w-full h-full bg-gradient-to-br from-[#0073bc] to-[#005a94] flex items-center justify-center">
-                        <span className="text-7xl font-bold text-white">
-                          {member.name.split(' ').map(n => n[0]).join('')}
-                        </span>
-                      </div>
-                    )}
+                {member.photo ? (
+                  <div className="w-48 h-48 mx-auto mb-8 overflow-hidden rounded-2xl shadow-lg border-2 border-gray-100 flex-shrink-0">
+                    <img
+                      src={member.photo}
+                      alt={`${member.name} - ${member.role} at Orbit Engineering Group Bhopal`}
+                      className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                      loading="lazy"
+                      style={{ objectPosition: (member as any).imagePosition || 'center' }}
+                    />
                   </div>
-                </div>
-
+                ) : (
+                  <div className="bg-gradient-to-br from-[#0073bc] to-[#005a94] rounded-2xl w-48 h-48 flex items-center justify-center mx-auto mb-8 shadow-lg">
+                    <span className="text-4xl font-bold text-white">
+                      {member.name.split(' ').map(n => n[0]).join('')}
+                    </span>
+                  </div>
+                )}
                 <h3 className="text-2xl font-bold text-gray-900 text-center mb-2">
                   {member.name}
                 </h3>

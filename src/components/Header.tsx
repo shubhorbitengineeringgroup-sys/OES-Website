@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { Menu, X, ChevronDown, Waves, Activity, Settings, Cpu, Camera, Wrench, Gauge, Droplets, Grid, Zap, Sun } from 'lucide-react';
+import { Menu, X, ChevronDown, Waves, Activity, Settings, Cpu, Camera, Wrench, Gauge, Droplets, Grid, Zap, Sun, RotateCw, FlaskConical } from 'lucide-react';
 import logo2 from '/src/assets/Orbit LOGO.png';
 
 interface HeaderProps {
@@ -7,10 +7,33 @@ interface HeaderProps {
   currentPage: string;
 }
 
+const FlowMeterIcon = (props: any) => (
+  <svg
+    {...props}
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <circle cx="12" cy="9" r="6" />
+    <path d="M12 9l2.5-2.5" />
+    <path d="M12 15v3" />
+    <path d="M3 18h18" />
+    <path d="M6 15v6" />
+    <path d="M18 15v6" />
+  </svg>
+);
+
 export default function Header({ onNavigate, currentPage }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [productsDropdownOpen, setProductsDropdownOpen] = useState(false);
   const [mobileProductsDropdownOpen, setMobileProductsDropdownOpen] = useState(false);
+  const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const navItems = [
@@ -25,13 +48,40 @@ export default function Header({ onNavigate, currentPage }: HeaderProps) {
   ];
 
   const productCategories = [
-    { label: 'Flow Meters', page: 'product-info:flow-meters', icon: Waves },
-    { label: 'Analyzers & Transmitters', page: 'product-info:analyzers', icon: Activity },
+    { label: 'Flow', page: 'product-info:flow-meters', icon: FlowMeterIcon },
+    {
+      label: 'Analyzers',
+      page: 'product-info:analyzers',
+      icon: Activity,
+      subCategories: [
+        { label: 'Water / Effluent Quality Analyzers', page: 'product-info:analyzers', icon: Activity },
+        { label: 'Air Quality Analyzers', page: 'product-info:air-quality-analyzers', icon: Gauge },
+        { label: 'Gas Analyzers', page: 'product-info:gas-analyzers', icon: FlaskConical }
+      ]
+    },
+    {
+      label: 'Levels',
+      page: 'product-info:levels',
+      icon: Waves,
+      subCategories: [
+        { label: 'Level Transmitter', page: 'product-info:level-transmitter', icon: Waves },
+        { label: 'Level Switch', page: 'product-info:level-switch', icon: Waves } // Using Waves for now as no Toggle icon imported
+      ]
+    },
     { label: 'Valves & Piping', page: 'product-info:valves', icon: Settings },
+    { label: 'Actuators', page: 'product-info:actuators', icon: RotateCw },
     { label: 'Automation (IoT / PLC / RTU / SCADA)', page: 'product-info:automation', icon: Cpu },
     { label: 'Cameras & Vision', page: 'product-info:cameras', icon: Camera },
     { label: 'Jointing Machines', page: 'product-info:jointing', icon: Wrench },
-    { label: 'Pressure Transmitter', page: 'product-info:rosemount', icon: Gauge },
+    {
+      label: 'Pressure',
+      page: 'product-info:pressure',
+      icon: Gauge,
+      subCategories: [
+        { label: 'Pressure Transmitter', page: 'product-info:pressure-transmitter', icon: Gauge },
+        { label: 'Pressure Sensor', page: 'product-info:pressure-sensor', icon: Activity } // Using Activity for sensor distinctness
+      ]
+    },
     { label: 'Transformers', page: 'product-info:transformers', icon: Zap },
     { label: 'Solar sensor', page: 'product-info:solar', icon: Sun },
     { label: 'Chlorinators', page: 'product-info:chlorinators', icon: Droplets },
@@ -132,17 +182,51 @@ export default function Header({ onNavigate, currentPage }: HeaderProps) {
                     </div>
                     <div className="py-2 overflow-y-auto flex-1">
                       {productCategories.map((category) => (
-                        <button
-                          key={category.page}
-                          onClick={() => {
-                            onNavigate(category.page);
-                            setProductsDropdownOpen(false);
-                          }}
-                          className="group flex items-center w-full text-left px-4 py-3 text-sm text-gray-700 hover:bg-[#005B9A] hover:text-white transition-all duration-300 rounded-lg mx-2 my-1"
-                        >
-                          <category.icon className="w-4 h-4 mr-3 text-[#005B9A] group-hover:text-white transition-colors" />
-                          {category.label}
-                        </button>
+                        <div key={category.page}>
+                          {category.subCategories ? (
+                            <button
+                              onClick={() => setExpandedCategory(expandedCategory === category.page ? null : category.page)}
+                              className={`group flex items-center justify-between w-full text-left px-4 py-3 text-sm transition-all duration-300 rounded-lg mx-2 my-1 ${expandedCategory === category.page ? 'text-[#005B9A] bg-blue-50' : 'text-gray-700 hover:bg-gray-50'}`}
+                            >
+                              <div className="flex items-center">
+                                <category.icon className={`w-4 h-4 mr-3 transition-colors ${expandedCategory === category.page ? 'text-[#005B9A]' : 'text-gray-400 group-hover:text-[#005B9A]'}`} />
+                                {category.label}
+                              </div>
+                              <ChevronDown className={`w-4 h-4 transition-transform ${expandedCategory === category.page ? 'rotate-180 text-[#005B9A]' : 'text-gray-400'}`} />
+                            </button>
+                          ) : (
+                            <button
+                              onClick={() => {
+                                onNavigate(category.page);
+                                setProductsDropdownOpen(false);
+                              }}
+                              className="group flex items-center w-full text-left px-4 py-3 text-sm text-gray-700 hover:bg-[#005B9A] hover:text-white transition-all duration-300 rounded-lg mx-2 my-1"
+                            >
+                              <category.icon className="w-4 h-4 mr-3 text-[#005B9A] group-hover:text-white transition-colors" />
+                              {category.label}
+                            </button>
+                          )}
+
+                          {/* Sub-categories */}
+                          {category.subCategories && expandedCategory === category.page && (
+                            <div className="ml-6 border-l-2 border-gray-100 pl-2 mb-2 animate-slide-up">
+                              {/* Removed "All {category.label}" button as per request */}
+                              {category.subCategories.map((sub) => (
+                                <button
+                                  key={sub.page}
+                                  onClick={() => {
+                                    onNavigate(sub.page);
+                                    setProductsDropdownOpen(false);
+                                  }}
+                                  className="group flex items-center w-full text-left px-4 py-2 text-xs text-gray-600 hover:bg-blue-50 hover:text-[#005B9A] transition-all duration-200 rounded-md"
+                                >
+                                  <sub.icon className="w-3 h-3 mr-2 text-gray-400 group-hover:text-[#005B9A]" />
+                                  {sub.label}
+                                </button>
+                              ))}
+                            </div>
+                          )}
+                        </div>
                       ))}
                     </div>
                   </div>
@@ -187,8 +271,8 @@ export default function Header({ onNavigate, currentPage }: HeaderProps) {
               <Menu className="h-6 w-6 text-gray-700" />
             )}
           </button>
-        </div>
-      </div>
+        </div >
+      </div >
 
       {mobileMenuOpen && (
         <div className="lg:hidden bg-white border-t">
@@ -245,19 +329,41 @@ export default function Header({ onNavigate, currentPage }: HeaderProps) {
                     All Products
                   </button>
                   {productCategories.map((category) => (
-                    <button
-                      key={category.page}
-                      onClick={() => {
-                        onNavigate(category.page);
-                        setMobileMenuOpen(false);
-                        setMobileProductsDropdownOpen(false);
-                      }}
-                      className={`flex items-center w-full text-left px-4 py-3 rounded-full text-sm font-medium transition-all duration-300 ${currentPage === category.page ? 'bg-[#005B9A] text-white shadow-lg' : 'text-gray-600 hover:bg-blue-50 hover:text-[#005B9A]'
-                        }`}
-                    >
-                      <category.icon className="w-4 h-4 mr-3" />
-                      {category.label}
-                    </button>
+                    <div key={category.page}>
+                      <button
+                        onClick={() => {
+                          onNavigate(category.page);
+                          setMobileMenuOpen(false);
+                          setMobileProductsDropdownOpen(false);
+                        }}
+                        className={`flex items-center w-full text-left px-4 py-3 rounded-full text-sm font-medium transition-all duration-300 ${currentPage === category.page ? 'bg-[#005B9A] text-white shadow-lg' : 'text-gray-600 hover:bg-blue-50 hover:text-[#005B9A]'
+                          }`}
+                      >
+                        <category.icon className="w-4 h-4 mr-3" />
+                        {category.label}
+                      </button>
+
+                      {/* Mobile Sub-categories */}
+                      {category.subCategories && (
+                        <div className="ml-8 border-l-2 border-gray-100 pl-2 mb-2 space-y-1">
+                          {category.subCategories.map((sub) => (
+                            <button
+                              key={sub.page}
+                              onClick={() => {
+                                onNavigate(sub.page);
+                                setMobileMenuOpen(false);
+                                setMobileProductsDropdownOpen(false);
+                              }}
+                              className={`flex items-center w-full text-left px-4 py-2 text-xs font-medium transition-all duration-300 rounded-lg ${currentPage === sub.page ? 'text-[#005B9A] bg-blue-50' : 'text-gray-500 hover:text-[#005B9A]'
+                                }`}
+                            >
+                              <sub.icon className="w-3 h-3 mr-2 opacity-70" />
+                              {sub.label}
+                            </button>
+                          ))}
+                        </div>
+                      )}
+                    </div>
                   ))}
                 </div>
               )}
@@ -287,7 +393,8 @@ export default function Header({ onNavigate, currentPage }: HeaderProps) {
             })}
           </div>
         </div>
-      )}
-    </header>
+      )
+      }
+    </header >
   );
 }

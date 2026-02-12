@@ -1,21 +1,53 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Gauge, Activity, Zap, Camera, Wrench, BarChart3, CheckCircle, ArrowRight, FlaskConical, Sun } from 'lucide-react';
+import { Gauge, Activity, Zap, Camera, Wrench, CheckCircle, ArrowRight, FlaskConical, Sun, Waves, Download } from 'lucide-react';
 import { RAW_SUB_PRODUCTS } from '../data/rawProducts';
 import { MotionFadeUp, AnimatedHeading } from '../components/Animated';
+import QuoteModal from '../components/QuoteModal';
+import BrochureModal from '../components/BrochureModal';
 
 interface ProductInfoPageProps {
   variant?: string;
   onNavigate?: (page: string) => void;
 }
 
+const FlowMeterIcon = (props: any) => (
+  <svg
+    {...props}
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <circle cx="12" cy="9" r="6" />
+    <path d="M12 9l2.5-2.5" />
+    <path d="M12 15v3" />
+    <path d="M3 18h18" />
+    <path d="M6 15v6" />
+    <path d="M18 15v6" />
+  </svg>
+);
+
 export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
   const { variant: urlVariant } = useParams<{ variant: string }>();
   const variant = urlVariant; // Use URL param as the source of truth
   const [expandedMap, setExpandedMap] = useState<Record<string, boolean>>({});
+  const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
+  const [isBrochureModalOpen, setIsBrochureModalOpen] = useState(false);
+  const [quoteProductName, setQuoteProductName] = useState('');
 
   const toggleExpanded = (key: string) => {
     setExpandedMap(prev => ({ ...prev, [key]: !prev[key] }));
+  };
+
+  const handleGetQuote = (productName: string) => {
+    setQuoteProductName(productName);
+    setIsQuoteModalOpen(true);
   };
 
   const getItemsByCategory = (categoryName: string) => {
@@ -24,8 +56,8 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
 
   const renderGallery = (categoryName: string, subtitle: string) => {
     const items = getItemsByCategory(categoryName);
-    // Check if current variant is flow-meters, automation, or has exactly 2 items to apply specific grid layout
-    const isTwoColumnLayout = variant === 'flow-meters' || variant === 'automation' || items.length === 2;
+    // Check if current variant is flow-meters, automation, or has exactly 2 or 4 items to apply specific grid layout
+    const isTwoColumnLayout = variant === 'flow-meters' || variant === 'automation' || items.length === 2 || items.length === 4;
 
     return (
       <section className="py-16 bg-gray-50">
@@ -34,7 +66,10 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Product Range</h2>
             <p className="text-lg text-gray-600">{subtitle}</p>
           </div>
-          <div className="flex flex-wrap justify-center gap-4 md:gap-5">
+          <div className={isTwoColumnLayout
+            ? "grid grid-cols-1 md:grid-cols-2 gap-6"
+            : "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+          }>
             {items.map((item, idx) => {
               const key = `${categoryName}-${idx}`;
               const isExpanded = !!expandedMap[key];
@@ -42,18 +77,14 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
               const hasBullets = Array.isArray(item.bullets) && item.bullets.length > 0;
               const hasDetails = (!!firstParagraph) || hasBullets;
 
-              // Dynamic width class based on layout requirement
-              const widthClass = isTwoColumnLayout
-                ? "w-full md:w-[48%]" // Stacks on small screens, 2-col on MD+
-                : "w-full sm:w-[48%] lg:w-[31%]"; // Stacks on small, 2-col on SM/MD, 3-col on LG
-
               return (
-                <MotionFadeUp key={idx} className={`${widthClass} group bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col h-full min-h-[420px]`}>
+                <MotionFadeUp key={idx} className="group bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col h-full min-h-[420px]">
                   <div className="bg-gray-50 flex items-center justify-center p-6">
                     <img src={item.image} alt={item.name} className="h-[220px] w-full object-contain rounded-lg transition-transform duration-500 group-hover:scale-105" loading="lazy" />
                   </div>
                   <div className="p-6 flex flex-col gap-4 flex-1">
                     <h3 className="text-xl font-bold text-gray-900 text-center">{item.name}</h3>
+
                     {hasDetails && (
                       <div className="mt-auto">
                         <button
@@ -64,6 +95,7 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
                         </button>
                       </div>
                     )}
+
                     <div className={`overflow-hidden transition-all duration-500 ease-in-out ${isExpanded ? 'max-h-[520px] opacity-100' : 'max-h-0 opacity-0'}`}>
                       {firstParagraph && (
                         <p className="mt-3 text-gray-600 text-sm leading-6">{firstParagraph}</p>
@@ -95,9 +127,9 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
     image?: string;
   }> = {
     'flow-meters': {
-      title: 'Flow Meters',
+      title: 'Flow',
       description: 'Precision flow measurement solutions for water and wastewater treatment applications with advanced digital capabilities.',
-      icon: Gauge,
+      icon: FlowMeterIcon,
       features: [
         'High accuracy measurement (±0.5%)',
         'Digital signal processing',
@@ -123,7 +155,7 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
       ]
     },
     'analyzers': {
-      title: 'Analyzers & Transmitters',
+      title: 'Analyzers',
       description: 'Advanced online analyzers and intelligent transmitters for continuous water quality monitoring and process control.',
       icon: Activity,
       features: [
@@ -149,6 +181,78 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
         { parameter: 'Calibration Interval', value: '90 days' },
         { parameter: 'Communication', value: 'Modbus, Ethernet, Wireless' },
         { parameter: 'Power Supply', value: '24V DC or AC' }
+      ]
+    },
+    'levels': {
+      title: 'Levels',
+      description: 'Complete range of level measurement and switching solutions for all industrial applications.',
+      icon: Waves,
+      features: [
+        'Contact and non-contact measurement',
+        'High reliability switches',
+        'Various mounting options',
+        'Suitable for corrosive environments',
+        'Digital signals and relay outputs',
+        'Easy installation and maintenance'
+      ],
+      applications: [
+        'Tank level monitoring',
+        'Water treatment plants',
+        'Chemical storage tanks',
+        'Sump and pit monitoring',
+        'Pump control',
+        'Overfill protection'
+      ],
+      specifications: [
+        { parameter: 'Range', value: 'Up to 20m' },
+        { parameter: 'Accuracy', value: '±0.25% (Hydrostatic)' },
+        { parameter: 'Output', value: '4-20mA, Relay' },
+        { parameter: 'Material', value: 'SS316, PP, PVDF' },
+        { parameter: 'Protection', value: 'IP67/IP68' },
+        { parameter: 'Temp Range', value: '-20°C to +80°C' }
+      ]
+    },
+    'level-transmitter': {
+      title: 'Level Transmitter',
+      description: 'Accurate continuous level measurement for liquids and solids.',
+      icon: Waves,
+      features: [
+        'High precision measurement',
+        'Submersible & Non-contact options',
+        'HART Communication',
+        'Corrosion resistant materials',
+        'Long-term stability'
+      ],
+      applications: [
+        'Deep well monitoring',
+        'Reservoir level',
+        'Chemical tanks',
+        'Wastewater lift stations'
+      ],
+      specifications: [
+        { parameter: 'Tech', value: 'Ultrasonic, Hydrostatic, Capacitance' },
+        { parameter: 'Output', value: '4-20mA' },
+        { parameter: 'Range', value: '0-200m' }
+      ]
+    },
+    'level-switch': {
+      title: 'Level Switch',
+      description: 'Reliable point level detection for alarms and control.',
+      icon: Waves,
+      features: [
+        'Simple robust design',
+        'No power required (Float)',
+        'Multiple switch points',
+        'Adjustable sensitivity'
+      ],
+      applications: [
+        'Pump protection',
+        'High/Low alarm',
+        'Tank filling control'
+      ],
+      specifications: [
+        { parameter: 'Type', value: 'Float, Conductive' },
+        { parameter: 'Rating', value: '5A / 230VAC' }
       ]
     },
     'valves': {
@@ -267,10 +371,31 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
         { parameter: 'Standards', value: 'ISO 21307, ASTM F2620' }
       ]
     },
-    'rosemount': {
+    'pressure': {
+      title: 'Pressure',
+      description: 'Complete Pressure Measurement Solutions ranging from sensors to advanced transmitters.',
+      icon: Gauge,
+      features: [
+        'Wide measuring ranges',
+        'Digital and Analog outputs',
+        'High accuracy and stability',
+        'Rugged industrial design'
+      ],
+      applications: [
+        'Process pressure monitoring',
+        'Differential pressure flow',
+        'Tank level measurement',
+        'Hydraulic systems'
+      ],
+      specifications: [
+        { parameter: 'Range', value: 'Vacuum to 1000 bar' },
+        { parameter: 'Output', value: '4-20mA, 0-10V, Digital' }
+      ]
+    },
+    'pressure-transmitter': {
       title: 'Pressure Transmitter',
       description: 'Ultra-high performance pressure transmitter with coplanar design for demanding flow and level applications.',
-      icon: BarChart3,
+      icon: Gauge,
       features: [
         'Coplanar design for space efficiency',
         'Ultra-high accuracy (±0.025%)',
@@ -294,6 +419,27 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
         { parameter: 'Response Time', value: '< 100ms' },
         { parameter: 'Ambient Temperature', value: '-40°C to +85°C' },
         { parameter: 'Process Temperature', value: '-40°C to +120°C' }
+      ]
+    },
+    'pressure-sensor': {
+      title: 'Pressure Sensor',
+      description: 'Versatile pressure sensors for industrial and commercial applications.',
+      icon: Gauge, // Or different icon
+      features: [
+        'Compact design',
+        'High reliability',
+        'Cost effective',
+        'Fast response'
+      ],
+      applications: [
+        'Machine automation',
+        'Pneumatics',
+        'HVAC',
+        'Pump control'
+      ],
+      specifications: [
+        { parameter: 'Accuracy', value: '±0.5% FS' },
+        { parameter: 'Output', value: 'Analog / Digital' }
       ]
     },
     'chlorinators': {
@@ -381,6 +527,56 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
         { parameter: 'Frame Material', value: 'Anodized Aluminium' },
         { parameter: 'Rated Life Span', value: '25 Years' }
       ]
+    },
+    'air-quality-analyzers': {
+      title: 'Air Quality Analyzers',
+      description: 'Advanced monitoring systems for SOx, NOx, PM10, and PM2.5 to ensure environmental compliance and safety.',
+      icon: Gauge,
+      features: [
+        'Real-time pollutant monitoring',
+        'High precision sensors',
+        'Robust outdoor design',
+        'Data logging and remote access',
+        'Compliance with environmental standards'
+      ],
+      applications: [
+        'Industrial emissions monitoring',
+        'Urban air quality networks',
+        'Construction site monitoring',
+        'Traffic pollution analysis',
+        'Environmental research'
+      ],
+      specifications: [
+        { parameter: 'Parameters', value: 'SOx, NOx, PM10, PM2.5' },
+        { parameter: 'Measurement Tech', value: 'UV Fluorescence, Chemiluminescence, Beta Attenuation' },
+        { parameter: 'Output', value: '4-20mA, RS485, Ethernet' },
+        { parameter: 'Power', value: '230V AC / 24V DC' }
+      ]
+    },
+    'gas-analyzers': {
+      title: 'Gas Analyzers',
+      description: 'Portable and fixed gas analyzers for CO, CO2, Methane, and other industrial gases.',
+      icon: FlaskConical,
+      features: [
+        'Multi-gas detection capability',
+        'Portable and fixed models',
+        'High sensitivity NDIR/Electrochemical sensors',
+        'User-friendly interface',
+        'Alarm and safety functions'
+      ],
+      applications: [
+        'Confined space entry',
+        'Process gas analysis',
+        'Leak detection',
+        'Biogas monitoring',
+        'Combustion efficiency'
+      ],
+      specifications: [
+        { parameter: 'Gases Detected', value: 'CO, CO2, CH4, O2, H2S' },
+        { parameter: 'Range', value: 'ppm to % vol depending on gas' },
+        { parameter: 'Response Time', value: '< 30 seconds' },
+        { parameter: 'Battery Life', value: '> 10 hours (Portable)' }
+      ]
     }
   };
 
@@ -398,7 +594,9 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <section className="relative py-16 md:py-20 bg-gradient-to-br from-[#0073bc] to-[#005a94] text-white">
+      <section className="relative py-16 md:py-20 bg-gradient-to-br from-[#0073bc] to-[#005a94] text-white overflow-hidden">
+
+
         <div className="absolute inset-0 bg-black/20" />
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <MotionFadeUp>
@@ -407,20 +605,54 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
                 <IconComponent className="w-10 h-10" />
               </div>
               <AnimatedHeading level={1} className="text-4xl md:text-5xl font-bold mb-4">{page.title}</AnimatedHeading>
-              <p className="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed">{page.description}</p>
+              <p className="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed mb-10">{page.description}</p>
+
+              <div className="flex justify-center">
+                <button
+                  onClick={() => handleGetQuote(page.title)}
+                  className="bg-white text-[#0073bc] hover:bg-blue-50 font-bold py-4 px-10 rounded-full shadow-xl transition-all transform hover:scale-105 hover:shadow-2xl flex items-center space-x-3 active:scale-95 group"
+                >
+                  <span className="text-lg">Get Quote</span>
+                  <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+                </button>
+              </div>
             </div>
           </MotionFadeUp>
         </div>
       </section>
 
       {/* Product Galleries by Category */}
-      {variant === 'flow-meters' && renderGallery('Flow Meters', 'Explore our complete lineup of flow meters')}
-      {variant === 'analyzers' && renderGallery('Analyzers & Transmitters', 'Advanced analyzers and transmitters for continuous monitoring')}
+      {variant === 'flow-meters' && renderGallery('Flow', 'Explore our complete lineup of flow meters')}
+      {variant === 'analyzers' && renderGallery('Analyzers', 'Advanced analyzers and transmitters for continuous monitoring')}
+      {variant === 'air-quality-analyzers' && renderGallery('Air Quality Analyzers', 'Advanced systems for emissions and ambient air monitoring')}
+      {variant === 'gas-analyzers' && renderGallery('Gas Analyzers', 'Precision gas analysis for safety and process control')}
+
+      {/* Levels Pages */}
+      {variant === 'levels' && (
+        <>
+          {renderGallery('Level Transmitter', 'Level Transmitters')}
+          {renderGallery('Level Switch', 'Level Switches')}
+        </>
+      )}
+      {variant === 'level-transmitter' && renderGallery('Level Transmitter', 'Continuous Level Measurement')}
+      {variant === 'level-switch' && renderGallery('Level Switch', 'Point Level Detection')}
+
       {variant === 'valves' && renderGallery('Valves & Piping', 'Engineered valves and piping solutions for critical applications')}
       {variant === 'automation' && renderGallery('Automation (IoT / PLC / RTU / SCADA)', 'Integrated automation platforms for intelligent water management')}
       {variant === 'cameras' && renderGallery('Cameras & Vision', 'Rugged vision and surveillance systems for utilities')}
       {variant === 'jointing' && renderGallery('Jointing Machines', 'Professional jointing equipment for plastic piping systems')}
-      {variant === 'rosemount' && renderGallery('Pressure Transmitter', 'Premium models and options')}
+
+      {/* Pressure Pages */}
+      {variant === 'pressure' && (
+        <>
+          {renderGallery('Pressure Transmitter', 'Pressure Transmitters')}
+          {renderGallery('Pressure Sensor', 'Pressure Sensors')}
+        </>
+      )}
+      {variant === 'pressure-transmitter' && renderGallery('Pressure Transmitter', 'Premium Pressure Transmitters')}
+      {variant === 'pressure-sensor' && renderGallery('Pressure Sensor', 'Industrial Pressure Sensors')}
+
+
       {variant === 'transformers' && renderGallery('Transformers', 'High-performance power and distribution solutions')}
       {variant === 'solar' && renderGallery('Solar sensor', 'Sustainable solar energy and smart lighting solutions')}
       {variant === 'chlorinators' && renderGallery('Chlorinators', 'Reliable chlorination systems for water safety')}
@@ -531,6 +763,35 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
           </div>
         </div>
       </section>
+
+      {/* Floating Buttons */}
+      <div className="fixed bottom-24 right-4 md:right-8 z-50">
+        {/* Download Brochure - Enhanced floating button */}
+        <button
+          onClick={() => setIsBrochureModalOpen(true)}
+          className="group relative flex items-center px-5 py-2.5 md:px-6 md:py-3 bg-gradient-to-r from-[#0073bc] to-[#005a94] text-white font-bold rounded-full shadow-[0_10px_40px_rgba(0,115,188,0.4)] hover:shadow-[0_15px_50px_rgba(0,115,188,0.6)] transition-all duration-300 hover:-translate-y-1.5 active:scale-95 border-2 border-white/30 overflow-hidden backdrop-blur-sm"
+          title="Download Brochure"
+        >
+          {/* Constant Shine Animation */}
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -skew-x-12 animate-shine opacity-60"></div>
+
+          <Download className="w-5 h-5 mr-2 drop-shadow-md" />
+          <span className="text-sm md:text-base whitespace-nowrap drop-shadow-sm">Brochure</span>
+
+          {/* Subtle Outer Glow */}
+          <div className="absolute inset-[-2px] rounded-full border border-white/20 pointer-events-none group-hover:border-white/40 transition-colors"></div>
+        </button>
+      </div>
+
+      {/* Brochure Modal */}
+      <BrochureModal
+        open={isBrochureModalOpen}
+        onClose={() => setIsBrochureModalOpen(false)}
+        brochureUrl="/assets/docs/brochure.pdf"
+      />
+
+      {/* Quote Modal */}
+      <QuoteModal open={isQuoteModalOpen} onClose={() => setIsQuoteModalOpen(false)} productName={quoteProductName} />
     </div>
   );
 }

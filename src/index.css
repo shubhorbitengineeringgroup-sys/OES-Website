@@ -278,6 +278,16 @@
   }
 }
 
+@keyframes shine {
+  0% { transform: translateX(-200%); }
+  50% { transform: translateX(200%); }
+  100% { transform: translateX(200%); }
+}
+
+.animate-shine {
+  animation: shine 3s infinite linear;
+}
+
 html {
   scroll-behavior: smooth;
 }

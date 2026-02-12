@@ -6,13 +6,14 @@ import waterMeter from '../assets/products/water-meter.jpg';
 import chlorineTransmitter from '../assets/products/chlorine-transmitter-new.jpg';
 import doTransmitter from '../assets/products/do-transmitter.png';
 import phAnalyzer from '../assets/products/ph-analyzer.jpeg';
-import turbidityTransmitter from '../assets/products/turbidity-transmitter.png';
+import turbidityAnalyzer from '../assets/products/turbidity-analyzer.jpeg';
 import differentialPressureTransmitter from '../assets/products/differential-pressure-transmitter.jpg';
 import smartTypePressureTransmitter from '../assets/products/smart-type-pressure-transmitter.jpg';
 import hydrostaticLevelTx from '../assets/products/hydrostatic-level-tx.jpg';
 import capacitanceLevelTransmitter from '../assets/products/capacitance-level-transmitter.jpg';
 import conductiveLevelSwitch from '../assets/products/conductive-level-switch.jpg';
 import floatLevelSwitch from '../assets/products/float-level-switch.jpg';
+import couplingLevelSwitch from '../assets/products/coupling switch.png';
 import blindTypePressureTransmitters from '../assets/products/blind-type-pressure-transmitters.jpg';
 import butterflyValves from '../assets/products/butter-fly-valves.jpg';
 import gateValve from '../assets/products/gate-valve.jpg';
@@ -31,7 +32,7 @@ import bigJointingMachines from '../assets/products/big-jointing-machines.jpg';
 import weldingMachine from '../assets/products/welding_machine.jpg';
 import electrofusionJointingMachine from '../assets/products/electrofusion.jpeg';
 import hdpeFittings from '../assets/products/hdpe-fittings.jpg';
-import chlorinator from '../assets/products/chlorinator.jpeg';
+import chlorinator from '../assets/products/chlorinator.jpg';
 import plc from '../assets/products/plc.jpeg';
 import autoTransformer from '../assets/products/auto-transformer.png';
 import distributionTransformer from '../assets/products/distribution-transformer.jpeg';
@@ -40,12 +41,35 @@ import locomotiveTransformer from '../assets/products/locomotive-transformer.png
 import sf6CircuitBreaker from '../assets/products/sf6-circuit-breaker.png';
 import solarStreetLight from '../assets/products/smart-solar-street-light.jpeg';
 import solarPanel from '../assets/products/solar-panel.jpg';
+import digitalPressureTransmitter from '../assets/products/pressure-transmeter.jpeg';
+import massFlowMeter from '../assets/products/mass flowmeter.png';
+import turbineFlowMeter from '../assets/products/turbine-flow-meter.jpeg';
+import vortexFlowMeter from '../assets/products/Vortex-Flowmeter.jpg';
+import smartPrepaidWaterMeter from '../assets/products/prepaid- watermeter.png';
+import chlorinator1 from '../assets/products/chlorinator-1.jpeg';
+import dcs from '../assets/products/dcs.jpeg';
+import smartWatermeter from '../assets/products/smart-watermeter.jpg';
+import utility from '../assets/products/utility.jpg';
+import bodAnalyzer from '../assets/products/bod-analyzer.jpeg';
+import codAnalyzer from '../assets/products/cod-analyzer.jpeg';
+import pressureSensor2 from '../assets/products/pressure sensor-2.jpeg';
+import pressureSensor1 from '../assets/products/pressure-sensor-1.jpeg';
+import pressureSensorDiff from '../assets/products/pressure-sensor.jpeg';
+import submersibleLevelTransmitter from '../assets/products/level-transmitter.jpeg';
+import controlValve from '../assets/products/control-valves-1.png';
+import soxAnalyzer from '../assets/products/sox analyzer.png';
+import noxAnalyzer from '../assets/products/nox analyzer.jpg';
+import pm10Analyzer from '../assets/products/pm10.jpg.jpeg';
+import pm25Analyzer from '../assets/products/pm2.5.png';
+import coAnalyzer from '../assets/products/co analyzer.jpg';
+import co2Analyzer from '../assets/products/co2 analyzer.jpg';
+import methaneAnalyzer from '../assets/products/methane-gas-analyzer..jpeg';
 
 
 
 export const RAW_SUB_PRODUCTS = [
   {
-    category: 'Flow Meters',
+    category: 'Flow',
     items: [
       {
         name: 'Bulk Flow Meter',
@@ -100,11 +124,107 @@ export const RAW_SUB_PRODUCTS = [
           'Available in cubic meters or gallons',
           'Rate-of-flow display'
         ]
+      },
+      {
+        name: 'Mass Flow Meter',
+        image: massFlowMeter,
+        paragraphs: [
+          'A Mass Flow Meter is an advanced flow measurement instrument used to measure the actual mass of fluid or gas flowing through a pipeline, independent of temperature and pressure variations. Unlike volumetric flow meters, it directly measures mass flow, making it highly accurate and reliable for critical industrial applications.'
+        ],
+        bullets: [
+          'Direct Mass Flow Measurement – No need for temperature or pressure compensation',
+          'High Accuracy & Repeatability – Ideal for precision process control',
+          'Digital Smart Transmitter – Real-time display of mass flow, total flow, and diagnostics',
+          'No Moving Parts – Minimal maintenance and long operational life',
+          'Wide Measuring Range – Suitable for low to high flow rates',
+          'Rugged Industrial Design – Built for harsh operating environments'
+        ]
+      },
+      {
+        name: 'Turbine Flow Meter',
+        image: turbineFlowMeter,
+        paragraphs: [
+          'A Turbine Flow Meter is a high-accuracy flow measurement device designed for clean, low-viscosity liquids. It works on the principle of a precision turbine rotor placed in the fluid stream—when the liquid flows, the rotor spins at a speed directly proportional to the flow rate. This rotation is converted into electrical signals and displayed as instantaneous and totalized flow.'
+        ],
+        bullets: [
+          'High Accuracy & Repeatability – Ideal for precise flow monitoring and control',
+          'Wide Measurement Range – Suitable for low to high flow applications',
+          'Robust Construction – Typically manufactured in SS304 / SS316 for long service life',
+          'Digital Display – Shows instantaneous flow rate and total flow',
+          'Fast Response Time – Excellent for dynamic flow conditions',
+          'Low Pressure Drop – Optimized internal design',
+          'Easy Installation & Maintenance – Flanged / threaded mounting options'
+        ]
+      },
+      {
+        name: 'Vortex Flow Meter',
+        image: vortexFlowMeter,
+        paragraphs: [
+          'A Vortex Flow Meter (also known as a Vortex Shedding Flow Meter) is an industrial flow measurement device used for steam, gas, and liquid applications. It operates on the principle of vortex shedding, where vortices are generated as the fluid flows past a bluff body placed inside the pipe. The frequency of these vortices is directly proportional to the flow velocity.'
+        ],
+        bullets: [
+          'Ideal for Steam, Gas & Liquids – Especially saturated & superheated steam',
+          'High Accuracy & Long-Term Stability – Minimal drift over time',
+          'No Moving Parts – Low maintenance and high reliability',
+          'Integrated Temperature & Pressure Compensation (optional)',
+          'Digital Display & Smart Transmitter – Real-time flow monitoring',
+          'Rugged Industrial Design – Suitable for harsh environments'
+        ]
+      },
+      {
+        name: 'Smart Prepaid Water Meter',
+        image: smartPrepaidWaterMeter,
+        paragraphs: [
+          'A Smart Prepaid Water Meter is an advanced IoT-enabled metering solution designed to measure, monitor, and manage water consumption on a pay-before-use basis. Integrated with sensor-to-cloud technology, it enables real-time data transmission, remote monitoring, and efficient water management for utilities and end users.'
+        ],
+        bullets: [
+          'Prepaid Water Management – Water usage is deducted from available credit',
+          'IoT / Cloud Connectivity – Real-time data upload to cloud platform',
+          'Digital LCD Display – Shows balance, consumption, and meter status',
+          'Remote Monitoring & Control – Online data access via web or mobile app',
+          'Automatic Valve Control – Water supply stops when balance reaches zero',
+          'Tamper & Leak Detection – Improves system security and reduces losses',
+          'Low Power Consumption – Battery operated for long life',
+          'Compact & Weatherproof Design – Suitable for field installation'
+        ]
+      },
+      {
+        name: 'Smart Water Meter for Household',
+        image: smartWatermeter,
+        paragraphs: [
+          'A Smart Water Meter for Household use is an IoT-enabled digital water metering solution designed to accurately measure, monitor, and manage daily water consumption in homes. It provides real-time usage data, helps detect leaks, and promotes responsible water usage through smart analytics and mobile/cloud connectivity.'
+        ],
+        bullets: [
+          'Real-Time Water Consumption Monitoring',
+          'IoT / Wireless Connectivity (RF / LoRa / NB-IoT / GSM – model dependent)',
+          'Mobile App & Cloud Dashboard – Track daily, monthly & yearly usage',
+          'Leak & Abnormal Usage Detection – Instant alerts for water wastage',
+          'High Measurement Accuracy – Suitable for low-flow household conditions',
+          'Battery Operated – Long battery life with low power consumption',
+          'Compact & Weatherproof Design – Ideal for residential installations'
+        ]
+      },
+      {
+        name: 'Smart Water Meter for Utilities',
+        image: utility,
+        paragraphs: [
+          'A Smart Water Meter for Utility Applications is an advanced IoT-enabled metering solution designed for municipal and bulk water supply systems. It enables utilities to accurately measure water consumption, monitor distribution networks in real time, reduce non-revenue water (NRW), and improve billing efficiency through automated data collection.',
+          'This type of meter is ideal for city water boards, industrial utilities, and large-scale water distribution networks.'
+        ],
+        bullets: [
+          'High-Accuracy Measurement – Suitable for continuous utility operations',
+          'IoT & AMI/AMR Ready – Remote data reading without manual intervention',
+          'Wireless Communication – NB-IoT / LoRaWAN / RF / GSM (model dependent)',
+          'Real-Time Data Monitoring – Consumption, flow trends & system health',
+          'Leak & Tamper Detection – Helps reduce water loss and theft',
+          'Long-Life Battery – Designed for multi-year utility deployments',
+          'Rugged & Weatherproof Design – Ideal for outdoor and underground installation'
+        ]
       }
     ]
   },
   {
-    category: 'Analyzers & Transmitters',
+    category: 'Analyzers',
     items: [
       {
         name: 'Total Chlorine Transmitter/Controller',
@@ -149,8 +269,8 @@ export const RAW_SUB_PRODUCTS = [
         ]
       },
       {
-        name: 'Turbidity Transmitter',
-        image: turbidityTransmitter,
+        name: 'Turbidity Analyzer',
+        image: turbidityAnalyzer,
         paragraphs: ['Water clarity and suspended solids measurement'],
         bullets: [
           'Real-time monitoring',
@@ -158,6 +278,143 @@ export const RAW_SUB_PRODUCTS = [
           'High sensitivity'
         ]
       },
+      {
+        name: 'BOD Analyzer',
+        image: bodAnalyzer,
+        paragraphs: [
+          'An Online BOD Analyzer (Biochemical Oxygen Demand Analyzer) is an advanced monitoring instrument designed for continuous, real-time measurement of BOD in water and wastewater systems. Unlike laboratory-based BOD testing, this system provides instant and continuous data, enabling operators to monitor organic pollution levels and treatment performance effectively.',
+          'It is widely used in STP, ETP, municipal wastewater plants, and industrial effluent monitoring where regulatory compliance and process optimization are critical.'
+        ],
+        bullets: [
+          'Real-Time BOD Monitoring – Continuous online measurement',
+          'Automatic Operation – No manual sampling required',
+          'High Accuracy & Stability – Reliable long-term performance',
+          'Digital Display & Menu-Driven Interface – Easy operation',
+          'Multiple Signal Outputs – 4–20 mA / RS485 / Modbus',
+          'Low Maintenance Design – Suitable for 24×7 operation',
+          'Compact & Rugged Enclosure – Industrial-grade construction'
+        ]
+      },
+      {
+        name: 'COD Analyzer',
+        image: codAnalyzer,
+        paragraphs: [
+          'COD Analyzer (Chemical Oxygen Demand Analyzer) is a continuous water quality monitoring instrument used to measure COD levels in real time. It provides instant information about the organic pollution load in water and wastewater, helping operators maintain process efficiency, regulatory compliance, and environmental safety.',
+          'This system typically consists of a COD sensor and a digital analyzer/transmitter, suitable for uninterrupted 24×7 monitoring.'
+        ],
+        bullets: [
+          'Real-Time COD Measurement – Continuous online monitoring',
+          'High Accuracy & Stability – Reliable long-term performance',
+          'Digital Display & Menu-Driven Interface – Easy configuration and operation',
+          'Automatic Temperature Compensation – Ensures accurate readings',
+          'Multiple Output Signals – 4–20 mA / RS485 (Modbus)',
+          'Low Maintenance Sensor Design – Ideal for harsh wastewater conditions',
+          'Industrial Enclosure – Suitable for plant and outdoor installation'
+        ]
+      },
+    ]
+  },
+  {
+    category: 'Air Quality Analyzers',
+    items: [
+      {
+        name: 'SOx Analyzer (Sulfur Oxides Analyzer)',
+        image: soxAnalyzer,
+        paragraphs: [
+          'An SOx Analyzer is an industrial gas analysis instrument used to continuously measure sulfur oxides (mainly SO₂ and SO₃) in flue gas or exhaust emissions. It helps industries monitor air pollution, ensure regulatory compliance, and optimize combustion and process efficiency.',
+          'The analyzer continuously samples flue gas, measures SOx concentration, and displays the values while also transmitting signals to PLC / DCS / SCADA systems.'
+        ],
+        bullets: [
+          'Continuous and real-time SOx measurement',
+          'High accuracy and long-term stability',
+          'Suitable for harsh industrial environments',
+          'Digital display with easy menu operation',
+          'Supports remote monitoring and data logging',
+          'Designed for continuous operation (24/7)'
+        ]
+      },
+      {
+        name: 'NOx Analyzer (Nitrogen Oxides Analyzer)',
+        image: noxAnalyzer,
+        paragraphs: [
+          'A NOx Analyzer is an industrial gas analysis instrument used to continuously measure nitrogen oxides (NO and NO₂, expressed as NOx) in flue gas or exhaust gas. It is widely used to monitor air emissions, ensure pollution control compliance, and optimize combustion efficiency in industrial processes.',
+          'The analyzer provides real-time measurement, local display, and output signals to PLC / DCS / SCADA systems.'
+        ],
+        bullets: [
+          'Working Principle: Flue gas sample is extracted from the stack, Sample gas is filtered, cooled, and dried, NOx concentration is measured using UV absorption / chemiluminescence technology, Measured values are converted into electrical output signals'
+        ]
+      },
+      {
+        name: 'PM10 Analyzer (Particulate Matter Analyzer)',
+        image: pm10Analyzer,
+        paragraphs: [
+          'A PM10 Analyzer is an air monitoring instrument used to continuously measure particulate matter with aerodynamic diameter ≤10 microns (PM10) present in ambient air. These fine dust particles can penetrate the respiratory system and are critical indicators of air pollution and public health impact.',
+          'The system is typically installed outdoors in a weatherproof cabinet with a sampling inlet, suction system, and measuring module.'
+        ],
+        bullets: [
+          'Working Principle: PM10 analyzers generally work on one of the following principles: Gravimetric Method (Beta Attenuation Monitor – BAM): Measures mass concentration by attenuation of beta radiation through collected particles. Optical / Light Scattering Method: Measures particle concentration by analyzing scattered light from particles in the air stream. Air is drawn through a PM10 size-selective inlet, ensuring only particles ≤10 µm are measured.'
+        ]
+      },
+      {
+        name: 'PM2.5 Analyzer (Particulate Matter 2.5 Micron Analyzer)',
+        image: pm25Analyzer,
+        paragraphs: [
+          'A PM2.5 Analyzer is used to continuously measure fine particulate matter with aerodynamic diameter ≤2.5 microns (PM2.5) present in ambient air. These ultra-fine particles can penetrate deep into the lungs and bloodstream, making PM2.5 a critical air quality parameter for environmental and public health monitoring.',
+          'The analyzer is installed with a PM2.5 size-selective inlet, sampling system, and control unit for reliable long-term outdoor operation.'
+        ],
+        bullets: [
+          'Working Principle: PM2.5 analyzers typically operate using: Beta Attenuation Method (BAM): Measures particle mass by beta radiation absorption through collected particles. Optical / Light Scattering Method: Determines particle concentration by analyzing scattered light. Only particles ≤2.5 µm are allowed through the inlet for measurement.'
+        ]
+      }
+    ]
+  },
+  {
+    category: 'Gas Analyzers',
+    items: [
+      {
+        name: 'Carbon Monoxide (CO) Gas Analyzer',
+        image: coAnalyzer,
+        paragraphs: [
+          'A Portable CO Gas Analyzer is a field-use analytical instrument designed to measure carbon monoxide (CO) concentration in flue gas, exhaust gas, or ambient air. Housed in a rugged suitcase enclosure, it is ideal for on-site measurements, inspections, audits, and temporary monitoring where fixed analyzers are not practical.',
+          'The analyzer draws gas through a sampling probe using an internal pump, displays real-time readings, and can store data for reporting.'
+        ],
+        bullets: [
+          'Working Principle: Gas sample is extracted using a probe and tubing, Sample passes through filters and moisture traps, CO concentration is measured using an electrochemical or NDIR sensor (model dependent), Results are displayed and logged digitally'
+        ]
+      },
+      {
+        name: 'Carbon Dioxide (CO₂) Gas Analyzer',
+        image: co2Analyzer,
+        paragraphs: [
+          'A Portable O₂ & CO₂ Gas Analyzer is a handheld measuring instrument designed for on-site analysis of oxygen and carbon dioxide concentrations in gas samples. It is widely used for environmental monitoring, water & wastewater treatment, industrial process checks, and laboratory applications.',
+          'The unit uses an internal sampling pump to draw gas through a probe and displays real-time values on a digital screen.'
+        ],
+        bullets: [
+          'Simultaneous measurement of O₂ and CO₂',
+          'Compact, lightweight, handheld design',
+          'Built-in sampling pump with probe',
+          'Clear LCD display with real-time readings',
+          'Simple keypad operation and menu navigation',
+          'Battery-operated for field use',
+          'Data storage and calibration functions'
+        ]
+      },
+      {
+        name: 'CH₄ Gas Analyzer (Methane Analyzer)',
+        image: methaneAnalyzer,
+        paragraphs: [
+          'A CH₄ Gas Analyzer is used to measure methane (CH₄) concentration in gas streams. Methane is a key component of biogas and natural gas and also an important greenhouse gas, so continuous monitoring is essential for process control, safety, and environmental compliance.',
+          'The analyzer provides real-time methane concentration on a digital display and transmits output signals to PLC / DCS / SCADA systems.'
+        ],
+        bullets: [
+          'Working Principle: Gas sample is introduced into the analyzer, Methane concentration is measured using NDIR (Non-Dispersive Infrared) technology, CH₄ absorbs infrared radiation at a specific wavelength, The absorbed signal is converted into a concentration value (% vol or ppm)'
+        ]
+      }
+    ]
+  },
+  {
+    category: 'Level Transmitter',
+    items: [
       {
         name: 'Capacitance Level Transmitter',
         image: capacitanceLevelTransmitter,
@@ -175,6 +432,58 @@ export const RAW_SUB_PRODUCTS = [
           'Viscous or corrosive media'
         ]
       },
+      {
+        name: 'Hydrostatic Level Transmitter',
+        image: hydrostaticLevelTx,
+        bullets: [
+          '2- or 3-wire submersible transmitter',
+          'Plastic or stainless steel body',
+          'Capacitive ceramic piezoresistive stainless steel and piezoresistive ceramic sensor',
+          'Up to 200 m range',
+          'Reverse polarity protection',
+          'Optional lightning protection',
+          'Linearity: ±0.25 %',
+          'HART communication',
+          'Venting tube in cable',
+          'Incorporated Pt100 temperature sensor',
+          'Explosion-proof models'
+        ]
+      },
+      {
+        name: 'Ultrasonic Level Transmitter (Local Type)',
+        image: ultrasonicLevelTx,
+        bullets: [
+          '2- or 4-wire integrated transmitter',
+          'Non-contact level metering',
+          'Narrow 5° beam angle',
+          'Excellent signal processing',
+          'Temperature compensated',
+          'Secondary lightning protection',
+          '32-point linearization',
+          'PP PVDF PTFE housing and transducers',
+          'Plug-in display module',
+          'Plastic aluminum or stainless steel housing',
+          'Explosion-proof models',
+          'Level and volume measurement and display',
+          'Open channel flow measurement',
+          'Fail-safe indication',
+          'For challenging applications such as long distance measurement and light dust during filling'
+        ]
+      },
+      {
+        name: 'Submersible Level Transmitter',
+        image: submersibleLevelTransmitter,
+        bullets: [
+          'Uses hydrostatic pressure principle for tanks/wells',
+          '4–20 mA output',
+          'Fully sealed and corrosion-resistant'
+        ]
+      }
+    ]
+  },
+  {
+    category: 'Level Switch',
+    items: [
       {
         name: 'Conductive Level Switch',
         image: conductiveLevelSwitch,
@@ -202,44 +511,15 @@ export const RAW_SUB_PRODUCTS = [
         ]
       },
       {
-        name: 'Hydrostatic Level Transmitter',
-        image: hydrostaticLevelTx,
+        name: 'Coupling Level Switch',
+        image: couplingLevelSwitch,
+        paragraphs: [
+          'A Coupling Type Float Level Switch is a mechanical level-sensing device used to detect high or low liquid levels in tanks, vessels, and sumps. It is mounted using a threaded coupling and works on the buoyancy principle. As the liquid level rises or falls, the float moves and actuates an internal switch to provide an ON/OFF electrical output.'
+        ],
         bullets: [
-          '2- or 3-wire submersible transmitter',
-          'Plastic or stainless steel body',
-          'Capacitive ceramic piezoresistive stainless steel and piezoresistive ceramic sensor',
-          'Up to 200 m range',
-          'Reverse polarity protection',
-          'Optional lightning protection',
-          'Linearity: ±0.25 %',
-          'HART communication',
-          'Venting tube in cable',
-          'Incorporated Pt100 temperature sensor',
-          'Explosion-proof models'
+          'Working Principle: The float moves with the liquid level, the movement is transferred through a lever mechanism, a micro switch or reed switch changes its contact state, and the output signal is used for pump control or alarm systems.'
         ]
-      },
-      {
-        name: 'Ultrasonic Level Transmitter',
-        image: ultrasonicLevelTx,
-        bullets: [
-          '2- or 4-wire integrated transmitter',
-          'Non-contact level metering',
-          'Narrow 5° beam angle',
-          'Excellent signal processing',
-          'Temperature compensated',
-          'Secondary lightning protection',
-          '32-point linearization',
-          'PP PVDF PTFE housing and transducers',
-          'Plug-in display module',
-          'Plastic aluminum or stainless steel housing',
-          'Explosion-proof models',
-          'Level and volume measurement and display',
-          'Open channel flow measurement',
-          'Fail-safe indication',
-          'For challenging applications such as long distance measurement and light dust during filling'
-        ]
-      },
-
+      }
     ]
   },
   {
@@ -317,6 +597,20 @@ export const RAW_SUB_PRODUCTS = [
           'Available in sizes up to 24" (600 mm)',
           'Reliable long-term operation'
         ]
+      },
+      {
+        name: 'Control Valve',
+        image: controlValve,
+        paragraphs: [
+          'A Control Valve is a final control element used to regulate flow, pressure, level, or temperature of fluids in a process system. It operates by adjusting the valve opening based on a control signal from a PLC, DCS, or controller. The valve shown is a globe-type control valve with a pneumatic actuator and positioner, designed for precise and stable control.'
+        ],
+        bullets: [
+          'Valve Body: Controls fluid flow',
+          'Pneumatic Actuator: Converts air pressure into valve movement',
+          'Valve Positioner: Ensures accurate valve positioning',
+          'Stem & Plug: Regulates flow through the valve',
+          'Air Regulator & Gauges: Maintains stable air supply'
+        ]
       }
     ]
   },
@@ -371,6 +665,22 @@ export const RAW_SUB_PRODUCTS = [
           '100 plants per network',
           'Mobile app support',
           'Continuous logging'
+        ]
+      },
+      {
+        name: 'DCS Controller',
+        image: dcs,
+        paragraphs: [
+          'A DCS (Distributed Control System) Controller is a high-reliability industrial control unit designed for continuous process monitoring and control. Unlike PLCs, a DCS system distributes control intelligence across multiple controllers and networks, ensuring high availability, redundancy, and stable operation for large-scale and mission-critical processes.',
+          'This controller acts as the core processing unit within a DCS architecture, managing real-time process data, executing control strategies, and communicating seamlessly with field instruments, I/O stations, HMIs, and SCADA systems.'
+        ],
+        bullets: [
+          'True Distributed Control Architecture – No single point of failure',
+          'High-Availability Operation – Designed for 24×7 continuous processes',
+          'Advanced Process Control – PID, interlocks, sequencing & logic control',
+          'Multi-Network Communication – Redundant control & system networks',
+          'Real-Time Diagnostics – Status LEDs for RUN, ERROR, SYNC & network health',
+          'Industrial-Grade Hardware – Built for harsh plant environments'
         ]
       }
     ]
@@ -462,7 +772,7 @@ export const RAW_SUB_PRODUCTS = [
     category: 'Jointing Machines',
     items: [
       {
-        name: 'Big Jointing Machine',
+        name: 'Butt Fusion Jointing Machine',
         image: bigJointingMachines,
         datasheetUrl: '/datasheets/big-jointing-machine.pdf',
         paragraphs: ['Heavy-duty pipe jointing equipment designed for large diameter pipe installations in water infrastructure project.'],
@@ -506,13 +816,54 @@ export const RAW_SUB_PRODUCTS = [
     ]
   },
   {
+    category: 'Pressure Sensor',
+    items: [
+      {
+        name: 'Digital Pressure Sensor',
+        image: pressureSensor2,
+        paragraphs: ['Electronic device for liquid/gas pressure; converts to digital signal; features high accuracy, LED/LCD display, compact design.'],
+        bullets: [
+          'Electronic device for liquid/gas pressure',
+          'Converts to digital signal',
+          'High accuracy',
+          'LED/LCD display',
+          'Compact design'
+        ]
+      },
+      {
+        name: 'Electronic Pressure Sensor',
+        image: pressureSensor1,
+        paragraphs: ['Industrial use for PLCs/Controllers; stainless-steel construction; rugged design for harsh environments.'],
+        bullets: [
+          'Industrial use for PLCs/Controllers',
+          'Stainless-steel construction',
+          'Rugged design',
+          'Harsh environment ready'
+        ]
+      },
+      {
+        name: 'Differential Pressure Sensor',
+        image: pressureSensorDiff,
+        paragraphs: ['Measures difference between HP and LP points; used for flow/filter monitoring; stainless steel manifold.'],
+        bullets: [
+          'Measures difference between HP and LP points',
+          'Used for flow/filter monitoring',
+          'Stainless steel manifold'
+        ]
+      }
+    ]
+  },
+  {
     category: 'Pressure Transmitter',
     items: [
       {
         name: 'Blind Type Pressure Transmitter',
         image: blindTypePressureTransmitters,
         datasheetUrl: '/datasheets/blind-pressure-transmitter.pdf',
-        paragraphs: ['Gauge pressure measurement without display'],
+        paragraphs: [
+          'A Blind Type Pressure Transmitter (also known as a Flush Diaphragm Pressure Transmitter) is a specialized pressure sensing device designed to measure pressure without any cavity, hole, or dead space. The sensing diaphragm is flush-mounted with the process connection, making it ideal for applications where clogging, fouling, or blockage is a concern.',
+          'These transmitters are widely used in water treatment, wastewater, slurry, viscous fluids, and hygienic applications where conventional pressure ports may fail.'
+        ],
         bullets: [
           'Compact design',
           'High accuracy',
@@ -544,6 +895,15 @@ export const RAW_SUB_PRODUCTS = [
           '1:200 turndown',
           'Flow measurement capability'
         ]
+      },
+      {
+        name: 'Digital Pressure Transmitter with Display',
+        image: digitalPressureTransmitter,
+        paragraphs: [
+          'This Digital Pressure Transmitter with Display is a robust and reliable instrument used for accurate pressure measurement in industrial applications. It features an easy-to-read LCD display that allows real-time pressure monitoring directly at the installation point.',
+          'The transmitter is manufactured with a stainless steel pressure sensor, ensuring durability, corrosion resistance, and long service life even in harsh environments. It is suitable for measuring gases, liquids, and oils in pipelines, tanks, compressors, pumps, and hydraulic systems.',
+          'Designed for industrial automation, this pressure transmitter provides stable output, high accuracy, and excellent repeatability, making it ideal for process control and monitoring systems.'
+        ]
       }
     ]
   },
@@ -561,6 +921,22 @@ export const RAW_SUB_PRODUCTS = [
           'Odor control capability',
           'Marine growth prevention',
           'Service water system use'
+        ]
+      },
+      {
+        name: 'Automatic Chlorine Dosing System',
+        image: chlorinator1,
+        paragraphs: [
+          'An Automatic Chlorine Dosing System is a complete water disinfection solution designed to accurately dose chlorine into water for effective control of bacteria, viruses, and other pathogens. The system ensures safe, consistent, and controlled chlorination, making it essential for drinking water, wastewater, and industrial water treatment applications.'
+        ],
+        bullets: [
+          'Automatic & Precise Dosing – Maintains required chlorine residual levels',
+          'Online Chlorine Monitoring – Continuous measurement and control (optional)',
+          'PLC / Controller Based Operation – Fully automated system',
+          'Chemical Storage & Dosing Skid – Compact, ready-to-install design',
+          'Low Maintenance Operation – Reliable components with long service life',
+          'Safety-Oriented Design – Minimizes chemical handling risks',
+          'Scalable Capacity – Suitable for small to large treatment plants'
         ]
       }
     ]

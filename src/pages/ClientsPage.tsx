@@ -23,6 +23,10 @@ import indoreMunicipal from '../assets/clients/indore municipal corporation.png'
 import larsenToubro from "../assets/clients/larsen- toubro's.png";
 import bmcLogo from '../assets/clients/mpudcl-bhopal.jpg';
 import heroSectionImage from '../assets/products/hero-section.jpg';
+import bhelLogo from '../assets/clients/bhel.jpg';
+import pwdLogo from '../assets/clients/pwd.png';
+import gemLogo from '../assets/clients/gem.jpg';
+import mesLogo from '../assets/clients/military-engineer-services.jpg';
 
 export default function ClientsPage() {
   const [formData, setFormData] = useState({ fullName: '', email: '', phone: '', message: '' });
@@ -112,7 +116,11 @@ export default function ClientsPage() {
                   'OM Construction',
                   'SBEM',
                   'Indore Municipal Corporation',
-                  "Larsen & Toubro's"
+                  "Larsen & Toubro's",
+                  'Bharat Heavy Electricals Limited',
+                  'Public Works Department',
+                  'GeM Government',
+                  'Military Engineer Services'
                 ];
 
                 const logoMap: Record<string, string | null> = {
@@ -135,7 +143,11 @@ export default function ClientsPage() {
                   'OM Construction': omConstruction,
                   'SBEM': sbem,
                   'Indore Municipal Corporation': indoreMunicipal,
-                  "Larsen & Toubro's": larsenToubro
+                  "Larsen & Toubro's": larsenToubro,
+                  'Bharat Heavy Electricals Limited': bhelLogo,
+                  'Public Works Department': pwdLogo,
+                  'GeM Government': gemLogo,
+                  'Military Engineer Services': mesLogo
                 };
 
                 return displayNames.map((name) => {

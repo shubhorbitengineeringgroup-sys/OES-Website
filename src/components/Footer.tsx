@@ -11,6 +11,7 @@ export default function Footer({ onNavigate }: FooterProps) {
     { label: 'About', page: 'about' },
     { label: 'Services', page: 'services' },
     { label: 'Products', page: 'products' },
+    { label: 'Brochure', page: 'brochure' },
     { label: 'FAQ', page: 'faq' },
   ];
 

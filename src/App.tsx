@@ -13,6 +13,7 @@ const ProjectsPage = lazy(() => import('./pages/ProjectsPage'));
 const AboutPage = lazy(() => import('./pages/AboutPage'));
 const ServicesPage = lazy(() => import('./pages/ServicesPage'));
 const ProductsPage = lazy(() => import('./pages/ProductsPage'));
+const ActuatorsPage = lazy(() => import('./pages/ActuatorsPage'));
 const ProductInfoPage = lazy(() => import('./pages/ProductInfoPage'));
 const FAQPage = lazy(() => import('./pages/FAQPage'));
 const TeamPage = lazy(() => import('./pages/TeamPage'));
@@ -67,6 +68,13 @@ function AppContent() {
     else if (path === 'faq') targetPath = '/solutions';
     else if (path === 'team') targetPath = '/team';
     else if (path === 'contact') targetPath = '/contact';
+    else if (path === 'brochure') {
+      // Find any open brochure modal or just navigate to a product page that has it
+      // For now, let's just navigate to products and maybe we can trigger it or just let the footer link be a direct download
+      // Actually, it's better if it triggers the modal. But footer is simple.
+      // Let's make it navigate to products for now, or we can handle it specifically.
+      targetPath = '/products';
+    }
     else if (path.startsWith('product-info:')) targetPath = `/products/${path.split(':')[1]}`;
     else if (path.startsWith('product:')) targetPath = `/product/${path.split(':')[1]}`;
 
@@ -131,6 +139,7 @@ function AppContent() {
               <Route path="/about" element={<AboutPage />} />
               <Route path="/services" element={<ServicesPage onNavigate={handleNavigate} />} />
               <Route path="/products" element={<ProductsPage onNavigate={handleNavigate} />} />
+              <Route path="/products/actuators" element={<ActuatorsPage />} />
               <Route path="/products/:variant" element={<ProductInfoPage onNavigate={handleNavigate} />} />
               <Route path="/product/:slug" element={<ProductDetailLoader productIndex={productIndex} onNavigate={handleNavigate} />} />
               <Route path="/clients" element={<ClientsPage />} />
@@ -163,7 +172,7 @@ export default function App() {
   const Router = isGitHubPages ? HashRouter : BrowserRouter;
 
   return (
-    <Router>
+    <Router basename={!isGitHubPages ? import.meta.env.BASE_URL : undefined}>
       <AppContent />
     </Router>
   );
