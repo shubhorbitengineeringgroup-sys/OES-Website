@@ -106,7 +106,7 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
 
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 overflow-x-hidden">
       <SEO
         title="Our Technical Services | WTP Maintenance & SCADA Automation - Orbit Engineering"
         description="Professional services for water infrastructure: PLC/SCADA integration, O&M, consultancy, and turnkey automation by Orbit Engineering Group."
@@ -116,7 +116,7 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
 
       <HeroSection title="Our Services" subtitle="Comprehensive water infrastructure solutions from concept to maintenance" />
 
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, index) => {

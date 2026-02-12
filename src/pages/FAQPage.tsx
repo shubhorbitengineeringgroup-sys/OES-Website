@@ -210,7 +210,7 @@ export default function FAQPage({ onNavigate }: FAQPageProps) {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 overflow-x-hidden">
       <section className="relative text-white py-20">
         <img src={heroWaterImage} alt="Water technology background" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-black/50" />

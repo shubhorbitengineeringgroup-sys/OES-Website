@@ -65,7 +65,7 @@ function DualAnimationSection() {
   };
 
   return (
-    <section className="py-20 bg-gradient-to-br from-white to-gray-50">
+    <section className="py-20 bg-gradient-to-br from-white to-gray-50 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           ref={ref}
@@ -168,7 +168,7 @@ function AutomationSection() {
   ];
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Heading with Background Image */}
         <motion.div
@@ -280,7 +280,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
 
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen overflow-x-hidden">
       <SEO
         title="Orbit Engineering Group | Water Treatment & Automation Bhopal"
         description="Orbit Engineering Group Bhopal: Leaders in WTP, STP, RO, SCADA, and PLC automation. Solving complex water challenges in India since 1998."

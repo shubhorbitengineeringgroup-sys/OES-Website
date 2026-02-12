@@ -22,7 +22,7 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 overflow-x-hidden">
       <SEO
         title="Contact Us | Orbit Engineering Group Bhopal - Get a Free Consultation"
         description="Reach out to Orbit Engineering Group for your water treatment and automation needs. Offices in Arera Colony and Bagsewaniya, Bhopal."

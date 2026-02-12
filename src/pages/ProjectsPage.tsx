@@ -176,7 +176,7 @@ export default function ProjectsPage({ initialFilter = 'all', onNavigate }: Proj
 
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 overflow-x-hidden">
       <SEO
         title="Industrial & Municipal Water Projects | SCADA Automation - Orbit Engineering"
         description="Case studies of our successful water infrastructure and automation projects across India, featuring 45 MLD WTPs and advanced SCADA systems."
@@ -236,7 +236,7 @@ export default function ProjectsPage({ initialFilter = 'all', onNavigate }: Proj
         </div>
       </section>
 
-      <section className="py-16">
+      <section className="py-16 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Completed Projects Section */}
           {(filter === 'all' || filter === 'completed') && (

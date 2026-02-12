@@ -123,7 +123,7 @@ function AppContent() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-white">
+    <div className="min-h-screen flex flex-col bg-white overflow-x-hidden">
       <Header onNavigate={handleNavigate} currentPage={getActivePage()} />
       <div className="relative flex-grow">
         <LogoLoader isVisible={isTransitioning} />

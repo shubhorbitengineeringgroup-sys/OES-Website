@@ -5,11 +5,14 @@
 @tailwind utilities;
 
 @layer base {
+
+  html,
   body {
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
+    position: relative;
     width: 100%;
     color: #374151;
     /* gray-700 equivalent for better readability */
@@ -279,9 +282,17 @@
 }
 
 @keyframes shine {
-  0% { transform: translateX(-200%); }
-  50% { transform: translateX(200%); }
-  100% { transform: translateX(200%); }
+  0% {
+    transform: translateX(-200%);
+  }
+
+  50% {
+    transform: translateX(200%);
+  }
+
+  100% {
+    transform: translateX(200%);
+  }
 }
 
 .animate-shine {

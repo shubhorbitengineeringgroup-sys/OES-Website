@@ -48,7 +48,7 @@ export default function AboutPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 overflow-x-hidden">
       <SEO
         title="About Orbit Engineering Group | 25+ Years of Engineering Excellence in Bhopal"
         description="Learn about Orbit Engineering Group's journey since 1998, our mission to revolutionize water infrastructure, and our commitment to sustainable engineering."
@@ -58,7 +58,7 @@ export default function AboutPage() {
 
       <HeroSection title="About Orbit Engineerings" subtitle="Pioneering water innovation for sustainable communities" />
 
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div
@@ -118,7 +118,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gray-50 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 tracking-tight">
