@@ -73,11 +73,11 @@ export default function LogoLoader({ isVisible }: LogoLoaderProps) {
                     {/* Ambient Radial Fog */}
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(30,58,138,0.15)_0%,transparent_70%)]" />
 
-                    <div className="relative w-80 h-80 flex items-center justify-center perspective-[1200px]">
+                    <div className="relative w-48 h-48 md:w-80 md:h-80 flex items-center justify-center perspective-[1200px]">
 
                         {/* 1. Dynamic 3D Shadow (Reacts to tumble) */}
                         <motion.div
-                            className="absolute w-40 h-10 bg-black/40 rounded-[100%] blur-2xl top-[90%]"
+                            className="absolute w-24 h-6 md:w-40 md:h-10 bg-black/40 rounded-[100%] blur-2xl top-[90%]"
                             animate={{
                                 scale: [1, 1.2, 0.9, 1],
                                 opacity: [0.3, 0.5, 0.3, 0.3],
@@ -147,8 +147,8 @@ export default function LogoLoader({ isVisible }: LogoLoaderProps) {
                                 className="absolute w-2 h-2 bg-blue-300 rounded-full blur-[1px] z-50"
                                 animate={{
                                     rotate: 360,
-                                    x: [Math.cos(i) * 120, Math.cos(i + 2) * 120],
-                                    y: [Math.sin(i) * 120, Math.sin(i + 2) * 120],
+                                    x: [Math.cos(i) * (window.innerWidth < 768 ? 70 : 120), Math.cos(i + 2) * (window.innerWidth < 768 ? 70 : 120)],
+                                    y: [Math.sin(i) * (window.innerWidth < 768 ? 70 : 120), Math.sin(i + 2) * (window.innerWidth < 768 ? 70 : 120)],
                                     scale: [0.5, 1, 0.5]
                                 }}
                                 transition={{
