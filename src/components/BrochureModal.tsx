@@ -68,7 +68,7 @@ export default function BrochureModal({ open, onClose, brochureUrl }: Props) {
 
     return (
         <AnimatePresence>
-            <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+            <div className="fixed inset-0 z-[2000] flex items-center justify-center p-4">
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
@@ -80,7 +80,7 @@ export default function BrochureModal({ open, onClose, brochureUrl }: Props) {
                     initial={{ opacity: 0, scale: 0.95, y: 20 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.95, y: 20 }}
-                    className="relative bg-white rounded-3xl shadow-2xl w-full max-w-lg overflow-hidden border border-gray-100"
+                    className="relative bg-white rounded-3xl shadow-2xl w-full max-w-lg overflow-y-auto max-h-[90vh] border border-gray-100"
                 >
                     <div className="bg-gradient-to-r from-[#0073bc] to-[#005a94] px-8 py-6 flex justify-between items-center text-white">
                         <div>

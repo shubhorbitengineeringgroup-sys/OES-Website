@@ -55,7 +55,7 @@ export default function QuoteModal({ open, onClose, productName }: Props) {
 
     return (
         <AnimatePresence>
-            <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+            <div className="fixed inset-0 z-[2000] flex items-center justify-center p-4">
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
@@ -67,7 +67,7 @@ export default function QuoteModal({ open, onClose, productName }: Props) {
                     initial={{ opacity: 0, scale: 0.95, y: 20 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.95, y: 20 }}
-                    className="relative bg-white rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden"
+                    className="relative bg-white rounded-2xl shadow-2xl w-full max-w-lg overflow-y-auto max-h-[90vh]"
                 >
                     <div className="bg-[#0073bc] px-6 py-4 flex justify-between items-center text-white">
                         <h3 className="text-xl font-bold">Get a Quote</h3>

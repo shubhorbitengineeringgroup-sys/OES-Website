@@ -108,6 +108,12 @@ export default function LogoLoader({ isVisible }: LogoLoaderProps) {
                                 src={logo}
                                 alt="Orbit 3D Logo"
                                 className="w-full h-full object-contain filter drop-shadow-[0_20px_50px_rgba(59,130,246,0.3)] brightness-110"
+                                style={{
+                                    backfaceVisibility: 'hidden',
+                                    WebkitBackfaceVisibility: 'hidden',
+                                    transform: 'translateZ(0)',
+                                    imageRendering: 'auto'
+                                }}
                             />
 
                             {/* Lighting Overlay: The 'Shine' Sweep */}
