@@ -18,7 +18,7 @@ import hegLimited from '../assets/clients/HEG.png';
 import indianRailways from '../assets/clients/Indian Railways.png';
 import laxmiCivilEngineering from '../assets/clients/laxmii.png';
 import omConstruction from '../assets/clients/om.jpeg';
-import sbem from '../assets/clients/SBEM.jpg';
+
 import indoreMunicipal from '../assets/clients/indore municipal corporation.png';
 import larsenToubro from "../assets/clients/larsen- toubro's.png";
 import bmcLogo from '../assets/clients/mpudcl-bhopal.jpg';
@@ -46,6 +46,10 @@ export default function ClientsPage() {
       // Specific Correction
       if (name.toLowerCase().includes('regada')) {
         name = 'Regada';
+      }
+
+      if (name.toLowerCase() === 'sbem') {
+        name = 'SBEM';
       }
 
       return { name, logo: url };
@@ -114,7 +118,7 @@ export default function ClientsPage() {
                   'Indian Railways',
                   'Laxmi Civil Engineering',
                   'OM Construction',
-                  'SBEM',
+
                   'Indore Municipal Corporation',
                   "Larsen & Toubro's",
                   'Bharat Heavy Electricals Limited',
@@ -141,7 +145,7 @@ export default function ClientsPage() {
                   'Indian Railways': indianRailways,
                   'Laxmi Civil Engineering': laxmiCivilEngineering,
                   'OM Construction': omConstruction,
-                  'SBEM': sbem,
+
                   'Indore Municipal Corporation': indoreMunicipal,
                   "Larsen & Toubro's": larsenToubro,
                   'Bharat Heavy Electricals Limited': bhelLogo,
