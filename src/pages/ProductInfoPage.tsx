@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Gauge, Activity, Zap, Camera, Wrench, CheckCircle, ArrowRight, FlaskConical, Sun, Waves, Download } from 'lucide-react';
+import { Gauge, Activity, Zap, Camera, Wrench, CheckCircle, ArrowRight, FlaskConical, Sun, Waves, Download, RotateCw } from 'lucide-react';
 import { RAW_SUB_PRODUCTS } from '../data/rawProducts';
 import { MotionFadeUp, AnimatedHeading } from '../components/Animated';
 import QuoteModal from '../components/QuoteModal';
@@ -577,6 +577,74 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
         { parameter: 'Response Time', value: '< 30 seconds' },
         { parameter: 'Battery Life', value: '> 10 hours (Portable)' }
       ]
+    },
+    'actuators': {
+      title: 'Actuators',
+      description: 'Advanced electric multi-turn and part-turn actuators for precise valve control and automation.',
+      icon: RotateCw,
+      features: [
+        'Precise position control',
+        'Robust industrial design',
+        'Weatherproof (IP67/IP68) options',
+        'Manual override capabilities',
+        'Smart digital interface',
+        'Wide torque and speed range'
+      ],
+      applications: [
+        'Water treatment plants',
+        'Power generation',
+        'Oil and gas pipelines',
+        'Chemical processing',
+        'Municipal infrastructure',
+        'HVAC systems'
+      ],
+      specifications: [
+        { parameter: 'Type', value: 'Multi-turn & Part-turn' },
+        { parameter: 'Enclosure', value: 'IP67, IP68' },
+        { parameter: 'Output Torque', value: 'Up to 1000 Nm' },
+        { parameter: 'Power Supply', value: 'AC (230V/415V)' },
+        { parameter: 'Connectivity', value: 'Modbus, Profibus, HART' }
+      ]
+    },
+    'multi-turn-actuators': {
+      title: 'Multi Turn Actuators',
+      description: 'Designed for gate, globe, and sluice valves requiring linear motion and high torque.',
+      icon: RotateCw,
+      features: [
+        'High torque output',
+        'Multiple revolution control',
+        'Linear motion compatibility',
+        'Advanced positioning accuracy'
+      ],
+      applications: [
+        'Gate valve operation',
+        'Globe valve control',
+        'Sluice gate automation'
+      ],
+      specifications: [
+        { parameter: 'Torque Range', value: 'Up to 1000 Nm' },
+        { parameter: 'Protection', value: 'IP67 / IP68' }
+      ]
+    },
+    'part-turn-actuators': {
+      title: 'Part Turn Actuators',
+      description: 'Ideal for butterfly, ball, and plug valves requiring 90° rotary motion.',
+      icon: RotateCw,
+      features: [
+        '90-degree rotary operation',
+        'Compact design',
+        'Fast response time',
+        'High reliability'
+      ],
+      applications: [
+        'Butterfly valve control',
+        'Ball valve operation',
+        'Plut valve automation'
+      ],
+      specifications: [
+        { parameter: 'Rotation Angle', value: '60° to 360°' },
+        { parameter: 'Torque Range', value: 'Up to 4000 Nm' }
+      ]
     }
   };
 
@@ -626,6 +694,16 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
       {variant === 'analyzers' && renderGallery('Analyzers', 'Advanced analyzers and transmitters for continuous monitoring')}
       {variant === 'air-quality-analyzers' && renderGallery('Air Quality Analyzers', 'Advanced systems for emissions and ambient air monitoring')}
       {variant === 'gas-analyzers' && renderGallery('Gas Analyzers', 'Precision gas analysis for safety and process control')}
+
+      {/* Actuators Pages */}
+      {variant === 'actuators' && (
+        <>
+          {renderGallery('Multi Turn Actuators', 'Advanced multi-turn actuators for linear valve motion')}
+          {renderGallery('Part Turn Actuators', 'Precision part-turn actuators for 90-degree valve operation')}
+        </>
+      )}
+      {variant === 'multi-turn-actuators' && renderGallery('Multi Turn Actuators', 'Advanced multi-turn actuators for linear valve motion')}
+      {variant === 'part-turn-actuators' && renderGallery('Part Turn Actuators', 'Precision part-turn actuators for 90-degree valve operation')}
 
       {/* Levels Pages */}
       {variant === 'levels' && (

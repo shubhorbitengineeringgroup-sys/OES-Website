@@ -69,7 +69,15 @@ export default function Header({ onNavigate, currentPage }: HeaderProps) {
       ]
     },
     { label: 'Valves & Piping', page: 'product-info:valves', icon: Settings },
-    { label: 'Actuators', page: 'product-info:actuators', icon: RotateCw },
+    {
+      label: 'Actuators',
+      page: 'product-info:actuators',
+      icon: RotateCw,
+      subCategories: [
+        { label: 'Multi Turn', page: 'product-info:multi-turn-actuators', icon: RotateCw },
+        { label: 'Part Turn', page: 'product-info:part-turn-actuators', icon: RotateCw }
+      ]
+    },
     { label: 'Automation (IoT / PLC / RTU / SCADA)', page: 'product-info:automation', icon: Cpu },
     { label: 'Cameras & Vision', page: 'product-info:cameras', icon: Camera },
     { label: 'Jointing Machines', page: 'product-info:jointing', icon: Wrench },

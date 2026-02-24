@@ -65,6 +65,33 @@ import coAnalyzer from '../assets/products/co analyzer.jpg';
 import co2Analyzer from '../assets/products/co2 analyzer.jpg';
 import methaneAnalyzer from '../assets/products/methane-gas-analyzer..jpeg';
 
+// Actuator Images - Multi Turn
+import so2Actuator from '../assets/products/electric-multi-turn-actuator-so-2.png';
+import um1Actuator from '../assets/products/electric-multi-turn-actuator-um-1.png';
+import um2Actuator from '../assets/products/electric-multi-turn-actuator-um-2.png';
+import mo3Actuator from '../assets/products/electric-multi-turn-actuator-mo-34.png';
+import mo35Actuator from '../assets/products/electric-multi-turn-actuator-mo-35.png';
+import mo4Actuator from '../assets/products/electric-multi-turn-actuator-mo-4.png';
+import mo5Actuator from '../assets/products/electric-multi-turn-actuator-mo-5.png';
+import sor2paActuator from '../assets/products/13-aded27aad68373a24e97208ec9030917.png';
+import umr1paActuator from '../assets/products/electric-multiturn.jpeg';
+import umr2paActuator from '../assets/products/Electric multi-turn actuator UMR 2PA.png';
+import mor3paActuator from '../assets/products/electric multi-turn actuator MOR 3pa.png';
+
+// Actuator Images - Part Turn
+import spMikroActuator from '../assets/products/electric-part-turn-actuator-sp-mikro.jpg';
+import sp0Actuator from '../assets/products/electric-part-turn-actuator-sp-0.jpg';
+import sp01Actuator from '../assets/products/electric-part-turn-actuator-sp-01.jpg';
+import sp1Actuator from '../assets/products/electric-part-turn-actuator-sp-1.png';
+import sp2Actuator from '../assets/products/electric-part-turn-actuator-sp-2.jpg';
+import sp23Actuator from '../assets/products/electric-part-turn-actuator-sp-23.png';
+import sp24Actuator from '../assets/products/electric-part-turn-actuator-sp-24.png';
+import mprActuator from '../assets/products/electric-part-turn-actuator-mpr.png';
+import mpr5Actuator from '../assets/products/74131400-1-mpr-5-a-casti-vz6.png';
+import up1Actuator from '../assets/products/electric-part-turn-actuator-up-1.png';
+import mpr6Actuator from '../assets/products/74131700-1-mpr-6-a-casti-vz10.png';
+import up2Actuator from '../assets/products/electric-part-turn-actuator-up-2.png';
+
 
 
 export const RAW_SUB_PRODUCTS = [
@@ -1072,9 +1099,396 @@ export const RAW_SUB_PRODUCTS = [
           'Frame Material: Anodized Aluminium'
         ]
       }
-
+    ]
+  },
+  {
+    category: 'Multi Turn Actuators',
+    items: [
+      {
+        name: 'Electric multi-turn actuator SO 2',
+        image: so2Actuator,
+        bullets: [
+          'Type number: 062',
+          'Industry use: Energy, Water, Industry',
+          'Enclosure protection: IP 67, IP 68',
+          'Switching-off torque: 7.5 to 100 Nm',
+          'Operating time: 10 to 40 min−1',
+          'Revolutions: 0.5 to 330',
+          'Weight: 12 to 20 kg',
+          'Ambient temperature: -60 to 55 °C',
+          'Flange size: F07, F10, G0',
+          'Mouting position: any'
+        ]
+      },
+      {
+        name: 'Electric multi-turn actuator UM 1',
+        image: um1Actuator,
+        bullets: [
+          'Type number: 141',
+          'Industry use: Energy, Water, Industry',
+          'Enclosure protection: IP 66, IP 68',
+          'Switching-off torque: 4 to 64 Nm',
+          'Operating time: 10 to 80 min−1',
+          'Revolutions: 3.125 to 160',
+          'Weight: 14 to 15 kg',
+          'Ambient temperature: -60 to 55 °C',
+          'Flange size: F07, F10, G0',
+          'Mouting position: any'
+        ]
+      },
+      {
+        name: 'Electric multi-turn actuator UM 2',
+        image: um2Actuator,
+        bullets: [
+          'Type number: 142',
+          'Industry use: Energy, Water, Industry',
+          'Enclosure protection: IP 66, IP 68',
+          'Switching-off torque: 18 to 100 Nm',
+          'Operating time: 10 to 40 min−1',
+          'Revolutions: 1 to 330',
+          'Weight: 20 to 24 kg',
+          'Ambient temperature: -60 to 55 °C',
+          'Flange size: F07, F10, G0',
+          'Mouting position: any'
+        ]
+      },
+      {
+        name: 'Electric multi-turn actuator MO 3',
+        image: mo3Actuator,
+        bullets: [
+          'Type number: 093',
+          'Industry use: Energy, Water, Industry',
+          'Enclosure protection: IP 67, IP 55',
+          'Switching-off torque: 25 to 250 Nm',
+          'Operating time: 10 to 95 min−1',
+          'Revolutions: 1 to 685',
+          'Weight: 33 to 38 kg',
+          'Flange size: F10, F14',
+          'Mouting position: with the motor axis in a horizontal position (deviation +/-15°)'
+        ]
+      },
+      {
+        name: 'Electric multi-turn actuator MO 3.4',
+        image: mo3Actuator,
+        bullets: [
+          'Type number: 105',
+          'Industry use: Energy, Water, Industry',
+          'Enclosure protection: IP 67, IP 55',
+          'Switching-off torque: 100 to 350 Nm',
+          'Operating time: 10 to 80 min−1',
+          'Revolutions: 1.3 to 285',
+          'Weight: 42 to 57 kg',
+          'Ambient temperature: -60 to 60 °C',
+          'Flange size: F14',
+          'Mouting position: with the motor axis in a horizontal position (deviation +/-15°)'
+        ]
+      },
+      {
+        name: 'Electric multi-turn actuator MO 3.5',
+        image: mo35Actuator,
+        bullets: [
+          'Type number: 095',
+          'Industry use: Energy, Water, Industry',
+          'Enclosure protection: IP 67, IP 55',
+          'Switching-off torque: 84 to 550 Nm',
+          'Operating time: 25 to 40 min−1',
+          'Revolutions: 1.5 to 185',
+          'Weight: 51 to 76 kg',
+          'Ambient temperature: -60 to 60 °C',
+          'Flange size: F14, F16',
+          'Mouting position: with the motor axis in a horizontal position (deviation +/-15°)'
+        ]
+      },
+      {
+        name: 'Electric multi-turn actuator MO 4',
+        image: mo4Actuator,
+        bullets: [
+          'Type number: 160',
+          'Industry use: Energy, Water, Industry',
+          'Enclosure protection: IP 67, IP 55',
+          'Switching-off torque: 120 to 500 Nm',
+          'Operating time: 16 to 180 min−1',
+          'Revolutions: 1 to 685',
+          'Weight: 38 to 50 kg',
+          'Ambient temperature: -60 to 60 °C',
+          'Flange size: F14',
+          'Mouting position: with the motor axis in a horizontal position (deviation +/-15°)'
+        ]
+      },
+      {
+        name: 'Electric multi-turn actuator MO 5',
+        image: mo5Actuator,
+        bullets: [
+          'Type number: 155',
+          'Industry use: Energy, Water, Industry',
+          'Enclosure protection: IP 67, IP 55',
+          'Switching-off torque: 300 to 1000 Nm',
+          'Operating time: 15 to 100 min−1',
+          'Revolutions: 1.25 to 500',
+          'Weight: 93.5 to 103 kg',
+          'Ambient temperature: -60 to 60 °C',
+          'Flange size: F16',
+          'Mouting position: with the motor axis in a horizontal position (deviation +/-15°)'
+        ]
+      },
+      {
+        name: 'Electric multi-turn actuator SOR 2PA',
+        image: sor2paActuator,
+        bullets: [
+          'Type number: 067',
+          'Industry use: Energy, Water, Industry',
+          'Enclosure protection: IP 67, IP 68',
+          'Switching-off torque: 12 to 100 Nm',
+          'Operating time: 10 to 40 min−1',
+          'Revolutions: 1 to 500',
+          'Weight: 12 to 18.5 kg',
+          'Ambient temperature: -60 to 55 °C',
+          'Flange size: F07, F10, G0',
+          'Mouting position: any'
+        ]
+      },
+      {
+        name: 'Electric multi-turn actuator UMR 1PA',
+        image: umr1paActuator,
+        bullets: [
+          'Type number: 181',
+          'Industry use: Energy, Water, Industry',
+          'Enclosure protection: IP 66, IP 68',
+          'Switching-off torque: 8 to 64 Nm',
+          'Operating time: 10 to 80 min−1',
+          'Revolutions: 2 to 160',
+          'Weight: 14 to 18.5 kg',
+          'Ambient temperature: -60 to 55 °C',
+          'Flange size: F07, F10, G0',
+          'Mouting position: any'
+        ]
+      },
+      {
+        name: 'Electric multi-turn actuator UMR 2PA',
+        image: umr2paActuator,
+        bullets: [
+          'Type number: 182',
+          'Industry use: Energy, Water, Industry',
+          'Enclosure protection: IP 66, IP 68',
+          'Switching-off torque: 30 to 100 Nm',
+          'Operating time: 10 to 40 min−1',
+          'Revolutions: 2 to 160',
+          'Weight: 20 to 27 kg',
+          'Ambient temperature: -60 to 55 °C',
+          'Flange size: F07, F10, G0',
+          'Mouting position: any'
+        ]
+      },
+      {
+        name: 'Electric multi-turn actuator MOR 3PA',
+        image: mor3paActuator,
+        bullets: [
+          'Type number: 094',
+          'Industry use: Energy, Water, Industry',
+          'Enclosure protection: IP 67',
+          'Switching-off torque: 45 to 250 Nm',
+          'Operating time: 10 to 95 min−1',
+          'Revolutions: 1 to 1000',
+          'Weight: 33 to 50 kg',
+          'Ambient temperature: -60 to 60 °C',
+          'Flange size: F10, F14',
+          'Mouting position: with the motor axis in a horizontal position (deviation +/-15°)'
+        ]
+      }
+    ]
+  },
+  {
+    category: 'Part Turn Actuators',
+    items: [
+      {
+        name: 'Electric part-turn actuator SP MIKRO',
+        image: spMikroActuator,
+        bullets: [
+          'Type number: 260',
+          'Industry use: Energy, Water, Industry',
+          'Enclosure protection: IP 65',
+          'Switching-off torque: 8 Nm',
+          'Operating time: 120 s/90°',
+          'Operating angle: 60 to 120 °',
+          'Weight: 1.4 to 2 kg',
+          'Ambient temperature: -20 to 60 °C',
+          'Flange size: F04',
+          'Mouting position: any'
+        ]
+      },
+      {
+        name: 'Electric part-turn actuator SP 0',
+        image: sp0Actuator,
+        bullets: [
+          'Type number: 280',
+          'Industry use: Energy, Water, Industry',
+          'Enclosure protection: IP 54, IP 67, IP 68',
+          'Switching-off torque: 4 to 40 Nm',
+          'Operating time: 15 to 160 s/90°',
+          'Operating angle: 90 to 270 °',
+          'Weight: 1.4 to 2.5 kg',
+          'Ambient temperature: -25 to 55 °C',
+          'Flange size: F03, F04, F05, F07',
+          'Mouting position: any'
+        ]
+      },
+      {
+        name: 'Electric part-turn actuator SP 0.1',
+        image: sp01Actuator,
+        bullets: [
+          'Type number: 331',
+          'Industry use: Energy, Water, Industry',
+          'Enclosure protection: IP 65, IP 67, IP 68',
+          'Switching-off torque: 16 to 50 Nm',
+          'Operating time: 10 to 120 s/90°',
+          'Operating angle: 60 to 360 °',
+          'Weight: 3.2 to 5.2 kg',
+          'Ambient temperature: -25 to 55 °C',
+          'Flange size: F03, F04, F05, F07',
+          'Mouting position: any'
+        ]
+      },
+      {
+        name: 'Electric part-turn actuator SP 1',
+        image: sp1Actuator,
+        bullets: [
+          'Type number: 281',
+          'Industry use: Energy, Water, Industry',
+          'Enclosure protection: IP 67, IP 68',
+          'Switching-off torque: 46 to 90 Nm',
+          'Operating time: 10 to 80 s/90°',
+          'Operating angle: 60 to 360 °',
+          'Weight: 6.5 to 10 kg',
+          'Ambient temperature: -60 to 55 °C',
+          'Flange size: F05, F07',
+          'Mouting position: any'
+        ]
+      },
+      {
+        name: 'Electric part-turn actuator SP 2',
+        image: sp2Actuator,
+        bullets: [
+          'Type number: 282',
+          'Industry use: Energy, Water, Industry',
+          'Enclosure protection: IP 67, IP 68',
+          'Switching-off torque: 72 to 145 Nm',
+          'Operating time: 5 to 80 s/90°',
+          'Operating angle: 60 to 360 °',
+          'Weight: 12 to 19 kg',
+          'Ambient temperature: -60 to 55 °C',
+          'Flange size: F05, F07, F10',
+          'Mouting position: any'
+        ]
+      },
+      {
+        name: 'Electric part-turn actuator SP 2.3',
+        image: sp23Actuator,
+        bullets: [
+          'Type number: 283',
+          'Industry use: Energy, Water, Industry',
+          'Enclosure protection: IP 67, IP 68',
+          'Switching-off torque: 290 to 350 Nm',
+          'Operating time: 20 to 160 s/90°',
+          'Operating angle: 60 to 360 °',
+          'Weight: 15 to 20 kg',
+          'Ambient temperature: -60 to 55 °C',
+          'Flange size: F07, F10',
+          'Mouting position: any'
+        ]
+      },
+      {
+        name: 'Electric part-turn actuator SP 2.4',
+        image: sp24Actuator,
+        bullets: [
+          'Type number: 284',
+          'Industry use: Energy, Water, Industry',
+          'Enclosure protection: IP 67, IP 68',
+          'Switching-off torque: 575 to 650 Nm',
+          'Operating time: 40 to 160 s/90°',
+          'Operating angle: 60 to 360 °',
+          'Weight: 21 to 22 kg',
+          'Ambient temperature: -60 to 55 °C',
+          'Flange size: F10, F12',
+          'Mouting position: any'
+        ]
+      },
+      {
+        name: 'Electric part-turn actuator MPR',
+        image: mprActuator,
+        bullets: [
+          'Type number: 52220',
+          'Industry use: Energy, Water, Industry',
+          'Enclosure protection: IP 67',
+          'Switching-off torque: 25 to 125 Nm',
+          'Operating time: 8 to 34 s/90°',
+          'Operating angle: 60 to 160 °',
+          'Weight: 27 to 34.5 kg',
+          'Ambient temperature: -25 to 55 °C',
+          'Mouting position: with the motor axis in a horizontal position (deviation +/-15°)'
+        ]
+      },
+      {
+        name: 'Electric part-turn actuator MPR 5',
+        image: mpr5Actuator,
+        bullets: [
+          'Type number: 52222',
+          'Industry use: Energy, Water, Industry',
+          'Enclosure protection: IP 65, IP 67',
+          'Switching-off torque: 180 to 1000 Nm',
+          'Operating time: 8 to 34 s/90°',
+          'Operating angle: 60 to 160 °',
+          'Weight: 100 to 120 kg',
+          'Ambient temperature: -25 to 55 °C',
+          'Mouting position: with the motor axis in a horizontal position (deviation +/-15°)'
+        ]
+      },
+      {
+        name: 'Electric part-turn actuator UP 1',
+        image: up1Actuator,
+        bullets: [
+          'Type number: 341',
+          'Industry use: Energy, Water, Industry',
+          'Enclosure protection: IP 66, IP 68',
+          'Switching-off torque: 22 to 170 Nm',
+          'Operating time: 5 to 80 s/90°',
+          'Operating angle: 60 to 360 °',
+          'Weight: 14 to 15 kg',
+          'Ambient temperature: -60 to 55 °C',
+          'Flange size: F05, F07',
+          'Mouting position: any'
+        ]
+      },
+      {
+        name: 'Electric part-turn actuator MPR 6',
+        image: mpr6Actuator,
+        bullets: [
+          'Type number: 52223',
+          'Industry use: Energy, Water, Industry',
+          'Enclosure protection: IP 65, IP 67',
+          'Switching-off torque: 1600 to 4000 Nm',
+          'Operating time: 50 to 127 s/90°',
+          'Operating angle: 67.5 to 157 °',
+          'Weight: 170 to 190 kg',
+          'Ambient temperature: -25 to 55 °C',
+          'Mouting position: with the motor axis in a horizontal position (deviation +/-15°)'
+        ]
+      },
+      {
+        name: 'Electric part-turn actuator UP 2',
+        image: up2Actuator,
+        bullets: [
+          'Type number: 342',
+          'Industry use: Energy, Water, Industry',
+          'Enclosure protection: IP 66, IP 68',
+          'Switching-off torque: 75 to 300 Nm',
+          'Operating time: 5 to 80 s/90°',
+          'Operating angle: 60 to 360 °',
+          'Weight: 20 to 24 kg',
+          'Ambient temperature: -60 to 55 °C',
+          'Flange size: F07, F10',
+          'Mouting position: any'
+        ]
+      }
     ]
   }
 ];
-
-

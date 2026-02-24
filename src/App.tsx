@@ -13,7 +13,6 @@ const ProjectsPage = lazy(() => import('./pages/ProjectsPage'));
 const AboutPage = lazy(() => import('./pages/AboutPage'));
 const ServicesPage = lazy(() => import('./pages/ServicesPage'));
 const ProductsPage = lazy(() => import('./pages/ProductsPage'));
-const ActuatorsPage = lazy(() => import('./pages/ActuatorsPage'));
 const ProductInfoPage = lazy(() => import('./pages/ProductInfoPage'));
 const FAQPage = lazy(() => import('./pages/FAQPage'));
 const TeamPage = lazy(() => import('./pages/TeamPage'));
@@ -139,7 +138,7 @@ function AppContent() {
               <Route path="/about" element={<AboutPage />} />
               <Route path="/services" element={<ServicesPage onNavigate={handleNavigate} />} />
               <Route path="/products" element={<ProductsPage onNavigate={handleNavigate} />} />
-              <Route path="/products/actuators" element={<ActuatorsPage />} />
+              <Route path="/products/actuators" element={<ProductInfoPage onNavigate={handleNavigate} />} />
               <Route path="/products/:variant" element={<ProductInfoPage onNavigate={handleNavigate} />} />
               <Route path="/product/:slug" element={<ProductDetailLoader productIndex={productIndex} onNavigate={handleNavigate} />} />
               <Route path="/clients" element={<ClientsPage />} />
