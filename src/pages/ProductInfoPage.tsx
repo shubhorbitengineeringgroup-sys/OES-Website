@@ -37,14 +37,10 @@ const FlowMeterIcon = (props: any) => (
 export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
   const { variant: urlVariant } = useParams<{ variant: string }>();
   const variant = urlVariant; // Use URL param as the source of truth
-  const [expandedMap, setExpandedMap] = useState<Record<string, boolean>>({});
   const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
   const [isBrochureModalOpen, setIsBrochureModalOpen] = useState(false);
   const [quoteProductName, setQuoteProductName] = useState('');
-
-  const toggleExpanded = (key: string) => {
-    setExpandedMap(prev => ({ ...prev, [key]: !prev[key] }));
-  };
+  const [selectedProduct, setSelectedProduct] = useState<any>(null); // State for the floating details modal
 
   const handleGetQuote = (productName: string) => {
     setQuoteProductName(productName);
@@ -73,8 +69,6 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
           : "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-start"
         }>
           {items.map((item, idx) => {
-            const key = `${categoryName}-${idx}`;
-            const isExpanded = !!expandedMap[key];
             const firstParagraph = Array.isArray(item.paragraphs) && item.paragraphs[0] ? item.paragraphs[0] : '';
             const hasBullets = Array.isArray(item.bullets) && item.bullets.length > 0;
             const hasDetails = (!!firstParagraph) || hasBullets;
@@ -95,86 +89,15 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
                   {hasDetails && (
                     <div className="mt-auto">
                       <button
-                        onClick={() => toggleExpanded(key)}
-                        className={`inline-flex items-center justify-center w-full px-6 py-3 rounded-xl text-sm font-bold transition-all duration-300 active:scale-95 shadow-md flex items-center space-x-2 ${isExpanded
-                          ? 'bg-gray-100 text-gray-700 hover:bg-gray-200 ring-2 ring-gray-200'
-                          : 'bg-gradient-to-r from-[#0073bc] to-[#005a94] text-white hover:shadow-lg hover:-translate-y-0.5'
-                          }`}
+                        onClick={() => setSelectedProduct(item)}
+                        className="inline-flex items-center justify-center w-full px-6 py-3 rounded-xl text-sm font-bold transition-all duration-300 active:scale-95 shadow-md flex items-center space-x-2 bg-gradient-to-r from-[#0073bc] to-[#005a94] text-white hover:shadow-lg hover:-translate-y-0.5"
                       >
-                        {isExpanded ? (
-                          <>
-                            <X className="w-4 h-4" />
-                            <span>Close Details</span>
-                          </>
-                        ) : (
-                          <>
-                            <span>Read More</span>
-                            <ArrowRight className="w-4 h-4" />
-                          </>
-                        )}
+                        <span>Read More</span>
+                        <ArrowRight className="w-4 h-4" />
                       </button>
                     </div>
                   )}
 
-                  <div className={`overflow-hidden transition-all duration-700 ease-in-out ${isExpanded ? 'max-h-[1000px] opacity-100 mt-6' : 'max-h-0 opacity-0 px-0 mt-0'}`}>
-                    <div className="bg-gradient-to-b from-blue-50/50 to-white/30 backdrop-blur-md p-6 rounded-2xl border border-blue-100/50 shadow-[inset_0_1px_1px_rgba(255,255,255,0.6)] relative overflow-hidden group/expanded">
-                      {/* Decorative background element */}
-                      <div className="absolute -top-6 -right-6 opacity-[0.03] group-hover/expanded:opacity-[0.05] transition-opacity duration-700">
-                        <IconComponent className="w-32 h-32 rotate-12" />
-                      </div>
-
-                      <AnimatePresence>
-                        {isExpanded && (
-                          <div className="relative z-10 w-full">
-                            {firstParagraph && (
-                              <motion.div
-                                initial={{ opacity: 0, y: 10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.4 }}
-                                className="relative mb-6"
-                              >
-                                <div className="absolute -left-4 top-0 bottom-0 w-1 bg-gradient-to-b from-[#0073bc] to-blue-300 rounded-full" />
-                                <p className="text-gray-700 text-sm leading-relaxed font-semibold pl-2 italic">
-                                  {firstParagraph}
-                                </p>
-                              </motion.div>
-                            )}
-
-                            {hasBullets && (
-                              <div className="space-y-4">
-                                <motion.div
-                                  initial={{ opacity: 0 }}
-                                  animate={{ opacity: 1 }}
-                                  transition={{ delay: 0.2 }}
-                                  className="flex items-center gap-3"
-                                >
-                                  <div className="h-px flex-1 bg-gradient-to-r from-transparent to-blue-200" />
-                                  <span className="text-[10px] font-black text-[#0073bc] uppercase tracking-[0.3em] whitespace-nowrap">Technical Details</span>
-                                  <div className="h-px flex-1 bg-gradient-to-l from-transparent to-blue-200" />
-                                </motion.div>
-                                <div className="grid grid-cols-1 gap-2.5">
-                                  {item.bullets!.map((b, i) => (
-                                    <motion.div
-                                      key={i}
-                                      initial={{ opacity: 0, x: -15 }}
-                                      animate={{ opacity: 1, x: 0 }}
-                                      transition={{ delay: 0.2 + i * 0.04, duration: 0.3 }}
-                                      className="flex items-center p-3 bg-white/80 rounded-xl border border-blue-50/50 hover:border-[#0073bc]/30 hover:shadow-sm transition-all group/bullet"
-                                    >
-                                      <div className="mr-3 p-1 rounded-lg bg-blue-100/50 text-[#0073bc] group-hover/bullet:bg-[#0073bc] group-hover/bullet:text-white transition-all duration-300">
-                                        <CheckCircle className="w-3.5 h-3.5" />
-                                      </div>
-                                      <span className="text-gray-700 text-[13px] font-bold leading-tight flex-1">{b}</span>
-                                    </motion.div>
-                                  ))}
-                                </div>
-                              </div>
-                            )}
-                          </div>
-                        )}
-                      </AnimatePresence>
-                    </div>
-                  </div>
                 </div>
               </MotionFadeUp>
             );
@@ -987,6 +910,108 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
 
       {/* Quote Modal */}
       <QuoteModal open={isQuoteModalOpen} onClose={() => setIsQuoteModalOpen(false)} productName={quoteProductName} />
+
+      {/* Floating Product Details Modal */}
+      <AnimatePresence>
+        {selectedProduct && (
+          <div className="fixed inset-0 z-[1000] flex items-center justify-center px-4 sm:px-6">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedProduct(null)}
+              className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              className="relative w-full max-w-4xl bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row max-h-[90vh] group/modal"
+            >
+              {/* Decorative background Icon */}
+              <div className="absolute -bottom-10 -right-10 opacity-[0.03] group-hover/modal:opacity-[0.05] transition-opacity duration-1000">
+                <IconComponent className="w-64 h-64 -rotate-12" />
+              </div>
+
+              {/* Close Button */}
+              <button
+                onClick={() => setSelectedProduct(null)}
+                className="absolute top-4 right-4 z-10 p-2 bg-white/80 backdrop-blur-md rounded-full shadow-lg hover:bg-red-50 hover:text-red-500 transition-all active:scale-90"
+              >
+                <X className="w-5 h-5" />
+              </button>
+
+              {/* Left Side: Product Image & Overview */}
+              <div className="w-full md:w-2/5 bg-gray-50 flex flex-col p-8 border-r border-gray-100 overflow-y-auto">
+                <div className="flex-1 flex items-center justify-center p-4">
+                  <img src={selectedProduct.image} alt={selectedProduct.name} className="max-h-[300px] w-full object-contain drop-shadow-2xl" />
+                </div>
+                <div className="mt-8">
+                  <h2 className="text-2xl font-black text-gray-900 leading-tight mb-4">{selectedProduct.name}</h2>
+                  {selectedProduct.badge && (
+                    <span className="inline-block bg-blue-100 text-[#0073bc] text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-lg mb-6 shadow-sm border border-blue-200">
+                      {selectedProduct.badge}
+                    </span>
+                  )}
+                  <button
+                    onClick={() => {
+                      handleGetQuote(selectedProduct.name);
+                      setSelectedProduct(null);
+                    }}
+                    className="w-full flex items-center justify-center space-x-3 bg-gradient-to-r from-[#0073bc] to-[#005a94] text-white py-4 rounded-2xl font-black text-sm shadow-xl hover:shadow-2xl active:scale-95 transition-all"
+                  >
+                    <FlaskConical className="w-5 h-5" />
+                    <span>Inquire Now</span>
+                  </button>
+                </div>
+              </div>
+
+              {/* Right Side: Detailed Info */}
+              <div className="w-full md:w-3/5 p-8 overflow-y-auto bg-white custom-scrollbar">
+                <div className="space-y-8">
+                  {/* Paragraph Section */}
+                  {selectedProduct.paragraphs && selectedProduct.paragraphs.length > 0 && (
+                    <div className="relative">
+                      <div className="absolute -left-4 top-0 bottom-0 w-1 bg-gradient-to-b from-[#0073bc] to-blue-300 rounded-full" />
+                      <div className="space-y-4 text-gray-700 text-sm leading-relaxed font-semibold italic pl-4">
+                        {selectedProduct.paragraphs.map((p: string, i: number) => (
+                          <p key={i}>{p}</p>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Bullets Section */}
+                  {selectedProduct.bullets && selectedProduct.bullets.length > 0 && (
+                    <div className="space-y-6">
+                      <div className="flex items-center gap-4">
+                        <span className="text-[11px] font-black text-[#0073bc] uppercase tracking-[0.4em] whitespace-nowrap">Technical Specifications</span>
+                        <div className="h-px w-full bg-gradient-to-r from-blue-100 to-transparent" />
+                      </div>
+                      <div className="grid grid-cols-1 gap-3">
+                        {selectedProduct.bullets.map((b: string, i: number) => (
+                          <motion.div
+                            key={i}
+                            initial={{ opacity: 0, x: 20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.1 + i * 0.05 }}
+                            className="flex items-center p-4 bg-gray-50/80 rounded-2xl border border-gray-100 hover:border-blue-200 hover:bg-blue-50/30 transition-all group"
+                          >
+                            <div className="mr-4 p-2 rounded-xl bg-white shadow-sm text-[#0073bc] group-hover:bg-[#0073bc] group-hover:text-white transition-colors">
+                              <CheckCircle className="w-4 h-4" />
+                            </div>
+                            <span className="text-gray-700 text-[14px] font-bold leading-snug">{b}</span>
+                          </motion.div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
