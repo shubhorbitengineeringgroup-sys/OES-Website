@@ -42,15 +42,36 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
   const [quoteProductName, setQuoteProductName] = useState('');
   const [selectedProduct, setSelectedProduct] = useState<any>(null); // State for the floating details modal
 
-  // Lock body scroll when modal is open
+  // Lock body scroll when modal is open (iOS-safe approach)
   useEffect(() => {
     if (selectedProduct) {
+      const scrollY = window.scrollY;
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.left = '0';
+      document.body.style.right = '0';
       document.body.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = 'unset';
+      const scrollY = document.body.style.top;
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.left = '';
+      document.body.style.right = '';
+      document.body.style.overflow = '';
+      if (scrollY) {
+        window.scrollTo(0, parseInt(scrollY || '0', 10) * -1);
+      }
     }
     return () => {
-      document.body.style.overflow = 'unset';
+      const scrollY = document.body.style.top;
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.left = '';
+      document.body.style.right = '';
+      document.body.style.overflow = '';
+      if (scrollY) {
+        window.scrollTo(0, parseInt(scrollY || '0', 10) * -1);
+      }
     };
   }, [selectedProduct]);
 
@@ -926,7 +947,7 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
       {/* Floating Product Details Modal */}
       <AnimatePresence>
         {selectedProduct && (
-          <div className="fixed inset-0 z-[1000] flex items-center justify-center px-4 sm:px-6">
+          <div className="fixed inset-0 z-[1000] flex items-center justify-center">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -938,32 +959,107 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="relative w-full max-w-4xl bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row h-[85vh] md:h-auto md:max-h-[90vh] group/modal"
-              style={{ overscrollBehavior: 'contain' }}
+              className="relative w-full max-w-4xl bg-white shadow-2xl overflow-hidden group/modal md:rounded-3xl md:mx-6 md:flex md:flex-row md:max-h-[90vh] h-full md:h-auto"
             >
               {/* Decorative background Icon */}
-              <div className="absolute -bottom-10 -right-10 opacity-[0.03] group-hover/modal:opacity-[0.05] transition-opacity duration-1000">
+              <div className="absolute -bottom-10 -right-10 opacity-[0.03] group-hover/modal:opacity-[0.05] transition-opacity duration-1000 pointer-events-none">
                 <IconComponent className="w-64 h-64 -rotate-12" />
               </div>
 
               {/* Close Button */}
               <button
                 onClick={() => setSelectedProduct(null)}
-                className="absolute top-4 right-4 z-10 p-2 bg-white/80 backdrop-blur-md rounded-full shadow-lg hover:bg-red-50 hover:text-red-500 transition-all active:scale-90"
+                className="absolute top-4 right-4 z-20 p-2 bg-white/80 backdrop-blur-md rounded-full shadow-lg hover:bg-red-50 hover:text-red-500 transition-all active:scale-90"
               >
                 <X className="w-5 h-5" />
               </button>
 
-              {/* Left Side: Product Image & Overview (Fixed on Desktop, Top Fixed on Mobile) */}
-              <div className="w-full md:w-2/5 bg-gray-50 flex flex-col p-6 md:p-8 border-b md:border-b-0 md:border-r border-gray-100 shrink-0 select-none">
-                <div className="flex-1 flex items-center justify-center p-2 min-h-0 md:min-h-0 overflow-hidden">
-                  <img src={selectedProduct.image} alt={selectedProduct.name} className="max-h-[160px] md:max-h-[300px] w-full object-contain drop-shadow-2xl pointer-events-none" />
+              {/* ===== MOBILE LAYOUT: Single scrollable column ===== */}
+              <div
+                className="md:hidden w-full h-full overflow-y-auto overscroll-contain"
+                style={{ WebkitOverflowScrolling: 'touch' }}
+              >
+                {/* Image Section */}
+                <div className="bg-gray-50 flex items-center justify-center p-6 select-none">
+                  <img src={selectedProduct.image} alt={selectedProduct.name} className="max-h-[200px] w-full object-contain drop-shadow-2xl pointer-events-none" />
                 </div>
-                <div className="mt-2 md:mt-8">
-                  <h2 className="text-xl md:text-2xl font-black text-gray-900 leading-tight mb-2 md:mb-4 text-center md:text-left">{selectedProduct.name}</h2>
-                  <div className="flex flex-col items-center md:items-start pb-2">
+
+                {/* Title & CTA */}
+                <div className="p-6 border-b border-gray-100">
+                  <h2 className="text-xl font-black text-gray-900 leading-tight mb-3 text-center">{selectedProduct.name}</h2>
+                  {selectedProduct.badge && (
+                    <div className="flex justify-center mb-3">
+                      <span className="inline-block bg-blue-100 text-[#0073bc] text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-lg shadow-sm border border-blue-200">
+                        {selectedProduct.badge}
+                      </span>
+                    </div>
+                  )}
+                  <button
+                    onClick={() => {
+                      handleGetQuote(selectedProduct.name);
+                      setSelectedProduct(null);
+                    }}
+                    className="w-full flex items-center justify-center space-x-3 bg-gradient-to-r from-[#0073bc] to-[#005a94] text-white py-3 rounded-xl font-black text-sm shadow-xl hover:shadow-2xl active:scale-95 transition-all"
+                  >
+                    <FlaskConical className="w-5 h-5" />
+                    <span>Inquire Now</span>
+                  </button>
+                </div>
+
+                {/* Details Content */}
+                <div className="p-6 space-y-8">
+                  {selectedProduct.paragraphs && selectedProduct.paragraphs.length > 0 && (
+                    <div className="relative">
+                      <div className="absolute -left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-[#0073bc] to-blue-300 rounded-full" />
+                      <div className="space-y-4 text-gray-700 text-sm leading-relaxed font-semibold italic pl-4">
+                        {selectedProduct.paragraphs.map((p: string, i: number) => (
+                          <p key={i}>{p}</p>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {selectedProduct.bullets && selectedProduct.bullets.length > 0 && (
+                    <div className="space-y-6">
+                      <div className="flex items-center gap-4">
+                        <span className="text-[11px] font-black text-[#0073bc] uppercase tracking-[0.4em] whitespace-nowrap">Technical Specifications</span>
+                        <div className="h-px w-full bg-gradient-to-r from-blue-100 to-transparent" />
+                      </div>
+                      <div className="grid grid-cols-1 gap-3">
+                        {selectedProduct.bullets.map((b: string, i: number) => (
+                          <motion.div
+                            key={i}
+                            initial={{ opacity: 0, x: 20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.1 + i * 0.05 }}
+                            className="flex items-center p-4 bg-gray-50/80 rounded-2xl border border-gray-100 hover:border-blue-200 hover:bg-blue-50/30 transition-all group"
+                          >
+                            <div className="mr-4 p-2 rounded-xl bg-white shadow-sm text-[#0073bc] group-hover:bg-[#0073bc] group-hover:text-white transition-colors">
+                              <CheckCircle className="w-4 h-4" />
+                            </div>
+                            <span className="text-gray-700 text-[14px] font-bold leading-snug">{b}</span>
+                          </motion.div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* Bottom safe area spacer */}
+                <div className="h-6" />
+              </div>
+
+              {/* ===== DESKTOP LAYOUT: Side-by-side with right panel scrollable ===== */}
+              {/* Left Side: Product Image & Overview (Fixed) */}
+              <div className="hidden md:flex w-2/5 bg-gray-50 flex-col p-8 border-r border-gray-100 shrink-0 select-none">
+                <div className="flex-1 flex items-center justify-center p-2 overflow-hidden">
+                  <img src={selectedProduct.image} alt={selectedProduct.name} className="max-h-[300px] w-full object-contain drop-shadow-2xl pointer-events-none" />
+                </div>
+                <div className="mt-8">
+                  <h2 className="text-2xl font-black text-gray-900 leading-tight mb-4 text-left">{selectedProduct.name}</h2>
+                  <div className="flex flex-col items-start pb-2">
                     {selectedProduct.badge && (
-                      <span className="inline-block bg-blue-100 text-[#0073bc] text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-lg mb-3 md:mb-4 shadow-sm border border-blue-200">
+                      <span className="inline-block bg-blue-100 text-[#0073bc] text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-lg mb-4 shadow-sm border border-blue-200">
                         {selectedProduct.badge}
                       </span>
                     )}
@@ -972,7 +1068,7 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
                         handleGetQuote(selectedProduct.name);
                         setSelectedProduct(null);
                       }}
-                      className="w-full flex items-center justify-center space-x-3 bg-gradient-to-r from-[#0073bc] to-[#005a94] text-white py-3 md:py-4 rounded-xl md:rounded-2xl font-black text-sm shadow-xl hover:shadow-2xl active:scale-95 transition-all"
+                      className="w-full flex items-center justify-center space-x-3 bg-gradient-to-r from-[#0073bc] to-[#005a94] text-white py-4 rounded-2xl font-black text-sm shadow-xl hover:shadow-2xl active:scale-95 transition-all"
                     >
                       <FlaskConical className="w-5 h-5" />
                       <span>Inquire Now</span>
@@ -981,13 +1077,12 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
                 </div>
               </div>
 
-              {/* Right Side: Detailed Info (Scrollable) */}
+              {/* Right Side: Detailed Info (Scrollable - Desktop only) */}
               <div
-                className="w-full md:w-3/5 p-6 md:p-8 overflow-y-auto bg-white custom-scrollbar flex-1 min-h-0 flex flex-col"
+                className="hidden md:flex w-3/5 p-8 overflow-y-auto bg-white custom-scrollbar flex-1 min-h-0 flex-col"
                 style={{ WebkitOverflowScrolling: 'touch' }}
               >
                 <div className="space-y-8 flex-1">
-                  {/* Paragraph Section */}
                   {selectedProduct.paragraphs && selectedProduct.paragraphs.length > 0 && (
                     <div className="relative">
                       <div className="absolute -left-4 top-0 bottom-0 w-1 bg-gradient-to-b from-[#0073bc] to-blue-300 rounded-full" />
@@ -999,7 +1094,6 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
                     </div>
                   )}
 
-                  {/* Bullets Section */}
                   {selectedProduct.bullets && selectedProduct.bullets.length > 0 && (
                     <div className="space-y-6">
                       <div className="flex items-center gap-4">
