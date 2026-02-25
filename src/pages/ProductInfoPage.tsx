@@ -955,15 +955,15 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
               </button>
 
               {/* Left Side: Product Image & Overview (Fixed on Desktop, Top Fixed on Mobile) */}
-              <div className="w-full md:w-2/5 bg-gray-50 flex flex-col p-6 md:p-8 border-b md:border-b-0 md:border-r border-gray-100 shrink-0">
-                <div className="flex-1 flex items-center justify-center p-2 min-h-[200px] md:min-h-0">
-                  <img src={selectedProduct.image} alt={selectedProduct.name} className="max-h-[200px] md:max-h-[300px] w-full object-contain drop-shadow-2xl" />
+              <div className="w-full md:w-2/5 bg-gray-50 flex flex-col p-6 md:p-8 border-b md:border-b-0 md:border-r border-gray-100 shrink-0 select-none">
+                <div className="flex-1 flex items-center justify-center p-2 min-h-0 md:min-h-0 overflow-hidden">
+                  <img src={selectedProduct.image} alt={selectedProduct.name} className="max-h-[160px] md:max-h-[300px] w-full object-contain drop-shadow-2xl pointer-events-none" />
                 </div>
-                <div className="mt-4 md:mt-8">
+                <div className="mt-2 md:mt-8">
                   <h2 className="text-xl md:text-2xl font-black text-gray-900 leading-tight mb-2 md:mb-4 text-center md:text-left">{selectedProduct.name}</h2>
-                  <div className="flex flex-col items-center md:items-start">
+                  <div className="flex flex-col items-center md:items-start pb-2">
                     {selectedProduct.badge && (
-                      <span className="inline-block bg-blue-100 text-[#0073bc] text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-lg mb-4 shadow-sm border border-blue-200">
+                      <span className="inline-block bg-blue-100 text-[#0073bc] text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-lg mb-3 md:mb-4 shadow-sm border border-blue-200">
                         {selectedProduct.badge}
                       </span>
                     )}
@@ -982,7 +982,10 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
               </div>
 
               {/* Right Side: Detailed Info (Scrollable) */}
-              <div className="w-full md:w-3/5 p-6 md:p-8 overflow-y-auto bg-white custom-scrollbar flex-1">
+              <div
+                className="w-full md:w-3/5 p-6 md:p-8 overflow-y-auto bg-white custom-scrollbar flex-1 min-h-0"
+                style={{ WebkitOverflowScrolling: 'touch' }}
+              >
                 <div className="space-y-8">
                   {/* Paragraph Section */}
                   {selectedProduct.paragraphs && selectedProduct.paragraphs.length > 0 && (
