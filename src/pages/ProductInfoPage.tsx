@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Gauge, Activity, Zap, Camera, Wrench, CheckCircle, ArrowRight, FlaskConical, Sun, Waves, Download, RotateCw, X } from 'lucide-react';
@@ -41,6 +41,18 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
   const [isBrochureModalOpen, setIsBrochureModalOpen] = useState(false);
   const [quoteProductName, setQuoteProductName] = useState('');
   const [selectedProduct, setSelectedProduct] = useState<any>(null); // State for the floating details modal
+
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    if (selectedProduct) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [selectedProduct]);
 
   const handleGetQuote = (productName: string) => {
     setQuoteProductName(productName);
@@ -927,6 +939,7 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
               className="relative w-full max-w-4xl bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row max-h-[90vh] group/modal"
+              style={{ overscrollBehavior: 'contain' }}
             >
               {/* Decorative background Icon */}
               <div className="absolute -bottom-10 -right-10 opacity-[0.03] group-hover/modal:opacity-[0.05] transition-opacity duration-1000">
