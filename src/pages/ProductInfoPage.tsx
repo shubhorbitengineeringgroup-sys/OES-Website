@@ -945,21 +945,31 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
       <QuoteModal open={isQuoteModalOpen} onClose={() => setIsQuoteModalOpen(false)} productName={quoteProductName} />
 
       {/* Floating Product Details Modal */}
-      <AnimatePresence>
+      <AnimatePresence mode="wait">
         {selectedProduct && (
-          <div className="fixed inset-0 z-[1000] flex items-center justify-center">
+          <div className="fixed inset-0 z-[1000] flex items-end md:items-center justify-center">
+            {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
               onClick={() => setSelectedProduct(null)}
               className="absolute inset-0 bg-black/60 backdrop-blur-sm"
             />
+            {/* Modal: slides up from bottom on mobile, scale-in on desktop */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="relative w-full max-w-4xl bg-white shadow-2xl overflow-hidden group/modal md:rounded-3xl md:mx-6 md:flex md:flex-row md:max-h-[90vh] h-full md:h-auto"
+              initial={{ y: '100%', opacity: 1 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: '100%', opacity: 0 }}
+              transition={{
+                type: 'spring',
+                stiffness: 300,
+                damping: 32,
+                mass: 0.9,
+              }}
+              className="relative w-full max-w-4xl bg-white shadow-2xl overflow-hidden group/modal rounded-t-3xl md:rounded-3xl md:mx-6 md:flex md:flex-row md:max-h-[90vh] h-[92vh] md:h-auto"
+              style={{ willChange: 'transform' }}
             >
               {/* Decorative background Icon */}
               <div className="absolute -bottom-10 -right-10 opacity-[0.03] group-hover/modal:opacity-[0.05] transition-opacity duration-1000 pointer-events-none">
