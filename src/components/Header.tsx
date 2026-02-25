@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { Menu, X, ChevronDown, Waves, Activity, Settings, Cpu, Camera, Wrench, Gauge, Droplets, Grid, Zap, Sun, RotateCw, FlaskConical } from 'lucide-react';
+import { Menu, X, ChevronDown, Waves, Activity, Settings, Cpu, Camera, Wrench, Gauge, Droplets, Grid, Zap, Sun, RotateCw, FlaskConical, Anchor } from 'lucide-react';
 import logo2 from '../assets/Orbit LOGO.png';
 
 interface HeaderProps {
@@ -93,6 +93,7 @@ export default function Header({ onNavigate, currentPage }: HeaderProps) {
     { label: 'Transformers', page: 'product-info:transformers', icon: Zap },
     { label: 'Solar Solutions', page: 'product-info:solar', icon: Sun },
     { label: 'Chlorinators', page: 'product-info:chlorinators', icon: Droplets },
+    { label: 'Submersible Dredging Vehicle', page: 'product-info:sdv', icon: Anchor },
   ];
 
   // Close dropdown when clicking outside

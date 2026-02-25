@@ -68,6 +68,8 @@ import polyCrystallineModule from '../assets/products/polycrysteline-module.jpeg
 import monoCrystallineModule from '../assets/products/mono-crystalline-module.jpeg';
 import monoPercHalfCutModule from '../assets/products/mono-perc-half-cut-module.jpeg';
 import monoPercBifacialModule from '../assets/products/mono-perc-bifacial-module.jpeg';
+import sdvImage from '../assets/products/sdv.jpg';
+import sdvCatalogue from '../assets/SDV_Orbit.pdf';
 
 // Actuator Images - Multi Turn
 import so2Actuator from '../assets/products/electric-multi-turn-actuator-so-2.png';
@@ -1685,6 +1687,34 @@ export const RAW_SUB_PRODUCTS: RawGroup[] = [
           'Ambient temperature: -60 to 55 °C',
           'Flange size: F07, F10',
           'Mouting position: any'
+        ]
+      }
+    ]
+  },
+  {
+    category: 'Submersible Dredging Vehicle',
+    items: [
+      {
+        name: 'Submersible Dredging Vehicle (SDV)',
+        image: sdvImage,
+        datasheetUrl: sdvCatalogue,
+        paragraphs: [
+          'Submersible Dredging Vehicle (SDV) is a remotely operated underwater robotic system designed for safe and efficient removal of sludge, silt, and debris without human entry. It is ideal for reservoirs, storage tanks, sewage plants, and industrial water bodies, reducing operational risk and improving cleaning efficiency.'
+        ],
+        bullets: [
+          'Depth Rating: Operates safely up to 50 meters underwater',
+          'Remote Operation: Fully controlled remotely with hydraulic and radio controls',
+          'Integrated Suction System: Built-in dredging pump for efficient sludge removal',
+          'Advanced Monitoring: Equipped with HD cameras and sonar for real-time visibility',
+          'Stable Mobility: Crawler-based design for smooth movement on uneven surfaces',
+          'Interchangeable Tools: Supports auger, brush wheel, and other cleaning attachments',
+          'No-Man Entry: Eliminates need for human diving, improving safety',
+          'Dimensions: 2000 x 1000 x 1000 mm',
+          'Weight: 940 kg',
+          'Operational Depth: Up to 50 m',
+          'Minimum Entry Opening: 1200 x 1200 mm',
+          'Material: Stainless Steel SS304 / SS316',
+          'Power System: Hydraulic power pack with suction and hose system'
         ]
       }
     ]

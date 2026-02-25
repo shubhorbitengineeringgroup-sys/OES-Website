@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Gauge, Activity, Zap, Camera, Wrench, CheckCircle, ArrowRight, FlaskConical, Sun, Waves, Download, RotateCw, X } from 'lucide-react';
+import { Gauge, Activity, Zap, Camera, Wrench, CheckCircle, ArrowRight, FlaskConical, Sun, Waves, Download, RotateCw, X, Anchor } from 'lucide-react';
 import { RAW_SUB_PRODUCTS } from '../data/rawProducts';
 import { MotionFadeUp, AnimatedHeading } from '../components/Animated';
 import QuoteModal from '../components/QuoteModal';
 import BrochureModal from '../components/BrochureModal';
+import sdvImage from '../assets/products/sdv.jpg';
+import sdvCatalogue from '../assets/SDV_Orbit.pdf';
 
 interface ProductInfoPageProps {
   variant?: string;
@@ -704,6 +706,37 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
         { parameter: 'Rotation Angle', value: '60° to 360°' },
         { parameter: 'Torque Range', value: 'Up to 4000 Nm' }
       ]
+    },
+    'sdv': {
+      title: 'Submersible Dredging Vehicle (SDV)',
+      description: 'A remotely operated underwater robotic system designed for safe and efficient removal of sludge, silt, and debris without human entry.',
+      icon: Anchor,
+      image: sdvImage,
+      features: [
+        'Depth Rating: Operates safely up to 50 meters underwater',
+        'Remote Operation: Fully controlled remotely with hydraulic and radio controls',
+        'Integrated Suction System: Built-in dredging pump for efficient sludge removal',
+        'Advanced Monitoring: Equipped with HD cameras and sonar for real-time visibility',
+        'Stable Mobility: Crawler-based design for smooth movement on uneven surfaces',
+        'Interchangeable Tools: Supports auger, brush wheel, and other cleaning attachments',
+        'No-Man Entry: Eliminates need for human diving, improving safety'
+      ],
+      applications: [
+        'Reservoir and dam cleaning',
+        'Industrial and chemical storage tanks',
+        'Sewage treatment plants (STP / ETP)',
+        'Water treatment plants',
+        'Rivers, lakes, and canals',
+        'Underground and confined water structures'
+      ],
+      specifications: [
+        { parameter: 'Dimensions', value: '2000 × 1000 × 1000 mm' },
+        { parameter: 'Weight', value: '940 kg' },
+        { parameter: 'Operational Depth', value: 'Up to 50 m' },
+        { parameter: 'Minimum Entry Opening', value: '1200 × 1200 mm' },
+        { parameter: 'Material', value: 'Stainless Steel SS304 / SS316' },
+        { parameter: 'Power System', value: 'Hydraulic power pack with suction and hose system' }
+      ]
     }
   };
 
@@ -807,6 +840,55 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
       )}
       {variant === 'solar-modules' && renderGallery('Solar Modules', 'High-efficiency monocrystalline, polycrystalline, and advanced special modules', 'Solar Modules')}
       {variant === 'chlorinators' && renderGallery('Chlorinators', 'Reliable chlorination systems for water safety')}
+
+      {/* SDV Dedicated Page */}
+      {variant === 'sdv' && (
+        <section className="py-16 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <MotionFadeUp>
+                <div className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100">
+                  <div className="bg-gray-50 flex items-center justify-center p-8">
+                    <img src={sdvImage} alt="Submersible Dredging Vehicle" className="max-h-80 w-full object-contain rounded-xl" />
+                  </div>
+                  <div className="p-6 text-center">
+                    <a
+                      href={sdvCatalogue}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-gradient-to-r from-[#0073bc] to-[#005a94] text-white font-bold rounded-full shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
+                    >
+                      <Download className="w-5 h-5" />
+                      Download SDV Catalogue
+                    </a>
+                  </div>
+                </div>
+              </MotionFadeUp>
+              <MotionFadeUp>
+                <div>
+                  <h2 className="text-3xl font-bold text-gray-900 mb-4">Overview</h2>
+                  <p className="text-gray-600 leading-relaxed text-lg mb-6">
+                    Submersible Dredging Vehicle (SDV) is a remotely operated underwater robotic system designed for safe and efficient removal of sludge, silt, and debris without human entry. It is ideal for reservoirs, storage tanks, sewage plants, and industrial water bodies, reducing operational risk and improving cleaning efficiency.
+                  </p>
+                  <div className="grid grid-cols-2 gap-4">
+                    {[
+                      { label: 'Depth Rating', value: 'Up to 50 m' },
+                      { label: 'Weight', value: '940 kg' },
+                      { label: 'Material', value: 'SS304 / SS316' },
+                      { label: 'Operation', value: 'Remote / Hydraulic' },
+                    ].map((stat, i) => (
+                      <div key={i} className="bg-[#0073bc]/5 border border-[#0073bc]/10 rounded-xl p-4 text-center">
+                        <div className="text-sm text-gray-500 mb-1">{stat.label}</div>
+                        <div className="text-base font-bold text-[#0073bc]">{stat.value}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </MotionFadeUp>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Features Section */}
       {page.features.length > 0 && (

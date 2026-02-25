@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Droplets, Zap, Gauge, ThermometerSun, Activity, FlaskConical, Wrench, Camera, BarChart3, Sun, Droplet, Download } from 'lucide-react';
+import { Droplets, Zap, Gauge, ThermometerSun, Activity, FlaskConical, Wrench, Camera, BarChart3, Sun, Droplet, Download, Anchor } from 'lucide-react';
 import HeroSection from '../components/HeroSection';
 import subHeadingImage from '../assets/products/sub-heading.jpg';
 import productsHeroBg from '../assets/products/hero-section.jpg';
@@ -24,6 +24,7 @@ import iconJointing from '../assets/products/electrofusion.jpeg';
 import iconPressure from '../assets/products/rosemount-3051s-series-coplanar-pressure-transmitter.jpg';
 import iconTransformer from '../assets/products/distribution-transformer.jpeg';
 import iconLevel from '../assets/products/ultrasonic-level-tx.jpg';
+import iconSdv from '../assets/products/sdv.jpg';
 // Raw products now live in src/data/rawProducts to avoid HMR issues
 
 interface ProductsPageProps {
@@ -268,6 +269,20 @@ export default function ProductsPage({ onNavigate }: ProductsPageProps) {
         'Flow-proportional dosing',
         'Safety interlocks',
         'Low maintenance operation'
+      ]
+    },
+    {
+      icon: Anchor,
+      image: iconSdv,
+      page: 'product-info:sdv',
+      title: 'Submersible Dredging Vehicle',
+      description: 'Remotely operated underwater robotic system for sludge and silt removal',
+      features: [
+        'Operates up to 50m depth',
+        'Remote hydraulic operation',
+        'HD cameras & sonar monitoring',
+        'Crawler-based mobility',
+        'No-man entry - safe operation'
       ]
     }
   ];
