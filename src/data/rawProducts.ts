@@ -313,7 +313,9 @@ export const RAW_SUB_PRODUCTS: RawGroup[] = [
       {
         name: 'Turbidity Analyzer',
         image: turbidityAnalyzer,
-        paragraphs: ['Water clarity and suspended solids measurement'],
+        paragraphs: [
+          'A high-precision analytical instrument designed for continuous monitoring of water clarity and suspended solids. It provides rapid detection of process upsets and ensures compliance with strict drinking water and industrial effluent standards.'
+        ],
         bullets: [
           'Real-time monitoring',
           'Low maintenance',
@@ -683,7 +685,10 @@ export const RAW_SUB_PRODUCTS: RawGroup[] = [
         name: 'IoT',
         image: iot,
         datasheetUrl: '/datasheets/iot-platform.pdf',
-        paragraphs: ['We offer an Integrated IOT Platform to manage Customer Device and Data. We also provided integration plugins with popular CRMs Billing and ERP solutions.'],
+        paragraphs: [
+          'Our Integrated IoT Platform provides a robust ecosystem to manage customer devices and data in real-time. It features seamless integration plugins with popular CRMs, billing systems, and ERP solutions for a truly unified management experience.',
+          'Designed for high scalability, the platform enables remote monitoring, predictive maintenance, and data-driven insights for modern industrial automation and smart municipal utilities.'
+        ],
         bullets: [
           'Integrated platform',
           'Device and data management',

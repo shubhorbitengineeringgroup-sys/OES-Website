@@ -774,7 +774,7 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
         <section className="py-16 bg-gray-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">Product Range</h2>
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">Smart Solar Solutions</h2>
               <p className="text-lg text-gray-600 max-w-3xl mx-auto">Explore our innovative solar energy solutions including smart lighting and high-efficiency photovoltaic modules.</p>
             </div>
             {renderGallery('Solar Lighting', 'Smart automatic street lights and monitoring systems', 'Smart Solar Solutions', true)}
@@ -938,7 +938,7 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="relative w-full max-w-4xl bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row max-h-[90vh] group/modal"
+              className="relative w-full max-w-4xl bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row h-[85vh] md:h-auto md:max-h-[90vh] group/modal"
               style={{ overscrollBehavior: 'contain' }}
             >
               {/* Decorative background Icon */}
@@ -983,10 +983,10 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
 
               {/* Right Side: Detailed Info (Scrollable) */}
               <div
-                className="w-full md:w-3/5 p-6 md:p-8 overflow-y-auto bg-white custom-scrollbar flex-1 min-h-0"
+                className="w-full md:w-3/5 p-6 md:p-8 overflow-y-auto bg-white custom-scrollbar flex-1 min-h-0 flex flex-col"
                 style={{ WebkitOverflowScrolling: 'touch' }}
               >
-                <div className="space-y-8">
+                <div className="space-y-8 flex-1">
                   {/* Paragraph Section */}
                   {selectedProduct.paragraphs && selectedProduct.paragraphs.length > 0 && (
                     <div className="relative">
