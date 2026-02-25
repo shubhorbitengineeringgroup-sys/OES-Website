@@ -79,7 +79,7 @@ export default function Header({ onNavigate, currentPage }: HeaderProps) {
       ]
     },
     {
-      label: 'Automation (IoT / PLC / RTU / SCADA)',
+      label: 'Automation (IoT / PLC / RTU / SCADA / Scour Monitoring)',
       page: 'product-info:automation',
       icon: Cpu,
       subCategories: [
