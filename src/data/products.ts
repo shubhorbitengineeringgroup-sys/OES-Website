@@ -5,6 +5,8 @@ export interface ProductItem {
   bullets?: string[];
   category: string;
   slug: string; // derived from image file name
+  badge?: string;
+  datasheetUrl?: string;
 }
 
 export interface ProductGroup {
@@ -27,6 +29,8 @@ export type RawGroup = {
     image: string;
     paragraphs?: string[];
     bullets?: string[];
+    badge?: string;
+    datasheetUrl?: string;
   }>;
 };
 
@@ -37,6 +41,8 @@ export const buildProductsData = (rawGroups: RawGroup[]): ProductGroup[] => {
       ...p,
       category: g.category,
       slug: makeSlug(p.image),
+      badge: p.badge,
+      datasheetUrl: p.datasheetUrl,
     })),
   }));
 };

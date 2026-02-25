@@ -91,7 +91,7 @@ export default function Header({ onNavigate, currentPage }: HeaderProps) {
       ]
     },
     { label: 'Transformers', page: 'product-info:transformers', icon: Zap },
-    { label: 'Solar sensor', page: 'product-info:solar', icon: Sun },
+    { label: 'Solar Solutions', page: 'product-info:solar', icon: Sun },
     { label: 'Chlorinators', page: 'product-info:chlorinators', icon: Droplets },
   ];
 

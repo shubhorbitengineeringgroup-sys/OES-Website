@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Gauge, Activity, Zap, Camera, Wrench, CheckCircle, ArrowRight, FlaskConical, Sun, Waves, Download, RotateCw } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Gauge, Activity, Zap, Camera, Wrench, CheckCircle, ArrowRight, FlaskConical, Sun, Waves, Download, RotateCw, X } from 'lucide-react';
 import { RAW_SUB_PRODUCTS } from '../data/rawProducts';
 import { MotionFadeUp, AnimatedHeading } from '../components/Animated';
 import QuoteModal from '../components/QuoteModal';
@@ -54,66 +55,139 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
     return (RAW_SUB_PRODUCTS.find(c => c.category === categoryName)?.items || []);
   };
 
-  const renderGallery = (categoryName: string, subtitle: string) => {
+  const renderGallery = (categoryName: string, subtitle: string, mainTitle?: string, hideSectionWrapper?: boolean) => {
     const items = getItemsByCategory(categoryName);
     // Check if current variant is flow-meters, automation, or has exactly 2 or 4 items to apply specific grid layout
     const isTwoColumnLayout = variant === 'flow-meters' || variant === 'automation' || items.length === 2 || items.length === 4;
 
-    return (
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Product Range</h2>
-            <p className="text-lg text-gray-600">{subtitle}</p>
-          </div>
-          <div className={isTwoColumnLayout
-            ? "grid grid-cols-1 md:grid-cols-2 gap-6 items-start"
-            : "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-start"
-          }>
-            {items.map((item, idx) => {
-              const key = `${categoryName}-${idx}`;
-              const isExpanded = !!expandedMap[key];
-              const firstParagraph = Array.isArray(item.paragraphs) && item.paragraphs[0] ? item.paragraphs[0] : '';
-              const hasBullets = Array.isArray(item.bullets) && item.bullets.length > 0;
-              const hasDetails = (!!firstParagraph) || hasBullets;
+    const content = (
+      <div className={hideSectionWrapper ? "" : "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"}>
+        <div className="text-center mb-12">
+          <h2 className={`font-bold text-gray-900 mb-4 ${hideSectionWrapper ? 'text-2xl' : 'text-3xl'}`}>
+            {mainTitle || "Product Range"}
+          </h2>
+          {subtitle && <p className="text-lg text-gray-600">{subtitle}</p>}
+        </div>
+        <div className={isTwoColumnLayout
+          ? "grid grid-cols-1 md:grid-cols-2 gap-6 items-start"
+          : "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-start"
+        }>
+          {items.map((item, idx) => {
+            const key = `${categoryName}-${idx}`;
+            const isExpanded = !!expandedMap[key];
+            const firstParagraph = Array.isArray(item.paragraphs) && item.paragraphs[0] ? item.paragraphs[0] : '';
+            const hasBullets = Array.isArray(item.bullets) && item.bullets.length > 0;
+            const hasDetails = (!!firstParagraph) || hasBullets;
 
-              return (
-                <MotionFadeUp key={idx} className="group bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col min-h-[420px]">
-                  <div className="bg-gray-50 flex items-center justify-center p-6">
-                    <img src={item.image} alt={item.name} className="h-[220px] w-full object-contain rounded-lg transition-transform duration-500 group-hover:scale-105" loading="lazy" />
-                  </div>
-                  <div className="p-6 flex flex-col gap-4 flex-1">
-                    <h3 className="text-xl font-bold text-gray-900 text-center">{item.name}</h3>
+            return (
+              <MotionFadeUp key={idx} className="group bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col min-h-[420px]">
+                <div className="bg-gray-50 flex items-center justify-center p-6 relative">
+                  {item.badge && (
+                    <div className="absolute top-4 right-4 bg-gradient-to-r from-[#0073bc] to-[#005a94] text-white text-[10px] font-bold px-3 py-1 rounded-full shadow-md z-10 uppercase tracking-wider border border-white/20">
+                      {item.badge}
+                    </div>
+                  )}
+                  <img src={item.image} alt={item.name} className="h-[220px] w-full object-contain rounded-lg transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+                </div>
+                <div className="p-6 flex flex-col gap-4 flex-1">
+                  <h3 className="text-xl font-bold text-gray-900 text-center">{item.name}</h3>
 
-                    {hasDetails && (
-                      <div className="mt-auto">
-                        <button
-                          onClick={() => toggleExpanded(key)}
-                          className="inline-flex items-center justify-center w-full px-6 py-3 rounded-xl text-sm font-bold bg-[#0073bc] text-white hover:bg-[#005a94] shadow-md hover:shadow-lg transition-all active:scale-95"
-                        >
-                          {isExpanded ? 'Show Less' : 'Read More'}
-                        </button>
+                  {hasDetails && (
+                    <div className="mt-auto">
+                      <button
+                        onClick={() => toggleExpanded(key)}
+                        className={`inline-flex items-center justify-center w-full px-6 py-3 rounded-xl text-sm font-bold transition-all duration-300 active:scale-95 shadow-md flex items-center space-x-2 ${isExpanded
+                          ? 'bg-gray-100 text-gray-700 hover:bg-gray-200 ring-2 ring-gray-200'
+                          : 'bg-gradient-to-r from-[#0073bc] to-[#005a94] text-white hover:shadow-lg hover:-translate-y-0.5'
+                          }`}
+                      >
+                        {isExpanded ? (
+                          <>
+                            <X className="w-4 h-4" />
+                            <span>Close Details</span>
+                          </>
+                        ) : (
+                          <>
+                            <span>Read More</span>
+                            <ArrowRight className="w-4 h-4" />
+                          </>
+                        )}
+                      </button>
+                    </div>
+                  )}
+
+                  <div className={`overflow-hidden transition-all duration-700 ease-in-out ${isExpanded ? 'max-h-[1000px] opacity-100 mt-6' : 'max-h-0 opacity-0 px-0 mt-0'}`}>
+                    <div className="bg-gradient-to-b from-blue-50/50 to-white/30 backdrop-blur-md p-6 rounded-2xl border border-blue-100/50 shadow-[inset_0_1px_1px_rgba(255,255,255,0.6)] relative overflow-hidden group/expanded">
+                      {/* Decorative background element */}
+                      <div className="absolute -top-6 -right-6 opacity-[0.03] group-hover/expanded:opacity-[0.05] transition-opacity duration-700">
+                        <IconComponent className="w-32 h-32 rotate-12" />
                       </div>
-                    )}
 
-                    <div className={`overflow-hidden transition-all duration-500 ease-in-out ${isExpanded ? 'max-h-[520px] opacity-100' : 'max-h-0 opacity-0'}`}>
-                      {firstParagraph && (
-                        <p className="mt-3 text-gray-600 text-sm leading-6">{firstParagraph}</p>
-                      )}
-                      {hasBullets && (
-                        <ul className="mt-3 list-disc list-inside space-y-1 text-gray-700 text-sm">
-                          {item.bullets!.map((b, i) => (
-                            <li key={i}>{b}</li>
-                          ))}
-                        </ul>
-                      )}
+                      <AnimatePresence>
+                        {isExpanded && (
+                          <div className="relative z-10 w-full">
+                            {firstParagraph && (
+                              <motion.div
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.4 }}
+                                className="relative mb-6"
+                              >
+                                <div className="absolute -left-4 top-0 bottom-0 w-1 bg-gradient-to-b from-[#0073bc] to-blue-300 rounded-full" />
+                                <p className="text-gray-700 text-sm leading-relaxed font-semibold pl-2 italic">
+                                  {firstParagraph}
+                                </p>
+                              </motion.div>
+                            )}
+
+                            {hasBullets && (
+                              <div className="space-y-4">
+                                <motion.div
+                                  initial={{ opacity: 0 }}
+                                  animate={{ opacity: 1 }}
+                                  transition={{ delay: 0.2 }}
+                                  className="flex items-center gap-3"
+                                >
+                                  <div className="h-px flex-1 bg-gradient-to-r from-transparent to-blue-200" />
+                                  <span className="text-[10px] font-black text-[#0073bc] uppercase tracking-[0.3em] whitespace-nowrap">Technical Details</span>
+                                  <div className="h-px flex-1 bg-gradient-to-l from-transparent to-blue-200" />
+                                </motion.div>
+                                <div className="grid grid-cols-1 gap-2.5">
+                                  {item.bullets!.map((b, i) => (
+                                    <motion.div
+                                      key={i}
+                                      initial={{ opacity: 0, x: -15 }}
+                                      animate={{ opacity: 1, x: 0 }}
+                                      transition={{ delay: 0.2 + i * 0.04, duration: 0.3 }}
+                                      className="flex items-center p-3 bg-white/80 rounded-xl border border-blue-50/50 hover:border-[#0073bc]/30 hover:shadow-sm transition-all group/bullet"
+                                    >
+                                      <div className="mr-3 p-1 rounded-lg bg-blue-100/50 text-[#0073bc] group-hover/bullet:bg-[#0073bc] group-hover/bullet:text-white transition-all duration-300">
+                                        <CheckCircle className="w-3.5 h-3.5" />
+                                      </div>
+                                      <span className="text-gray-700 text-[13px] font-bold leading-tight flex-1">{b}</span>
+                                    </motion.div>
+                                  ))}
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        )}
+                      </AnimatePresence>
                     </div>
                   </div>
-                </MotionFadeUp>
-              );
-            })}
-          </div>
+                </div>
+              </MotionFadeUp>
+            );
+          })}
         </div>
+      </div>
+    );
+
+    if (hideSectionWrapper) return content;
+
+    return (
+      <section className="py-16 bg-gray-50">
+        {content}
       </section>
     );
   };
@@ -500,8 +574,8 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
       ]
     },
     'solar': {
-      title: 'Solar sensor',
-      description: 'Renewable and sustainable energy solutions with high-efficiency solar panels and smart lighting systems.',
+      title: 'Solar Solutions',
+      description: 'Comprehensive solar energy solutions including high-performance solar modules and smart solar lighting systems.',
       icon: Sun,
       features: [
         'High-efficiency monocrystalline/polycrystalline PV modules',
@@ -526,6 +600,35 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
         { parameter: 'Operating Voltage', value: '18–24 V DC' },
         { parameter: 'Frame Material', value: 'Anodized Aluminium' },
         { parameter: 'Rated Life Span', value: '25 Years' }
+      ]
+    },
+    'solar-modules': {
+      title: 'Solar Modules',
+      description: 'High-performance monocrystalline and polycrystalline solar modules for residential, commercial, and utility-scale projects.',
+      icon: Sun,
+      features: [
+        'High efficiency up to 20.10%',
+        'Excellent high-temperature performance',
+        'Advanced PERC and Bifacial technologies',
+        '12-year product warranty',
+        '30-year linear performance warranty',
+        'Certified for harsh environmental conditions'
+      ],
+      applications: [
+        'Residential rooftop solar',
+        'Commercial and industrial installations',
+        'Utility-scale solar farms',
+        'Off-grid solar systems',
+        'Bifacial ground-mounted plants',
+        'Agriculture solar solutions'
+      ],
+      specifications: [
+        { parameter: 'Module Type', value: 'Mono / Poly / PERC / Bifacial' },
+        { parameter: 'Wattage Range', value: '315 Wp – 550 Wp' },
+        { parameter: 'Peak Efficiency', value: 'Up to 20.10%' },
+        { parameter: 'System Voltage', value: '1500 V DC' },
+        { parameter: 'Product Warranty', value: '12 Years' },
+        { parameter: 'Performance Warranty', value: '30 Years' }
       ]
     },
     'air-quality-analyzers': {
@@ -732,7 +835,21 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
 
 
       {variant === 'transformers' && renderGallery('Transformers', 'High-performance power and distribution solutions')}
-      {variant === 'solar' && renderGallery('Solar sensor', 'Sustainable solar energy and smart lighting solutions')}
+      {variant === 'solar' && (
+        <section className="py-16 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">Product Range</h2>
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto">Explore our innovative solar energy solutions including smart lighting and high-efficiency photovoltaic modules.</p>
+            </div>
+            {renderGallery('Solar Lighting', 'Smart automatic street lights and monitoring systems', 'Smart Solar Solutions', true)}
+            <div className="mt-20">
+              {renderGallery('Solar Modules', 'Advanced Mono, Poly, PERC and Bifacial modules for all applications', 'Solar Modules', true)}
+            </div>
+          </div>
+        </section>
+      )}
+      {variant === 'solar-modules' && renderGallery('Solar Modules', 'High-efficiency monocrystalline, polycrystalline, and advanced special modules', 'Solar Modules')}
       {variant === 'chlorinators' && renderGallery('Chlorinators', 'Reliable chlorination systems for water safety')}
 
       {/* Features Section */}

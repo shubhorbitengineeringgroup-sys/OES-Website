@@ -14,6 +14,7 @@ import iconETP from '../assets/icon/Effluent Treatment Plants.png';
 import iconPLC from '../assets/icon/plc-control-panel.png';
 import iconIoT from '../assets/icon/iot-sensors.png';
 import iconSolar from '../assets/products/solar-panel.jpg';
+import iconSolarModule from '../assets/products/polycrysteline-module.jpeg';
 import iconChlorinator from '../assets/products/chlorinator.jpg';
 import iconFlowMeter from '../assets/products/electromagnetic-flow-meter.jpg';
 import iconAnalyzer from '../assets/products/ph-analyzer.jpeg';
@@ -152,6 +153,7 @@ export default function ProductsPage({ onNavigate }: ProductsPageProps) {
         'Ultrasonic level transmitters',
         'Hydrostatic level transmitters',
         'Capacitance level transmitters',
+        'Submersible level transmitters',
         'Level switches',
         'Corrosion resistant'
       ]
@@ -230,14 +232,28 @@ export default function ProductsPage({ onNavigate }: ProductsPageProps) {
       icon: Sun,
       image: iconSolar,
       page: 'product-info:solar',
-      title: 'Solar Sensor',
-      description: 'Advanced solar monitoring and control systems',
+      title: 'Solar Solutions',
+      description: 'Advanced solar monitoring and street lighting systems',
       features: [
-        'Solar irradiance sensors',
-        'Panel efficiency monitoring',
-        'Real-time performance tracking',
-        'Weather station integration',
-        'Data logging & analytics'
+        'Smart street lights',
+        'PV panel integration',
+        'Dusk-to-dawn operation',
+        'Remote monitoring',
+        'Battery management'
+      ]
+    },
+    {
+      icon: Sun,
+      image: iconSolarModule,
+      page: 'product-info:solar-modules',
+      title: 'Solar Modules',
+      description: 'High-efficiency monocrystalline and polycrystalline modules',
+      features: [
+        'Mono PERC technology',
+        'Bifacial modules',
+        'Half-cut cell design',
+        'High efficiency >20%',
+        '30-year performance warranty'
       ]
     },
     {

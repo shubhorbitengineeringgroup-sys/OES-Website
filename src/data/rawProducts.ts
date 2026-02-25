@@ -64,6 +64,10 @@ import pm25Analyzer from '../assets/products/pm2.5.png';
 import coAnalyzer from '../assets/products/co analyzer.jpg';
 import co2Analyzer from '../assets/products/co2 analyzer.jpg';
 import methaneAnalyzer from '../assets/products/methane-gas-analyzer..jpeg';
+import polyCrystallineModule from '../assets/products/polycrysteline-module.jpeg';
+import monoCrystallineModule from '../assets/products/mono-crystalline-module.jpeg';
+import monoPercHalfCutModule from '../assets/products/mono-perc-half-cut-module.jpeg';
+import monoPercBifacialModule from '../assets/products/mono-perc-bifacial-module.jpeg';
 
 // Actuator Images - Multi Turn
 import so2Actuator from '../assets/products/electric-multi-turn-actuator-so-2.png';
@@ -94,7 +98,9 @@ import up2Actuator from '../assets/products/electric-part-turn-actuator-up-2.png
 
 
 
-export const RAW_SUB_PRODUCTS = [
+import { RawGroup } from './products';
+
+export const RAW_SUB_PRODUCTS: RawGroup[] = [
   {
     category: 'Flow',
     items: [
@@ -256,6 +262,9 @@ export const RAW_SUB_PRODUCTS = [
       {
         name: 'Total Chlorine Transmitter/Controller',
         image: chlorineTransmitter,
+        paragraphs: [
+          'A precision instrument designed for continuous monitoring and control of free or total chlorine levels in water treatment processes, ensuring safe disinfection and compliance with environmental standards.'
+        ],
         bullets: [
           'Up to four analysis inputs in any combination for direct connection of sensors for liquid analysis',
           'Up to 21 further measuring signals can be connected either directly or via interface',
@@ -269,6 +278,9 @@ export const RAW_SUB_PRODUCTS = [
       {
         name: 'Measurement of dissolved oxygen (DO) in aqueous solutions',
         image: doTransmitter,
+        paragraphs: [
+          'A high-performance sensor and transmitter system designed to accurately measure dissolved oxygen levels in water. Critical for wastewater treatment, aquaculture, and environmental monitoring.'
+        ],
         bullets: [
           'Safe 1-point calibration',
           '2-wire transmitter (for basic and standard version)',
@@ -282,6 +294,9 @@ export const RAW_SUB_PRODUCTS = [
       {
         name: 'pH Analyzer',
         image: phAnalyzer,
+        paragraphs: [
+          'An advanced analytical system for real-time monitoring of pH levels in various liquid processes. Essential for maintaining chemical balance in water treatment and industrial processing.'
+        ],
         bullets: [
           'Up to four analysis inputs in any combination for direct connection of sensors for liquid analysis',
           'Up to 21 further measuring signals can be connected either directly or via interface',
@@ -445,6 +460,9 @@ export const RAW_SUB_PRODUCTS = [
       {
         name: 'Capacitance Level Transmitter',
         image: capacitanceLevelTransmitter,
+        paragraphs: [
+          'A reliable level measurement device that uses capacitance technology to monitor liquid or solid levels in tanks. Ideal for challenging applications involving high temperatures or corrosive media.'
+        ],
         bullets: [
           '2-wire compact transmitter',
           'High sensitivity',
@@ -462,6 +480,9 @@ export const RAW_SUB_PRODUCTS = [
       {
         name: 'Hydrostatic Level Transmitter',
         image: hydrostaticLevelTx,
+        paragraphs: [
+          'A submersible level sensing solution that calculates the level of a liquid based on the pressure exerted by the fluid column. Perfect for deep wells and reservoirs.'
+        ],
         bullets: [
           '2- or 3-wire submersible transmitter',
           'Plastic or stainless steel body',
@@ -477,8 +498,12 @@ export const RAW_SUB_PRODUCTS = [
         ]
       },
       {
-        name: 'Ultrasonic Level Transmitter (Local Type)',
+        name: 'Ultrasonic Level Transmitter (Local Display)',
         image: ultrasonicLevelTx,
+        badge: 'Compact type',
+        paragraphs: [
+          'A non-contact level measuring device that uses ultrasonic pulses to determine the distance to the liquid surface. Features a local digital display for easy on-site monitoring and high configuration flexibility.'
+        ],
         bullets: [
           '2- or 4-wire integrated transmitter',
           'Non-contact level metering',
@@ -500,6 +525,10 @@ export const RAW_SUB_PRODUCTS = [
       {
         name: 'Submersible Level Transmitter',
         image: submersibleLevelTransmitter,
+        badge: 'Integrated type',
+        paragraphs: [
+          'A rugged, fully sealed pressure sensor designed to be submerged in liquids for deep level measurement. Specifically engineered for tanks, borewells, and wastewater sumps with limited space.'
+        ],
         bullets: [
           'Uses hydrostatic pressure principle for tanks/wells',
           '4–20 mA output',
@@ -514,6 +543,9 @@ export const RAW_SUB_PRODUCTS = [
       {
         name: 'Conductive Level Switch',
         image: conductiveLevelSwitch,
+        paragraphs: [
+          'A cost-effective point level detection solution for conductive liquids. Uses sensitive electrodes to detect the presence or absence of liquid at specific high or low alarm points.'
+        ],
         bullets: [
           'Limit switch or differential switch versions',
           'Adjustable sensitivity',
@@ -528,6 +560,9 @@ export const RAW_SUB_PRODUCTS = [
       {
         name: 'Float Level Switch',
         image: floatLevelSwitch,
+        paragraphs: [
+          'A simple and reliable mechanical level switch that uses a floating mechanism to trigger an electrical contact. Widely used for automatic pump control and overflow prevention.'
+        ],
         bullets: [
           'Operation without power supply',
           'Low cost polypropylene level switch',
@@ -1070,11 +1105,14 @@ export const RAW_SUB_PRODUCTS = [
     ]
   },
   {
-    category: 'Solar sensor',
+    category: 'Solar Lighting',
     items: [
       {
         name: 'Smart Solar Street Light with PV Panels',
         image: solarStreetLight,
+        paragraphs: [
+          'An integrated sustainable lighting solution that combines high-efficiency PV panels, LED technology, and intelligent controllers for automatic sunset-to-sunrise operation.'
+        ],
         bullets: [
           'Type: Monocrystalline / Polycrystalline PV Module',
           'Wattage: 100 Wp – 200 Wp (as per site requirement)',
@@ -1087,6 +1125,9 @@ export const RAW_SUB_PRODUCTS = [
       {
         name: 'Solar Panel (Module)',
         image: solarPanel,
+        paragraphs: [
+          'High-performance photovoltaic modules designed to convert sunlight into clean electricity. These robust panels are suitable for residential, commercial, and utility-scale installations.'
+        ],
         bullets: [
           'Type: Monocrystalline / Polycrystalline',
           'Rated Power: 330 Wp – 550 Wp (per panel)',
@@ -1102,11 +1143,94 @@ export const RAW_SUB_PRODUCTS = [
     ]
   },
   {
+    category: 'Solar Modules',
+    items: [
+      {
+        name: 'Poly Crystalline Module',
+        image: polyCrystallineModule,
+        paragraphs: [
+          'Poly Crystalline solar modules are constructed by pouring molten silicon into molds, making them an economical choice that reduces production waste. These panels are engineered for high-power requirements and provide consistent performance in high-temperature and low-light environments.'
+        ],
+        bullets: [
+          'Wattage Range: 315 – 340 W',
+          'Module Efficiency: Up to 17.45%',
+          'Power Tolerance: 0 ~ +3 Wp',
+          'Maximum System Voltage: 1500 V DC',
+          'Cell Type: M2 Full Cells',
+          'Module Warranty: 12 Years',
+          'Linear Performance Warranty: 30 Years',
+          'Application: On-grid and Off-grid solar projects',
+          'Low degradation rate',
+          'Stable performance in high temperature',
+          'Lower operating temperature',
+          'Long life up to 25+ years'
+        ]
+      },
+      {
+        name: 'Mono Crystalline Module',
+        image: monoCrystallineModule,
+        paragraphs: [
+          'Mono Crystalline panels are crafted from single-crystal silicon, providing a uniform cell structure that ensures higher efficiency. They are a preferred choice for residential and commercial installations due to their durability and long operational life.'
+        ],
+        bullets: [
+          'Wattage Range: 380 – 400 W',
+          'Module Efficiency: Up to 20.10%',
+          'Power Tolerance: 0 ~ +3 Wp',
+          'Maximum System Voltage: 1500 V DC',
+          'Cell Type: G1 Full Cells',
+          'Module Warranty: 12 Years',
+          'Linear Performance Warranty: 30 Years',
+          'Higher efficiency compared to poly modules',
+          'Better performance in hot weather',
+          'Larger surface area for better energy capture',
+          'Lower operating temperature',
+          'Durable and longer lifespan'
+        ]
+      },
+      {
+        name: 'Mono PERC Half-Cut Module',
+        image: monoPercHalfCutModule,
+        paragraphs: [
+          'Mono PERC Half-Cut modules feature advanced PERC technology combined with a half-cut cell design. This combination reduces internal resistance and minimizes power loss, resulting in superior efficiency for industrial solar systems.'
+        ],
+        bullets: [
+          'Higher efficiency than standard mono modules',
+          'Lower internal resistance → higher output',
+          'Better shade tolerance',
+          'Lower temperature losses',
+          'Improved durability',
+          'Suitable for rooftop and utility scale',
+          '12 Years Product Warranty',
+          '30 Years Performance Warranty'
+        ]
+      },
+      {
+        name: 'Mono PERC Bifacial Module',
+        image: monoPercBifacialModule,
+        paragraphs: [
+          'Bifacial modules are designed to absorb sunlight from both the front and rear surfaces, significantly boosting total energy yield. These modules are highly effective in large-scale industrial solar plants, offering maximized power generation.'
+        ],
+        bullets: [
+          'Power generation from both sides (front + rear)',
+          'Higher total energy output',
+          'Better ROI and efficiency',
+          'Advanced Mono PERC cell technology',
+          'Suitable for utility-scale and commercial projects',
+          '12 Years Product Warranty',
+          '30 Years Performance Warranty'
+        ]
+      }
+    ]
+  },
+  {
     category: 'Multi Turn Actuators',
     items: [
       {
         name: 'Electric multi-turn actuator SO 2',
         image: so2Actuator,
+        paragraphs: [
+          'Industrial electric multi-turn actuator designed for valves requiring multiple rotations. Features high torque output and IP67/68 protection for reliable service in energy and water sectors.'
+        ],
         bullets: [
           'Type number: 062',
           'Industry use: Energy, Water, Industry',
@@ -1123,6 +1247,9 @@ export const RAW_SUB_PRODUCTS = [
       {
         name: 'Electric multi-turn actuator UM 1',
         image: um1Actuator,
+        paragraphs: [
+          'Versatile electric multi-turn actuator optimized for medium-torque applications. Provides precise control for gate and globe valves with robust enclosure protection.'
+        ],
         bullets: [
           'Type number: 141',
           'Industry use: Energy, Water, Industry',
@@ -1139,6 +1266,9 @@ export const RAW_SUB_PRODUCTS = [
       {
         name: 'Electric multi-turn actuator UM 2',
         image: um2Actuator,
+        paragraphs: [
+          'High-precision multi-turn actuator designed for industrial process control. Delivers stable performance across a wide temperature range with advanced torque switching capabilities.'
+        ],
         bullets: [
           'Type number: 142',
           'Industry use: Energy, Water, Industry',
@@ -1155,6 +1285,9 @@ export const RAW_SUB_PRODUCTS = [
       {
         name: 'Electric multi-turn actuator MO 3',
         image: mo3Actuator,
+        paragraphs: [
+          'Heavy-duty electric actuator built for high-torque industrial valves. Engineered for horizontal installation with excellent reliability for continuous operation.'
+        ],
         bullets: [
           'Type number: 093',
           'Industry use: Energy, Water, Industry',
@@ -1170,6 +1303,9 @@ export const RAW_SUB_PRODUCTS = [
       {
         name: 'Electric multi-turn actuator MO 3.4',
         image: mo3Actuator,
+        paragraphs: [
+          'High-torque multi-turn actuator designed for robust industrial service. Capable of handling significant revoluton requirements with precise stop-torque control.'
+        ],
         bullets: [
           'Type number: 105',
           'Industry use: Energy, Water, Industry',
@@ -1186,6 +1322,9 @@ export const RAW_SUB_PRODUCTS = [
       {
         name: 'Electric multi-turn actuator MO 3.5',
         image: mo35Actuator,
+        paragraphs: [
+          'Advanced multi-turn actuator for elite industrial applications. Delivers high switching-off torque and extended revolutions for large valve automation.'
+        ],
         bullets: [
           'Type number: 095',
           'Industry use: Energy, Water, Industry',
@@ -1202,6 +1341,9 @@ export const RAW_SUB_PRODUCTS = [
       {
         name: 'Electric multi-turn actuator MO 4',
         image: mo4Actuator,
+        paragraphs: [
+          'High-performance electric multi-turn actuator designed for large-scale valve control. Features robust construction and wide operating temperature range for demanding industrial environments.'
+        ],
         bullets: [
           'Type number: 160',
           'Industry use: Energy, Water, Industry',
@@ -1218,6 +1360,9 @@ export const RAW_SUB_PRODUCTS = [
       {
         name: 'Electric multi-turn actuator MO 5',
         image: mo5Actuator,
+        paragraphs: [
+          'The most powerful in the multi-turn series, this actuator delivers extreme torque (up to 1000 Nm) for ultra-heavy-duty industrial valve automation in energy and water sectors.'
+        ],
         bullets: [
           'Type number: 155',
           'Industry use: Energy, Water, Industry',
@@ -1234,6 +1379,9 @@ export const RAW_SUB_PRODUCTS = [
       {
         name: 'Electric multi-turn actuator SOR 2PA',
         image: sor2paActuator,
+        paragraphs: [
+          'Smart electric multi-turn actuator featuring an integrated positioner. Designed for precision control and remote monitoring in advanced industrial automation systems.'
+        ],
         bullets: [
           'Type number: 067',
           'Industry use: Energy, Water, Industry',
@@ -1250,6 +1398,9 @@ export const RAW_SUB_PRODUCTS = [
       {
         name: 'Electric multi-turn actuator UMR 1PA',
         image: umr1paActuator,
+        paragraphs: [
+          'Intelligent multi-turn actuator with enhanced communication protocols. Ideal for integrated plant networks requiring reliable performance and real-time status feedback.'
+        ],
         bullets: [
           'Type number: 181',
           'Industry use: Energy, Water, Industry',
@@ -1266,6 +1417,9 @@ export const RAW_SUB_PRODUCTS = [
       {
         name: 'Electric multi-turn actuator UMR 2PA',
         image: umr2paActuator,
+        paragraphs: [
+          'Advanced multi-turn actuator designed for high-precision motion control. Features a rugged housing and intelligent electronics for seamless integration into modern process control systems.'
+        ],
         bullets: [
           'Type number: 182',
           'Industry use: Energy, Water, Industry',
@@ -1282,6 +1436,9 @@ export const RAW_SUB_PRODUCTS = [
       {
         name: 'Electric multi-turn actuator MOR 3PA',
         image: mor3paActuator,
+        paragraphs: [
+          'Heavy-duty intelligent multi-turn actuator featuring high revolutions and stop-torque limits. Built for mission-critical industrial applications with long-distance communication support.'
+        ],
         bullets: [
           'Type number: 094',
           'Industry use: Energy, Water, Industry',
@@ -1303,6 +1460,9 @@ export const RAW_SUB_PRODUCTS = [
       {
         name: 'Electric part-turn actuator SP MIKRO',
         image: spMikroActuator,
+        paragraphs: [
+          'Ultra-compact part-turn actuator designed for small-scale automation. Ideal for applications requiring precise 90-degree rotary motion in tight spaces.'
+        ],
         bullets: [
           'Type number: 260',
           'Industry use: Energy, Water, Industry',
@@ -1319,6 +1479,9 @@ export const RAW_SUB_PRODUCTS = [
       {
         name: 'Electric part-turn actuator SP 0',
         image: sp0Actuator,
+        paragraphs: [
+          'Reliable 90-degree rotary actuator for industrial valve automation. Features high switching-off torque and flexible mounting options for diverse piping systems.'
+        ],
         bullets: [
           'Type number: 280',
           'Industry use: Energy, Water, Industry',
@@ -1335,6 +1498,9 @@ export const RAW_SUB_PRODUCTS = [
       {
         name: 'Electric part-turn actuator SP 0.1',
         image: sp01Actuator,
+        paragraphs: [
+          'Versatile part-turn actuator with enhanced switching-off torque. Provides reliable 90-degree rotary control for industrial valves with wide temperature tolerance.'
+        ],
         bullets: [
           'Type number: 331',
           'Industry use: Energy, Water, Industry',
@@ -1351,6 +1517,9 @@ export const RAW_SUB_PRODUCTS = [
       {
         name: 'Electric part-turn actuator SP 1',
         image: sp1Actuator,
+        paragraphs: [
+          'Professional part-turn actuator optimized for butterfly and ball valves. Delivers rapid response times and high positioning accuracy for demanding water management tasks.'
+        ],
         bullets: [
           'Type number: 281',
           'Industry use: Energy, Water, Industry',
@@ -1367,6 +1536,9 @@ export const RAW_SUB_PRODUCTS = [
       {
         name: 'Electric part-turn actuator SP 2',
         image: sp2Actuator,
+        paragraphs: [
+          'High-performance part-turn actuator engineered for larger ball and butterfly valves. Features motorized 90-degree movement with robust IP68 protection.'
+        ],
         bullets: [
           'Type number: 282',
           'Industry use: Energy, Water, Industry',
@@ -1383,6 +1555,9 @@ export const RAW_SUB_PRODUCTS = [
       {
         name: 'Electric part-turn actuator SP 2.3',
         image: sp23Actuator,
+        paragraphs: [
+          'Powerful part-turn actuator designed for heavy-duty valve automation. Delivers exceptional torque for reliable operation in critical water treatment systems.'
+        ],
         bullets: [
           'Type number: 283',
           'Industry use: Energy, Water, Industry',
@@ -1399,6 +1574,9 @@ export const RAW_SUB_PRODUCTS = [
       {
         name: 'Electric part-turn actuator SP 2.4',
         image: sp24Actuator,
+        paragraphs: [
+          'High-torque part-turn actuator designed for heavy industrial butterfly and ball valves. Provides stable 90-degree rotary motion with robust enclosure and precise limit switching.'
+        ],
         bullets: [
           'Type number: 284',
           'Industry use: Energy, Water, Industry',
@@ -1415,6 +1593,9 @@ export const RAW_SUB_PRODUCTS = [
       {
         name: 'Electric part-turn actuator MPR',
         image: mprActuator,
+        paragraphs: [
+          'Precision part-turn actuator optimized for high-speed operation. Features advanced enclosure protection and horizontal motor axis design for stable performance.'
+        ],
         bullets: [
           'Type number: 52220',
           'Industry use: Energy, Water, Industry',
@@ -1430,6 +1611,9 @@ export const RAW_SUB_PRODUCTS = [
       {
         name: 'Electric part-turn actuator MPR 5',
         image: mpr5Actuator,
+        paragraphs: [
+          'Heavy-duty industrial part-turn actuator designed for high-torque 90-degree rotary applications. Built to withstand harsh environments with IP67 protection.'
+        ],
         bullets: [
           'Type number: 52222',
           'Industry use: Energy, Water, Industry',
@@ -1445,6 +1629,9 @@ export const RAW_SUB_PRODUCTS = [
       {
         name: 'Electric part-turn actuator UP 1',
         image: up1Actuator,
+        paragraphs: [
+          'Versatile part-turn actuator optimized for standard 90-degree valve operation. Features a compact design and high reliability for water and wastewater treatment plants.'
+        ],
         bullets: [
           'Type number: 341',
           'Industry use: Energy, Water, Industry',
@@ -1461,6 +1648,9 @@ export const RAW_SUB_PRODUCTS = [
       {
         name: 'Electric part-turn actuator MPR 6',
         image: mpr6Actuator,
+        paragraphs: [
+          'The flagship high-torque part-turn actuator, delivering up to 4000 Nm. Specifically designed for extreme-scale 90-degree rotary applications in heavy industrial infrastructure.'
+        ],
         bullets: [
           'Type number: 52223',
           'Industry use: Energy, Water, Industry',
@@ -1476,6 +1666,9 @@ export const RAW_SUB_PRODUCTS = [
       {
         name: 'Electric part-turn actuator UP 2',
         image: up2Actuator,
+        paragraphs: [
+          'Powerful part-turn actuator engineered for larger piping systems. Delivers high switching-off torque and fast response times for critical flow control applications.'
+        ],
         bullets: [
           'Type number: 342',
           'Industry use: Energy, Water, Industry',
