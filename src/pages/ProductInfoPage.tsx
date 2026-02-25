@@ -8,6 +8,9 @@ import QuoteModal from '../components/QuoteModal';
 import BrochureModal from '../components/BrochureModal';
 import sdvImage from '../assets/products/sdv.jpg';
 import sdvCatalogue from '../assets/SDV_Orbit.pdf';
+import scourMonitoringImage from '../assets/products/scour-monitoring.jpeg';
+import scourMonitoringBrochure from '../assets/Real-Time Scour Detection for Stronger Foundations.pdf';
+import orbitBrochure from '../assets/Orbit brocher.pdf_.pdf';
 
 interface ProductInfoPageProps {
   variant?: string;
@@ -737,6 +740,37 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
         { parameter: 'Material', value: 'Stainless Steel SS304 / SS316' },
         { parameter: 'Power System', value: 'Hydraulic power pack with suction and hose system' }
       ]
+    },
+    'scour-monitoring': {
+      title: 'Real-Time Scour Monitoring System',
+      description: 'An advanced IoT-based solution to monitor soil erosion, water level, and structural stability around bridge foundations and hydraulic structures — with cloud-based real-time alerting.',
+      icon: Waves,
+      image: scourMonitoringImage,
+      features: [
+        'Real-time scour and water level monitoring using radar/sonar sensors',
+        'PLC-based automation for data processing and local logging',
+        'Cloud connectivity for remote monitoring from anywhere',
+        'Solar-powered operation with battery backup for remote locations',
+        'Automated SMS and daily report alerts for abnormal conditions',
+        'Interactive dashboard (UI/UX) for data visualization and analysis',
+        'Wireless sensors for tilt, inclination, and sediment level detection',
+        'Fully automated, low-maintenance system'
+      ],
+      applications: [
+        'Bridge foundation monitoring',
+        'River and dam infrastructure safety',
+        'Hydraulic and water management projects',
+        'Flood-prone areas monitoring',
+        'Smart city and infrastructure monitoring'
+      ],
+      specifications: [
+        { parameter: 'Sensing Technology', value: 'Radar / Sonar Level Sensor' },
+        { parameter: 'Control Unit', value: 'PLC Control Panel' },
+        { parameter: 'Power System', value: 'Solar + Battery Backup' },
+        { parameter: 'Connectivity', value: 'IoT Gateway + Cloud Server' },
+        { parameter: 'Alerts', value: 'Automated SMS & Daily Reports' },
+        { parameter: 'Installation', value: 'Waterproof Armored Cables, Outdoor-rated' }
+      ]
     }
   };
 
@@ -890,7 +924,83 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
         </section>
       )}
 
-      {/* Features Section */}
+      {/* Scour Monitoring Dedicated Page */}
+      {variant === 'scour-monitoring' && (
+        <section className="py-16 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <MotionFadeUp>
+                <div className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100">
+                  <div className="bg-gray-50 flex items-center justify-center p-8">
+                    <img src={scourMonitoringImage} alt="Real-Time Scour Monitoring System" className="max-h-80 w-full object-contain rounded-xl" />
+                  </div>
+                  <div className="p-6 text-center">
+                    <a
+                      href={scourMonitoringBrochure}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-gradient-to-r from-[#0073bc] to-[#005a94] text-white font-bold rounded-full shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
+                    >
+                      <Download className="w-5 h-5" />
+                      Download Brochure
+                    </a>
+                  </div>
+                </div>
+              </MotionFadeUp>
+              <MotionFadeUp>
+                <div>
+                  <h2 className="text-3xl font-bold text-gray-900 mb-4">Overview</h2>
+                  <p className="text-gray-600 leading-relaxed text-lg mb-6">
+                    Orbit Engineering's Scour Monitoring System is an advanced IoT-based solution designed to monitor soil erosion (scour), water level, and structural stability around bridge foundations and hydraulic structures. The system continuously collects real-time data and sends it to a cloud dashboard, enabling engineers to take preventive action and ensure structural safety.
+                  </p>
+                  <div className="grid grid-cols-2 gap-4">
+                    {[
+                      { label: 'Sensing', value: 'Radar / Sonar' },
+                      { label: 'Control', value: 'PLC-Based' },
+                      { label: 'Power', value: 'Solar + Battery' },
+                      { label: 'Connectivity', value: 'IoT / Cloud' },
+                    ].map((stat, i) => (
+                      <div key={i} className="bg-[#0073bc]/5 border border-[#0073bc]/10 rounded-xl p-4 text-center">
+                        <div className="text-sm text-gray-500 mb-1">{stat.label}</div>
+                        <div className="text-base font-bold text-[#0073bc]">{stat.value}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </MotionFadeUp>
+            </div>
+
+            {/* System Components Section */}
+            <div className="mt-16">
+              <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">System Components</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {[
+                  { title: 'Radar / Sonar Level Sensor', desc: 'For accurate scour depth measurement' },
+                  { title: 'PLC Control Panel', desc: 'For data processing and system control' },
+                  { title: 'Solar Power System', desc: 'With battery backup for uninterrupted operation' },
+                  { title: 'IoT Gateway & Cloud Server', desc: 'For remote monitoring and data access' },
+                  { title: 'Waterproof Armored Cables', desc: 'For reliable outdoor installation' },
+                  { title: 'SMS Alert & Reporting System', desc: 'Automated alerts and daily reports' },
+                ].map((comp, i) => (
+                  <div key={i} className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm hover:shadow-md hover:border-[#0073bc]/20 transition-all">
+                    <div className="flex items-start space-x-3">
+                      <div className="flex-shrink-0 mt-0.5">
+                        <CheckCircle className="w-5 h-5 text-[#0073bc]" />
+                      </div>
+                      <div>
+                        <div className="font-bold text-gray-900 text-sm">{comp.title}</div>
+                        <div className="text-gray-500 text-xs mt-1">{comp.desc}</div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+
       {page.features.length > 0 && (
         <section className="py-16 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1020,7 +1130,7 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
       <BrochureModal
         open={isBrochureModalOpen}
         onClose={() => setIsBrochureModalOpen(false)}
-        brochureUrl="/assets/docs/brochure.pdf"
+        brochureUrl={orbitBrochure}
       />
 
       {/* Quote Modal */}
@@ -1111,6 +1221,19 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
                     </div>
                   )}
 
+                  {/* Product-specific brochure download button */}
+                  {selectedProduct.datasheetUrl && (
+                    <a
+                      href={selectedProduct.datasheetUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-2 w-full px-5 py-3 bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-bold rounded-xl shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 text-sm"
+                    >
+                      <Download className="w-4 h-4" />
+                      Download Product Brochure
+                    </a>
+                  )}
+
                   {selectedProduct.bullets && selectedProduct.bullets.length > 0 && (
                     <div className="space-y-6">
                       <div className="flex items-center gap-4">
@@ -1184,6 +1307,19 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
                         ))}
                       </div>
                     </div>
+                  )}
+
+                  {/* Product-specific brochure download button */}
+                  {selectedProduct.datasheetUrl && (
+                    <a
+                      href={selectedProduct.datasheetUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-2 w-full px-5 py-3 bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-bold rounded-xl shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 text-sm"
+                    >
+                      <Download className="w-4 h-4" />
+                      Download Product Brochure
+                    </a>
                   )}
 
                   {selectedProduct.bullets && selectedProduct.bullets.length > 0 && (

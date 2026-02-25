@@ -70,6 +70,8 @@ import monoPercHalfCutModule from '../assets/products/mono-perc-half-cut-module.
 import monoPercBifacialModule from '../assets/products/mono-perc-bifacial-module.jpeg';
 import sdvImage from '../assets/products/sdv.jpg';
 import sdvCatalogue from '../assets/SDV_Orbit.pdf';
+import scourMonitoringImage from '../assets/products/scour-monitoring.jpeg';
+import scourMonitoringBrochure from '../assets/Real-Time Scour Detection for Stronger Foundations.pdf';
 
 // Actuator Images - Multi Turn
 import so2Actuator from '../assets/products/electric-multi-turn-actuator-so-2.png';
@@ -734,6 +736,24 @@ export const RAW_SUB_PRODUCTS: RawGroup[] = [
           '100 plants per network',
           'Mobile app support',
           'Continuous logging'
+        ]
+      },
+      {
+        name: 'Real-Time Scour Monitoring System',
+        image: scourMonitoringImage,
+        datasheetUrl: scourMonitoringBrochure,
+        paragraphs: [
+          'Orbit Engineering\'s Scour Monitoring System is an advanced IoT-based solution designed to monitor soil erosion (scour), water level, and structural stability around bridge foundations and hydraulic structures. The system continuously collects real-time data and sends it to a cloud dashboard, enabling engineers to take preventive action and ensure structural safety.'
+        ],
+        bullets: [
+          'Real-time scour and water level monitoring using radar/sonar sensors',
+          'PLC-based automation for data processing and local logging',
+          'Cloud connectivity for remote monitoring from anywhere',
+          'Solar-powered operation with battery backup for remote locations',
+          'Automated SMS and daily report alerts for abnormal conditions',
+          'Interactive dashboard (UI/UX) for data visualization and analysis',
+          'Wireless sensors for tilt, inclination, and sediment level detection',
+          'Fully automated, low-maintenance system'
         ]
       },
       {

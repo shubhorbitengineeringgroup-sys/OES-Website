@@ -78,7 +78,15 @@ export default function Header({ onNavigate, currentPage }: HeaderProps) {
         { label: 'Part Turn', page: 'product-info:part-turn-actuators', icon: RotateCw }
       ]
     },
-    { label: 'Automation (IoT / PLC / RTU / SCADA)', page: 'product-info:automation', icon: Cpu },
+    {
+      label: 'Automation (IoT / PLC / RTU / SCADA)',
+      page: 'product-info:automation',
+      icon: Cpu,
+      subCategories: [
+        { label: 'IoT / PLC / RTU / SCADA', page: 'product-info:automation', icon: Cpu },
+        { label: 'Scour Monitoring System', page: 'product-info:scour-monitoring', icon: Waves },
+      ]
+    },
     { label: 'Cameras & Vision', page: 'product-info:cameras', icon: Camera },
     { label: 'Jointing Machines', page: 'product-info:jointing', icon: Wrench },
     {

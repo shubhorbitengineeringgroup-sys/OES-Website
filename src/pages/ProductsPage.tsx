@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Droplets, Zap, Gauge, ThermometerSun, Activity, FlaskConical, Wrench, Camera, BarChart3, Sun, Droplet, Download, Anchor } from 'lucide-react';
+import { Droplets, Zap, Gauge, ThermometerSun, Activity, FlaskConical, Wrench, Camera, BarChart3, Sun, Droplet, Download, Anchor, Waves } from 'lucide-react';
 import HeroSection from '../components/HeroSection';
 import subHeadingImage from '../assets/products/sub-heading.jpg';
 import productsHeroBg from '../assets/products/hero-section.jpg';
@@ -25,6 +25,8 @@ import iconPressure from '../assets/products/rosemount-3051s-series-coplanar-pre
 import iconTransformer from '../assets/products/distribution-transformer.jpeg';
 import iconLevel from '../assets/products/ultrasonic-level-tx.jpg';
 import iconSdv from '../assets/products/sdv.jpg';
+import iconScourMonitoring from '../assets/products/scour-monitoring.jpeg';
+import orbitBrochure from '../assets/Orbit brocher.pdf_.pdf';
 // Raw products now live in src/data/rawProducts to avoid HMR issues
 
 interface ProductsPageProps {
@@ -284,6 +286,20 @@ export default function ProductsPage({ onNavigate }: ProductsPageProps) {
         'Crawler-based mobility',
         'No-man entry - safe operation'
       ]
+    },
+    {
+      icon: Waves,
+      image: iconScourMonitoring,
+      page: 'product-info:scour-monitoring',
+      title: 'Scour Monitoring System',
+      description: 'IoT-based real-time monitoring of soil erosion and structural stability around bridges',
+      features: [
+        'Radar / Sonar sensors',
+        'PLC-based automation',
+        'Cloud & SMS alerts',
+        'Solar-powered operation',
+        'Bridge & dam safety monitoring'
+      ]
     }
   ];
 
@@ -539,7 +555,7 @@ export default function ProductsPage({ onNavigate }: ProductsPageProps) {
       <BrochureModal
         open={isBrochureModalOpen}
         onClose={() => setIsBrochureModalOpen(false)}
-        brochureUrl="/assets/docs/brochure.pdf"
+        brochureUrl={orbitBrochure}
       />
     </div>
   );
