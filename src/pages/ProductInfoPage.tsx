@@ -1001,7 +1001,7 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
       )}
 
 
-      {page.features.length > 0 && (
+      {page.features.length > 0 && variant !== 'scour-monitoring' && variant !== 'sdv' && (
         <section className="py-16 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
@@ -1025,7 +1025,7 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
       )}
 
       {/* Applications Section */}
-      {page.applications.length > 0 && (
+      {page.applications.length > 0 && variant !== 'scour-monitoring' && variant !== 'sdv' && (
         <section className="py-16 bg-gray-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
@@ -1055,7 +1055,7 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
       )}
 
       {/* Specifications Section */}
-      {page.specifications.length > 0 && (
+      {page.specifications.length > 0 && variant !== 'scour-monitoring' && variant !== 'sdv' && (
         <section className="py-16 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
