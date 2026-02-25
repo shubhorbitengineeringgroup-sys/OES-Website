@@ -124,7 +124,7 @@ function AppContent() {
   return (
     <div className="min-h-screen flex flex-col bg-white overflow-x-hidden">
       <Header onNavigate={handleNavigate} currentPage={getActivePage()} />
-      <div className="relative flex-grow">
+      <div className="relative flex-grow pt-20">
         <LogoLoader isVisible={isTransitioning} />
         <main className={`flex-grow ${isTransitioning ? 'pointer-events-none select-none opacity-50 transition-opacity duration-500' : 'opacity-100 transition-opacity duration-500'}`}>
           <Suspense fallback={

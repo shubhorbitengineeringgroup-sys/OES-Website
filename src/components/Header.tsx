@@ -109,7 +109,7 @@ export default function Header({ onNavigate, currentPage }: HeaderProps) {
   }, []);
 
   return (
-    <header className="sticky top-0 z-[1000] bg-white/90 backdrop-blur supports-[backdrop-filter]:bg-white/70 shadow-sm">
+    <header className="fixed top-0 left-0 w-full z-[1000] bg-white/90 backdrop-blur supports-[backdrop-filter]:bg-white/70 shadow-sm">
       <div className="w-full px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           <button
