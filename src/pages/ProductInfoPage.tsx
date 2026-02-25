@@ -67,8 +67,8 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
             <p className="text-lg text-gray-600">{subtitle}</p>
           </div>
           <div className={isTwoColumnLayout
-            ? "grid grid-cols-1 md:grid-cols-2 gap-6"
-            : "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+            ? "grid grid-cols-1 md:grid-cols-2 gap-6 items-start"
+            : "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-start"
           }>
             {items.map((item, idx) => {
               const key = `${categoryName}-${idx}`;
@@ -78,7 +78,7 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
               const hasDetails = (!!firstParagraph) || hasBullets;
 
               return (
-                <MotionFadeUp key={idx} className="group bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col h-full min-h-[420px]">
+                <MotionFadeUp key={idx} className="group bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col min-h-[420px]">
                   <div className="bg-gray-50 flex items-center justify-center p-6">
                     <img src={item.image} alt={item.name} className="h-[220px] w-full object-contain rounded-lg transition-transform duration-500 group-hover:scale-105" loading="lazy" />
                   </div>
