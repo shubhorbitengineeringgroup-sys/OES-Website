@@ -5,14 +5,14 @@ interface SEOProps {
     description: string;
     keywords?: string;
     canonicalPath?: string;
+    jsonLd?: any;
 }
 
-export default function SEO({ title, description, keywords, canonicalPath }: SEOProps) {
+export default function SEO({ title, description, keywords, canonicalPath, jsonLd }: SEOProps) {
     useEffect(() => {
-        // Update Title
+        // ... (existing meta tag logic)
         document.title = title;
 
-        // Update Meta Description
         let metaDescription = document.querySelector('meta[name="description"]');
         if (!metaDescription) {
             metaDescription = document.createElement('meta');
@@ -21,7 +21,6 @@ export default function SEO({ title, description, keywords, canonicalPath }: SEO
         }
         metaDescription.setAttribute('content', description);
 
-        // Update Meta Keywords (Optional, mostly for legacy but requested)
         if (keywords) {
             let metaKeywords = document.querySelector('meta[name="keywords"]');
             if (!metaKeywords) {
@@ -32,21 +31,18 @@ export default function SEO({ title, description, keywords, canonicalPath }: SEO
             metaKeywords.setAttribute('content', keywords);
         }
 
-        // Update OG Title and Description for specific pages
         const ogTitle = document.querySelector('meta[property="og:title"]');
         if (ogTitle) ogTitle.setAttribute('content', title);
 
         const ogDescription = document.querySelector('meta[property="og:description"]');
         if (ogDescription) ogDescription.setAttribute('content', description);
 
-        // Update Twitter meta tags
         const twitterTitle = document.querySelector('meta[name="twitter:title"]');
         if (twitterTitle) twitterTitle.setAttribute('content', title);
 
         const twitterDescription = document.querySelector('meta[name="twitter:description"]');
         if (twitterDescription) twitterDescription.setAttribute('content', description);
 
-        // Update Canonical URL
         if (canonicalPath) {
             const baseUrl = 'https://www.orbitengineerings.com';
             const canonicalUrl = `${baseUrl}${canonicalPath}`;
@@ -59,7 +55,6 @@ export default function SEO({ title, description, keywords, canonicalPath }: SEO
             }
             canonicalLink.setAttribute('href', canonicalUrl);
 
-            // Also update OG URL
             const ogUrl = document.querySelector('meta[property="og:url"]');
             if (ogUrl) ogUrl.setAttribute('content', canonicalUrl);
 
@@ -67,7 +62,25 @@ export default function SEO({ title, description, keywords, canonicalPath }: SEO
             if (twitterUrl) twitterUrl.setAttribute('content', canonicalUrl);
         }
 
-    }, [title, description, keywords, canonicalPath]);
+        // --- JSON-LD Support ---
+        if (jsonLd) {
+            let scriptId = 'ld-json-schema';
+            let oldScript = document.getElementById(scriptId);
+            if (oldScript) oldScript.remove();
+
+            const script = document.createElement('script');
+            script.id = scriptId;
+            script.type = 'application/ld+json';
+            script.text = JSON.stringify(jsonLd);
+            document.head.appendChild(script);
+        }
+
+        return () => {
+            // Cleanup schema on unmount if needed
+            // But we mostly want it to persist until next SEO update
+        }
+
+    }, [title, description, keywords, canonicalPath, jsonLd]);
 
     return null;
 }

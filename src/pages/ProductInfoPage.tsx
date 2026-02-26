@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Gauge, Activity, Zap, Camera, Wrench, CheckCircle, ArrowRight, FlaskConical, Sun, Waves, Download, RotateCw, X, Anchor } from 'lucide-react';
 import { RAW_SUB_PRODUCTS } from '../data/rawProducts';
 import { MotionFadeUp, AnimatedHeading } from '../components/Animated';
+import SEO from '../components/SEO';
 import QuoteModal from '../components/QuoteModal';
 import BrochureModal from '../components/BrochureModal';
 import sdvImage from '../assets/products/sdv.jpg';
@@ -785,8 +786,50 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
 
   const IconComponent = page.icon;
 
+  // --- Advanced SEO: Dynamic Schema Generation for Google Search ---
+  const currentCategoryProducts = (RAW_SUB_PRODUCTS.find(c =>
+    c.category.toLowerCase() === (variant === 'chlorinators' ? 'chlorinators' : variant?.toLowerCase())
+  )?.items || []);
+
+  // For complex variants like actuators/levels/pressure, merge relevant items
+  let displayItems = currentCategoryProducts;
+  if (variant === 'levels') {
+    displayItems = [...getItemsByCategory('Level Transmitter'), ...getItemsByCategory('Level Switch')];
+  } else if (variant === 'actuators') {
+    displayItems = [...getItemsByCategory('Multi Turn Actuators'), ...getItemsByCategory('Part Turn Actuators')];
+  } else if (variant === 'pressure') {
+    displayItems = [...getItemsByCategory('Pressure Transmitter'), ...getItemsByCategory('Pressure Sensor')];
+  }
+
+  const productSchema = {
+    "@context": "https://schema.org/",
+    "@type": "ItemList",
+    "itemListElement": displayItems.map((item, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "Product",
+        "name": item.name,
+        "image": `https://www.orbitengineerings.com${item.image.startsWith('/') ? '' : '/'}${item.image}`,
+        "description": item.paragraphs?.[0] || page.description,
+        "brand": {
+          "@type": "Brand",
+          "name": "Orbit Engineering Group"
+        },
+        "url": `https://www.orbitengineerings.com/products/${variant}`
+      }
+    }))
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
+      <SEO
+        title={`${page.title} - Water Treatment & Industrial Automation | Orbit Engineering Group`}
+        description={page.description}
+        canonicalPath={`/products/${variant}`}
+        jsonLd={productSchema}
+      />
+
       {/* Hero Section */}
       <section className="relative py-16 md:py-20 bg-gradient-to-br from-[#0073bc] to-[#005a94] text-white overflow-hidden">
 

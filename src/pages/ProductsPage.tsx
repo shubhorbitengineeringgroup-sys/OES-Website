@@ -37,6 +37,7 @@ import imgBullet from '../assets/products/bullet-camera.jpg';
 import imgDome from '../assets/products/dome-camera.jpg';
 import imgJointing from '../assets/products/big-jointing-machines.jpg';
 import imgChlorinator from '../assets/products/chlorinator.jpg';
+import imgChlorinsitu from '../assets/products/electrolysis-system-chlorinsitu.jpeg';
 import imgSdv from '../assets/products/sdv.jpg';
 import imgScour from '../assets/products/scour-monitoring.jpeg';
 
@@ -227,6 +228,7 @@ const CATEGORIES: Category[] = [
     tagline: 'Automated chlorine dosing systems ensuring safe drinking water',
     items: [
       { name: 'Chlorine Dosing Systems', img: imgChlorinator },
+      { name: 'Electrolysis System (CHLORINSITU)', img: imgChlorinsitu },
     ],
   },
   {

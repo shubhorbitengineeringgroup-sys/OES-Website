@@ -47,6 +47,7 @@ import turbineFlowMeter from '../assets/products/turbine-flow-meter.jpeg';
 import vortexFlowMeter from '../assets/products/Vortex-Flowmeter.jpg';
 import smartPrepaidWaterMeter from '../assets/products/prepaid- watermeter.png';
 import chlorinator1 from '../assets/products/chlorinator-1.jpeg';
+import electrolysisSystem from '../assets/products/electrolysis-system-chlorinsitu.jpeg';
 import dcs from '../assets/products/dcs.jpeg';
 import smartWatermeter from '../assets/products/smart-watermeter.jpg';
 import utility from '../assets/products/utility.jpg';
@@ -1007,6 +1008,28 @@ export const RAW_SUB_PRODUCTS: RawGroup[] = [
           'Low Maintenance Operation – Reliable components with long service life',
           'Safety-Oriented Design – Minimizes chemical handling risks',
           'Scalable Capacity – Suitable for small to large treatment plants'
+        ]
+      },
+      {
+        name: 'CHLORINSITU IIa – On-Site Electrolysis System',
+        image: electrolysisSystem,
+        paragraphs: [
+          'The CHLORINSITU IIa combines a proven undivided electrolytic cell with innovative design for excellent hypochlorite quality and high salt & energy efficiency. Chlorate content remains below EN 901 limits.',
+          'With capacities up to 2,500 g Cl₂/h, the system delivers safe on-site water disinfection. All components are housed in a space-saving enclosure with integrated hydrogen removal — no additional ventilation required.',
+          'Systems up to 300 g/h include a built-in softener, 50 L product tank, and metering pump. Systems ≥ 625 g/h feature an H₂ degasser and integrated pump for hydrogen-free product transfer up to 7 m height.'
+        ],
+        bullets: [
+          'Durable design with reliable, low-maintenance technology',
+          'Low-chlorate product (below EN 901 limit)',
+          'High output: only 3.0 kg salt per kg chlorine',
+          'Energy efficient: only 4.0 kWh per kg chlorine',
+          'Plug & play – ready for immediate use',
+          'Optional real-time monitoring via DULCONNEX IoT platform',
+          'Capacity range: 60 – 2,500 g/h chlorine',
+          'Product concentration: 9 g/L (0.9%) chlorine',
+          'Power: 230V AC (≤300 g/h) or 3×400V AC (≥625 g/h)',
+          'Integrated softener & product tank (up to 300 g/h)',
+          'Inlet water: 10–25°C, 2–6 bar drinking water quality'
         ]
       }
     ]
