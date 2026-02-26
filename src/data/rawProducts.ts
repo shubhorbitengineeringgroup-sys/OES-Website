@@ -984,7 +984,6 @@ export const RAW_SUB_PRODUCTS: RawGroup[] = [
       {
         name: 'Chlorinator',
         image: chlorinator,
-        datasheetUrl: '/datasheets/chlorinator-system.pdf',
         paragraphs: ['Chlorinator adds chlorine to drinking water to eliminate parasites bacteria and viruses. Chlorinators are also used in various industrial and municipal applications for water disinfection.'],
         bullets: [
           'Eliminates parasites and bacteria',
