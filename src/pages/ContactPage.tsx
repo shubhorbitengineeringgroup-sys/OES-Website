@@ -24,8 +24,10 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-gray-50 overflow-x-hidden">
       <SEO
-        title="Contact Us | Orbit Engineering Group Bhopal - Get a Free Consultation"
-        description="Reach out to Orbit Engineering Group for your water treatment and automation needs. Offices in Arera Colony and Bagsewaniya, Bhopal."
+        title="Contact Orbit Engineering Group Bhopal | Free Consultation for Water Treatment & Automation"
+        description="Contact Orbit Engineering Group for water treatment, SCADA & PLC automation needs. Working Office: Shalimar Enclave, E3 Arera Colony, Bhopal – 462016. Head Office: Bagsewaniya, Bhopal – 462043. Phone: +91 70241 28029. Email: info@orbitengineerings.com"
+        canonicalPath="/contact"
+        keywords="contact Orbit Engineering Group, Orbit Engineering Bhopal address, water treatment consultation Bhopal, SCADA automation quote, orbitengineerings contact"
       />
       {/* Hidden H1 for SEO */}
       <h1 className="sr-only">Contact Orbit Engineering Group Bhopal | Office address, phone numbers, and email for water treatment experts</h1>

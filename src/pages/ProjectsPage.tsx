@@ -178,8 +178,10 @@ export default function ProjectsPage({ initialFilter = 'all', onNavigate }: Proj
   return (
     <div className="min-h-screen bg-gray-50 overflow-x-hidden">
       <SEO
-        title="Industrial & Municipal Water Projects | SCADA Automation - Orbit Engineering"
-        description="Case studies of our successful water infrastructure and automation projects across India, featuring 45 MLD WTPs and advanced SCADA systems."
+        title="Completed & Ongoing Water Infrastructure Projects | 45 MLD WTP, SCADA Automation - Orbit Engineering"
+        description="Explore Orbit Engineering Group's ₹200+ Cr project portfolio: 45 MLD WTP automation, multi-village water supply schemes, 7.6 MLD STP commissioning, SCADA integration for MP Jal Nigam, MPUDCL & Bhopal Municipal Corporation. Pan-India water infrastructure case studies."
+        canonicalPath="/projects"
+        keywords="water treatment project India, WTP automation project, SCADA project Bhopal, MP Jal Nigam project, MPUDCL water supply, Jal Jeevan Mission project, water infrastructure case study"
       />
       {/* Hidden H1 for SEO */}
       <h1 className="sr-only">Orbit Engineering Group Projects | Completed and ongoing water infrastructure projects in India with SCADA & PLC automation</h1>

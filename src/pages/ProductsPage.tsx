@@ -507,8 +507,10 @@ export default function ProductsPage({ onNavigate }: ProductsPageProps) {
   return (
     <div className="min-h-screen bg-[#f5f8fc]">
       <SEO
-        title="Products & Solutions | Orbit Engineering Bhopal"
-        description="Explore Orbit Engineering's complete product range: WTP, STP, RO, ETP, flow meters, level transmitters, pressure sensors, analyzers, solar systems, transformers, cameras, and more."
+        title="Water Treatment Products & Automation Solutions | Orbit Engineering Group Bhopal"
+        description="Explore Orbit Engineering's 200+ precision-engineered products: WTP, STP, RO, ETP, electromagnetic flow meters, SCADA systems, PLC panels, level transmitters, pressure sensors, pH analyzers, solar panels, electric actuators, transformers & more. Best prices in India."
+        canonicalPath="/products"
+        keywords="water treatment products India, flow meter supplier Bhopal, electromagnetic flow meter, SCADA system price, PLC panel manufacturer, level transmitter dealer, pressure sensor India, pH analyzer, turbidity analyzer, electric actuator, solar panel, transformer, butterfly valve, orbitengineerings products"
       />
       <h1 className="sr-only">Orbit Engineering Products – Water Treatment, Automation & Industrial Solutions Bhopal</h1>
 

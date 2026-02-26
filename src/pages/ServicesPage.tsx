@@ -108,8 +108,10 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
   return (
     <div className="min-h-screen bg-gray-50 overflow-x-hidden">
       <SEO
-        title="Our Technical Services | WTP Maintenance & SCADA Automation - Orbit Engineering"
-        description="Professional services for water infrastructure: PLC/SCADA integration, O&M, consultancy, and turnkey automation by Orbit Engineering Group."
+        title="Water Treatment & SCADA Automation Services | O&M, PLC Integration - Orbit Engineering Group"
+        description="Comprehensive water engineering services by Orbit Engineering Group: WTP/STP installation & commissioning, PLC/SCADA integration, IoT setup, Operation & Maintenance (O&M), consultancy, and turnkey cloud-based automation solutions. Serving all of India from Bhopal."
+        canonicalPath="/services"
+        keywords="water treatment services Bhopal, SCADA integration service, PLC programming India, O&M water treatment plant, water plant commissioning, automation consultancy, IoT water monitoring service"
       />
       {/* Hidden H1 for SEO */}
       <h1 className="sr-only">Orbit Engineering Group Services | Water treatment solutions, PLC/SCADA automation, IoT integration, O&M services, and consultancy in Bhopal</h1>

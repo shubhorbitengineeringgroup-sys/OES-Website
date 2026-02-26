@@ -133,8 +133,10 @@ export default function TeamPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       <SEO
-        title="Our Team | Leaders in Water Infrastructure - Orbit Engineering Group"
-        description="Meet the visionaries at Orbit Engineering Group Bhopal. Led by Manoj Tiwari and Vijay Tiwari, our team brings decades of expertise in water technology and SCADA automation."
+        title="Meet Our Team | Manoj Tiwari & Vijay Tiwari - Water Infrastructure Leaders | Orbit Engineering Group"
+        description="Meet the visionaries at Orbit Engineering Group Bhopal. Founded by Manoj Tiwari (MD, 40+ years) and led by Vijay Tiwari (CTO, 18+ years), our ISO 9001 certified team brings decades of expertise in WTP, STP, SCADA automation & IoT-based water management."
+        canonicalPath="/team"
+        keywords="Manoj Tiwari Orbit Engineering, Vijay Tiwari CTO, Orbit Engineering team, water engineering experts Bhopal, Rohit Arora Orbit, Amit Tiwari Orbit"
       />
       {/* Hidden H1 for SEO */}
       <h1 className="sr-only">Orbit Engineering Group Team | Manoj Tiwari, Vijay Tiwari, Rohit Arora & Amit Tiwari - Experts in Water Infrastructure & Automation</h1>

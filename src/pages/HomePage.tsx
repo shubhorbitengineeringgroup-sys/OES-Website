@@ -282,8 +282,10 @@ export default function HomePage({ onNavigate }: HomePageProps) {
   return (
     <div className="min-h-screen overflow-x-hidden">
       <SEO
-        title="Orbit Engineering Group | Water Treatment & Automation Bhopal"
-        description="Orbit Engineering Group Bhopal: Leaders in WTP, STP, RO, SCADA, and PLC automation. Solving complex water challenges in India since 1998."
+        title="Orbit Engineering Group | India's Leading Water Treatment & Automation Company - Bhopal"
+        description="Orbit Engineering Group Bhopal – India's trusted water engineering company since 1998. Experts in WTP, STP, RO, ETP, SCADA systems, PLC automation, IoT monitoring & solar solutions. ISO 9001 certified. ₹200+ Cr portfolio. Contact: info@orbitengineerings.com"
+        canonicalPath="/"
+        keywords="Orbit Engineering Group, water treatment plant Bhopal, WTP STP RO ETP, SCADA automation India, PLC automation water, orbitengineerings.com, water infrastructure company India, Bhopal engineering, smart water management, IoT water monitoring"
       />
       {/* Hidden H1 for SEO */}
       <h1 className="sr-only">Orbit Engineering Group Bhopal | Water Treatment Plants (WTP), SCADA, PLC Automation & Sustainable Engineering Solutions</h1>

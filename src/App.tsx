@@ -164,9 +164,10 @@ function AppContent() {
 }
 
 export default function App() {
-  // Use HashRouter for GitHub Pages to avoid 404s on refresh (since GH Pages doesn't support SPA routing natively),
-  // but use BrowserRouter for other environments (like Vercel/Netlify/Localhost) for better SEO and clean URLs.
-  const isGitHubPages = window.location.hostname.includes('github.io');
+  // Use BrowserRouter for custom domain and localhost (clean URLs, better SEO).
+  // Only use HashRouter for github.io subdomain deployments.
+  const hostname = window.location.hostname;
+  const isGitHubPages = hostname.includes('github.io');
   const Router = isGitHubPages ? HashRouter : BrowserRouter;
 
   return (

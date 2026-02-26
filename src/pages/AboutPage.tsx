@@ -50,8 +50,10 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen bg-gray-50 overflow-x-hidden">
       <SEO
-        title="About Orbit Engineering Group | 25+ Years of Engineering Excellence in Bhopal"
-        description="Learn about Orbit Engineering Group's journey since 1998, our mission to revolutionize water infrastructure, and our commitment to sustainable engineering."
+        title="About Orbit Engineering Group | 25+ Years of Water Engineering Excellence in Bhopal, India"
+        description="Discover Orbit Engineering Group's legacy since 1998. ISO 9001 certified water engineering company in Bhopal specializing in WTP, STP, RO, ETP, SCADA & PLC automation. ₹200+ Cr portfolio. Trusted by MP Jal Nigam, MPUDCL & leading industries across India."
+        canonicalPath="/about"
+        keywords="about Orbit Engineering Group, Orbit Engineering history, water engineering company Bhopal, ISO certified water treatment company, Orbit Engineering Group mission vision"
       />
       {/* Hidden H1 for SEO */}
       <h1 className="sr-only">About Orbit Engineering Group Bhopal | Innovating water infrastructure since 1998 with advanced engineering and technology</h1>

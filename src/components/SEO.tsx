@@ -4,9 +4,10 @@ interface SEOProps {
     title: string;
     description: string;
     keywords?: string;
+    canonicalPath?: string;
 }
 
-export default function SEO({ title, description, keywords }: SEOProps) {
+export default function SEO({ title, description, keywords, canonicalPath }: SEOProps) {
     useEffect(() => {
         // Update Title
         document.title = title;
@@ -38,7 +39,35 @@ export default function SEO({ title, description, keywords }: SEOProps) {
         const ogDescription = document.querySelector('meta[property="og:description"]');
         if (ogDescription) ogDescription.setAttribute('content', description);
 
-    }, [title, description, keywords]);
+        // Update Twitter meta tags
+        const twitterTitle = document.querySelector('meta[name="twitter:title"]');
+        if (twitterTitle) twitterTitle.setAttribute('content', title);
+
+        const twitterDescription = document.querySelector('meta[name="twitter:description"]');
+        if (twitterDescription) twitterDescription.setAttribute('content', description);
+
+        // Update Canonical URL
+        if (canonicalPath) {
+            const baseUrl = 'https://www.orbitengineerings.com';
+            const canonicalUrl = `${baseUrl}${canonicalPath}`;
+
+            let canonicalLink = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
+            if (!canonicalLink) {
+                canonicalLink = document.createElement('link');
+                canonicalLink.setAttribute('rel', 'canonical');
+                document.head.appendChild(canonicalLink);
+            }
+            canonicalLink.setAttribute('href', canonicalUrl);
+
+            // Also update OG URL
+            const ogUrl = document.querySelector('meta[property="og:url"]');
+            if (ogUrl) ogUrl.setAttribute('content', canonicalUrl);
+
+            const twitterUrl = document.querySelector('meta[name="twitter:url"]');
+            if (twitterUrl) twitterUrl.setAttribute('content', canonicalUrl);
+        }
+
+    }, [title, description, keywords, canonicalPath]);
 
     return null;
 }

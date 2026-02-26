@@ -1,4 +1,17 @@
+# Robots.txt for Orbit Engineering Group
+# https://www.orbitengineerings.com
+
 User-agent: *
 Allow: /
+Disallow: /assets/
+Disallow: /*.pdf$
 
-Sitemap: https://www.orbitengineering.com/sitemap.xml
+# Allow search engine crawlers to index all pages
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Sitemap location
+Sitemap: https://www.orbitengineerings.com/sitemap.xml

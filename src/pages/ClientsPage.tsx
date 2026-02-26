@@ -72,9 +72,10 @@ export default function ClientsPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       <SEO
-        title="Our Clients & Partners | Trusted by Government & Industry - Orbit Engineering"
-        description="Orbit Engineering Group is proud to partner with MPUDCL, MP Jal Nigam, and leading industrial organizations across India for water solutions."
-        keywords="MP Jal Nigam, MPUDCL Bhopal, Bhopal Municipal Corporation, Indore District Administration, Tikamgarh Nagar Parishads, WRD Bhopal, Prism Cement, Lupin Pharmaceuticals, Vindhyachal Distillery, Central India Pvt Ltd, Dilip Buildcon, Tejas Construction, water infrastructure partners, orbit engineering clients, ecosystem partners, engineering consultants bhopal, government contractors mp"
+        title="Our Clients & Partners | MP Jal Nigam, MPUDCL, L&T, BHEL - Orbit Engineering Group"
+        description="Orbit Engineering Group proudly serves 23+ government & private organizations including MP Jal Nigam, MPUDCL, Bhopal Municipal Corporation, L&T, BHEL, Indian Railways, Lupin Pharma, Dilip Buildcon & more. Trusted partner for water infrastructure across India."
+        canonicalPath="/clients"
+        keywords="MP Jal Nigam, MPUDCL Bhopal, Bhopal Municipal Corporation, Indore Municipal Corporation, Larsen Toubro, BHEL, Indian Railways, Dilip Buildcon, Tejas Construction, Lupin Pharmaceuticals, Prism Cement, water infrastructure partners, orbit engineering clients, government water contractor MP, orbitengineerings clients"
       />
       {/* Hidden H1 for SEO */}
       <h1 className="sr-only">Orbit Engineering Group Clients | Trusted by MPUDCL, MP Jal Nigam, and municipal corporations across India</h1>
