@@ -47,6 +47,7 @@ import turbineFlowMeter from '../assets/products/turbine-flow-meter.jpeg';
 import vortexFlowMeter from '../assets/products/Vortex-Flowmeter.jpg';
 import smartPrepaidWaterMeter from '../assets/products/prepaid- watermeter.png';
 import chlorinator1 from '../assets/products/chlorinator-1.jpeg';
+import chlorinator3 from '../assets/products/chlorinator-3.jpeg';
 import electrolysisSystem from '../assets/products/electrolysis-system-chlorinsitu.jpeg';
 import dcs from '../assets/products/dcs.jpeg';
 import smartWatermeter from '../assets/products/smart-watermeter.jpg';
@@ -1030,6 +1031,24 @@ export const RAW_SUB_PRODUCTS: RawGroup[] = [
           'Power: 230V AC (≤300 g/h) or 3×400V AC (≥625 g/h)',
           'Integrated softener & product tank (up to 300 g/h)',
           'Inlet water: 10–25°C, 2–6 bar drinking water quality'
+        ]
+      },
+      {
+        name: 'Electrolysis System CHLORINSITU IIa (60 – 2,500 g/h)',
+        image: chlorinator3,
+        paragraphs: [
+          'The CHLORINSITU IIa is a compact on-site electrolysis solution engineered for efficient hypochlorite production using salt and electrical energy. Its advanced cell technology ensures stable disinfectant quality while maintaining low chlorate formation. The system is designed for reliable operation with a focus on safety, performance, and simplified maintenance.',
+          'With production capacities reaching up to 2,500 g/h of chlorine equivalent, the unit supports continuous water disinfection without the need for handling hazardous chlorine gas. The integrated enclosure includes a built-in hydrogen management concept, allowing safe indoor installation with minimal external ventilation requirements.',
+          'Depending on the output size, the system can be supplied with integrated water softening, storage tank, and dosing components. Higher-capacity configurations include hydrogen separation and an internal transfer pump for efficient product delivery.'
+        ],
+        bullets: [
+          'Compact cabinet design with integrated process components',
+          'Stable hypochlorite production with controlled chlorate levels',
+          'Efficient salt and energy consumption for optimized operation',
+          'Automated control system with user-friendly interface',
+          'Plug-and-play installation for quick commissioning',
+          'Remote monitoring compatibility via smart connectivity options',
+          'Output range: 60 – 2,500 g/h chlorine equivalent'
         ]
       }
     ]
