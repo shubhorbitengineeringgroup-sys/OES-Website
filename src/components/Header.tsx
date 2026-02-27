@@ -120,13 +120,17 @@ export default function Header({ onNavigate, currentPage }: HeaderProps) {
     <header className="fixed top-0 left-0 w-full z-[1000] bg-white/90 backdrop-blur supports-[backdrop-filter]:bg-white/70 shadow-sm">
       <div className="w-full px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
-          <button
-            className="flex items-center cursor-pointer group"
-            onClick={() => onNavigate('home')}
-            aria-label="Go to home"
-          >
-            <img src={logo2} alt="Orbit Logo" className="h-20 w-auto transition-all duration-500 ease-in-out hover:scale-110 animate-fade-in z-[60]" />
-          </button>
+          {/* Logo Group */}
+          <div className="flex items-center flex-shrink-0">
+            <button
+              className="flex items-center cursor-pointer group transition-transform duration-300 hover:scale-105"
+              onClick={() => onNavigate('home')}
+              aria-label="Go to home"
+            >
+              <img src={logo2} alt="Orbit Logo" className="h-[74px] w-auto animate-fade-in" />
+            </button>
+          </div>
+
 
           {/* Modern Pill-Style Navigation */}
           <nav className="hidden lg:flex items-center">
@@ -285,7 +289,7 @@ export default function Header({ onNavigate, currentPage }: HeaderProps) {
       </div >
 
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-white border-t">
+        <div className="lg:hidden bg-white border-t max-h-[calc(100vh-80px)] overflow-y-auto custom-scrollbar">
           <div className="px-4 py-4 space-y-2">
             {navItems.slice(0, 5).map((item) => {
               const isActive = currentPage === item.page;
@@ -322,7 +326,7 @@ export default function Header({ onNavigate, currentPage }: HeaderProps) {
               </button>
 
               {mobileProductsDropdownOpen && (
-                <div className="ml-4 space-y-1 animate-slide-up max-h-[50vh] overflow-y-auto">
+                <div className="ml-4 space-y-1 animate-slide-up pb-2">
                   <button
                     onClick={() => {
                       onNavigate('products');

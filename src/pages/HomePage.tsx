@@ -295,22 +295,79 @@ export default function HomePage({ onNavigate }: HomePageProps) {
         <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
             <div className="max-w-3xl lg:pr-10">
-              <motion.h2
-                className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight [text-shadow:_0_2px_4px_rgba(0,0,0,0.5)]"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, ease: 'easeOut', delay: 0 }}
+              <div className="mb-6 md:mb-8">
+                <motion.h2
+                  className="text-[2.2rem] sm:text-4xl md:text-5xl lg:text-[3.8rem] font-extrabold mb-4 leading-[1.3] md:leading-[1.15] drop-shadow-2xl tracking-tight text-white flex flex-col items-start gap-y-1 md:gap-y-2"
+                >
+                  {/* Line 1 */}
+                  <span className="flex flex-wrap gap-x-2 lg:gap-x-3">
+                    {"Water Tech for a".split(" ").map((word, i) => (
+                      <motion.span
+                        key={`l1-${i}`}
+                        initial={{ opacity: 0, y: 30, rotateX: -45 }}
+                        animate={{ opacity: 1, y: 0, rotateX: 0 }}
+                        transition={{ duration: 0.8, delay: i * 0.1, type: "spring", stiffness: 120, damping: 14 }}
+                        className="inline-block origin-bottom shadow-black"
+                      >
+                        {word}
+                      </motion.span>
+                    ))}
+                  </span>
+
+                  {/* Line 2 (Highlighted) */}
+                  <span className="flex flex-wrap gap-x-2 lg:gap-x-3 text-[#5eb2eb] relative my-1">
+                    {"Greener, Resilient".split(" ").map((word, i) => (
+                      <motion.span
+                        key={`l2-${i}`}
+                        initial={{ opacity: 0, scale: 0.9, filter: "blur(8px)" }}
+                        animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                        transition={{ duration: 0.8, delay: 0.4 + (i * 0.15), ease: "easeOut" }}
+                        className="inline-block font-black drop-shadow-[0_0_15px_rgba(94,178,235,0.4)]"
+                      >
+                        {word}
+                      </motion.span>
+                    ))}
+                    {/* Glossy sweep effect over the highlighted words */}
+                    <motion.div
+                      animate={{ left: ['-10%', '110%'] }}
+                      transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", repeatDelay: 3 }}
+                      className="absolute top-0 bottom-0 w-1/3 bg-gradient-to-r from-transparent via-white/50 to-transparent -skew-x-12 z-20 pointer-events-none"
+                    />
+                  </span>
+
+                  {/* Line 3 */}
+                  <span className="flex flex-wrap gap-x-2 lg:gap-x-3">
+                    {"and Sustainable Tomorrow".split(" ").map((word, i) => (
+                      <motion.span
+                        key={`l3-${i}`}
+                        initial={{ opacity: 0, y: -20, filter: "blur(5px)" }}
+                        animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                        transition={{ duration: 0.7, delay: 0.8 + (i * 0.1), ease: "easeOut" }}
+                        className="inline-block"
+                      >
+                        {word}
+                      </motion.span>
+                    ))}
+                  </span>
+                </motion.h2>
+              </div>
+
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 1, delay: 1.4, type: "spring", stiffness: 100 }}
+                className="relative p-5 md:p-6 mb-8 md:mb-10 lg:pr-10 bg-white/5 backdrop-blur-md rounded-2xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.3)] overflow-hidden group"
               >
-                Water Tech for a Greener, Resilient and Sustainable Tomorrow
-              </motion.h2>
-              <motion.p
-                className="text-lg md:text-xl text-white mb-8 leading-relaxed font-medium [text-shadow:_0_1px_2px_rgba(0,0,0,0.5)]"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, ease: 'easeOut', delay: 0.3 }}
-              >
-                Orbit propels water management beyond convention — harnessing cutting-edge process automation, SCADA, Industry 4.0, cloud technologies, and precision instrumentation to solve real-world water challenges in rural and urban India.
-              </motion.p>
+                {/* Decorative glowing left border line */}
+                <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-gradient-to-b from-[#5eb2eb] to-[#005a94] shadow-[0_0_20px_rgba(96,179,235,0.8)]"></div>
+
+                {/* Internal subtle hover light effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/5 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none transform -translate-x-full group-hover:translate-x-full ease-in-out"></div>
+
+                <p className="text-base sm:text-lg lg:text-[1.1rem] text-blue-50/90 leading-[1.7] md:leading-[1.8] font-light relative z-10 [text-shadow:_0_1px_2px_rgba(0,0,0,0.8)]">
+                  <strong className="text-white font-bold tracking-wide text-lg sm:text-xl">Orbit</strong> propels water management beyond convention — harnessing cutting-edge <span className="text-white font-semibold underline decoration-[#5eb2eb] decoration-2 underline-offset-[5px]">process automation</span>, <span className="text-white font-semibold underline decoration-[#5eb2eb] decoration-2 underline-offset-[5px]">SCADA</span>, Industry 4.0, cloud technologies, and precision instrumentation to solve real-world water challenges in rural and urban India.
+                </p>
+              </motion.div>
               <div className="flex flex-col sm:flex-row gap-4">
                 <button
                   onClick={() => setShowLearnMore(true)}
@@ -381,42 +438,85 @@ export default function HomePage({ onNavigate }: HomePageProps) {
       {/* Dual Animation Section removed from here (moved to Section 2) */}
 
       {showLearnMore && (
-        <div className="fixed inset-0 z-50 flex items-end md:items-center justify-center bg-black/50" onClick={() => setShowLearnMore(false)}>
-          <div
-            className="w-full md:max-w-3xl bg-white text-gray-800 rounded-t-2xl md:rounded-2xl shadow-2xl p-6 md:p-8 mx-0 md:mx-4 animate-fade-in animate-slide-up"
+        <div className="fixed inset-0 z-[1000] flex items-end md:items-center justify-center bg-gray-900/70 backdrop-blur-md p-0 md:p-6 lg:p-12 overflow-y-auto" onClick={() => setShowLearnMore(false)}>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95, y: 30 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: 30 }}
+            className="w-full max-w-6xl bg-white rounded-t-[2.5rem] md:rounded-3xl shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)] relative overflow-hidden flex flex-col md:flex-row max-h-[92vh] mt-10 md:mt-0"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex items-start justify-between mb-4">
-              <h3 className="text-2xl font-bold text-[#0073bc] tracking-tight">About Orbit Engineering Solutions</h3>
-              <button aria-label="Close" onClick={() => setShowLearnMore(false)} className="p-2 rounded-full hover:bg-gray-100 transition-colors">
-                <X className="h-5 w-5" />
-              </button>
+            {/* Left Image Section */}
+            <div className="relative w-full md:w-[45%] h-[35vh] min-h-[280px] md:h-auto flex-shrink-0">
+              <img src={villageProject2} alt="About Orbit" className="absolute inset-0 w-full h-full object-cover" style={{ objectPosition: 'center 15%' }} />
+              <div className="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/20 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent" />
+
+              <div className="absolute bottom-0 left-0 p-8 md:p-12 w-full z-10">
+                <span className="inline-flex items-center py-1.5 px-4 rounded-full bg-white/10 border border-white/20 backdrop-blur-md text-white text-[10px] font-black tracking-widest uppercase mb-4 shadow-sm">
+                  <span className="w-1.5 h-1.5 rounded-full bg-blue-400 mr-2 animate-pulse"></span>
+                  Est. 1998
+                </span>
+                <h3 className="text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tighter leading-[1.05] drop-shadow-lg">
+                  A Legacy of <br /><span className="text-blue-400">Excellence</span>
+                </h3>
+              </div>
             </div>
-            <motion.div
-              className="space-y-4 text-gray-600 leading-relaxed max-h-[60vh] overflow-y-auto pr-2 font-light"
-              variants={{
-                hidden: { opacity: 0 },
-                visible: {
-                  opacity: 1,
-                  transition: {
-                    staggerChildren: 0.2
-                  }
-                }
-              }}
-              initial="hidden"
-              animate="visible"
-            >
-              <motion.p variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }}>
-                Established in <strong className="text-[#0073bc]">1998</strong> in Bhopal, <strong className="text-[#0073bc]">Orbit</strong> Engineering Group builds on a legacy exceeding four decades of engineering excellence. We deliver turnkey systems — from design and steel fabrication to PLC/SCADA integration and long-term O&M — through an <strong className="text-[#0073bc]">ISO 9001</strong>-certified quality framework.
-              </motion.p>
-              <motion.p variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }}>
-                Our ambition is to lead in water innovation — offering holistic, sustainable, and affordable solutions that elevate access to clean water, optimize resource management, and uplift communities across India and beyond.
-              </motion.p>
-              <motion.p variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }}>
-                <strong>Our Mission:</strong> To innovate with purpose, deliver with integrity, and provide water systems grounded in environmental stewardship. At <strong className="text-[#0073bc]">Orbit</strong>, every project is a promise fulfilled — for a cleaner, more resilient tomorrow.
-              </motion.p>
-            </motion.div>
-          </div>
+
+            {/* Right Content Section */}
+            <div className="w-full md:w-[55%] p-8 md:p-12 lg:p-14 overflow-y-auto custom-scrollbar bg-white flex flex-col relative rounded-t-[2.5rem] md:rounded-l-none -mt-6 md:mt-0 z-20">
+              <button aria-label="Close" onClick={() => setShowLearnMore(false)} className="absolute top-6 right-6 md:top-6 md:right-6 p-2 rounded-full text-gray-400 hover:text-gray-900 hover:bg-gray-100 transition-all z-30 bg-white/50 backdrop-blur-sm shadow-sm md:shadow-none md:bg-transparent border border-gray-100 md:border-transparent">
+                <X className="h-6 w-6" />
+              </button>
+
+              <div className="max-w-xl mx-auto md:mx-0 w-full h-full flex flex-col pt-2 md:pt-0">
+                <div className="mb-8 md:mb-10">
+                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#0073bc] tracking-tight mb-3">
+                    Orbit <span className="text-gray-900">Engineering</span>
+                  </h2>
+                  <p className="text-gray-500 font-medium text-lg lg:text-xl leading-relaxed">
+                    Pioneering water innovation for sustainable communities
+                  </p>
+                </div>
+
+                <div className="space-y-8 flex-1">
+                  <p className="text-gray-600 leading-[1.8] text-[16px] md:text-[17px]">
+                    Established in <strong className="text-[#0073bc] font-bold">1998</strong> in Bhopal, <strong className="text-gray-900 font-bold text-lg">Orbit Engineering Group</strong> builds on a legacy exceeding four decades of engineering excellence. We deliver turnkey systems — from design and steel fabrication to PLC/SCADA integration and long-term O&M — through an <strong className="text-[#0073bc] font-bold">ISO 9001</strong>-certified quality framework.
+                  </p>
+
+                  <motion.div
+                    whileHover={{ x: 5 }}
+                    className="relative pl-6 py-4 my-8 border-l-[4px] border-[#0073bc] bg-blue-50/50 rounded-r-2xl pr-6 transition-transform shadow-[inset_0_2px_10px_rgba(0,115,188,0.03)]"
+                  >
+                    <p className="text-[#005a94] leading-[1.8] text-[15.5px] font-medium italic">
+                      "Our ambition is to lead in water innovation — offering holistic, sustainable, and affordable solutions that elevate access to clean water, optimize resource management, and uplift communities across India and beyond."
+                    </p>
+                  </motion.div>
+
+                  <div className="pt-8">
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="h-px bg-gray-200 flex-1"></div>
+                      <h4 className="text-xs font-black tracking-[0.2em] text-gray-400 uppercase">Our Mission</h4>
+                      <div className="h-px bg-gray-200 flex-1"></div>
+                    </div>
+
+                    <p className="text-gray-600 leading-[1.8] text-[16px] mb-6">
+                      To innovate with purpose, deliver with integrity, and provide water systems grounded in environmental stewardship.
+                    </p>
+
+                    <div className="p-6 md:p-8 bg-gradient-to-br from-[#000d1a] to-[#001f3f] rounded-3xl shadow-2xl relative overflow-hidden group hover:scale-[1.02] transition-transform duration-500 border border-white/10">
+                      <div className="absolute -top-10 -right-10 w-40 h-40 bg-[#0073bc] rounded-full filter blur-[50px] opacity-30 group-hover:opacity-60 transition-opacity duration-700"></div>
+                      <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-[#005a94] rounded-full filter blur-[50px] opacity-30 group-hover:opacity-60 transition-opacity duration-700"></div>
+                      <p className="text-blue-50 font-light text-lg relative z-10 leading-relaxed text-center shadow-sm">
+                        At <strong className="text-white font-black text-3xl italic tracking-tight drop-shadow-md mx-1 align-baseline">Orbit</strong>, every project is a promise fulfilled <br className="hidden md:block" />for a cleaner, more resilient tomorrow.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </motion.div>
         </div>
       )}
     </div>

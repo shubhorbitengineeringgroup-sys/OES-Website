@@ -74,7 +74,7 @@ export default function AboutPage() {
                   initial={{ opacity: 0, rotateY: 90, y: 20, filter: 'blur(10px)' }}
                   whileInView={{ opacity: 1, rotateY: 0, y: 0, filter: 'blur(0px)' }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: i * 0.03, ease: [0.22, 1, 0.36, 1] }}
+                  transition={{ duration: 0.4, delay: i * 0.015, ease: [0.22, 1, 0.36, 1] }}
                   className="inline-block"
                 >
                   {char === " " ? "\u00A0" : char}
@@ -88,7 +88,7 @@ export default function AboutPage() {
                     initial={{ opacity: 0, scale: 2, x: 20 }}
                     whileInView={{ opacity: 1, scale: 1, x: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.8 + (i * 0.03) }}
+                    transition={{ duration: 0.3, delay: 0.3 + (i * 0.015) }}
                     className="inline-block"
                   >
                     {char === " " ? "\u00A0" : char}
@@ -117,14 +117,14 @@ export default function AboutPage() {
                   visible: {
                     clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
                     opacity: 1, x: 0,
-                    transition: { duration: 1, ease: [0.76, 0, 0.24, 1] }
+                    transition: { duration: 0.5, ease: [0.76, 0, 0.24, 1] }
                   }
                 }}
                 className="relative pl-6 md:pl-8 border-l-[5px] border-[#0073bc] bg-white rounded-r-3xl py-8 md:py-10 pr-6 md:pr-10 shadow-[10px_10px_40px_-15px_rgba(0,115,188,0.15)] md:shadow-[20px_20px_60px_-15px_rgba(0,115,188,0.15)] group"
               >
                 <motion.p
                   variants={{ hidden: { opacity: 0, filter: 'blur(5px)' }, visible: { opacity: 1, filter: 'blur(0px)' } }}
-                  transition={{ delay: 0.5 }}
+                  transition={{ delay: 0.2 }}
                   className="text-[18px] leading-[1.8] text-gray-700 relative z-10"
                 >
                   <strong className="text-[#0073bc] text-2xl font-black block mb-3 tracking-tight">The Orbit Impact</strong>
@@ -140,10 +140,10 @@ export default function AboutPage() {
 
               {/* Mission & Vision Card (Image Background) */}
               <motion.div
-                initial={{ opacity: 0, scale: 0.9, y: 30 }}
+                initial={{ opacity: 0, scale: 0.95, y: 20 }}
                 whileInView={{ opacity: 1, scale: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
                 className="relative rounded-[2.5rem] overflow-hidden text-white shadow-2xl group md:h-[500px] min-h-[450px]"
               >
                 <img src={subHeadingImage} alt="Mission and Vision" className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
@@ -186,7 +186,7 @@ export default function AboutPage() {
                       key={tag}
                       initial={{ opacity: 0, scale: 0.5 }}
                       whileInView={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: i * 0.1 }}
+                      transition={{ delay: i * 0.05 }}
                       whileHover={{ scale: 1.15, rotate: [0, -5, 5, 0], backgroundColor: '#ecfdf5' }}
                       className="inline-flex items-center gap-2 text-[13px] font-black uppercase tracking-wider px-5 py-2.5 rounded-2xl bg-gray-50 border border-emerald-100 text-emerald-800 shadow-sm cursor-pointer transition-colors"
                     >
@@ -233,7 +233,7 @@ export default function AboutPage() {
                       key={v}
                       initial={{ x: -20, opacity: 0 }}
                       whileInView={{ x: 0, opacity: 1 }}
-                      transition={{ delay: 0.5 + (i * 0.2) }}
+                      transition={{ delay: 0.15 + (i * 0.08) }}
                       className="flex items-center gap-5 group cursor-pointer"
                     >
                       <div className="w-12 h-12 rounded-2xl bg-violet-600 text-white flex items-center justify-center font-black text-lg group-hover:rotate-12 transition-transform shadow-lg shadow-violet-200">
@@ -241,7 +241,7 @@ export default function AboutPage() {
                       </div>
                       <div className="flex-grow">
                         <span className="text-sm font-black uppercase tracking-widest text-violet-900 group-hover:translate-x-2 transition-transform block">{v}</span>
-                        <motion.div initial={{ width: 0 }} whileInView={{ width: '100%' }} transition={{ duration: 1, delay: 1 + (i * 0.2) }} className="h-1 bg-violet-100 mt-2" />
+                        <motion.div initial={{ width: 0 }} whileInView={{ width: '100%' }} transition={{ duration: 0.5, delay: 0.3 + (i * 0.08) }} className="h-1 bg-violet-100 mt-2" />
                       </div>
                     </motion.div>
                   ))}
@@ -273,10 +273,10 @@ export default function AboutPage() {
               return (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, y: 50, scale: 0.9 }}
+                  initial={{ opacity: 0, y: 30, scale: 0.95 }}
                   whileInView={{ opacity: 1, y: 0, scale: 1 }}
                   viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.8, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{ duration: 0.4, delay: index * 0.05, ease: [0.16, 1, 0.3, 1] }}
                   className="bg-white rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.04)] p-0 hover:shadow-[0_40px_80px_rgba(0,0,0,0.12)] transition-all duration-500 border-2 border-gray-50 group overflow-hidden relative"
                 >
                   {/* Ultra-Unique: Holographic Sheen Wipe */}
@@ -291,7 +291,7 @@ export default function AboutPage() {
                   <motion.div
                     initial={{ width: 0 }}
                     whileInView={{ width: '100%' }}
-                    transition={{ duration: 1.5, delay: 0.5 }}
+                    transition={{ duration: 0.6, delay: 0.15 }}
                     className="h-2 w-full absolute top-0 left-0"
                     style={{ background: `linear-gradient(90deg, ${accent}, ${accent}33)` }}
                   />
@@ -325,7 +325,7 @@ export default function AboutPage() {
                                 key={ci}
                                 initial={{ opacity: 0, y: 10 }}
                                 whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.2 + (wi * 0.1) + (ci * 0.03) }}
+                                transition={{ delay: 0.05 + (wi * 0.04) + (ci * 0.015) }}
                                 className="text-xl font-black text-gray-900 tracking-tight"
                               >
                                 {char}
@@ -353,7 +353,7 @@ export default function AboutPage() {
                             key={idx}
                             initial={{ opacity: 0 }}
                             whileInView={{ opacity: 1 }}
-                            transition={{ delay: 0.5 + (idx * 0.02) }}
+                            transition={{ delay: 0.1 + (idx * 0.01) }}
                             className="inline-block mr-1"
                           >
                             {word}

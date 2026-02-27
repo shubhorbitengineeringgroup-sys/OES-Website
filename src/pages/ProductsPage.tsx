@@ -541,7 +541,7 @@ export default function ProductsPage({ onNavigate }: ProductsPageProps) {
 
       {/* Quick category strip */}
       <div className="bg-white border-b border-gray-100 shadow-sm sticky top-20 z-20">
-        <div className="max-w-7xl mx-auto px-4 py-2.5 flex flex-wrap gap-2 items-center overflow-x-auto scrollbar-hide">
+        <div className="max-w-7xl mx-auto px-4 py-2.5 flex flex-nowrap gap-2 items-center overflow-x-auto scrollbar-hide w-full" style={{ WebkitOverflowScrolling: 'touch' }}>
           <span className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mr-1 flex-shrink-0">Browse</span>
           {[
             { label: 'Water Treatment', color: '#0073bc' },

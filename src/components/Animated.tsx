@@ -3,17 +3,17 @@ import { motion, Variants } from 'framer-motion';
 
 export const fadeUp: Variants = {
   hidden: { opacity: 0, y: 12 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeInOut' } }
+  visible: { opacity: 1, y: 0, transition: { duration: 0.35, ease: 'easeInOut' } }
 };
 
 export const scaleIn: Variants = {
   hidden: { opacity: 0, scale: 0.98 },
-  visible: { opacity: 1, scale: 1, transition: { duration: 0.6, ease: 'easeInOut' } }
+  visible: { opacity: 1, scale: 1, transition: { duration: 0.35, ease: 'easeInOut' } }
 };
 
 export const fadeScale: Variants = {
   hidden: { opacity: 0, y: 12, scale: 0.98 },
-  visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.6, ease: 'easeInOut' } }
+  visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.35, ease: 'easeInOut' } }
 };
 
 export const staggerContainer: (stagger?: number) => Variants = (stagger = 0.06) => ({
