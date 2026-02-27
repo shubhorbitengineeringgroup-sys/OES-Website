@@ -108,13 +108,13 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
   return (
     <div className="min-h-screen bg-gray-50 overflow-x-hidden">
       <SEO
-        title="Water Treatment & SCADA Automation Services | O&M, PLC Integration - Orbit Engineering Group"
-        description="Comprehensive water engineering services by Orbit Engineering Group: WTP/STP installation & commissioning, PLC/SCADA integration, IoT setup, Operation & Maintenance (O&M), consultancy, and turnkey cloud-based automation solutions. Serving all of India from Bhopal."
+        title="Water Treatment, SCADA Automation & Instrumentation Services | WTP, STP, Solar, O&M - Orbit Engineering Solutions"
+        description="Comprehensive water engineering & instrumentation services by Orbit Engineering Solutions: WTP/STP installation & commissioning, PLC/SCADA integration, IoT setup, Operation & Maintenance (O&M), consultancy, solar energy solutions, and turnkey cloud-based automation. Serving all of India from Bhopal."
         canonicalPath="/services"
-        keywords="water treatment services Bhopal, SCADA integration service, PLC programming India, O&M water treatment plant, water plant commissioning, automation consultancy, IoT water monitoring service"
+        keywords="water treatment services Bhopal, SCADA integration service, PLC programming India, O&M water treatment plant, water plant commissioning, automation consultancy, IoT water monitoring service, instrumentation services, instrumentation company Bhopal, solar services Bhopal, solar energy solutions, WTP services, STP services, RO services, ETP services, Orbit Engineering Solutions services"
       />
       {/* Hidden H1 for SEO */}
-      <h1 className="sr-only">Orbit Engineering Group Services | Water treatment solutions, PLC/SCADA automation, IoT integration, O&M services, and consultancy in Bhopal</h1>
+      <h1 className="sr-only">Orbit Engineering Solutions Services | Water treatment solutions, PLC/SCADA automation, IoT integration, O&M services, and consultancy in Bhopal</h1>
 
       <HeroSection title="Our Services" subtitle="Comprehensive water infrastructure solutions from concept to maintenance" />
 
@@ -153,7 +153,7 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
                 >
                   <div className="icon-wrap mb-6 mx-auto">
                     {service.image ? (
-                      <img src={service.image} alt={`${service.title} engineering services by Orbit Group Bhopal`} className="icon-img icon-hover" />
+                      <img src={service.image} alt={`${service.title} engineering services by Orbit Engineering Solutions Bhopal`} className="icon-img icon-hover" />
                     ) : (
                       <service.icon className="h-12 w-12 md:h-14 md:w-14 text-[#0073bc] mx-auto transform transition-transform duration-300 group-hover:scale-105" />
                     )}

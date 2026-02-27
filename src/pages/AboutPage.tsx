@@ -50,15 +50,15 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen bg-gray-50 overflow-x-hidden">
       <SEO
-        title="About Orbit Engineering Group | 25+ Years of Water Engineering Excellence in Bhopal, India"
-        description="Discover Orbit Engineering Group's legacy since 1998. ISO 9001 certified water engineering company in Bhopal specializing in WTP, STP, RO, ETP, SCADA & PLC automation. ₹200+ Cr portfolio. Trusted by MP Jal Nigam, MPUDCL & leading industries across India."
+        title="About Orbit Engineering Solutions | 25+ Years of Water Engineering & Instrumentation Excellence in Bhopal, India"
+        description="Discover Orbit Engineering Solutions' (formerly Orbit Engineering Group) legacy since 1998. ISO 9001 certified water engineering company in Bhopal specializing in WTP, STP, RO, ETP, SCADA & PLC automation, instrumentation & solar solutions. ₹200+ Cr portfolio. Trusted by MP Jal Nigam, MPUDCL & leading industries across India."
         canonicalPath="/about"
-        keywords="about Orbit Engineering Group, Orbit Engineering history, water engineering company Bhopal, ISO certified water treatment company, Orbit Engineering Group mission vision"
+        keywords="about Orbit Engineering Solutions, Orbit Engineering Solutions history, Orbit Engineering Group, water engineering company Bhopal, ISO certified water treatment company, Orbit Engineering Solutions mission vision, orbit engineering about, orbit bhopal about, instrumentation company Bhopal, solar energy company Bhopal, orbit engineering solutions about us, orbit engineering about us"
       />
       {/* Hidden H1 for SEO */}
-      <h1 className="sr-only">About Orbit Engineering Group Bhopal | Innovating water infrastructure since 1998 with advanced engineering and technology</h1>
+      <h1 className="sr-only">About Orbit Engineering Solutions Bhopal | Innovating water infrastructure since 1998 with advanced engineering and technology</h1>
 
-      <HeroSection title="About Orbit Engineerings" subtitle="Pioneering water innovation for sustainable communities" />
+      <HeroSection title="About Orbit Engineering Solutions" subtitle="Pioneering water innovation for sustainable communities" />
 
       <section className="py-12 md:py-24 bg-white overflow-hidden relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">

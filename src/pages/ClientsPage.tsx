@@ -72,13 +72,13 @@ export default function ClientsPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       <SEO
-        title="Our Clients & Partners | MP Jal Nigam, MPUDCL, L&T, BHEL - Orbit Engineering Group"
-        description="Orbit Engineering Group proudly serves 23+ government & private organizations including MP Jal Nigam, MPUDCL, Bhopal Municipal Corporation, L&T, BHEL, Indian Railways, Lupin Pharma, Dilip Buildcon & more. Trusted partner for water infrastructure across India."
+        title="Our Clients & Partners | MP Jal Nigam, MPUDCL, L&T, BHEL - Orbit Engineering Solutions"
+        description="Orbit Engineering Solutions proudly serves 23+ government & private organizations including MP Jal Nigam, MPUDCL, Bhopal Municipal Corporation, L&T, BHEL, Indian Railways, Lupin Pharma, Dilip Buildcon & more. Trusted partner for water infrastructure across India."
         canonicalPath="/clients"
-        keywords="MP Jal Nigam, MPUDCL Bhopal, Bhopal Municipal Corporation, Indore Municipal Corporation, Larsen Toubro, BHEL, Indian Railways, Dilip Buildcon, Tejas Construction, Lupin Pharmaceuticals, Prism Cement, water infrastructure partners, orbit engineering clients, government water contractor MP, orbitengineerings clients"
+        keywords="MP Jal Nigam, MPUDCL Bhopal, Bhopal Municipal Corporation, Indore Municipal Corporation, Larsen Toubro, L&T, BHEL, Indian Railways, Dilip Buildcon, Tejas Construction, Lupin Pharmaceuticals, Prism Cement, HEG Limited, CMR Infrastructure, Military Engineer Services, Public Works Department, GeM Government, water infrastructure partners, orbit engineering solutions clients, orbit engineering clients, government water contractor MP, orbitengineerings clients, water treatment client list, trusted water company India"
       />
       {/* Hidden H1 for SEO */}
-      <h1 className="sr-only">Orbit Engineering Group Clients | Trusted by MPUDCL, MP Jal Nigam, and municipal corporations across India</h1>
+      <h1 className="sr-only">Orbit Engineering Solutions Clients | Trusted by MPUDCL, MP Jal Nigam, and municipal corporations across India</h1>
 
       <HeroSection title="Our Trusted Clients" subtitle="Building long-term partnerships with government and private organizations" />
 

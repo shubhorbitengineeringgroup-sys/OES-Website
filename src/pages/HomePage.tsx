@@ -219,7 +219,7 @@ function AutomationSection() {
               variants={contentItemVariants}
               className="text-lg text-gray-600 leading-relaxed font-light"
             >
-              Orbit Engineering Group specialises in advanced automation — adopting state-of-the-art technologies to enhance water resource management, efficiency and sustainability:
+              Orbit Engineering Solutions specialises in advanced automation — adopting state-of-the-art technologies to enhance water resource management, efficiency and sustainability:
             </motion.p>
 
             {/* Bullet Points with staggered animations */}
@@ -258,7 +258,7 @@ function AutomationSection() {
               className="pt-4 border-t border-gray-200"
             >
               <p className="text-lg font-semibold text-[#0073bc] leading-relaxed">
-                Orbit Engineering Group empowers communities with smarter, greener, and more reliable water infrastructure across both rural and urban settings.
+                Orbit Engineering Solutions empowers communities with smarter, greener, and more reliable water infrastructure across both rural and urban settings.
               </p>
             </motion.div>
           </motion.div>
@@ -282,13 +282,13 @@ export default function HomePage({ onNavigate }: HomePageProps) {
   return (
     <div className="min-h-screen overflow-x-hidden">
       <SEO
-        title="Orbit Engineering Group | India's Leading Water Treatment & Automation Company - Bhopal"
-        description="Orbit Engineering Group Bhopal – India's trusted water engineering company since 1998. Experts in WTP, STP, RO, ETP, SCADA systems, PLC automation, IoT monitoring & solar solutions. ISO 9001 certified. ₹200+ Cr portfolio. Contact: info@orbitengineerings.com"
+        title="Orbit Engineering Solutions | #1 Water Treatment, SCADA & PLC Automation Company in India - Bhopal"
+        description="Orbit Engineering Solutions (formerly Orbit Engineering Group), Bhopal – India's most trusted water engineering company since 1998. Experts in WTP, STP, RO, ETP, SCADA systems, PLC automation, IoT monitoring, instrumentation & solar solutions. ISO 9001 certified. ₹200+ Cr portfolio. Trusted by MP Jal Nigam, MPUDCL, L&T, BHEL. Contact: +91 70241 28029 | info@orbitengineerings.com"
         canonicalPath="/"
-        keywords="Orbit Engineering Group, water treatment plant Bhopal, WTP STP RO ETP, SCADA automation India, PLC automation water, orbitengineerings.com, water infrastructure company India, Bhopal engineering, smart water management, IoT water monitoring"
+        keywords="Orbit Engineering Solutions, Orbit Engineering, Orbit Engineering Group, orbit engineering solutions bhopal, orbit bhopal, orbit engineering company, orbit engineering solutions india, water treatment plant Bhopal, WTP services, STP services, RO services, ETP services, WTP STP RO ETP, SCADA automation India, PLC automation water, instrumentation services, instrumentation company Bhopal, instrumentation and control, solar services, solar services Bhopal, solar energy solutions, orbitengineerings.com, water infrastructure company India, Bhopal engineering, smart water management, IoT water monitoring, water treatment company near me, best water treatment company India, water treatment plant Madhya Pradesh, SCADA system price, PLC panel manufacturer, flow meter manufacturer, level transmitter, pressure transmitter, water analyzer, chlorinator, turnkey automation, Jal Jeevan Mission, MP Jal Nigam, MPUDCL, orbit engg, orbit eng solutions, orbit engineering solutons, water treatment, water treatment plant, water purification"
       />
       {/* Hidden H1 for SEO */}
-      <h1 className="sr-only">Orbit Engineering Group Bhopal | Water Treatment Plants (WTP), SCADA, PLC Automation & Sustainable Engineering Solutions</h1>
+      <h1 className="sr-only">Orbit Engineering Solutions Bhopal | Water Treatment Plants (WTP), SCADA, PLC Automation & Sustainable Engineering Solutions</h1>
 
       <section className="relative text-white overflow-hidden">
         <HeroBackgroundSlider />
@@ -387,7 +387,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-start justify-between mb-4">
-              <h3 className="text-2xl font-bold text-[#0073bc] tracking-tight">About Orbit Engineering Group</h3>
+              <h3 className="text-2xl font-bold text-[#0073bc] tracking-tight">About Orbit Engineering Solutions</h3>
               <button aria-label="Close" onClick={() => setShowLearnMore(false)} className="p-2 rounded-full hover:bg-gray-100 transition-colors">
                 <X className="h-5 w-5" />
               </button>

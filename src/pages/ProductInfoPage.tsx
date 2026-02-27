@@ -814,7 +814,7 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
         "description": item.paragraphs?.[0] || page.description,
         "brand": {
           "@type": "Brand",
-          "name": "Orbit Engineering Group"
+          "name": "Orbit Engineering Solutions"
         },
         "url": `https://www.orbitengineerings.com/products/${variant}`
       }
@@ -824,7 +824,7 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
   return (
     <div className="min-h-screen bg-gray-50">
       <SEO
-        title={`${page.title} - Water Treatment & Industrial Automation | Orbit Engineering Group`}
+        title={`${page.title} - Water Treatment & Industrial Automation | Orbit Engineering Solutions`}
         description={page.description}
         canonicalPath={`/products/${variant}`}
         jsonLd={productSchema}

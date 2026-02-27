@@ -509,12 +509,12 @@ export default function ProductsPage({ onNavigate }: ProductsPageProps) {
   return (
     <div className="min-h-screen bg-[#f5f8fc]">
       <SEO
-        title="Water Treatment Products & Automation Solutions | Orbit Engineering Group Bhopal"
-        description="Explore Orbit Engineering's 200+ precision-engineered products: WTP, STP, RO, ETP, electromagnetic flow meters, SCADA systems, PLC panels, level transmitters, pressure sensors, pH analyzers, solar panels, electric actuators, transformers & more. Best prices in India."
+        title="Water Treatment Products, Instrumentation & Automation Solutions | Orbit Engineering Solutions Bhopal"
+        description="Explore Orbit Engineering Solutions' 200+ precision-engineered products: WTP, STP, RO, ETP, electromagnetic flow meters, SCADA systems, PLC panels, level transmitters, pressure sensors, pH analyzers, solar panels, electric actuators, transformers, HDPE jointing machines, surveillance cameras & more. Best prices in India."
         canonicalPath="/products"
-        keywords="water treatment products India, flow meter supplier Bhopal, electromagnetic flow meter, SCADA system price, PLC panel manufacturer, level transmitter dealer, pressure sensor India, pH analyzer, turbidity analyzer, electric actuator, solar panel, transformer, butterfly valve, orbitengineerings products"
+        keywords="water treatment products India, flow meter supplier Bhopal, electromagnetic flow meter, SCADA system price, PLC panel manufacturer, level transmitter dealer, pressure sensor India, pH analyzer, turbidity analyzer, electric actuator, solar panel, transformer, butterfly valve, HDPE jointing machine, submersible dredging vehicle, scour monitoring system, instrumentation products, instrumentation equipment, water treatment equipment, WTP products, STP products, RO system price, ETP equipment, solar pump price, orbit engineering solutions products, orbitengineerings products, water treatment products Bhopal, industrial automation products"
       />
-      <h1 className="sr-only">Orbit Engineering Products – Water Treatment, Automation & Industrial Solutions Bhopal</h1>
+      <h1 className="sr-only">Orbit Engineering Solutions Products – Water Treatment, Instrumentation, Automation & Industrial Solutions Bhopal</h1>
 
       {/* Hero */}
       <HeroSection

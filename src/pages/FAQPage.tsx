@@ -3,6 +3,7 @@ import { motion, AnimatePresence, Variants } from 'framer-motion';
 import subHeadingImage from '../assets/products/sub-heading.jpg';
 import heroWaterImage from '../assets/products/hero-section.jpg';
 import { ChevronDown, HelpCircle, Droplet, Sun, Layers, LayoutGrid } from 'lucide-react';
+import SEO from '../components/SEO';
 
 interface FAQPageProps {
   onNavigate?: (page: string) => void;
@@ -29,7 +30,7 @@ export default function FAQPage({ onNavigate }: FAQPageProps) {
       faqs: [
         {
           question: 'What types of water treatment solutions do you offer?',
-          answer: 'Orbit Engineering Group offers a wide range of water treatment solutions to meet various needs, including: Water filtration systems: Remove impurities, contaminants, and suspended solids from water. Water softening systems: Reduce the hardness of water by removing calcium and magnesium ions. Disinfection systems: Eliminate harmful bacteria, viruses, and other microorganisms. Wastewater treatment systems: Treat wastewater to remove pollutants and contaminants before discharge.'
+          answer: 'Orbit Engineering Solutions offers a wide range of water treatment solutions to meet various needs, including: Water filtration systems: Remove impurities, contaminants, and suspended solids from water. Water softening systems: Reduce the hardness of water by removing calcium and magnesium ions. Disinfection systems: Eliminate harmful bacteria, viruses, and other microorganisms. Wastewater treatment systems: Treat wastewater to remove pollutants and contaminants before discharge.'
         },
         {
           question: 'How does a Water Treatment Plant improve water quality?',
@@ -211,6 +212,12 @@ export default function FAQPage({ onNavigate }: FAQPageProps) {
 
   return (
     <div className="min-h-screen bg-gray-50 overflow-x-hidden">
+      <SEO
+        title="Frequently Asked Questions | Water Treatment, SCADA, Solar - Orbit Engineering Solutions"
+        description="Get answers to frequently asked questions about Orbit Engineering Solutions' water treatment plants (WTP, STP, RO, ETP), SCADA & PLC automation, solar energy solutions, instrumentation services, and more. Expert guidance from Bhopal's leading water engineering company."
+        canonicalPath="/faq"
+        keywords="orbit engineering solutions FAQ, water treatment plant FAQ, WTP FAQ, STP FAQ, SCADA FAQ, PLC automation FAQ, solar energy FAQ, instrumentation FAQ, water treatment questions, orbit engineering solutions questions, orbit bhopal FAQ"
+      />
       <section className="relative text-white py-20">
         <img src={heroWaterImage} alt="Water technology background" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-black/50" />
