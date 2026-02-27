@@ -60,7 +60,7 @@ export default function AboutPage() {
 
       <HeroSection title="About Orbit Engineerings" subtitle="Pioneering water innovation for sustainable communities" />
 
-      <section className="py-24 bg-white overflow-hidden relative">
+      <section className="py-12 md:py-24 bg-white overflow-hidden relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
 
           {/* ── Heading (Full Width Top) ── */}
@@ -120,7 +120,7 @@ export default function AboutPage() {
                     transition: { duration: 1, ease: [0.76, 0, 0.24, 1] }
                   }
                 }}
-                className="relative pl-8 border-l-[5px] border-[#0073bc] bg-white rounded-r-3xl py-10 pr-10 shadow-[20px_20px_60px_-15px_rgba(0,115,188,0.15)] group"
+                className="relative pl-6 md:pl-8 border-l-[5px] border-[#0073bc] bg-white rounded-r-3xl py-8 md:py-10 pr-6 md:pr-10 shadow-[10px_10px_40px_-15px_rgba(0,115,188,0.15)] md:shadow-[20px_20px_60px_-15px_rgba(0,115,188,0.15)] group"
               >
                 <motion.p
                   variants={{ hidden: { opacity: 0, filter: 'blur(5px)' }, visible: { opacity: 1, filter: 'blur(0px)' } }}
@@ -144,11 +144,11 @@ export default function AboutPage() {
                 whileInView={{ opacity: 1, scale: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
-                className="relative rounded-[2.5rem] overflow-hidden text-white shadow-2xl group h-[500px]"
+                className="relative rounded-[2.5rem] overflow-hidden text-white shadow-2xl group md:h-[500px] min-h-[450px]"
               >
                 <img src={subHeadingImage} alt="Mission and Vision" className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
                 <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/80" />
-                <div className="relative z-10 p-10 flex flex-col justify-end h-full">
+                <div className="relative z-10 p-6 md:p-10 flex flex-col justify-end h-full">
                   <div className="space-y-6">
                     <div>
                       <h3 className="text-2xl font-black mb-3 tracking-tight text-blue-300 uppercase text-xs tracking-[0.3em]">Our Mission</h3>
@@ -175,7 +175,7 @@ export default function AboutPage() {
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                className="relative pl-8 border-l-[5px] border-emerald-500 bg-white rounded-r-3xl py-8 pr-8"
+                className="relative pl-6 md:pl-8 border-l-[5px] border-emerald-500 bg-white rounded-r-3xl py-6 md:py-8 pr-6 md:pr-8"
               >
                 <p className="text-[17px] leading-[1.8] mb-6 font-medium text-gray-700">
                   Our expertise spans the <span className="text-emerald-700 font-bold px-2 py-0.5 bg-emerald-50 rounded-lg">complete spectrum</span> of water management:
@@ -221,7 +221,7 @@ export default function AboutPage() {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="relative pl-8 border-l-[5px] border-violet-500 bg-white rounded-r-3xl py-10 pr-10 shadow-xl"
+                className="relative pl-6 md:pl-8 border-l-[5px] border-violet-500 bg-white rounded-r-3xl py-8 md:py-10 pr-6 md:pr-10 shadow-xl"
               >
                 <p className="text-[18px] leading-[1.8] mb-8 text-gray-700">
                   We believe water management is the cornerstone of
@@ -296,7 +296,8 @@ export default function AboutPage() {
                     style={{ background: `linear-gradient(90deg, ${accent}, ${accent}33)` }}
                   />
 
-                  <div className="p-10 relative z-20">
+                  <div className="p-6 md:p-10 relative z-20">
+                    {/* Icon Portal Reveal */}
                     {/* Icon Portal Reveal */}
                     <motion.div
                       whileHover={{ scale: 1.1, rotate: 5 }}
@@ -394,7 +395,7 @@ export default function AboutPage() {
       <section className="bg-white py-12">
 
         {/* Header content with background image */}
-        <div className="relative w-full h-[400px] mb-16 flex items-center justify-center overflow-hidden">
+        <div className="relative w-full h-[300px] md:h-[400px] mb-16 flex items-center justify-center overflow-hidden">
           <img src={headingBg} alt="Background" className="absolute inset-0 w-full h-full object-cover" />
           <div className="absolute inset-0 bg-black/60" />
           <div className="relative z-10 text-center max-w-4xl mx-auto px-4">
