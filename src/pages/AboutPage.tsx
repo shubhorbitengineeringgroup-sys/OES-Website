@@ -102,23 +102,22 @@ export default function AboutPage() {
 
             {/* ── LEFT COLUMN: The Story ── */}
             <div className="space-y-10">
-              {/* Para 1: Kinetic Liquid Reveal */}
+              {/* Para 1: Fade and Slide In */}
               <motion.div
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: "-50px" }}
                 variants={{
-                  hidden: { clipPath: 'polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)', opacity: 0, x: -20 },
+                  hidden: { opacity: 0, y: 20 },
                   visible: {
-                    clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
-                    opacity: 1, x: 0,
-                    transition: { duration: 0.5, ease: [0.76, 0, 0.24, 1] }
+                    opacity: 1, y: 0,
+                    transition: { duration: 0.6, ease: "easeOut" }
                   }
                 }}
                 className="relative pl-6 md:pl-8 border-l-[5px] border-[#0073bc] bg-white rounded-r-3xl py-8 md:py-10 pr-6 md:pr-10 shadow-[10px_10px_40px_-15px_rgba(0,115,188,0.15)] md:shadow-[20px_20px_60px_-15px_rgba(0,115,188,0.15)] group"
               >
                 <motion.div
-                  variants={{ hidden: { opacity: 0, filter: 'blur(5px)' }, visible: { opacity: 1, filter: 'blur(0px)' } }}
+                  variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}
                   transition={{ delay: 0.2 }}
                   className="text-[18px] leading-[1.8] text-gray-700 relative z-10"
                 >
