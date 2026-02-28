@@ -64,43 +64,38 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
 
           {/* ── Heading (Full Width Top) ── */}
-          <div className="mb-16 text-center lg:text-left">
-            <motion.h2
-              className="text-4xl md:text-6xl font-black text-gray-900 tracking-tighter leading-[1.1] perspective-1000"
-            >
-              {"Pioneering Water Innovation".split("").map((char, i) => (
-                <motion.span
-                  key={i}
-                  initial={{ opacity: 0, rotateY: 90, y: 20, filter: 'blur(10px)' }}
-                  whileInView={{ opacity: 1, rotateY: 0, y: 0, filter: 'blur(0px)' }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: i * 0.015, ease: [0.22, 1, 0.36, 1] }}
-                  className="inline-block"
-                >
-                  {char === " " ? "\u00A0" : char}
-                </motion.span>
-              ))}
-              <br />
-              <span className="text-[#0073bc] relative inline-block overflow-hidden">
-                {"for a Sustainable Future".split("").map((char, i) => (
+          <div className="mb-12 md:mb-16 text-center lg:text-left">
+            <h2 className="text-4xl md:text-6xl font-black text-gray-900 tracking-tighter leading-[1.2] md:leading-[1.1]">
+              <span className="flex flex-wrap justify-center lg:justify-start">
+                {"Pioneering Water Innovation".split("").map((char, i) => (
                   <motion.span
                     key={i}
-                    initial={{ opacity: 0, scale: 2, x: 20 }}
-                    whileInView={{ opacity: 1, scale: 1, x: 0 }}
+                    initial={{ opacity: 0, scale: 0.9, filter: 'blur(5px)' }}
+                    whileInView={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.3, delay: 0.3 + (i * 0.015) }}
+                    transition={{ duration: 0.4, delay: i * 0.015, ease: "easeOut" }}
                     className="inline-block"
                   >
                     {char === " " ? "\u00A0" : char}
                   </motion.span>
                 ))}
-                <motion.div
-                  animate={{ left: ['-100%', '200%'] }}
-                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", repeatDelay: 1 }}
-                  className="absolute top-0 bottom-0 w-1/2 bg-gradient-to-r from-transparent via-white/40 to-transparent -skew-x-12"
-                />
               </span>
-            </motion.h2>
+              <span className="text-[#0073bc] relative flex flex-wrap justify-center lg:justify-start overflow-hidden mt-1 md:mt-2">
+                {"for a Sustainable Future".split("").map((char, i) => (
+                  <motion.span
+                    key={i}
+                    initial={{ opacity: 0, scale: 1.5, x: 20 }}
+                    whileInView={{ opacity: 1, scale: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.3, delay: 0.3 + (i * 0.015) }}
+                    className="inline-block z-10 relative text-[#0073bc]"
+                  >
+                    {char === " " ? "\u00A0" : char}
+                  </motion.span>
+                ))}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none z-20 mix-blend-overlay animate-shine" />
+              </span>
+            </h2>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
@@ -122,7 +117,7 @@ export default function AboutPage() {
                 }}
                 className="relative pl-6 md:pl-8 border-l-[5px] border-[#0073bc] bg-white rounded-r-3xl py-8 md:py-10 pr-6 md:pr-10 shadow-[10px_10px_40px_-15px_rgba(0,115,188,0.15)] md:shadow-[20px_20px_60px_-15px_rgba(0,115,188,0.15)] group"
               >
-                <motion.p
+                <motion.div
                   variants={{ hidden: { opacity: 0, filter: 'blur(5px)' }, visible: { opacity: 1, filter: 'blur(0px)' } }}
                   transition={{ delay: 0.2 }}
                   className="text-[18px] leading-[1.8] text-gray-700 relative z-10"
@@ -134,8 +129,8 @@ export default function AboutPage() {
                     <motion.div animate={{ width: ['0%', '100%', '0%'] }} transition={{ duration: 4, repeat: Infinity }} className="absolute bottom-0 left-0 h-0.5 bg-blue-400/30" />
                   </span>&nbsp;
                   through innovative technology. We create
-                  <span className="font-bold text-gray-900 border-b-2 border-dashed border-blue-200 ml-1 italic">intelligent, scalable solutions</span>.
-                </motion.p>
+                  <span className="font-bold text-gray-900 border-b-2 border-dashed border-blue-200 ml-1 italic"> intelligent, scalable solutions</span>.
+                </motion.div>
               </motion.div>
 
               {/* Mission & Vision Card (Image Background) */}
