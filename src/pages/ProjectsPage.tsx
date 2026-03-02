@@ -134,6 +134,14 @@ export default function ProjectsPage({ initialFilter = 'all', onNavigate }: Proj
       status: 'Ongoing',
       logo: mpudclLogo
     },
+    {
+      name: 'Mohgaon Water Supply Project',
+      description: 'Modern water supply system with full automation',
+      client: 'UAD Amrut 2.0-DILIP PATIDAR THEKEDAR',
+      location: 'District Chhindwara',
+      status: 'Ongoing',
+      logo: mpudclLogo
+    },
   ];
 
 
@@ -189,7 +197,7 @@ export default function ProjectsPage({ initialFilter = 'all', onNavigate }: Proj
         title="Completed & Ongoing Water Infrastructure Projects | 45 MLD WTP, SCADA Automation - Orbit Engineering Solutions"
         description="Explore Orbit Engineering Solutions' ₹200+ Cr project portfolio: 45 MLD WTP automation, multi-village water supply schemes, 7.6 MLD STP commissioning, SCADA integration for MP Jal Nigam, MPUDCL & Bhopal Municipal Corporation. Pan-India water infrastructure & instrumentation case studies."
         canonicalPath="/projects"
-        keywords="water treatment project India, WTP automation project, SCADA project Bhopal, MP Jal Nigam project, MPUDCL water supply, Jal Jeevan Mission project, Amrut 2.0 project, water infrastructure case study, instrumentation project, Orbit Engineering Solutions projects, orbit engineering projects"
+        keywords="water treatment project India, WTP automation project, SCADA project Bhopal, MP Jal Nigam project, MPUDCL water supply, Jal Jeevan Mission project, Amrut 2.0 project, Mandla water supply, Chhindwara water supply, water infrastructure case study, instrumentation project, Orbit Engineering Solutions projects, orbit engineering projects"
       />
       {/* Hidden H1 for SEO */}
       <h1 className="sr-only">Orbit Engineering Solutions Projects | Completed and ongoing water infrastructure projects in India with SCADA & PLC automation</h1>
