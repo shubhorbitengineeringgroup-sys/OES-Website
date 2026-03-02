@@ -452,7 +452,7 @@ export default function AboutPage() {
               <h3 className="font-semibold text-gray-900 mb-2">Address</h3>
               <p className="text-gray-600 text-sm">
                 <span className="font-bold">Working Office:</span> <a href="https://maps.google.com/?q=Flat+No.2,+Block+12,+Shalimar+Enclave,+E3+Arera+Colony,+Bhopal,+462016" target="_blank" rel="noopener noreferrer" className="hover:text-[#0073bc] transition-colors">Flat No.2, Block 12, Shalimar Enclave,<br />E3 Arera Colony, Bhopal</a><br /><br />
-                <span className="font-bold">Head Office:</span> <a href="https://maps.google.com/?q=GF,+E-45,+PRIDE+CITY,+KATARA+HILLS,+BHOPAL,+Bhopal,+Madhya+Pradesh,+462043" target="_blank" rel="noopener noreferrer" className="hover:text-[#0073bc] transition-colors">GF, E-45, PRIDE CITY,<br />KATARA HILLS, BHOPAL</a>
+                <span className="font-bold">Head Office:</span> <a href="https://maps.google.com/?q=E-45,+Pride+City,+Katara+Hills,+Bhopal,+Madhya+Pradesh,+462043" target="_blank" rel="noopener noreferrer" className="hover:text-[#0073bc] transition-colors">E-45, Pride City,<br />Katara Hills, Bhopal</a>
               </p>
             </div>
 

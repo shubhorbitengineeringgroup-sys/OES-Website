@@ -25,7 +25,7 @@ export default function ContactPage() {
     <div className="min-h-screen bg-gray-50 overflow-x-hidden">
       <SEO
         title="Contact Orbit Engineering Solutions Bhopal | Free Consultation for Water Treatment & Automation"
-        description="Contact Orbit Engineering Solutions for water treatment, SCADA & PLC automation needs. Working Office: Shalimar Enclave, E3 Arera Colony, Bhopal – 462016. Head Office: GF, E-45, PRIDE CITY, KATARA HILLS, BHOPAL, Bhopal, Madhya Pradesh, 462043. Phone: +91 70241 28029. Email: info@orbitengineerings.com"
+        description="Contact Orbit Engineering Solutions for water treatment, SCADA & PLC automation needs. Working Office: Shalimar Enclave, E3 Arera Colony, Bhopal – 462016. Head Office: E-45, Pride City, Katara Hills, Bhopal, Madhya Pradesh, 462043. Phone: +91 70241 28029. Email: info@orbitengineerings.com"
         canonicalPath="/contact"
         keywords="contact Orbit Engineering Solutions, Orbit Engineering Solutions Bhopal address, Orbit Engineering Bhopal address, orbit engineering contact number, orbit engineering phone number, water treatment consultation Bhopal, SCADA automation quote, orbitengineerings contact, orbit engineering solutions contact, orbit bhopal contact, orbit bhopal office, orbit engineering solutions phone, orbit engineering solutions email, info@orbitengineerings.com"
       />
@@ -282,14 +282,13 @@ export default function ContactPage() {
                     <h3 className="text-xl font-bold text-white">Head Office</h3>
                   </div>
                   <p className="text-blue-100 text-sm">
-                    GF, E-45, PRIDE CITY, KATARA HILLS, BHOPAL, Bhopal, Madhya Pradesh, 462043
-                    B-32/A Priyadershini Society, Sant Asharam Nagar, Bagsewaniya, Bhopal - 462043
+                    E-45, Pride City, Katara Hills, Bhopal, Madhya Pradesh, 462043
                   </p>
                 </div>
               </div>
               <div className="relative bg-white rounded-b-2xl overflow-hidden shadow-lg border border-gray-200 h-[400px]">
                 <iframe
-                  src="https://www.google.com/maps?q=B-32/A Priyadershini Society, Sant Asharam Nagar, Bagsewaniya, Bhopal - 462043&output=embed"
+                  src="https://www.google.com/maps?q=E-45,+Pride+City,+Katara+Hills,+Bhopal,+Madhya+Pradesh,+462043&output=embed"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
@@ -308,7 +307,7 @@ export default function ContactPage() {
 
                 {/* Clickable Overlay */}
                 <a
-                  href="https://maps.google.com/?q=GF,+E-45,+PRIDE+CITY,+KATARA+HILLS,+BHOPAL,+Bhopal,+Madhya+Pradesh,+462043"
+                  href="https://maps.google.com/?q=E-45,+Pride+City,+Katara+Hills,+Bhopal,+Madhya+Pradesh,+462043"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="absolute inset-0 z-10 cursor-pointer"

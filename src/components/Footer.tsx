@@ -108,13 +108,13 @@ export default function Footer({ onNavigate }: FooterProps) {
                 <MapPin className="h-5 w-5 text-[#0073bc] flex-shrink-0 mt-0.5" />
                 <div className="text-sm">
                   <a
-                    href="https://maps.google.com/?q=GF,+E-45,+PRIDE+CITY,+KATARA+HILLS,+BHOPAL,+Bhopal,+Madhya+Pradesh,+462043"
+                    href="https://maps.google.com/?q=E-45,+Pride+City,+Katara+Hills,+Bhopal,+Madhya+Pradesh,+462043"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group"
                   >
                     <span className="block font-medium text-white group-hover:text-[#0073bc] transition-colors">Head Office:</span>
-                    <span className="text-gray-400 group-hover:text-gray-300 transition-colors">GF, E-45, PRIDE CITY, KATARA HILLS,<br />BHOPAL, Bhopal, Madhya Pradesh, 462043</span>
+                    <span className="text-gray-400 group-hover:text-gray-300 transition-colors">E-45, Pride City, Katara Hills,<br />Bhopal, Madhya Pradesh, 462043</span>
                   </a>
                 </div>
               </li>
