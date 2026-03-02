@@ -174,7 +174,7 @@ export default function FAQPage({ onNavigate }: FAQPageProps) {
           question: 'How can I contact your customer support team?',
           answer: (
             <span>
-              You can contact our customer support team by phone, email, or through our website contact form. Our team is available to assist you with any questions: <a href="mailto:info@orbitengineerings.com" className="text-[#0073bc] hover:underline">info@orbitengineerings.com</a>
+              You can contact our customer support team by phone, email, or through our website contact form. Our team is available to assist you with any questions: <a href="mailto:info@orbitengineerings.com" className="text-[#0073bc] hover:underline">info@orbitengineerings.com</a> or <a href="mailto:service@orbitengineerings.com" className="text-[#0073bc] hover:underline">service@orbitengineerings.com</a>
             </span>
           )
         }

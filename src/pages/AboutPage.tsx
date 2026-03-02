@@ -51,9 +51,9 @@ export default function AboutPage() {
     <div className="min-h-screen bg-gray-50 overflow-x-hidden">
       <SEO
         title="About Orbit Engineering Solutions | 25+ Years of Water Engineering & Instrumentation Excellence in Bhopal, India"
-        description="Discover Orbit Engineering Solutions' (formerly Orbit Engineering Group) legacy since 1998. ISO 9001 certified water engineering company in Bhopal specializing in WTP, STP, RO, ETP, SCADA & PLC automation, instrumentation & solar solutions. ₹200+ Cr portfolio. Trusted by MP Jal Nigam, MPUDCL & leading industries across India."
+        description="Discover Orbit Engineering Solutions' legacy since 1998. ISO 9001 certified water engineering in Bhopal specializing in WTP, STP, RO, ETP, SCADA, PLC automation & solar. Phone: +91 70241 28029, +91 9039075049. Email: info@orbitengineerings.com, service@orbitengineerings.com"
         canonicalPath="/about"
-        keywords="about Orbit Engineering Solutions, Orbit Engineering Solutions history, Orbit Engineering Group, water engineering company Bhopal, ISO certified water treatment company, Orbit Engineering Solutions mission vision, orbit engineering about, orbit bhopal about, instrumentation company Bhopal, solar energy company Bhopal, orbit engineering solutions about us, orbit engineering about us"
+        keywords="about Orbit Engineering Solutions, Orbit Engineering Solutions history, Orbit Engineering Group, water engineering company Bhopal, ISO certified water treatment company, Orbit Engineering Solutions mission vision, orbit engineering about, orbit bhopal about, instrumentation company Bhopal, solar energy company Bhopal, orbit engineering solutions about us, orbit engineering about us, service@orbitengineerings.com, +91 9039075049"
       />
       {/* Hidden H1 for SEO */}
       <h1 className="sr-only">About Orbit Engineering Solutions Bhopal | Innovating water infrastructure since 1998 with advanced engineering and technology</h1>
@@ -463,6 +463,7 @@ export default function AboutPage() {
               <h3 className="font-semibold text-gray-900 mb-2">Phone</h3>
               <div className="text-gray-600 text-sm space-y-1">
                 <p><a href="tel:7024128029" className="hover:text-[#0073bc] transition-colors">+91 70241 28029</a></p>
+                <p><a href="tel:9039075049" className="hover:text-[#0073bc] transition-colors">+91 9039075049</a></p>
                 <p><a href="tel:+917440969201" className="hover:text-[#0073bc] transition-colors">+91 7440969201</a></p>
                 <p><a href="tel:9893091450" className="hover:text-[#0073bc] transition-colors">+91 98930 91450</a></p>
               </div>
@@ -475,6 +476,7 @@ export default function AboutPage() {
               <h3 className="font-semibold text-gray-900 mb-2">Email</h3>
               <div className="text-gray-600 text-sm space-y-1">
                 <p><a href="mailto:info@orbitengineerings.com" className="hover:text-[#0073bc] transition-colors font-medium">info@orbitengineerings.com</a></p>
+                <p><a href="mailto:service@orbitengineerings.com" className="hover:text-[#0073bc] transition-colors font-medium">service@orbitengineerings.com</a></p>
                 <p><a href="mailto:vijaytiwari@orbitengineerings.com" className="hover:text-[#0073bc] transition-colors">vijaytiwari@orbitengineerings.com</a></p>
                 <p><a href="mailto:sales@orbitengineerings.com" className="hover:text-[#0073bc] transition-colors">sales@orbitengineerings.com</a></p>
               </div>
