@@ -25,9 +25,9 @@ export default function ContactPage() {
     <div className="min-h-screen bg-gray-50 overflow-x-hidden">
       <SEO
         title="Contact Orbit Engineering Solutions Bhopal | Free Consultation for Water Treatment & Automation"
-        description="Contact Orbit Engineering Solutions for water treatment, SCADA & PLC automation needs. Working Office: Shalimar Enclave, E3 Arera Colony, Bhopal – 462016. Head Office: E-45, Pride City, Katara Hills, Bhopal, Madhya Pradesh, 462043. Phone: +91 70241 28029. Email: info@orbitengineerings.com"
+        description="Contact Orbit Engineering Solutions for water treatment, SCADA & PLC automation needs. Phone: +91 70241 28029, +91 90390 75049. Email: info@orbitengineerings.com, service@orbitengineerings.com"
         canonicalPath="/contact"
-        keywords="contact Orbit Engineering Solutions, Orbit Engineering Solutions Bhopal address, Orbit Engineering Bhopal address, orbit engineering contact number, orbit engineering phone number, water treatment consultation Bhopal, SCADA automation quote, orbitengineerings contact, orbit engineering solutions contact, orbit bhopal contact, orbit bhopal office, orbit engineering solutions phone, orbit engineering solutions email, info@orbitengineerings.com"
+        keywords="contact Orbit Engineering Solutions, Orbit Engineering Solutions Bhopal address, Orbit Engineering Bhopal address, orbit engineering contact number, orbit engineering phone number, water treatment consultation Bhopal, SCADA automation quote, orbitengineerings contact, orbit engineering solutions contact, orbit bhopal contact, orbit bhopal office, orbit engineering solutions phone, orbit engineering solutions email, info@orbitengineerings.com, service@orbitengineerings.com, +91 9039075049"
       />
       {/* Hidden H1 for SEO */}
       <h1 className="sr-only">Contact Orbit Engineering Solutions Bhopal | Office address, phone numbers, and email for water treatment experts</h1>
@@ -74,6 +74,7 @@ export default function ContactPage() {
                     <h3 className="font-semibold text-gray-900 mb-1">Email</h3>
                     <div className="text-gray-600 space-y-1">
                       <div><a href="mailto:info@orbitengineerings.com" className="hover:text-[#0073bc] transition-colors font-medium">info@orbitengineerings.com</a></div>
+                      <div><a href="mailto:service@orbitengineerings.com" className="hover:text-[#0073bc] transition-colors font-medium">service@orbitengineerings.com</a></div>
                       <div><a href="mailto:vijaytiwari@orbitengineerings.com" className="hover:text-[#0073bc] transition-colors">vijaytiwari@orbitengineerings.com</a></div>
                       <div><a href="mailto:sales@orbitengineerings.com" className="hover:text-[#0073bc] transition-colors">sales@orbitengineerings.com</a></div>
                     </div>
@@ -88,6 +89,7 @@ export default function ContactPage() {
                     <h3 className="font-semibold text-gray-900 mb-1">Phone</h3>
                     <div className="text-gray-600 space-y-1">
                       <div><a href="tel:7024128029" className="hover:text-[#0073bc] transition-colors">+91 70241 28029</a></div>
+                      <div><a href="tel:9039075049" className="hover:text-[#0073bc] transition-colors">+91 9039075049</a></div>
                       <div><a href="tel:+917440969201" className="hover:text-[#0073bc] transition-colors">+91 7440969201</a></div>
                       <div><a href="tel:9893091450" className="hover:text-[#0073bc] transition-colors">+91 98930 91450</a></div>
                     </div>

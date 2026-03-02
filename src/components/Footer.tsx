@@ -118,15 +118,27 @@ export default function Footer({ onNavigate }: FooterProps) {
                   </a>
                 </div>
               </li>
-              <li className="flex items-center space-x-3">
-                <Phone className="h-5 w-5 text-[#0073bc] flex-shrink-0" />
-                <a href="tel:7024128029" className="text-sm hover:text-[#0073bc] transition-colors">+91 70241 28029</a>
+              <li className="flex items-start space-x-3">
+                <Phone className="h-5 w-5 text-[#0073bc] flex-shrink-0 mt-0.5" />
+                <div className="space-y-1">
+                  <div><a href="tel:7024128029" className="text-sm hover:text-[#0073bc] transition-colors">+91 70241 28029</a></div>
+                  <div><a href="tel:9039075049" className="text-sm hover:text-[#0073bc] transition-colors">+91 9039075049</a></div>
+                </div>
               </li>
-              <li className="flex items-center space-x-3">
-                <Mail className="h-5 w-5 text-[#0073bc] flex-shrink-0" />
-                <a href="mailto:info@orbitengineerings.com" className="text-sm text-gray-400 hover:text-[#0073bc] transition-colors">
-                  info@orbitengineerings.com
-                </a>
+              <li className="flex items-start space-x-3">
+                <Mail className="h-5 w-5 text-[#0073bc] flex-shrink-0 mt-0.5" />
+                <div className="space-y-1">
+                  <div>
+                    <a href="mailto:info@orbitengineerings.com" className="text-sm text-gray-400 hover:text-[#0073bc] transition-colors">
+                      info@orbitengineerings.com
+                    </a>
+                  </div>
+                  <div>
+                    <a href="mailto:service@orbitengineerings.com" className="text-sm text-gray-400 hover:text-[#0073bc] transition-colors">
+                      service@orbitengineerings.com
+                    </a>
+                  </div>
+                </div>
               </li>
             </ul>
           </div>
