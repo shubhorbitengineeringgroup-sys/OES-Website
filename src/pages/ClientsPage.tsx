@@ -119,6 +119,8 @@ export default function ClientsPage() {
                   'Indian Railways',
                   'Laxmi Civil Engineering',
                   'OM Construction',
+                  'UAD Amrut 2.0-OMKAR PRASAD BARYA',
+                  'UAD Amrut 2.0-DILIP PATIDAR THEKEDAR',
 
                   'Indore Municipal Corporation',
                   "Larsen & Toubro's",
@@ -146,6 +148,8 @@ export default function ClientsPage() {
                   'Indian Railways': indianRailways,
                   'Laxmi Civil Engineering': laxmiCivilEngineering,
                   'OM Construction': omConstruction,
+                  'UAD Amrut 2.0-OMKAR PRASAD BARYA': bharatSarkar,
+                  'UAD Amrut 2.0-DILIP PATIDAR THEKEDAR': bharatSarkar,
 
                   'Indore Municipal Corporation': indoreMunicipal,
                   "Larsen & Toubro's": larsenToubro,

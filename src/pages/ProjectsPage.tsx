@@ -81,7 +81,7 @@ export default function ProjectsPage({ initialFilter = 'all', onNavigate }: Proj
     {
       name: 'Gandhisagar Package 2',
       description: 'Multi-village water supply scheme automation',
-      client: 'MP Jal Nigam - Dilip Buildcon',
+      client: 'MP Jal Nigam',
       location: 'District Neemach',
       status: 'Ongoing',
       logo: mpJalNigamLogo
@@ -89,7 +89,7 @@ export default function ProjectsPage({ initialFilter = 'all', onNavigate }: Proj
     {
       name: 'Beohari Multi-Village Scheme',
       description: 'Comprehensive village water management system',
-      client: 'MP Jal Nigam - Tejas Construction',
+      client: 'MP Jal Nigam',
       location: 'Shahdol',
       status: 'Ongoing',
       logo: mpJalNigamLogo
@@ -97,7 +97,7 @@ export default function ProjectsPage({ initialFilter = 'all', onNavigate }: Proj
     {
       name: 'Rewa Bansagar Scheme',
       description: 'Large-scale water distribution automation',
-      client: 'MP Jal Nigam - Dilip Buildcon',
+      client: 'MP Jal Nigam',
       location: 'District Rewa',
       status: 'Ongoing',
       logo: mpJalNigamLogo
@@ -105,7 +105,7 @@ export default function ProjectsPage({ initialFilter = 'all', onNavigate }: Proj
     {
       name: 'Pahargarh Multi-Village Scheme',
       description: 'Rural water supply automation project',
-      client: 'MP Jal Nigam - KNK Projects',
+      client: 'MP Jal Nigam',
       location: 'District Rajgarh',
       status: 'Ongoing',
       logo: mpJalNigamLogo
@@ -113,7 +113,7 @@ export default function ProjectsPage({ initialFilter = 'all', onNavigate }: Proj
     {
       name: 'Narmada Gabhir Multi-Village Scheme',
       description: 'Advanced water management for multiple villages',
-      client: 'MP Jal Nigam - Dilip Buildcon',
+      client: 'MP Jal Nigam',
       location: 'District Ujjain',
       status: 'Ongoing',
       logo: mpJalNigamLogo
@@ -121,7 +121,7 @@ export default function ProjectsPage({ initialFilter = 'all', onNavigate }: Proj
     {
       name: 'Gohad Water Supply Scheme',
       description: 'Modern water supply system with full automation',
-      client: 'MPUDCL Bhopal - Shree Contractor',
+      client: 'MPUDCL Bhopal',
       location: 'Madhya Pradesh',
       status: 'Ongoing',
       logo: mpudclLogo
@@ -129,7 +129,7 @@ export default function ProjectsPage({ initialFilter = 'all', onNavigate }: Proj
     {
       name: 'Bua Bichhiya Water Supply Project',
       description: 'Advanced water management for multiple villages',
-      client: 'UAD Amrut 2.0-OMKAR PRASAD BARYA',
+      client: 'UAD Amrut 2.0',
       location: 'District Mandla',
       status: 'Ongoing',
       logo: mpudclLogo
@@ -137,7 +137,7 @@ export default function ProjectsPage({ initialFilter = 'all', onNavigate }: Proj
     {
       name: 'Mohgaon Water Supply Project',
       description: 'Modern water supply system with full automation',
-      client: 'UAD Amrut 2.0-DILIP PATIDAR THEKEDAR',
+      client: 'UAD Amrut 2.0',
       location: 'District Chhindwara',
       status: 'Ongoing',
       logo: mpudclLogo
