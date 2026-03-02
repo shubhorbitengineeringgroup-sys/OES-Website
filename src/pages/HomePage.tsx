@@ -294,14 +294,14 @@ export default function HomePage({ onNavigate }: HomePageProps) {
         <HeroBackgroundSlider />
         <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-            <div className="max-w-3xl lg:pr-10">
+            <div className="w-full lg:pr-4">
               <div className="mb-6 md:mb-8">
                 <motion.h2
                   className="text-[2.2rem] sm:text-4xl md:text-5xl lg:text-[3.8rem] font-extrabold mb-4 leading-[1.3] md:leading-[1.15] drop-shadow-2xl tracking-tight text-white flex flex-col items-start gap-y-1 md:gap-y-2"
                 >
                   {/* Line 1 */}
                   <span className="flex flex-wrap gap-x-2 lg:gap-x-3">
-                    {"Water Tech for a".split(" ").map((word, i) => (
+                    {"Advanced Water Treatment Solutions for a".split(" ").map((word, i) => (
                       <motion.span
                         key={`l1-${i}`}
                         initial={{ opacity: 0, y: 30, rotateX: -45 }}

@@ -6,9 +6,11 @@ import heroBg from '../assets/products/hero-bg.jpg';
 import solar from '../assets/Solar_.jpg';
 import transformer from '../assets/transformer_.jpg';
 import wtp1 from '../assets/wtp_hero.jpeg';
-import wtp2 from '../assets/wtp__.jpg';
+import wtp2 from '../assets/wtp__.png';
+import wtp3 from '../assets/wtp-1.jpg';
+import wtp4 from '../assets/wtp.jpeg';
 
-const images = [heroBg, solar, transformer, wtp1, wtp2];
+const images = [heroBg, solar, transformer, wtp1, wtp2, wtp3, wtp4];
 
 export default function HeroBackgroundSlider() {
     const [index, setIndex] = useState(0);
