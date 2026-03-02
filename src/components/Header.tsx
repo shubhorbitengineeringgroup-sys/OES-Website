@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { Menu, X, ChevronDown, Waves, Activity, Settings, Cpu, Camera, Wrench, Gauge, Droplets, Grid, Zap, Sun, RotateCw, FlaskConical, Anchor } from 'lucide-react';
-import logo2 from '../assets/Orbit LOGO.png';
+import logo2 from '../assets/Orbit logo_1.png';
 
 interface HeaderProps {
   onNavigate: (page: string) => void;
@@ -127,7 +127,11 @@ export default function Header({ onNavigate, currentPage }: HeaderProps) {
               onClick={() => onNavigate('home')}
               aria-label="Go to home"
             >
-              <img src={logo2} alt="Orbit Logo" className="h-[74px] w-auto animate-fade-in" />
+              <img src={logo2} alt="Orbit Logo" className="h-12 sm:h-16 w-auto animate-fade-in" />
+              <div className="flex flex-col ml-3 text-left">
+                <span className="text-[#009FC6] font-bold text-lg sm:text-xl leading-tight">ORBIT</span>
+                <span className="text-[#009FC6] font-semibold text-[10px] sm:text-xs tracking-wider">ENGINEERING SOLUTIONS</span>
+              </div>
             </button>
           </div>
 
