@@ -374,9 +374,7 @@ export default function AboutPage() {
                           style={{ backgroundColor: accent }}
                         />
                       ))}
-                      <span className="text-[10px] font-black uppercase tracking-[0.3em] ml-2 text-gray-400">
-                        Orbit Elite
-                      </span>
+
                     </div>
                   </div>
                 </motion.div>
