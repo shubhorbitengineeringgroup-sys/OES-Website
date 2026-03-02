@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 // Import images
 import heroBg from '../assets/products/hero-bg.jpg';
-import solar from '../assets/Solar_.jpg';
+import solar from '../assets/Solar_.png';
 import transformer from '../assets/transformer_.jpg';
 import wtp1 from '../assets/wtp_hero.jpeg';
 import wtp2 from '../assets/wtp__.png';
