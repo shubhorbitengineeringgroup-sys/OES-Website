@@ -324,7 +324,7 @@ export default function ClientsPage() {
                       className="text-[#0073bc] font-medium block text-sm hover:text-[#005a94] transition-colors"
                     >
                       Working Office: Flat No.2, Block 12, Shalimar Enclave, Bhopal<br />
-                      Head: B-32/A Priyadershini Society, Bagsewaniya, Bhopal
+                      Head: GF, E-45, PRIDE CITY, KATARA HILLS, BHOPAL
                     </a>
                   </div>
                 </div>
