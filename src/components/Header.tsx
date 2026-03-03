@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import { Menu, X, ChevronDown, Waves, Activity, Settings, Cpu, Camera, Wrench, Gauge, Droplets, Grid, Zap, Sun, RotateCw, FlaskConical, Anchor } from 'lucide-react';
 import logo2 from '../assets/Orbit logo_1.png';
 
@@ -128,9 +129,27 @@ export default function Header({ onNavigate, currentPage }: HeaderProps) {
               aria-label="Go to home"
             >
               <img src={logo2} alt="Orbit Logo" className="h-12 sm:h-16 w-auto animate-fade-in" />
-              <div className="flex flex-col ml-3 text-left">
-                <span className="text-[#009FC6] font-bold text-lg sm:text-xl leading-tight">ORBIT</span>
-                <span className="text-[#009FC6] font-semibold text-[10px] sm:text-xs tracking-wider">ENGINEERING SOLUTIONS</span>
+              <div className="flex flex-col ml-3 text-left relative overflow-hidden group/logo-text px-1">
+                <motion.div
+                  initial={{ opacity: 0, x: -20, filter: "blur(10px)" }}
+                  animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+                  transition={{ duration: 1, ease: "easeOut" }}
+                  className="flex flex-col relative"
+                >
+                  <span className="text-[#0073bc] font-black text-lg sm:text-xl lg:text-2xl leading-tight tracking-tight drop-shadow-[0_4px_10px_rgba(0,115,188,0.2)] group-hover/logo-text:text-[#009FC6] transition-colors duration-500">
+                    ORBIT
+                  </span>
+                  <span className="text-[#009FC6] font-extrabold text-[9.5px] sm:text-[11px] lg:text-[13px] tracking-[0.1em] sm:tracking-[0.18em] uppercase leading-none mt-0.5 group-hover/logo-text:text-[#0073bc] transition-colors duration-500">
+                    Engineering Solutions
+                  </span>
+                </motion.div>
+
+                {/* Glossy sweep effect - matches Greener/Resilient highlight */}
+                <motion.div
+                  animate={{ left: ['-150%', '150%'] }}
+                  transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", repeatDelay: 3 }}
+                  className="absolute inset-0 w-1/2 bg-gradient-to-r from-transparent via-white/60 to-transparent -skew-x-12 pointer-events-none z-10"
+                />
               </div>
             </button>
           </div>
