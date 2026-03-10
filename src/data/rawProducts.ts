@@ -72,6 +72,8 @@ import monoPercHalfCutModule from '../assets/products/mono-perc-half-cut-module.
 import monoPercBifacialModule from '../assets/products/mono-perc-bifacial-module.jpeg';
 import sdvImage from '../assets/products/sdv.jpg';
 import sdvCatalogue from '../assets/SDV_Orbit.pdf';
+import floatingSolarPlant from '../assets/products/floating image.jpg';
+import floatingSolarStructure from '../assets/products/floating structure.jpg';
 
 
 // Actuator Images - Multi Turn
@@ -1187,6 +1189,39 @@ export const RAW_SUB_PRODUCTS: RawGroup[] = [
           'Short Circuit Current (Isc): 9 – 14 A',
           'Glass: Toughened / Tempered Glass (3.2 mm)',
           'Frame Material: Anodized Aluminium'
+        ]
+      }
+    ]
+  },
+  {
+    category: 'Floating Solar',
+    items: [
+      {
+        name: 'Floating Solar Power Plant',
+        image: floatingSolarPlant,
+        paragraphs: [
+          'Floating Solar Power Plants are installed on water bodies using specially designed HDPE floating structures. These systems support high-efficiency solar modules and convert sunlight into clean electricity while saving valuable land resources.'
+        ],
+        bullets: [
+          'Efficient use of water bodies',
+          'Reduced water evaporation',
+          'Higher efficiency due to cooling effect',
+          'Eco-friendly and sustainable',
+          'Easy installation and maintenance'
+        ]
+      },
+      {
+        name: 'Floating Solar Structure',
+        image: floatingSolarStructure,
+        paragraphs: [
+          'Floating solar structures are specially engineered platforms made from durable HDPE materials that support solar panels over water. They are designed to withstand environmental conditions and provide long-term stability for solar installations.'
+        ],
+        bullets: [
+          'Durable HDPE material',
+          'UV-resistant and corrosion-proof',
+          'Modular and scalable design',
+          'High load-carrying capacity',
+          'Environmentally safe'
         ]
       }
     ]

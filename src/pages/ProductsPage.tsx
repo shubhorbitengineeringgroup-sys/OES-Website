@@ -40,6 +40,7 @@ import imgChlorinator from '../assets/products/chlorinator.jpg';
 import imgChlorinsitu from '../assets/products/electrolysis-system-chlorinsitu.jpeg';
 import imgSdv from '../assets/products/sdv.jpg';
 import imgScour from '../assets/products/scour-monitoring.jpeg';
+import imgFloatingSolar from '../assets/products/floating image.jpg';
 
 interface ProductsPageProps { onNavigate?: (page: string) => void; }
 
@@ -178,10 +179,11 @@ const CATEGORIES: Category[] = [
     accent: 'yellow',
     accentHex: '#d97706',
     route: 'solar',
-    tagline: 'Smart solar street lights & Mono/Poly/PERC/Bifacial PV modules',
+    tagline: 'Smart solar street lights, Mono/Poly/PERC modules & Floating solar structures',
     items: [
       { name: 'Solar Street Lights', img: imgSolarSt, route: 'solar' },
       { name: 'Solar PV Modules', img: imgSolarPanel, route: 'solar-modules' },
+      { name: 'Floating Solar', img: imgFloatingSolar, route: 'solar' },
     ],
   },
   {

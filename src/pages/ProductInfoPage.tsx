@@ -537,7 +537,7 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
     },
     'solar': {
       title: 'Solar Solutions',
-      description: 'Comprehensive solar energy solutions including high-performance solar modules and smart solar lighting systems.',
+      description: 'Comprehensive solar energy solutions including high-performance solar modules, smart solar lighting systems, and innovative floating solar structures.',
       icon: Sun,
       features: [
         'High-efficiency monocrystalline/polycrystalline PV modules',
@@ -545,6 +545,7 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
         'Robust anodized aluminum frames',
         'Long life span (up to 25 years)',
         'Weatherproof (IP65/IP67) designs',
+        'Advanced HDPE floating platforms for water bodies',
         'Sustainable and cost-effective energy'
       ],
       applications: [
@@ -799,6 +800,8 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
     displayItems = [...getItemsByCategory('Multi Turn Actuators'), ...getItemsByCategory('Part Turn Actuators')];
   } else if (variant === 'pressure') {
     displayItems = [...getItemsByCategory('Pressure Transmitter'), ...getItemsByCategory('Pressure Sensor')];
+  } else if (variant === 'solar') {
+    displayItems = [...getItemsByCategory('Solar Lighting'), ...getItemsByCategory('Solar Modules'), ...getItemsByCategory('Floating Solar')];
   }
 
   const productSchema = {
@@ -907,6 +910,9 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
             {renderGallery('Solar Lighting', 'Smart automatic street lights and monitoring systems', 'Solar Lighting', true)}
             <div className="mt-20">
               {renderGallery('Solar Modules', 'Advanced Mono, Poly, PERC and Bifacial modules for all applications', 'Solar Modules', true)}
+            </div>
+            <div className="mt-20">
+              {renderGallery('Floating Solar', 'Innovative floating solar solutions for water bodies', 'Floating Solar', true)}
             </div>
           </div>
         </section>
