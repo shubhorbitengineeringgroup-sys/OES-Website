@@ -8,10 +8,10 @@ import { useNavigate } from 'react-router-dom';
 import orbitBrochure from '../assets/Orbit brocher.pdf_.pdf';
 
 // ── All real product images (no flat icon folder used here) ───
-import imgWTP from '../assets/icon/Water Treatment Plants.png';
-import imgSTP from '../assets/icon/Sewage Treatment Plants.png';
-import imgRO from '../assets/icon/Reverse Osmosis Systems.png';
-import imgETP from '../assets/icon/Effluent Treatment Plants.png';
+import imgWTP from '../assets/products/wtp plant.jpg';
+import imgSTP from '../assets/products/stp plant.jpg';
+import imgRO from '../assets/products/ro.jpg';
+import imgETP from '../assets/products/etp plant.png';
 import imgPLC from '../assets/products/syncsys_plc.png';
 import imgScada from '../assets/products/Scada 2.png';
 import imgActuatorPT from '../assets/products/electric-part-turn-actuator-sp-1.png';
