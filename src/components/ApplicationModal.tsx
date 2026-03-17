@@ -87,11 +87,12 @@ export default function ApplicationModal({ open, onClose, position }: Props) {
         onClose();
         setStatusMessage(null);
       }, 3000);
-    } catch (err: any) {
-      console.error('EmailJS error', err);
+    } catch (err) {
+      const error = err as { status?: number; text?: string };
+      console.error('EmailJS error', error);
       if (!navigator.onLine) setStatusMessage('Network error — please check your internet connection.');
-      else if (err && err.status === 0) setStatusMessage('Email service not responding — try again later.');
-      else if (err && err.text) setStatusMessage(`Email service error — ${err.text}`);
+      else if (error && error.status === 0) setStatusMessage('Email service not responding — try again later.');
+      else if (error && error.text) setStatusMessage(`Email service error — ${error.text}`);
       else setStatusMessage('There was an error submitting your application. Please try again later.');
     } finally {
       setLoading(false);

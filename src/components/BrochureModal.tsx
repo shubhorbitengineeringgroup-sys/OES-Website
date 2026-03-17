@@ -59,7 +59,7 @@ export default function BrochureModal({ open, onClose, brochureUrl }: Props) {
             } else {
                 alert("There was a problem sending your request. Please try again.");
             }
-        } catch (error) {
+        } catch {
             alert("There was a network error. Please try again.");
         } finally {
             setLoading(false);

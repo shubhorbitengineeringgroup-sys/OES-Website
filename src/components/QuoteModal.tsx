@@ -46,7 +46,7 @@ export default function QuoteModal({ open, onClose, productName }: Props) {
             } else {
                 alert("There was a problem sending your request. Please try again.");
             }
-        } catch (error) {
+        } catch {
             alert("There was a network error. Please try again.");
         } finally {
             setLoading(false);

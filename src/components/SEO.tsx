@@ -5,7 +5,7 @@ interface SEOProps {
     description: string;
     keywords?: string;
     canonicalPath?: string;
-    jsonLd?: any;
+    jsonLd?: Record<string, unknown>;
 }
 
 export default function SEO({ title, description, keywords, canonicalPath, jsonLd }: SEOProps) {
@@ -64,8 +64,8 @@ export default function SEO({ title, description, keywords, canonicalPath, jsonL
 
         // --- JSON-LD Support ---
         if (jsonLd) {
-            let scriptId = 'ld-json-schema';
-            let oldScript = document.getElementById(scriptId);
+            const scriptId = 'ld-json-schema';
+            const oldScript = document.getElementById(scriptId);
             if (oldScript) oldScript.remove();
 
             const script = document.createElement('script');

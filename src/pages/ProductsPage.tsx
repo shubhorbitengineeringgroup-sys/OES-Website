@@ -40,7 +40,7 @@ import imgChlorinator from '../assets/products/chlorinator.jpg';
 import imgChlorinsitu from '../assets/products/electrolysis-system-chlorinsitu.jpeg';
 import imgSdv from '../assets/products/sdv.jpg';
 import imgScour from '../assets/products/scour-monitoring.jpeg';
-import imgFloatingSolar from '../assets/products/floating image.jpg';
+import imgFloatingSolar from '../assets/products/floating-solar.jpeg';
 
 interface ProductsPageProps { onNavigate?: (page: string) => void; }
 

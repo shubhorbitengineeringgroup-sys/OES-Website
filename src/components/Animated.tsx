@@ -83,7 +83,7 @@ export const AnimatedHeading: React.FC<{
   className?: string;
   children?: React.ReactNode;
 }> = ({ level = 2, className = '', children }) => {
-  const Tag = `h${level}` as any;
+  const Tag = `h${level}` as keyof JSX.IntrinsicElements;
   return (
     <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={fadeUp}>
       <Tag className={className}>{children}</Tag>

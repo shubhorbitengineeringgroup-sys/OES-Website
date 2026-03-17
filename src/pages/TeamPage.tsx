@@ -71,7 +71,17 @@ function OfficeImages() {
 }
 
 export default function TeamPage() {
-  const team = [
+  interface TeamMember {
+    name: string;
+    role: string;
+    experience: string;
+    email: string;
+    description: string;
+    photo: string;
+    imagePosition?: string;
+  }
+
+  const team: TeamMember[] = [
     {
       name: 'Manoj Tiwari',
       role: 'Managing Director',
@@ -157,7 +167,6 @@ export default function TeamPage() {
           </div>
 
           <MotionStagger className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto" stagger={0.06}>
-            {/* @ts-ignore */}
             {team.map((member, index) => (
               <motion.div
                 key={index}
@@ -176,7 +185,7 @@ export default function TeamPage() {
                       alt={`${member.name} - ${member.role} at Orbit Engineering Solutions Bhopal`}
                       className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
                       loading="lazy"
-                      style={{ objectPosition: (member as any).imagePosition || 'center' }}
+                      style={{ objectPosition: member.imagePosition || 'center' }}
                     />
                   </div>
                 ) : (

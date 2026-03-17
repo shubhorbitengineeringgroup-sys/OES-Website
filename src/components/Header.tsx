@@ -8,7 +8,7 @@ interface HeaderProps {
   currentPage: string;
 }
 
-const FlowMeterIcon = (props: any) => (
+const FlowMeterIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
     {...props}
     xmlns="http://www.w3.org/2000/svg"

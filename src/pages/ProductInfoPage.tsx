@@ -18,7 +18,7 @@ interface ProductInfoPageProps {
   onNavigate?: (page: string) => void;
 }
 
-const FlowMeterIcon = (props: any) => (
+const FlowMeterIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
     {...props}
     xmlns="http://www.w3.org/2000/svg"
@@ -46,7 +46,7 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
   const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
   const [isBrochureModalOpen, setIsBrochureModalOpen] = useState(false);
   const [quoteProductName, setQuoteProductName] = useState('');
-  const [selectedProduct, setSelectedProduct] = useState<any>(null); // State for the floating details modal
+  const [selectedProduct, setSelectedProduct] = useState<null | { name: string; image: string; paragraphs?: string[]; bullets?: string[]; badge?: string; datasheetUrl?: string }>(null); // State for the floating details modal
 
   // Lock body scroll when modal is open (iOS-safe approach)
   useEffect(() => {
@@ -156,7 +156,7 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
   const config: Record<string, {
     title: string;
     description: string;
-    icon: any;
+    icon: React.ElementType;
     features: string[];
     applications: string[];
     specifications: Array<{ parameter: string; value: string }>;
