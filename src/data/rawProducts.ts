@@ -72,8 +72,8 @@ import monoPercHalfCutModule from '../assets/products/mono-perc-half-cut-module.
 import monoPercBifacialModule from '../assets/products/mono-perc-bifacial-module.jpeg';
 import sdvImage from '../assets/products/sdv.jpg';
 import sdvCatalogue from '../assets/SDV_Orbit.pdf';
-import floatingSolarPlant from '../assets/products/floating image.jpg';
-import floatingSolarStructure from '../assets/products/floating structure.jpg';
+import floatingSolarPlant from '../assets/products/floating-solar.jpeg';
+import floatingSolarStructure from '../assets/products/floating-solar-structure.jpeg';
 
 
 // Actuator Images - Multi Turn
