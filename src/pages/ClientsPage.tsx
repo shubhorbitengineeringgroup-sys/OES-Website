@@ -272,8 +272,8 @@ export default function ClientsPage() {
       </section>
 
       {/* Contact slice like reference */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-10 sm:py-16">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
           <div className="text-center mb-10">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900">We are always ready to help you</h2>
             <p className="text-xl text-gray-700">and answer your questions</p>
@@ -282,7 +282,7 @@ export default function ClientsPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Left contact cards */}
             <div className="space-y-6">
-              <div className="bg-white border border-blue-100 rounded-2xl p-6 shadow-sm contact-item">
+              <div className="bg-white border border-blue-100 rounded-2xl p-4 sm:p-6 shadow-sm contact-item">
                 <div className="flex items-start gap-4">
                   <div className="bg-blue-50 text-[#0073bc] p-3 rounded-xl"><Phone className="h-6 w-6" /></div>
                   <div>
@@ -297,22 +297,22 @@ export default function ClientsPage() {
                   </div>
                 </div>
               </div>
-              <div className="bg-white border border-blue-100 rounded-2xl p-6 shadow-sm contact-item">
-                <div className="flex items-start gap-4">
-                  <div className="bg-blue-50 text-[#0073bc] p-3 rounded-xl"><Mail className="h-6 w-6" /></div>
-                  <div>
+              <div className="bg-white border border-blue-100 rounded-2xl p-4 sm:p-6 shadow-sm contact-item">
+                <div className="flex items-start gap-3 sm:gap-4" style={{ minWidth: 0 }}>
+                  <div className="bg-blue-50 text-[#0073bc] p-2 sm:p-3 rounded-xl flex-shrink-0"><Mail className="h-5 w-5 sm:h-6 sm:w-6" /></div>
+                  <div className="min-w-0 flex-1">
                     <h3 className="font-semibold text-gray-900">Email</h3>
                     <p className="text-gray-600 text-sm mb-2">Send us an email for detailed inquiries</p>
-                    <div className="flex flex-col space-y-1">
-                      <a href="mailto:info@orbitengineerings.com" className="text-[#0073bc] font-medium hover:underline">info@orbitengineerings.com</a>
-                      <a href="mailto:service@orbitengineerings.com" className="text-[#0073bc] font-medium hover:underline">service@orbitengineerings.com</a>
-                      <a href="mailto:vijaytiwari@orbitengineerings.com" className="text-[#0073bc] font-medium hover:underline">vijaytiwari@orbitengineerings.com</a>
-                      <a href="mailto:sales@orbitengineerings.com" className="text-[#0073bc] font-medium hover:underline">sales@orbitengineerings.com</a>
+                    <div className="flex flex-col space-y-1" style={{ overflowWrap: 'break-word', wordBreak: 'break-word', minWidth: 0 }}>
+                      <a href="mailto:info@orbitengineerings.com" className="text-[#0073bc] font-medium hover:underline text-sm sm:text-base break-all sm:break-normal">info@orbitengineerings.com</a>
+                      <a href="mailto:service@orbitengineerings.com" className="text-[#0073bc] font-medium hover:underline text-sm sm:text-base break-all sm:break-normal">service@orbitengineerings.com</a>
+                      <a href="mailto:vijaytiwari@orbitengineerings.com" className="text-[#0073bc] font-medium hover:underline text-sm sm:text-base break-all sm:break-normal">vijaytiwari@orbitengineerings.com</a>
+                      <a href="mailto:sales@orbitengineerings.com" className="text-[#0073bc] font-medium hover:underline text-sm sm:text-base break-all sm:break-normal">sales@orbitengineerings.com</a>
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="bg-white border border-blue-100 rounded-2xl p-6 shadow-sm contact-item">
+              <div className="bg-white border border-blue-100 rounded-2xl p-4 sm:p-6 shadow-sm contact-item">
                 <div className="flex items-start gap-4">
                   <div className="bg-blue-50 text-[#0073bc] p-3 rounded-xl"><MapPin className="h-6 w-6" /></div>
                   <div>
@@ -329,7 +329,7 @@ export default function ClientsPage() {
                   </div>
                 </div>
               </div>
-              <div className="bg-white border border-blue-100 rounded-2xl p-6 shadow-sm contact-item">
+              <div className="bg-white border border-blue-100 rounded-2xl p-4 sm:p-6 shadow-sm contact-item">
                 <div className="flex items-start gap-4">
                   <div className="bg-blue-50 text-[#0073bc] p-3 rounded-xl"><Clock className="h-6 w-6" /></div>
                   <div>
