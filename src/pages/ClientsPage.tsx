@@ -316,16 +316,28 @@ export default function ClientsPage() {
                 <div className="flex items-start gap-4">
                   <div className="bg-blue-50 text-[#0073bc] p-3 rounded-xl"><MapPin className="h-6 w-6" /></div>
                   <div>
-                    <h3 className="font-semibold text-gray-900">Address</h3>
-                    <p className="text-gray-600 text-sm mb-2">Visit our office for consultations</p>
-                    <a
-                      href="https://maps.google.com/?q=Shalimar+Enclave,+E-3+Area+Colony+Bhopal"
-                      target="_blank" rel="noreferrer"
-                      className="text-[#0073bc] font-medium block text-sm hover:text-[#005a94] transition-colors"
-                    >
-                      Working Office: Flat No.2, Block 12, Shalimar Enclave, Bhopal<br />
-                      Head: E-45, Pride City, Katara Hills, Bhopal
-                    </a>
+                    <h3 className="font-semibold text-gray-900">Address Details</h3>
+                    <p className="text-gray-600 text-sm mb-2">Visit our offices for consultations</p>
+                    <div className="text-sm space-y-1.5 text-gray-700">
+                      <div>
+                        <strong className="text-gray-900">Working Office:</strong>{' '}
+                        <a href="https://www.google.com/maps?q=23.216892,77.424965" target="_blank" rel="noreferrer" className="text-[#0073bc] hover:underline">
+                          Root Space, Char Imli, Mannipuram, Bhopal 462016 MP
+                        </a>
+                      </div>
+                      <div>
+                        <strong className="text-gray-900">Branch Office:</strong>{' '}
+                        <a href="https://maps.google.com/?q=Flat+No.2,+Block+12,+Shalimar+Enclave,+E3+Arera+Colony,+Bhopal,+462016" target="_blank" rel="noreferrer" className="text-[#0073bc] hover:underline">
+                          Flat No.2, Block 12, Shalimar Enclave, Bhopal 462016
+                        </a>
+                      </div>
+                      <div>
+                        <strong className="text-gray-900">Head Office:</strong>{' '}
+                        <a href="https://maps.google.com/?q=E-45,+Pride+City,+Katara+Hills,+Bhopal,+Madhya+Pradesh,+462043" target="_blank" rel="noreferrer" className="text-[#0073bc] hover:underline">
+                          E-45, Pride City, Katara Hills, Bhopal 462043
+                        </a>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

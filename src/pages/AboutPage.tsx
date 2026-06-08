@@ -1,49 +1,148 @@
-import { Mail, Phone, MapPin } from 'lucide-react';
-import iconInnovation from '../assets/icon/Innovation-Driven.png';
-import iconProven from '../assets/icon/Proven Excellence.png';
-import iconQuality from '../assets/icon/Quality Assurance.png';
-import iconCommunity from '../assets/icon/Community Focus.png';
-import iconEndToEnd from '../assets/icon/End-to-End Solutions.png';
-import iconResults from '../assets/icon/Results Oriented.png';
-import subHeadingImage from '../assets/products/sub-heading.jpg';
+import { Mail, Phone, MapPin, Shield, Activity, Award, Leaf, Users, ChevronRight, Target, Globe, Cpu, Wrench, Server, TrendingUp, Coins } from 'lucide-react';
 import headingBg from '../assets/products/hero-section.jpg';
+import manojImg from '../assets/team/manoj-tiwari.jpeg';
+import vijayImg from '../assets/team/vijay-tiwari-2.jpg';
 import HeroSection from '../components/HeroSection';
 import { motion } from 'framer-motion';
 import { AnimatedHeading } from '../components/Animated';
 import SEO from '../components/SEO';
 import mapGif from '../assets/my_VisitedPlaces.gif';
+import { Link } from 'react-router-dom';
+
+// Department Banners
+import automationBanner from '../assets/team/automation_team_banner.png';
+import servicesBanner from '../assets/team/field_services_team_banner.png';
+import itBanner from '../assets/team/it_infrastructure_banner.png';
+import businessBanner from '../assets/team/business_operations_banner.png';
+import financeBanner from '../assets/team/finance_accounts_banner.png';
 
 export default function AboutPage() {
-  const whyChooseUs = [
+  const stats = [
     {
-      image: iconInnovation,
-      title: 'Innovation-Driven',
-      description: 'Pioneering cutting-edge water technology solutions with IoT, automation, and cloud-based monitoring systems'
+      value: '25+',
+      suffix: 'Years',
+      label: 'Legacy of Trust',
+      sub: 'Founded in 1998 in Bhopal'
     },
     {
-      image: iconProven,
-      title: 'Proven Excellence',
-      description: 'Over 15 years of experience delivering complex water infrastructure projects across India'
+      value: '₹200+',
+      suffix: 'Cr',
+      label: 'Project Portfolio',
+      sub: 'Turnkey public & industrial works'
     },
     {
-      image: iconQuality,
-      title: 'Quality Assurance',
-      description: 'ISO-certified processes ensuring the highest standards in design, installation, and maintenance'
+      value: '150+',
+      suffix: 'Projects',
+      label: 'Mega Schemes Delivered',
+      sub: 'WTP, STP, SCADA & Automation'
     },
     {
-      image: iconCommunity,
-      title: 'Community Focus',
-      description: 'Dedicated to serving rural and urban communities with sustainable water management solutions'
+      value: 'ISO',
+      suffix: '9001',
+      label: 'Quality Standards',
+      sub: 'Certified process assurance'
     },
     {
-      image: iconEndToEnd,
-      title: 'End-to-End Solutions',
-      description: 'Complete project lifecycle management from design and implementation to operation and maintenance'
+      value: 'Millions',
+      suffix: 'Lives',
+      label: 'Impacted with Pure Water',
+      sub: 'Pan-India rural & urban schemes'
+    }
+  ];
+
+  const coreValues = [
+    {
+      icon: <Shield className="h-8 w-8 text-blue-600" />,
+      title: 'Accountability & Integrity',
+      description: 'We hold ourselves to the highest standards, honoring every commitment made to our government, industrial, and community stakeholders. Transparency is our baseline.'
     },
     {
-      image: iconResults,
-      title: 'Results Oriented',
-      description: 'Committed to measurable outcomes that improve water access, quality, and efficiency'
+      icon: <Activity className="h-8 w-8 text-blue-600" />,
+      title: 'Technological Innovation',
+      description: 'Pioneering cutting-edge systems by integrating state-of-the-art PLCs, distributed RTUs, real-time cloud SCADA, and IoT remote monitoring platforms in public water networks.'
+    },
+    {
+      icon: <Award className="h-8 w-8 text-blue-600" />,
+      title: 'Excellence & Precision',
+      description: 'As an ISO 9001:2015 certified company, we ensure absolute precision across feasibility studies, detail engineering, components staging, and final field commission.'
+    },
+    {
+      icon: <Leaf className="h-8 w-8 text-blue-600" />,
+      title: 'Environmental Stewardship',
+      description: 'Driving the circular economy by delivering highly energy-efficient STP/ETP recycling plants, smart chlorinators, and eco-friendly solar-powered water schemes.'
+    },
+    {
+      icon: <Users className="h-8 w-8 text-blue-600" />,
+      title: 'Collaborative Synergy',
+      description: 'Bringing together site planners, hydrologists, electrical experts, and instrumentation specialists into a single unified workspace to solve the toughest water challenges.'
+    }
+  ];
+
+  const departments = [
+    {
+      name: 'Industrial Automation & Process Controls',
+      tagline: 'Precision control systems & smart plant automation',
+      banner: automationBanner,
+      icon: <Cpu className="h-6 w-6 text-blue-600" />,
+      focusAreas: [
+        'PLC Staging & Ladder/FBD Logic programming',
+        'SCADA HMI development & cloud telemetry integration',
+        'RTU network calibration & IoT system telemetry',
+        'Distributed flow & pressure instrumentation loops'
+      ],
+      iconBg: 'bg-blue-50'
+    },
+    {
+      name: 'Field Services & Project Execution',
+      tagline: 'On-site WTP/STP commissioning & lifecycle support',
+      banner: servicesBanner,
+      icon: <Wrench className="h-6 w-6 text-emerald-600" />,
+      focusAreas: [
+        'Turnkey water treatment systems erection & commissioning',
+        'Preventative Operations & Maintenance (O&M) scheduling',
+        'Electrical control panel assembly & cabling supervision',
+        'Emergency breakdown support & troubleshooting cycles'
+      ],
+      iconBg: 'bg-emerald-50'
+    },
+    {
+      name: 'Digital Infrastructure & Enterprise IT',
+      tagline: 'Secure server administration & telemetry cloud storage',
+      banner: itBanner,
+      icon: <Server className="h-6 w-6 text-indigo-600" />,
+      focusAreas: [
+        'Enterprise database administration for water flow telemetry',
+        'Corporate network security, firewalling & data audits',
+        'Digital system configurations & cloud-telemetry servers',
+        'Corporate helpdesk support & workplace digital tools'
+      ],
+      iconBg: 'bg-indigo-50'
+    },
+    {
+      name: 'Business Development & Operations Management',
+      tagline: 'Strategic bid procurement & client relationship management',
+      banner: businessBanner,
+      icon: <TrendingUp className="h-6 w-6 text-amber-600" />,
+      focusAreas: [
+        'Tender estimation & bidding for MPUDCL & Jal Nigam',
+        'Strategic vendor sourcing & material procurement networks',
+        'Project lifecycle scheduling & inter-department planning',
+        'Client relations management & strategic business execution'
+      ],
+      iconBg: 'bg-amber-50'
+    },
+    {
+      name: 'Finance, Accounts & Corporate Governance',
+      tagline: 'Fiduciary governance, invoices auditing & ISO compliance',
+      banner: financeBanner,
+      icon: <Coins className="h-6 w-6 text-rose-600" />,
+      focusAreas: [
+        'Project accounting, budgeting, and cost allocations',
+        'Audits management, tax compliance (GST) & ISO billing',
+        'Vendor account disbursements & contract auditing',
+        'Payroll administration & corporate governance compliance'
+      ],
+      iconBg: 'bg-rose-50'
     }
   ];
 
@@ -51,437 +150,566 @@ export default function AboutPage() {
     <div className="min-h-screen bg-gray-50 overflow-x-hidden">
       <SEO
         title="About Orbit Engineering Solutions | 25+ Years of Water Engineering & Instrumentation Excellence in Bhopal, India"
-        description="Discover Orbit Engineering Solutions' legacy since 1998. ISO 9001 certified water engineering in Bhopal specializing in WTP, STP, RO, ETP, SCADA, PLC automation & solar. Phone: +91 70241 28029, +91 9039075049. Email: info@orbitengineerings.com, service@orbitengineerings.com"
+        description="Discover Orbit Engineering Solutions' legacy since 1998. ISO 9001 certified water engineering in Bhopal specializing in WTP, STP, RO, ETP, SCADA, PLC automation & solar. Phone: +91 70241 28029, +91 9039075049. Email: info@orbitengineerings.com"
         canonicalPath="/about"
-        keywords="about Orbit Engineering Solutions, Orbit Engineering Solutions history, Orbit Engineering Group, water engineering company Bhopal, ISO certified water treatment company, Orbit Engineering Solutions mission vision, orbit engineering about, orbit bhopal about, instrumentation company Bhopal, solar energy company Bhopal, orbit engineering solutions about us, orbit engineering about us, service@orbitengineerings.com, +91 9039075049"
+        keywords="about Orbit Engineering Solutions, Orbit Engineering Solutions history, Orbit Engineering Group, water engineering company Bhopal, ISO certified water treatment company, Orbit Engineering Solutions mission vision, orbit engineering about, orbit bhopal about, instrumentation company Bhopal, solar energy company Bhopal, orbit engineering solutions about us, orbit engineering about us"
       />
       {/* Hidden H1 for SEO */}
       <h1 className="sr-only">About Orbit Engineering Solutions Bhopal | Innovating water infrastructure since 1998 with advanced engineering and technology</h1>
 
       <HeroSection title="About Orbit Engineering Solutions" subtitle="Pioneering water innovation for sustainable communities" />
 
-      <section className="py-12 md:py-24 bg-white overflow-hidden relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-
-          {/* ── Heading (Full Width Top) ── */}
-          <div className="mb-12 md:mb-16 text-center lg:text-left">
-            <h2 className="text-4xl md:text-6xl font-black text-gray-900 tracking-tighter leading-[1.2] md:leading-[1.1]">
-              <span className="flex flex-wrap justify-center lg:justify-start">
-                {"Pioneering Water Innovation".split("").map((char, i) => (
-                  <motion.span
-                    key={i}
-                    initial={{ opacity: 0, scale: 0.9, filter: 'blur(5px)' }}
-                    whileInView={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: i * 0.015, ease: "easeOut" }}
-                    className="inline-block"
-                  >
-                    {char === " " ? "\u00A0" : char}
-                  </motion.span>
-                ))}
+      {/* ── SECTION 1: WHAT WE BELIEVE & STATISTICS SHOWCASE ── */}
+      <section className="py-16 md:py-24 bg-white relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            {/* Left intro text (5 cols) */}
+            <div className="lg:col-span-5 space-y-6">
+              <span className="text-[12px] font-black uppercase tracking-[0.25em] text-[#0073bc] bg-blue-50 px-4 py-2 rounded-full inline-block">
+                ✦ Our Philosophy
               </span>
-              <span className="text-[#0073bc] relative flex flex-wrap justify-center lg:justify-start overflow-hidden mt-1 md:mt-2">
-                {"for a Sustainable Future".split("").map((char, i) => (
-                  <motion.span
-                    key={i}
-                    initial={{ opacity: 0, scale: 1.5, x: 20 }}
-                    whileInView={{ opacity: 1, scale: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.3, delay: 0.3 + (i * 0.015) }}
-                    className="inline-block z-10 relative text-[#0073bc]"
-                  >
-                    {char === " " ? "\u00A0" : char}
-                  </motion.span>
-                ))}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none z-20 mix-blend-overlay animate-shine" />
-              </span>
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-
-            {/* ── LEFT COLUMN: The Story ── */}
-            <div className="space-y-10">
-              {/* Para 1: Fade and Slide In */}
-              <motion.div
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-50px" }}
-                variants={{
-                  hidden: { opacity: 0, y: 20 },
-                  visible: {
-                    opacity: 1, y: 0,
-                    transition: { duration: 0.6, ease: "easeOut" }
-                  }
-                }}
-                className="relative pl-6 md:pl-8 border-l-[5px] border-[#0073bc] bg-white rounded-r-3xl py-8 md:py-10 pr-6 md:pr-10 shadow-[10px_10px_40px_-15px_rgba(0,115,188,0.15)] md:shadow-[20px_20px_60px_-15px_rgba(0,115,188,0.15)] group"
-              >
-                <motion.div
-                  variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}
-                  transition={{ delay: 0.2 }}
-                  className="text-[18px] leading-[1.8] text-gray-700 relative z-10"
-                >
-                  <strong className="text-[#0073bc] text-2xl font-black block mb-3 tracking-tight">The Orbit Impact</strong>
-                  Orbit is at the forefront of transforming&nbsp;
-                  <span className="relative inline-block px-1">
-                    <span className="bg-gradient-to-r from-[#0073bc] to-[#005a94] bg-clip-text text-transparent font-black text-xl italic">India's water infrastructure</span>
-                    <motion.div animate={{ width: ['0%', '100%', '0%'] }} transition={{ duration: 4, repeat: Infinity }} className="absolute bottom-0 left-0 h-0.5 bg-blue-400/30" />
-                  </span>&nbsp;
-                  through innovative technology. We create
-                  <span className="font-bold text-gray-900 border-b-2 border-dashed border-blue-200 ml-1 italic"> intelligent, scalable solutions</span>.
-                </motion.div>
-              </motion.div>
-
-              {/* Mission & Vision Card (Image Background) */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95, y: 20 }}
-                whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, ease: "easeOut" }}
-                className="relative rounded-[2.5rem] overflow-hidden text-white shadow-2xl group md:h-[500px] min-h-[450px]"
-              >
-                <img src={subHeadingImage} alt="Mission and Vision" className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
-                <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/80" />
-                <div className="relative z-10 p-6 md:p-10 flex flex-col justify-end h-full">
-                  <div className="space-y-6">
-                    <div>
-                      <h3 className="text-2xl font-black mb-3 tracking-tight text-blue-300 uppercase text-xs tracking-[0.3em]">Our Mission</h3>
-                      <p className="text-white mb-6 leading-relaxed text-[17px] font-medium opacity-90">
-                        To provide innovative, sustainable, and accessible water management solutions that empower communities, protect natural resources, and build a resilient future for all.
-                      </p>
-                    </div>
-                    <div>
-                      <h3 className="text-2xl font-black mb-3 tracking-tight text-blue-300 uppercase text-xs tracking-[0.3em]">Our Vision</h3>
-                      <p className="text-white leading-relaxed text-[17px] font-medium opacity-90">
-                        To be India's most trusted partner in water infrastructure, recognized for technological excellence, environmental responsibility, and unwavering commitment to community welfare.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
+              <h2 className="text-4xl md:text-5xl font-black text-gray-900 leading-[1.1] tracking-tighter">
+                What We Believe <br />
+                <span className="text-[#0073bc] relative">at Orbit</span>
+              </h2>
+              <div className="h-1.5 w-20 bg-gradient-to-r from-[#0073bc] to-[#005a94] rounded-full" />
+              <p className="text-lg text-gray-600 leading-relaxed font-light">
+                We believe water engineering goes far beyond piping and steel staging. It is the life-sustaining foundation for economic progress and public health. 
+              </p>
+              <p className="text-base text-gray-500 leading-relaxed font-medium">
+                Over the past 25 years, we have committed ourselves to creating intelligent, durable, and highly automated infrastructure that empowers communities and optimizes precious water resources across India.
+              </p>
             </div>
 
-            {/* ── RIGHT COLUMN: Capabilities & Impact ── */}
-            <div className="space-y-12 lg:pt-8">
+            {/* Right statistics grid (7 cols) */}
+            <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {stats.map((stat, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                  whileHover={{ y: -6, boxShadow: '0 20px 40px rgba(0, 115, 188, 0.12)' }}
+                  className={`p-8 rounded-[2rem] border border-gray-100 transition-all duration-300 relative overflow-hidden bg-white ${
+                    i === 0 ? 'sm:col-span-2 bg-gradient-to-r from-blue-50 to-indigo-50/50 border-blue-100' : ''
+                  }`}
+                >
+                  <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-blue-500/5 to-transparent rounded-bl-full pointer-events-none" />
+                  
+                  <div className="flex items-baseline gap-1">
+                    <span className="text-4xl md:text-5xl font-black tracking-tight text-gray-900 bg-gradient-to-r from-[#0073bc] to-blue-800 bg-clip-text text-transparent">
+                      {stat.value}
+                    </span>
+                    <span className="text-xl md:text-2xl font-extrabold text-[#0073bc]">
+                      {stat.suffix}
+                    </span>
+                  </div>
 
-              {/* Expertise Spectrum */}
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                className="relative pl-6 md:pl-8 border-l-[5px] border-emerald-500 bg-white rounded-r-3xl py-6 md:py-8 pr-6 md:pr-8"
-              >
-                <p className="text-[17px] leading-[1.8] mb-6 font-medium text-gray-700">
-                  Our expertise spans the <span className="text-emerald-700 font-bold px-2 py-0.5 bg-emerald-50 rounded-lg">complete spectrum</span> of water management:
-                </p>
-                <div className="flex flex-wrap gap-3">
-                  {['PLC Automation', 'SCADA Systems', 'IoT Monitoring', 'Cloud Platforms', 'Real-time Control'].map((tag, i) => (
-                    <motion.span
-                      key={tag}
-                      initial={{ opacity: 0, scale: 0.5 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: i * 0.05 }}
-                      whileHover={{ scale: 1.15, rotate: [0, -5, 5, 0], backgroundColor: '#ecfdf5' }}
-                      className="inline-flex items-center gap-2 text-[13px] font-black uppercase tracking-wider px-5 py-2.5 rounded-2xl bg-gray-50 border border-emerald-100 text-emerald-800 shadow-sm cursor-pointer transition-colors"
-                    >
-                      <motion.span animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }} transition={{ duration: 2, repeat: Infinity }} className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
-                      {tag}
-                    </motion.span>
-                  ))}
-                </div>
-              </motion.div>
+                  <h3 className="text-lg font-bold text-gray-800 mt-3 tracking-tight">
+                    {stat.label}
+                  </h3>
+                  <p className="text-sm text-gray-500 mt-1 font-medium">
+                    {stat.sub}
+                  </p>
 
-              {/* Stats Grid (Magnetic Lens) */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                {[
-                  { val: '₹200+ Cr', label: 'Portfolio', color: 'amber' },
-                  { val: 'Millions', label: 'Affected', color: 'blue' }
-                ].map((stat, i) => (
-                  <motion.div
-                    key={i}
-                    whileHover={{ scale: 1.05, rotateY: i === 0 ? 10 : -10, rotateX: 5 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                    className={`relative p-8 rounded-[2.5rem] bg-gradient-to-br ${stat.color === 'amber' ? 'from-amber-400 to-orange-500' : 'from-blue-500 to-indigo-600'} text-white shadow-2xl overflow-hidden group`}
-                  >
-                    <motion.div className="absolute inset-0 bg-gradient-to-tr from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                    <span className="text-5xl font-black block mb-1 tracking-tighter leading-none">{stat.val}</span>
-                    <span className="text-[11px] font-bold uppercase tracking-[0.3em] opacity-80">{stat.label}</span>
-                  </motion.div>
-                ))}
+                  {/* Aesthetic accent dots */}
+                  <div className="absolute bottom-4 right-4 flex gap-1 opacity-20">
+                    <div className="w-1.5 h-1.5 rounded-full bg-blue-600" />
+                    <div className="w-1.5 h-1.5 rounded-full bg-blue-600" />
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* ── SECTION 2: LAYERED MISSION & VISION SHOWCASE ── */}
+      <section className="py-16 md:py-24 bg-gray-50 relative overflow-hidden">
+        <div className="absolute -top-40 -left-40 w-96 h-96 bg-blue-200/20 rounded-full blur-3xl" />
+        <div className="absolute -bottom-40 -right-40 w-96 h-96 bg-indigo-200/20 rounded-full blur-3xl" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            
+            {/* MISSION CARD (What We Do) */}
+            <motion.div
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="bg-white rounded-[2.5rem] p-8 md:p-12 border border-gray-100 shadow-[0_20px_50px_rgba(0,0,0,0.03)] hover:shadow-2xl transition-all duration-500 group relative overflow-hidden"
+            >
+              <div className="absolute inset-0 bg-gradient-to-b from-blue-50/10 via-transparent to-transparent pointer-events-none" />
+              <div className="h-2 w-24 bg-blue-500 rounded-full mb-8 group-hover:w-36 transition-all duration-500" />
+
+              <span className="text-xs font-black tracking-[0.3em] uppercase text-blue-500 block mb-2">
+                WHAT WE DO
+              </span>
+              <h3 className="text-3xl font-black text-gray-900 mb-6 tracking-tight">
+                Our Mission
+              </h3>
+              
+              <p className="text-lg text-gray-700 leading-relaxed font-semibold mb-6">
+                To deliver technologically advanced, clean, and sustainable water treatment and SCADA-driven automation solutions.
+              </p>
+              
+              <p className="text-base text-gray-500 leading-relaxed font-medium">
+                We design and commission turnkey engineering systems that ensure absolute water purification, waste mitigation, and automated real-time control. Our focus is on supporting municipal corporations, government schemes like Jal Jeevan Mission, and premier industries with zero compromise on efficiency.
+              </p>
+
+              {/* Background badge icon */}
+              <div className="absolute -bottom-10 -right-10 opacity-[0.03] group-hover:opacity-[0.06] transition-opacity pointer-events-none">
+                <Target className="w-48 h-48 text-[#0073bc]" />
               </div>
+            </motion.div>
 
-              {/* Vision Sequence */}
+            {/* VISION CARD (Why We Do It) */}
+            <motion.div
+              initial={{ opacity: 0, x: 40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="bg-white rounded-[2.5rem] p-8 md:p-12 border border-gray-100 shadow-[0_20px_50px_rgba(0,0,0,0.03)] hover:shadow-2xl transition-all duration-500 group relative overflow-hidden"
+            >
+              <div className="absolute inset-0 bg-gradient-to-b from-indigo-50/10 via-transparent to-transparent pointer-events-none" />
+              <div className="h-2 w-24 bg-indigo-500 rounded-full mb-8 group-hover:w-36 transition-all duration-500" />
+
+              <span className="text-xs font-black tracking-[0.3em] uppercase text-indigo-500 block mb-2">
+                WHY WE DO IT
+              </span>
+              <h3 className="text-3xl font-black text-gray-900 mb-6 tracking-tight">
+                Our Vision
+              </h3>
+
+              <p className="text-lg text-gray-700 leading-relaxed font-semibold mb-6">
+                To be India's premier, highly trusted engineering house for smart and ecologically resilient water infrastructure.
+              </p>
+
+              <p className="text-base text-gray-500 leading-relaxed font-medium">
+                We envision a future where advanced cloud-telemetry and automation conserve every drop of water. Through clean STP/ETP reclamation and high-efficiency solar pumping networks, we aim to secure vital resources for growing generations, bridging technological supremacy with deep community responsibility.
+              </p>
+
+              {/* Background badge icon */}
+              <div className="absolute -bottom-10 -right-10 opacity-[0.03] group-hover:opacity-[0.06] transition-opacity pointer-events-none">
+                <Globe className="w-48 h-48 text-indigo-800" />
+              </div>
+            </motion.div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* ── SECTION 3: PREMIUM CORE VALUES GRID ── */}
+      <section className="py-16 md:py-24 bg-white relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="text-center mb-16 space-y-4">
+            <span className="text-xs font-black uppercase tracking-[0.2em] text-[#0073bc] bg-blue-50 px-4 py-2 rounded-full inline-block">
+              ✦ Guiding Principles
+            </span>
+            <h2 className="text-4xl md:text-5xl font-black text-gray-900 tracking-tighter leading-none">
+              Our Core Values
+            </h2>
+            <div className="h-1.5 w-24 bg-[#0073bc] mx-auto rounded-full mt-4" />
+            <p className="text-lg text-gray-500 max-w-2xl mx-auto font-light leading-relaxed">
+              We anchor our execution in a set of unwavering values that define how we construct, engineer, and deliver.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {coreValues.map((val, idx) => (
               <motion.div
+                key={idx}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="relative pl-6 md:pl-8 border-l-[5px] border-violet-500 bg-white rounded-r-3xl py-8 md:py-10 pr-6 md:pr-10 shadow-xl"
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                whileHover={{ scale: 1.02 }}
+                className="bg-white rounded-[2rem] border border-gray-100 p-8 shadow-[0_15px_40px_rgba(0,0,0,0.02)] hover:shadow-xl transition-all duration-300 relative group overflow-hidden"
               >
-                <p className="text-[18px] leading-[1.8] mb-8 text-gray-700">
-                  We believe water management is the cornerstone of
-                  <span className="text-violet-700 font-black block text-3xl tracking-tighter mt-2 italic">Sustainable Growth.</span>
-                </p>
-                <div className="grid grid-cols-1 gap-5">
-                  {['Excellence', 'Innovation', 'Social Impact'].map((v, i) => (
-                    <motion.div
-                      key={v}
-                      initial={{ x: -20, opacity: 0 }}
-                      whileInView={{ x: 0, opacity: 1 }}
-                      transition={{ delay: 0.15 + (i * 0.08) }}
-                      className="flex items-center gap-5 group cursor-pointer"
-                    >
-                      <div className="w-12 h-12 rounded-2xl bg-violet-600 text-white flex items-center justify-center font-black text-lg group-hover:rotate-12 transition-transform shadow-lg shadow-violet-200">
-                        {i + 1}
-                      </div>
-                      <div className="flex-grow">
-                        <span className="text-sm font-black uppercase tracking-widest text-violet-900 group-hover:translate-x-2 transition-transform block">{v}</span>
-                        <motion.div initial={{ width: 0 }} whileInView={{ width: '100%' }} transition={{ duration: 0.5, delay: 0.3 + (i * 0.08) }} className="h-1 bg-violet-100 mt-2" />
-                      </div>
-                    </motion.div>
-                  ))}
+                {/* Visual accent top edge */}
+                <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-blue-500 to-[#0073bc] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                
+                <div className="bg-blue-50 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                  {val.icon}
                 </div>
+
+                <h3 className="text-xl font-bold text-gray-900 mb-3 tracking-tight group-hover:text-[#0073bc] transition-colors">
+                  {val.title}
+                </h3>
+                
+                <p className="text-sm text-gray-500 leading-relaxed font-medium">
+                  {val.description}
+                </p>
               </motion.div>
+            ))}
 
+            {/* A gorgeous placeholder card matching the grid */}
+            <div className="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-[2rem] p-8 text-white flex flex-col justify-between shadow-lg relative overflow-hidden group">
+              <div className="absolute -top-10 -right-10 w-32 h-32 bg-white/10 rounded-full pointer-events-none" />
+              <div className="space-y-4">
+                <span className="text-xs font-black tracking-[0.2em] uppercase text-blue-200">ISO 9001 CERTIFIED</span>
+                <h3 className="text-2xl font-black tracking-tight leading-tight">
+                  Partner with India's Smart Water Specialists
+                </h3>
+                <p className="text-sm text-blue-100 font-medium leading-relaxed">
+                  Integrating dynamic SCADA, IoT automation, and high-precision instrumentation into major turnkey water schemes since 1998.
+                </p>
+              </div>
+
+              <Link 
+                to="/contact" 
+                className="flex items-center gap-2 text-sm font-black uppercase tracking-wider text-white bg-white/10 hover:bg-white/20 px-6 py-3.5 rounded-2xl transition-all mt-6 w-fit"
+              >
+                Let's Collaborate <ChevronRight className="w-4 h-4" />
+              </Link>
             </div>
+
           </div>
         </div>
       </section>
 
-      <section className="py-20 bg-gray-50 overflow-hidden">
+      {/* ── SECTION 4: HIGH-IMPACT LEGACY TIMELINE CTA ── */}
+      <section className="relative text-white py-24 bg-slate-900 overflow-hidden">
+        {/* Background image & gradient overlay */}
+        <img src={headingBg} alt="Timeline Background" className="absolute inset-0 w-full h-full object-cover opacity-20 pointer-events-none select-none scale-105" />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/80 to-transparent" />
+
+        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+          <span className="text-xs font-black tracking-[0.3em] uppercase text-blue-400 bg-blue-500/10 px-4 py-2 rounded-full inline-block border border-blue-400/20">
+            EXPLORE OUR HISTORICAL TIMELINE
+          </span>
+          <h2 className="text-4xl md:text-5xl font-black tracking-tighter leading-tight max-w-3xl mx-auto">
+            Discover 25+ Years of Proven Engineering Excellence
+          </h2>
+          <p className="text-lg text-slate-300 max-w-2xl mx-auto font-light leading-relaxed">
+            Since our founding in 1998, we have pioneered complex public utility schemes, advanced pumping systems, and robust automation across Central India. Click to explore our history.
+          </p>
+          <div className="pt-4">
+            <Link
+              to="/why-choose-us"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-500 to-[#0073bc] text-white rounded-2xl font-black uppercase tracking-wider hover:shadow-lg hover:shadow-blue-500/20 transform hover:-translate-y-1 transition-all duration-300"
+            >
+              Explore Legacy & Timeline <ChevronRight className="w-5 h-5" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ── SECTION 5: LEADERSHIP SPOTLIGHT (THE PIONEERS) ── */}
+      <section className="py-16 md:py-24 bg-white relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <span className="inline-block text-[11px] font-bold uppercase tracking-[0.2em] text-[#0073bc] mb-3">✦ Our Strengths</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 tracking-tight">
-              Why Orbit Stands Apart
+          
+          <div className="text-center mb-16 space-y-4">
+            <span className="text-xs font-black uppercase tracking-[0.2em] text-[#0073bc] bg-blue-50 px-4 py-2 rounded-full inline-block">
+              ✦ Meet The Pioneers
+            </span>
+            <h2 className="text-4xl md:text-5xl font-black text-gray-900 tracking-tighter leading-none">
+              Our Leadership
             </h2>
+            <div className="h-1.5 w-24 bg-[#0073bc] mx-auto rounded-full mt-4" />
             <p className="text-lg text-gray-500 max-w-2xl mx-auto font-light leading-relaxed">
-              Our unique combination of expertise, innovation, and commitment sets us apart
+              Decades of combined technical and management expertise driving Orbit's engineering supremacy.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-            {whyChooseUs.map((item, index) => {
-              const accentColors = ['#0073bc', '#d97706', '#059669', '#7c3aed', '#0891b2', '#dc2626'];
-              const accent = accentColors[index] || '#0073bc';
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+            
+            {/* MD - Manoj Tiwari */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              whileHover={{ y: -8 }}
+              className="bg-white rounded-3xl p-8 border border-gray-150 shadow-[0_15px_40px_rgba(0,0,0,0.02)] hover:shadow-xl transition-all duration-300 flex flex-col sm:flex-row gap-6 items-center sm:items-start"
+            >
+              <div className="w-40 h-40 overflow-hidden rounded-2xl shadow-md border-2 border-gray-100 flex-shrink-0">
+                <img
+                  src={manojImg}
+                  alt="Manoj Tiwari - Managing Director of Orbit Engineering Solutions Bhopal"
+                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-115"
+                  loading="lazy"
+                />
+              </div>
+              <div className="space-y-3 text-center sm:text-left flex-grow">
+                <h3 className="text-2xl font-bold text-gray-900">Manoj Tiwari</h3>
+                <p className="text-[#0073bc] font-extrabold uppercase tracking-widest text-xs">
+                  Managing Director
+                </p>
+                <span className="inline-block px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-xs font-semibold text-gray-600">
+                  40+ Years of Industry Excellence
+                </span>
+                <p className="text-sm text-gray-500 leading-relaxed font-medium">
+                  A visionary water industry stalwart leading state-level municipal staging schemes, HDPE pipelines procurement, and heavy engineering works.
+                </p>
+                <div className="flex items-center justify-center sm:justify-start gap-2 text-gray-600 pt-2 border-t border-gray-100">
+                  <Mail className="h-4 w-4 text-[#0073bc]" />
+                  <a href="mailto:mktiwari@orbitengineering.com" className="text-xs hover:text-[#0073bc] transition-colors font-semibold text-gray-700">
+                    mktiwari@orbitengineering.com
+                  </a>
+                </div>
+              </div>
+            </motion.div>
 
-              return (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 30, scale: 0.95 }}
-                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.4, delay: index * 0.05, ease: [0.16, 1, 0.3, 1] }}
-                  className="bg-white rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.04)] p-0 hover:shadow-[0_40px_80px_rgba(0,0,0,0.12)] transition-all duration-500 border-2 border-gray-50 group overflow-hidden relative"
-                >
-                  {/* Ultra-Unique: Holographic Sheen Wipe */}
-                  <motion.div
-                    initial={{ x: '-100%', skewX: -45 }}
-                    whileHover={{ x: '200%' }}
-                    transition={{ duration: 0.8, ease: "easeInOut" }}
-                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent pointer-events-none z-10"
-                  />
+            {/* CTO - Vijay Tiwari */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              whileHover={{ y: -8 }}
+              className="bg-white rounded-3xl p-8 border border-gray-150 shadow-[0_15px_40px_rgba(0,0,0,0.02)] hover:shadow-xl transition-all duration-300 flex flex-col sm:flex-row gap-6 items-center sm:items-start"
+            >
+              <div className="w-40 h-40 overflow-hidden rounded-2xl shadow-md border-2 border-gray-100 flex-shrink-0">
+                <img
+                  src={vijayImg}
+                  alt="Vijay Tiwari - Co-Founder & CTO of Orbit Engineering Solutions Bhopal"
+                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-115"
+                  loading="lazy"
+                  style={{ objectPosition: 'top' }}
+                />
+              </div>
+              <div className="space-y-3 text-center sm:text-left flex-grow">
+                <h3 className="text-2xl font-bold text-gray-900">Vijay Tiwari</h3>
+                <p className="text-[#0073bc] font-extrabold uppercase tracking-widest text-xs">
+                  Co-Founder & CTO
+                </p>
+                <span className="inline-block px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-xs font-semibold text-gray-600">
+                  18+ Years of Technological Leadership
+                </span>
+                <p className="text-sm text-gray-500 leading-relaxed font-medium">
+                  An instrumentation technologist specializing in distributed SCADA monitoring, automated PLC panels, remote telemetry RTUs, and smart IoT setups.
+                </p>
+                <div className="flex items-center justify-center sm:justify-start gap-2 text-gray-600 pt-2 border-t border-gray-100">
+                  <Mail className="h-4 w-4 text-[#0073bc]" />
+                  <a href="mailto:vijay@orbitengineerings.com" className="text-xs hover:text-[#0073bc] transition-colors font-semibold text-gray-700">
+                    vijay@orbitengineerings.com
+                  </a>
+                </div>
+              </div>
+            </motion.div>
 
-                  {/* Top Animated Bar */}
-                  <motion.div
-                    initial={{ width: 0 }}
-                    whileInView={{ width: '100%' }}
-                    transition={{ duration: 0.6, delay: 0.15 }}
-                    className="h-2 w-full absolute top-0 left-0"
-                    style={{ background: `linear-gradient(90deg, ${accent}, ${accent}33)` }}
-                  />
-
-                  <div className="p-6 md:p-10 relative z-20">
-                    {/* Icon Portal Reveal */}
-                    {/* Icon Portal Reveal */}
-                    <motion.div
-                      whileHover={{ scale: 1.1, rotate: 5 }}
-                      className="mb-8 w-24 h-24 mx-auto relative group-hover:after:opacity-100 after:opacity-0 after:absolute after:inset-0 after:rounded-full after:bg-gradient-to-tr after:from-white/20 after:to-transparent after:transition-opacity after:duration-500"
-                    >
-                      <div
-                        className="absolute inset-0 rounded-3xl opacity-20 group-hover:opacity-30 transition-opacity animate-pulse"
-                        style={{ backgroundColor: accent }}
-                      />
-                      <div
-                        className="relative z-10 w-full h-full rounded-3xl flex items-center justify-center border-2 overflow-hidden bg-white shadow-inner"
-                        style={{ borderColor: `${accent}20` }}
-                      >
-                        <img src={item.image} alt={item.title} className="w-12 h-12 object-contain group-hover:scale-125 transition-transform duration-500" />
-                      </div>
-                    </motion.div>
-
-                    {/* Staggered Title Assembly */}
-                    <div className="text-center mb-6">
-                      <div className="flex flex-wrap justify-center gap-x-1 mb-2">
-                        {item.title.split(" ").map((word, wi) => (
-                          <div key={wi} className="flex">
-                            {word.split("").map((char, ci) => (
-                              <motion.span
-                                key={ci}
-                                initial={{ opacity: 0, y: 10 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.05 + (wi * 0.04) + (ci * 0.015) }}
-                                className="text-xl font-black text-gray-900 tracking-tight"
-                              >
-                                {char}
-                              </motion.span>
-                            ))}
-                            {wi < item.title.split(" ").length - 1 && <span className="w-1.5" />}
-                          </div>
-                        ))}
-                      </div>
-
-                      {/* Kinetic Separator */}
-                      <motion.div
-                        initial={{ width: 0 }}
-                        whileInView={{ width: '40%' }}
-                        className="h-1 mx-auto rounded-full"
-                        style={{ background: `linear-gradient(90deg, transparent, ${accent}, transparent)` }}
-                      />
-                    </div>
-
-                    {/* Enhanced Description */}
-                    <div className="text-center">
-                      <p className="text-[15px] text-gray-500 leading-[1.8] font-medium">
-                        {item.description.split(" ").map((word, idx) => (
-                          <motion.span
-                            key={idx}
-                            initial={{ opacity: 0 }}
-                            whileInView={{ opacity: 1 }}
-                            transition={{ delay: 0.1 + (idx * 0.01) }}
-                            className="inline-block mr-1"
-                          >
-                            {word}
-                          </motion.span>
-                        ))}
-                      </p>
-                    </div>
-
-                    {/* Bottom Kinetic Dots */}
-                    <div className="flex justify-center items-center gap-2 mt-8 opacity-40 group-hover:opacity-100 transition-opacity duration-500">
-                      {[0, 1, 2].map((i) => (
-                        <motion.div
-                          key={i}
-                          animate={{
-                            scale: [1, 1.5, 1],
-                            opacity: [0.3, 1, 0.3]
-                          }}
-                          transition={{
-                            duration: 2,
-                            repeat: Infinity,
-                            delay: i * 0.3
-                          }}
-                          className="w-1.5 h-1.5 rounded-full"
-                          style={{ backgroundColor: accent }}
-                        />
-                      ))}
-
-                    </div>
-                  </div>
-                </motion.div>
-              );
-            })}
           </div>
+
+          <div className="mt-12 text-center">
+            <Link
+              to="/team"
+              className="inline-flex items-center gap-2 px-6 py-3 border-2 border-gray-200 hover:border-[#0073bc] hover:text-[#0073bc] text-gray-600 rounded-2xl font-black uppercase tracking-wider transition-colors text-sm"
+            >
+              Meet the Full Team <ChevronRight className="w-4 h-4" />
+            </Link>
+          </div>
+
         </div>
       </section>
 
-      <section className="bg-white py-12">
+      {/* ── SECTION 5.5: DETAILED FUNCTIONAL DEPARTMENTS ── */}
+      <section className="py-16 md:py-24 bg-gray-50 relative overflow-hidden">
+        {/* Soft background ambient blurs */}
+        <div className="absolute top-1/2 left-0 -translate-y-1/2 w-96 h-96 bg-blue-200/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-1/3 right-0 w-96 h-96 bg-indigo-200/10 rounded-full blur-3xl pointer-events-none" />
 
-        {/* Header content with background image */}
-        <div className="relative w-full h-[300px] md:h-[400px] mb-16 flex items-center justify-center overflow-hidden">
-          <img src={headingBg} alt="Background" className="absolute inset-0 w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-black/60" />
-          <div className="relative z-10 text-center max-w-4xl mx-auto px-4">
-            <AnimatedHeading level={2} className="text-3xl md:text-5xl font-bold text-white mb-6 tracking-tight">
-              Our Trusted Partner in Smart Water Management
-            </AnimatedHeading>
-            <p className="text-xl md:text-2xl text-blue-100 font-medium max-w-2xl mx-auto leading-relaxed">
-              Enhancing productivity and sustainability through smart automation.
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          
+          <div className="text-center mb-16 space-y-4">
+            <span className="text-xs font-black uppercase tracking-[0.2em] text-[#0073bc] bg-blue-50 px-4 py-2 rounded-full inline-block">
+              ✦ How We Operate
+            </span>
+            <h2 className="text-4xl md:text-5xl font-black text-gray-900 tracking-tighter leading-none">
+              Our Functional Divisions
+            </h2>
+            <div className="h-1.5 w-24 bg-[#0073bc] mx-auto rounded-full mt-4" />
+            <p className="text-lg text-gray-500 max-w-2xl mx-auto font-light leading-relaxed">
+              Orbit\'s engineering and operations are divided into five highly specialized, non-overlapping teams executing turnkey excellence.
             </p>
           </div>
-        </div>
 
-        {/* GIF Section */}
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {departments.map((dept, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: idx * 0.1 }}
+                whileHover={{ y: -8 }}
+                className="bg-white rounded-[2.5rem] border border-gray-150 shadow-[0_15px_45px_rgba(0,0,0,0.02)] hover:shadow-2xl hover:border-blue-200 transition-all duration-300 overflow-hidden flex flex-col justify-between group"
+              >
+                <div>
+                  {/* Top Image Banner with Soft Gradient Mask */}
+                  <div className="h-56 w-full overflow-hidden relative">
+                    <img 
+                      src={dept.banner} 
+                      alt={`${dept.name} banner`} 
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent opacity-90" />
+                    {/* Floating pill for department index */}
+                    <span className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm text-gray-800 text-xs font-black px-3.5 py-1.5 rounded-full shadow-sm border border-gray-100">
+                      DIVISION 0{idx + 1}
+                    </span>
+                  </div>
+
+                  {/* Header Title & Icon */}
+                  <div className="p-8 pb-0 space-y-4">
+                    <div className="flex items-center gap-4">
+                      <div className={`${dept.iconBg} p-3 rounded-2xl flex-shrink-0 shadow-sm border border-gray-100`}>
+                        {dept.icon}
+                      </div>
+                      <h3 className="text-xl font-bold text-gray-900 leading-tight group-hover:text-[#0073bc] transition-colors duration-300">
+                        {dept.name}
+                      </h3>
+                    </div>
+                    
+                    <p className="text-sm font-semibold text-gray-600 italic">
+                      "{dept.tagline}"
+                    </p>
+
+                    <div className="h-[1px] w-full bg-gray-100 my-4" />
+                  </div>
+                </div>
+
+                {/* Focus Areas List */}
+                <div className="p-8 pt-2 flex-grow flex flex-col justify-between">
+                  <ul className="space-y-3.5">
+                    {dept.focusAreas.map((point, pIdx) => (
+                      <li key={pIdx} className="flex items-start gap-2.5 text-sm text-gray-500 font-medium leading-relaxed">
+                        <span className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-2 flex-shrink-0" />
+                        <span>{point}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  {/* Visual accent bottom gradient border in card */}
+                  <div className="mt-8 pt-4 flex justify-between items-center border-t border-gray-50">
+                    <span className="text-[11px] font-black uppercase tracking-widest text-[#0073bc]/60 group-hover:text-[#0073bc] transition-colors duration-300">
+                      Professional Team Spec
+                    </span>
+                    <div className="w-2.5 h-2.5 rounded-full bg-[#0073bc]/30 group-hover:bg-[#0073bc] group-hover:scale-125 transition-all duration-300" />
+                  </div>
+                </div>
+
+              </motion.div>
+            ))}
+          </div>
+
+        </div>
+      </section>
+
+      {/* ── SECTION 6: GEOGRAPHICAL FOOTPRINT (MAP GIF) ── */}
+      <section className="bg-slate-50 py-16 border-t border-slate-100 relative">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <span className="inline-block text-[11px] font-bold uppercase tracking-[0.2em] text-[#0073bc] mb-3">✦ Our Footprint</span>
+            <AnimatedHeading level={2} className="text-3xl md:text-4xl font-black text-gray-900 mb-4 tracking-tight">
+              Trusted Across Madhya Pradesh & India
+            </AnimatedHeading>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto font-light leading-relaxed">
+              From our main headquarters in Bhopal to water treatment assets built all over the country, our operational map showcases years of execution success.
+            </p>
+          </div>
+
+          {/* Map Image/GIF Display */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="relative rounded-3xl shadow-2xl overflow-hidden bg-white border border-gray-100 transform hover:shadow-[0_20px_50px_rgba(0,0,0,0.15)] transition-shadow duration-500"
+            className="relative rounded-[2.5rem] shadow-xl overflow-hidden bg-white border border-gray-200 max-w-4xl mx-auto"
           >
-            <div className="aspect-video w-full overflow-hidden relative">
+            <div className="aspect-video w-full overflow-hidden relative bg-slate-900 flex items-center justify-center">
               <motion.img
                 src={mapGif}
-                alt="Global Presence Map"
-                initial={{ scale: 1.02 }} // Start slightly scaled to help with general edge artifacts
-                animate={{ scale: 1.08 }} // Subtle breathing/zoom animation
+                alt="Global and National Presence Map - Orbit Engineering Solutions"
+                animate={{ scale: [1, 1.05, 1] }}
                 transition={{
-                  duration: 12,
+                  duration: 10,
                   repeat: Infinity,
-                  repeatType: "reverse",
                   ease: "easeInOut"
                 }}
-                className="w-full h-full object-cover contrast-110 saturate-110" // Reduced contrast slightly to hide artifacts
-                style={{ clipPath: 'inset(0 4px 0 0)' }} // Crops 4px from the right side to remove black border
+                className="w-full h-full object-contain contrast-105 saturate-105"
+                style={{ clipPath: 'inset(0 4px 0 0)' }}
               />
-              {/* Inner shadow for depth and to mask edges further */}
-              <div className="absolute inset-0 shadow-[inset_0_0_40px_rgba(0,0,0,0.1)] pointer-events-none" />
+              <div className="absolute inset-0 shadow-[inset_0_0_40px_rgba(0,0,0,0.15)] pointer-events-none" />
             </div>
           </motion.div>
         </div>
       </section>
 
-      <section className="py-20 bg-gray-50">
+      {/* ── SECTION 7: DETAILED FOOTER CONTACT INFO ── */}
+      <section className="py-20 bg-slate-900 text-slate-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          
+          <div className="text-center mb-16 space-y-4">
+            <h2 className="text-3xl md:text-4xl font-black text-white mb-2 tracking-tight">
               Get In Touch
             </h2>
-            <p className="text-lg text-gray-600">
-              Let's discuss how we can help with your water infrastructure needs
+            <div className="h-1 bg-blue-500 w-16 mx-auto rounded-full" />
+            <p className="text-slate-400 font-light max-w-lg mx-auto">
+              Let's discuss how we can partner on your next smart water or instrumentation project.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            <div className="text-center">
-              <div className="bg-[#0073bc] bg-opacity-10 rounded-full p-4 inline-block mb-4">
-                <MapPin className="h-8 w-8 text-[#0073bc]" />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-5xl mx-auto">
+            
+            <div className="text-center space-y-4">
+              <div className="bg-blue-500/10 border border-blue-500/20 rounded-full p-4 inline-block mb-2">
+                <MapPin className="h-8 w-8 text-blue-400" />
               </div>
-              <h3 className="font-semibold text-gray-900 mb-2">Address</h3>
-              <p className="text-gray-600 text-sm">
-                <span className="font-bold">Working Office:</span> <a href="https://maps.google.com/?q=Flat+No.2,+Block+12,+Shalimar+Enclave,+E3+Arera+Colony,+Bhopal,+462016" target="_blank" rel="noopener noreferrer" className="hover:text-[#0073bc] transition-colors">Flat No.2, Block 12, Shalimar Enclave,<br />E3 Arera Colony, Bhopal</a><br /><br />
-                <span className="font-bold">Head Office:</span> <a href="https://maps.google.com/?q=E-45,+Pride+City,+Katara+Hills,+Bhopal,+Madhya+Pradesh,+462043" target="_blank" rel="noopener noreferrer" className="hover:text-[#0073bc] transition-colors">E-45, Pride City,<br />Katara Hills, Bhopal</a>
+              <h3 className="font-bold text-white text-lg">Address Details</h3>
+              <p className="text-slate-400 text-sm leading-relaxed">
+                <span className="font-black text-slate-200">Working Office:</span> <br />
+                <a href="https://www.google.com/maps?q=23.216892,77.424965" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-colors">
+                  Root Space, Char Imli, Mannipuram, Bhopal, 462016 MP
+                </a>
+                <br /><br />
+                <span className="font-black text-slate-200">Branch Office:</span> <br />
+                <a href="https://maps.google.com/?q=Flat+No.2,+Block+12,+Shalimar+Enclave,+E3+Arera+Colony,+Bhopal,+462016" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-colors">
+                  Flat No.2, Block 12, Shalimar Enclave, E3 Arera Colony, Bhopal, 462016
+                </a>
+                <br /><br />
+                <span className="font-black text-slate-200">Head Office:</span> <br />
+                <a href="https://maps.google.com/?q=E-45,+Pride+City,+Katara+Hills,+Bhopal,+Madhya+Pradesh,+462043" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-colors">
+                  E-45, Pride City, Katara Hills, Bhopal, 462043
+                </a>
               </p>
             </div>
 
-            <div className="text-center">
-              <div className="bg-[#0073bc] bg-opacity-10 rounded-full p-4 inline-block mb-4">
-                <Phone className="h-8 w-8 text-[#0073bc]" />
+            <div className="text-center space-y-4">
+              <div className="bg-blue-500/10 border border-blue-500/20 rounded-full p-4 inline-block mb-2">
+                <Phone className="h-8 w-8 text-blue-400" />
               </div>
-              <h3 className="font-semibold text-gray-900 mb-2">Phone</h3>
-              <div className="text-gray-600 text-sm space-y-1">
-                <p><a href="tel:7024128029" className="hover:text-[#0073bc] transition-colors">+91 70241 28029</a></p>
-                <p><a href="tel:9039075049" className="hover:text-[#0073bc] transition-colors">+91 9039075049</a></p>
-                <p><a href="tel:+917440969201" className="hover:text-[#0073bc] transition-colors">+91 7440969201</a></p>
-                <p><a href="tel:9893091450" className="hover:text-[#0073bc] transition-colors">+91 98930 91450</a></p>
+              <h3 className="font-bold text-white text-lg">Direct Phone</h3>
+              <div className="text-slate-400 text-sm space-y-2">
+                <p><a href="tel:7024128029" className="hover:text-blue-400 transition-colors font-semibold text-slate-300 block">+91 70241 28029</a></p>
+                <p><a href="tel:9039075049" className="hover:text-blue-400 transition-colors font-semibold text-slate-300 block">+91 9039075049</a></p>
+                <p><a href="tel:+917440969201" className="hover:text-blue-400 transition-colors font-semibold text-slate-300 block">+91 7440969201</a></p>
+                <p><a href="tel:9893091450" className="hover:text-blue-400 transition-colors block">+91 98930 91450</a></p>
               </div>
             </div>
 
-            <div className="text-center">
-              <div className="bg-[#0073bc] bg-opacity-10 rounded-full p-4 inline-block mb-4">
-                <Mail className="h-8 w-8 text-[#0073bc]" />
+            <div className="text-center space-y-4">
+              <div className="bg-blue-500/10 border border-blue-500/20 rounded-full p-4 inline-block mb-2">
+                <Mail className="h-8 w-8 text-blue-400" />
               </div>
-              <h3 className="font-semibold text-gray-900 mb-2">Email</h3>
-              <div className="text-gray-600 text-sm space-y-1">
-                <p><a href="mailto:info@orbitengineerings.com" className="hover:text-[#0073bc] transition-colors font-medium">info@orbitengineerings.com</a></p>
-                <p><a href="mailto:service@orbitengineerings.com" className="hover:text-[#0073bc] transition-colors font-medium">service@orbitengineerings.com</a></p>
-                <p><a href="mailto:vijaytiwari@orbitengineerings.com" className="hover:text-[#0073bc] transition-colors">vijaytiwari@orbitengineerings.com</a></p>
-                <p><a href="mailto:sales@orbitengineerings.com" className="hover:text-[#0073bc] transition-colors">sales@orbitengineerings.com</a></p>
+              <h3 className="font-bold text-white text-lg">Email Networks</h3>
+              <div className="text-slate-400 text-sm space-y-2 font-medium">
+                <p><a href="mailto:info@orbitengineerings.com" className="hover:text-blue-400 transition-colors font-bold text-slate-200 block">info@orbitengineerings.com</a></p>
+                <p><a href="mailto:service@orbitengineerings.com" className="hover:text-blue-400 transition-colors text-slate-200 block">service@orbitengineerings.com</a></p>
+                <p><a href="mailto:vijaytiwari@orbitengineerings.com" className="hover:text-blue-400 transition-colors block">vijaytiwari@orbitengineerings.com</a></p>
+                <p><a href="mailto:sales@orbitengineerings.com" className="hover:text-blue-400 transition-colors block">sales@orbitengineerings.com</a></p>
               </div>
             </div>
+
           </div>
+
         </div>
       </section>
+
     </div>
   );
 }

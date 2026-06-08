@@ -94,12 +94,26 @@ export default function Footer({ onNavigate }: FooterProps) {
                 <MapPin className="h-5 w-5 text-[#0073bc] flex-shrink-0 mt-0.5" />
                 <div className="text-sm">
                   <a
-                    href="https://maps.google.com/?q=Flat+No.2,+Block+12,+Shalimar+Enclave,+E3+Arera+Colony,+Bhopal,+462016"
+                    href="https://www.google.com/maps?q=23.216892,77.424965"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group"
                   >
                     <span className="block font-medium text-white group-hover:text-[#0073bc] transition-colors">Working Office:</span>
+                    <span className="text-gray-400 group-hover:text-gray-300 transition-colors">Root Space, Char Imli, Mannipuram,<br />Bhopal, 462016 MP</span>
+                  </a>
+                </div>
+              </li>
+              <li className="flex items-start space-x-3">
+                <MapPin className="h-5 w-5 text-[#0073bc] flex-shrink-0 mt-0.5" />
+                <div className="text-sm">
+                  <a
+                    href="https://maps.google.com/?q=Flat+No.2,+Block+12,+Shalimar+Enclave,+E3+Arera+Colony,+Bhopal,+462016"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group"
+                  >
+                    <span className="block font-medium text-white group-hover:text-[#0073bc] transition-colors">Branch Office:</span>
                     <span className="text-gray-400 group-hover:text-gray-300 transition-colors">Flat No.2, Block 12, Shalimar Enclave,<br />E3 Arera Colony, Bhopal, 462016</span>
                   </a>
                 </div>

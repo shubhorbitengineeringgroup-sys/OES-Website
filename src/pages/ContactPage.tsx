@@ -54,12 +54,27 @@ export default function ContactPage() {
                     <MapPin className="h-6 w-6 text-[#0073bc]" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-900 mb-1">Our Office</h3>
-                    <div className="text-gray-600 text-sm space-y-2">
+                    <h3 className="font-semibold text-gray-900 mb-1">Our Offices</h3>
+                    <div className="text-gray-600 text-sm space-y-3">
                       <div>
+                        <strong className="block text-gray-900">Working Office:</strong>
+                        <a href="https://www.google.com/maps?q=23.216892,77.424965" target="_blank" rel="noopener noreferrer" className="hover:text-[#0073bc] transition-colors">
+                          Root Space, Char Imli, Mannipuram,<br />
+                          Bhopal, 462016 MP
+                        </a>
+                      </div>
+                      <div>
+                        <strong className="block text-gray-900">Branch Office:</strong>
                         <a href="https://maps.google.com/?q=Flat+No.2,+Block+12,+Shalimar+Enclave,+E3+Arera+Colony,+Bhopal,+462016" target="_blank" rel="noopener noreferrer" className="hover:text-[#0073bc] transition-colors">
                           Flat No.2, Block 12, Shalimar Enclave,<br />
                           E3 Arera Colony, Bhopal, 462016
+                        </a>
+                      </div>
+                      <div>
+                        <strong className="block text-gray-900">Head Office:</strong>
+                        <a href="https://maps.google.com/?q=E-45,+Pride+City,+Katara+Hills,+Bhopal,+Madhya+Pradesh,+462043" target="_blank" rel="noopener noreferrer" className="hover:text-[#0073bc] transition-colors">
+                          E-45, Pride City, Katara Hills,<br />
+                          Bhopal, Madhya Pradesh, 462043
                         </a>
                       </div>
                     </div>
@@ -219,7 +234,7 @@ export default function ContactPage() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Working Office Map */}
             <div className="flex flex-col group h-full">
               <div className="relative rounded-t-2xl overflow-hidden border-x border-t border-gray-200 shrink-0">
@@ -231,6 +246,57 @@ export default function ContactPage() {
                       <MapPin className="h-5 w-5 text-white" />
                     </div>
                     <h3 className="text-xl font-bold text-white">Working Office</h3>
+                  </div>
+                  <p className="text-blue-100 text-sm">
+                    Root Space, Char Imli, Mannipuram, Bhopal, 462016 MP
+                  </p>
+                </div>
+              </div>
+              <div className="relative bg-white rounded-b-2xl overflow-hidden shadow-lg border border-gray-200 h-[400px]">
+                <iframe
+                  src="https://www.google.com/maps?q=23.216892,77.424965&z=17&output=embed"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen={true}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Orbit Working Office - Bhopal"
+                />
+
+                {/* Visual Pin Icon */}
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-20">
+                  <div className="bg-white p-2 rounded-full shadow-lg border-2 border-[#0073bc] transform -translate-y-4">
+                    <MapPin className="h-6 w-6 text-[#0073bc] fill-[#0073bc]/20" />
+                  </div>
+                </div>
+
+                {/* Clickable Overlay */}
+                <a
+                  href="https://www.google.com/maps?q=23.216892,77.424965"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="absolute inset-0 z-10 cursor-pointer"
+                  title="Open in Google Maps"
+                >
+                  <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-lg text-[#0073bc] text-xs font-semibold shadow-sm opacity-0 group-hover:opacity-100 transition-opacity">
+                    View on Google Maps
+                  </div>
+                </a>
+              </div>
+            </div>
+
+            {/* Branch Office Map */}
+            <div className="flex flex-col group h-full">
+              <div className="relative rounded-t-2xl overflow-hidden border-x border-t border-gray-200 shrink-0">
+                <img src={heroSectionImage} alt="Branch Office Header" className="absolute inset-0 w-full h-full object-cover" />
+                <div className="absolute inset-0 bg-black/60 transition-colors group-hover:bg-black/50" />
+                <div className="relative z-10 p-6 min-h-[140px] flex flex-col justify-center">
+                  <div className="flex items-center space-x-3 mb-2">
+                    <div className="bg-white/20 backdrop-blur-sm rounded-lg p-2">
+                      <MapPin className="h-5 w-5 text-white" />
+                    </div>
+                    <h3 className="text-xl font-bold text-white">Branch Office</h3>
                   </div>
                   <p className="text-blue-100 text-sm">
                     Flat No.2, Block 12, Shalimar Enclave, E3 Arera Colony, Bhopal, 462016
@@ -246,7 +312,7 @@ export default function ContactPage() {
                   allowFullScreen={true}
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  title="Orbit Working Office - Bhopal"
+                  title="Orbit Branch Office - Bhopal"
                 />
 
                 {/* Visual Pin Icon */}
