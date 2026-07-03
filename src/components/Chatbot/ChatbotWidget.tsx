@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { X, Send, ChevronDown, Phone, Mail, MapPin, Sparkles } from 'lucide-react';
+import { X, Send, ChevronDown, Phone, Mail, MapPin, Sparkles, RotateCcw, MessageCircle } from 'lucide-react';
+import { callOrbi, type GeminiMessage } from './chatbotApi';
+import { OES_KNOWLEDGE } from './chatbotKnowledge';
 
 // ============================================================
 //  TYPES
@@ -9,148 +11,112 @@ interface Message {
   role: 'user' | 'bot';
   text: string;
   timestamp: Date;
+  showContact?: boolean;
 }
 
-interface GeminiMessage {
-  role: 'user' | 'model';
-  parts: { text: string }[];
-}
+
+type ConvPhase = 'greeting' | 'discovery' | 'pitching' | 'closing';
 
 // ============================================================
-//  CONTACT DATA
+//  CONSTANTS
 // ============================================================
-const CONTACT = {
-  phones: ['+91 70241 28029', '+91 9039075049'],
-  whatsapp: '+91 9039075048',
-  emails: ['info@orbitengineerings.com', 'service@orbitengineerings.com'],
-  whatsappLink:
-    "https://wa.me/919039075048?text=Hello,%20I%20am%20interested%20in%20Orbit%20Engineering's%20services.",
+const CONTACT = OES_KNOWLEDGE.company.contact;
+
+const PHASE_QUICK_REPLIES: Record<ConvPhase, { icon: string; label: string }[]> = {
+  greeting: [
+    { icon: '🌊', label: 'Water Solutions' },
+    { icon: '☀️', label: 'Solar Projects' },
+    { icon: '⚙️', label: 'SCADA & Automation' },
+    { icon: '📋', label: 'Get a Quote' },
+    { icon: '📞', label: 'Contact Us' },
+  ],
+  discovery: [
+    { icon: '🌊', label: 'Flow Meters' },
+    { icon: '📊', label: 'Water Quality Analyzers' },
+    { icon: '🔧', label: 'Valves & Piping' },
+    { icon: '🖥️', label: 'PLC / SCADA' },
+    { icon: '📷', label: 'Surveillance Cameras' },
+  ],
+  pitching: [
+    { icon: '📄', label: 'Request Datasheet' },
+    { icon: '💰', label: 'Get a Quote' },
+    { icon: '🤝', label: 'Free Consultation' },
+    { icon: '💬', label: 'WhatsApp Expert' },
+  ],
+  closing: [
+    { icon: '💬', label: 'WhatsApp Now' },
+    { icon: '📞', label: 'Call Us' },
+    { icon: '📧', label: 'Email Us' },
+    { icon: '🔍', label: 'More Products' },
+  ],
 };
 
-// ============================================================
-//  SYSTEM PROMPT
-// ============================================================
-const SYSTEM_PROMPT = `You are Orbi, a warm, professional, and enthusiastic AI assistant for Orbit Engineering Solutions (OES) — a premier engineering company established in 1998, headquartered in Bhopal, Madhya Pradesh, India.
+const CONTACT_TRIGGER_REGEX =
+  /contact|phone|number|address|location|email|whatsapp|reach|call|office|bhopal|hours|timing|kahan|sampark|milna|kitna/i;
 
-COMPANY OVERVIEW:
-- Full Name: Orbit Engineering Solutions (OES)
-- Established: 1998 (25+ years of excellence)
-- Location: Bhopal, Madhya Pradesh, India
-- Core domains: Water infrastructure, Solar energy, Industrial automation, SCADA/Telemetry, IoT, Surveillance systems
+const PHASE_TRIGGER_KEYWORDS: Record<string, ConvPhase> = {
+  quote: 'closing', datasheet: 'pitching', whatsapp: 'closing', call: 'closing',
+  price: 'pitching', cost: 'pitching', rate: 'pitching', recommend: 'pitching',
+  install: 'pitching', commissioning: 'pitching', amc: 'closing', maintenance: 'pitching',
+};
 
-PRODUCTS:
-1. FLOW MEASUREMENT: Electromagnetic flow meters, bulk flow meters, ultrasonic level transmitters, water meters, smart prepaid water meters, mass flow meters, turbine flow meters, vortex flow meters
-2. WATER QUALITY ANALYSIS: Chlorine transmitters, DO transmitters, pH analyzers, turbidity analyzers
-3. PRESSURE & LEVEL INSTRUMENTS: Differential pressure transmitters, smart pressure transmitters, hydrostatic level transmitters, capacitance level transmitters, conductive/float/coupling level switches, blind-type pressure transmitters
-4. VALVES: Butterfly valves, gate valves, motorized ball valves, sluice valves
-5. AUTOMATION & CONTROL: PLC systems (SyncSys PLC), RTU (Remote Terminal Units), SCADA systems, IoT solutions, servers & SCADA software
-6. SURVEILLANCE: Bullet cameras, dome cameras, high-speed cameras, PTZ cameras
-7. PIPE SYSTEMS: Big jointing machines, welding machines, electrofusion jointing machines, HDPE fittings, chlorinators
-8. ELECTRICAL: Auto transformers, distribution transformers, shunt reactors, locomotive transformers, SF6 circuit breakers
-9. SOLAR: Smart solar street lights, solar panels
-
-SERVICES:
-- Water supply project design, execution & commissioning
-- SCADA and telemetry system installation & integration
-- Solar power project implementation
-- Industrial automation & PLC programming
-- Surveillance system setup & maintenance
-- Annual Maintenance Contracts (AMC)
-- Equipment supply & commissioning
-
-YOUR ROLE:
-1. CUSTOMER SUPPORT — Answer queries politely and professionally
-2. SALES AGENT — Enthusiastically promote OES solutions; highlight 25+ years experience, government track record, quality products; help users find the right solution
-3. GENERAL ENQUIRY — Answer questions about the company, domain (water, solar, automation, SCADA)
-4. CONTACT REDIRECT — When user asks for contact details, is frustrated, or wants human support, provide contact info
-
-CONTACT INFORMATION:
-- Phone 1: +91 70241 28029
-- Phone 2: +91 9039075049
-- WhatsApp: +91 9039075048
-- Email (General): info@orbitengineerings.com
-- Email (Service): service@orbitengineerings.com
-- Working Office: Root Space, Char Imli, Mannipuram, Bhopal 462016, MP
-- Branch Office: Flat No.2, Block 12, Shalimar Enclave, E3 Arera Colony, Bhopal 462016
-- Head Office: E-45, Pride City, Katara Hills, Bhopal, Madhya Pradesh 462043
-- Business Hours: Monday–Saturday: 10:00 AM – 7:00 PM | Sunday: Closed
-
-PERSONALITY:
-- Warm, helpful, professional, enthusiastic
-- Use simple, clear language
-- Respond in same language as user — Hindi, English, or Hinglish
-- Be concise: 2–5 sentences ideal
-- Use 1–2 emojis per message
-- End with a call to action
-- Never make up technical specs not listed above`;
 
 // ============================================================
-//  GEMINI API
+//  DETECT CONVERSATION PHASE
 // ============================================================
-const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY ?? '';
-const GEMINI_ENDPOINT =
-  'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent';
+function detectPhase(messages: Message[], currentPhase: ConvPhase): ConvPhase {
+  if (messages.length <= 1) return 'greeting';
+  if (messages.length === 2) return 'discovery';
 
-async function callGemini(history: GeminiMessage[], userText: string): Promise<string> {
-  if (!GEMINI_API_KEY) {
-    return 'Main abhi fully configured nahi hoon 😅 Please humse directly contact karein:\n📞 +91 70241 28029\n📧 info@orbitengineerings.com';
+  // Check last few user messages for closing triggers
+  const recentUserMsgs = messages
+    .filter(m => m.role === 'user')
+    .slice(-3)
+    .map(m => m.text.toLowerCase());
+
+  for (const msg of recentUserMsgs) {
+    for (const [keyword, phase] of Object.entries(PHASE_TRIGGER_KEYWORDS)) {
+      if (msg.includes(keyword)) return phase;
+    }
   }
-  const contents: GeminiMessage[] = [
-    ...history.slice(-12),
-    { role: 'user', parts: [{ text: userText }] },
-  ];
-  const body = {
-    system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
-    contents,
-    generationConfig: { temperature: 0.72, maxOutputTokens: 450, topP: 0.9 },
-  };
-  const res = await fetch(`${GEMINI_ENDPOINT}?key=${GEMINI_API_KEY}`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(body),
-  });
-  if (!res.ok) { console.error('[Orbi] API error', res.status); throw new Error(`API ${res.status}`); }
-  const data = await res.json();
-  const text: string | undefined = data?.candidates?.[0]?.content?.parts?.[0]?.text;
-  return text?.trim() || "Sorry, I couldn't generate a response. Please try again!";
+
+  // Progress naturally
+  if (messages.length >= 6 && currentPhase === 'discovery') return 'pitching';
+  if (messages.length >= 10 && currentPhase === 'pitching') return 'closing';
+
+  return currentPhase;
 }
 
 // ============================================================
-//  ORBI SVG AVATAR
+//  ORBI ROBOT SVG AVATAR
 // ============================================================
 function OrbiAvatar({ size = 40, animate = false }: { size?: number; animate?: boolean }) {
   return (
-    <svg
-      width={size} height={size} viewBox="0 0 80 90" fill="none"
+    <svg width={size} height={size} viewBox="0 0 80 90" fill="none"
       xmlns="http://www.w3.org/2000/svg"
       style={animate ? { animation: 'orbi-float 3s ease-in-out infinite' } : undefined}
-      aria-hidden="true"
-    >
+      aria-hidden="true">
       <defs>
-        <linearGradient id="orbi-hg" x1="0%" y1="0%" x2="100%" y2="100%">
+        <linearGradient id="orbi-hg2" x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="#0073bc" /><stop offset="100%" stopColor="#00a8e0" />
         </linearGradient>
-        <linearGradient id="orbi-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+        <linearGradient id="orbi-bg2" x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="#005a94" /><stop offset="100%" stopColor="#0073bc" />
         </linearGradient>
-        <linearGradient id="orbi-dg" x1="0%" y1="0%" x2="0%" y2="100%">
+        <linearGradient id="orbi-dg2" x1="0%" y1="0%" x2="0%" y2="100%">
           <stop offset="0%" stopColor="#00d4ff" /><stop offset="100%" stopColor="#0073bc" />
         </linearGradient>
-        <filter id="orbi-glow">
+        <filter id="orbi-glow2">
           <feGaussianBlur stdDeviation="1.5" result="blur" />
           <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
         </filter>
       </defs>
-      {/* Antenna */}
       <line x1="40" y1="9" x2="40" y2="21" stroke="#0073bc" strokeWidth="2.5" strokeLinecap="round" />
-      {/* Water drop */}
       <path d="M40 2 C37 5,33 10,33 13 C33 16.9,36.1 20,40 20 C43.9 20,47 16.9,47 13 C47 10,43 5,40 2Z"
-        fill="url(#orbi-dg)" filter="url(#orbi-glow)" />
+        fill="url(#orbi-dg2)" filter="url(#orbi-glow2)" />
       <ellipse cx="37.5" cy="13" rx="2" ry="3" fill="rgba(255,255,255,0.45)" />
-      {/* Head */}
-      <rect x="13" y="21" width="54" height="42" rx="17" fill="url(#orbi-hg)" />
+      <rect x="13" y="21" width="54" height="42" rx="17" fill="url(#orbi-hg2)" />
       <rect x="19" y="27" width="42" height="30" rx="11" fill="rgba(255,255,255,0.12)" />
-      {/* Eyes */}
       <circle cx="30" cy="39" r="9" fill="white" />
       <circle cx="30" cy="39" r="5.5" fill="#0073bc" />
       <circle cx="30" cy="39" r="2.8" fill="#001f3f" />
@@ -159,13 +125,10 @@ function OrbiAvatar({ size = 40, animate = false }: { size?: number; animate?: b
       <circle cx="50" cy="39" r="5.5" fill="#0073bc" />
       <circle cx="50" cy="39" r="2.8" fill="#001f3f" />
       <circle cx="52" cy="37" r="1.8" fill="white" />
-      {/* Smile */}
       <path d="M27 51 Q40 59 53 51" stroke="white" strokeWidth="2.8" fill="none" strokeLinecap="round" />
-      {/* Cheeks */}
       <circle cx="20" cy="44" r="4.5" fill="rgba(255,255,255,0.18)" />
       <circle cx="60" cy="44" r="4.5" fill="rgba(255,255,255,0.18)" />
-      {/* Body */}
-      <rect x="19" y="65" width="42" height="23" rx="11" fill="url(#orbi-bg)" />
+      <rect x="19" y="65" width="42" height="23" rx="11" fill="url(#orbi-bg2)" />
       <rect x="26" y="70" width="28" height="13" rx="5" fill="rgba(255,255,255,0.15)" />
       <circle cx="33" cy="76.5" r="3.2" fill="#00d4ff" opacity="0.85" />
       <circle cx="40" cy="76.5" r="3.2" fill="#7eeef7" opacity="0.85" />
@@ -175,10 +138,10 @@ function OrbiAvatar({ size = 40, animate = false }: { size?: number; animate?: b
 }
 
 // ============================================================
-//  GREETING TOAST — BEAUTIFUL NOTIFICATION CARD
+//  GREETING TOAST
 // ============================================================
 function GreetingToast({ onClose, onOpenChat }: { onClose: () => void; onOpenChat: () => void }) {
-  const [phase, setPhase] = useState<'hidden' | 'entering' | 'visible' | 'leaving'>('hidden');
+  const [phase, setPhase] = useState<'hidden' | 'visible' | 'leaving'>('hidden');
   const [progress, setProgress] = useState(100);
   const dismissedRef = useRef(false);
 
@@ -186,23 +149,19 @@ function GreetingToast({ onClose, onOpenChat }: { onClose: () => void; onOpenCha
     if (dismissedRef.current) return;
     dismissedRef.current = true;
     setPhase('leaving');
-    setTimeout(onClose, 500);
+    setTimeout(onClose, 450);
   }, [onClose]);
 
   useEffect(() => {
-    // Phase 1: show after 2.5s
-    const t1 = setTimeout(() => setPhase('entering'), 2500);
-    // Phase 2: settle to visible
-    const t2 = setTimeout(() => setPhase('visible'), 2500 + 60);
-    return () => { clearTimeout(t1); clearTimeout(t2); };
+    const t = setTimeout(() => setPhase('visible'), 2800);
+    return () => clearTimeout(t);
   }, []);
 
   useEffect(() => {
     if (phase !== 'visible') return;
-    // Countdown 6 seconds
     const tick = setInterval(() => {
       setProgress(p => {
-        const next = Math.max(0, p - 1.66); // ~6s
+        const next = Math.max(0, p - 1.43); // ~7s
         if (next <= 0) { clearInterval(tick); dismiss(); }
         return next;
       });
@@ -211,125 +170,72 @@ function GreetingToast({ onClose, onOpenChat }: { onClose: () => void; onOpenCha
   }, [phase, dismiss]);
 
   if (phase === 'hidden') return null;
-
-  const isVisible = phase === 'visible' || phase === 'entering';
+  const isVis = phase === 'visible';
 
   return (
-    <div
-      role="status"
-      aria-live="polite"
-      style={{
-        position: 'fixed',
-        bottom: '100px',
-        right: '22px',
-        zIndex: 10001,
-        fontFamily: "'Inter', system-ui, sans-serif",
-        /* Mobile: center bottom */
-      }}
-    >
-      {/* Outer glow ring */}
+    <div role="status" aria-live="polite" style={{
+      position: 'fixed', bottom: '100px', right: '22px', zIndex: 10001,
+      fontFamily: "'Inter', system-ui, sans-serif",
+    }}>
+      {/* Glow */}
       <div style={{
-        position: 'absolute', inset: '-6px',
-        borderRadius: '26px',
-        background: 'linear-gradient(135deg, rgba(0,115,188,0.15), rgba(0,212,255,0.08))',
-        filter: 'blur(8px)',
-        opacity: isVisible ? 1 : 0,
-        transition: 'opacity 0.5s ease',
-        pointerEvents: 'none',
+        position: 'absolute', inset: '-8px', borderRadius: '28px',
+        background: 'linear-gradient(135deg, rgba(0,115,188,0.18), rgba(0,212,255,0.1))',
+        filter: 'blur(10px)',
+        opacity: isVis ? 1 : 0, transition: 'opacity 0.5s ease', pointerEvents: 'none',
       }} />
 
-      {/* Main card */}
+      {/* Card */}
       <div style={{
-        width: '300px',
-        maxWidth: 'calc(100vw - 44px)',
-        background: 'white',
-        borderRadius: '20px',
-        overflow: 'hidden',
-        boxShadow: '0 12px 48px rgba(0,115,188,0.22), 0 4px 16px rgba(0,0,0,0.08)',
-        border: '1px solid rgba(0,115,188,0.12)',
-        transform: isVisible
-          ? 'translateY(0) scale(1)'
-          : phase === 'leaving'
-            ? 'translateY(16px) scale(0.94)'
-            : 'translateY(30px) scale(0.88)',
-        opacity: isVisible ? 1 : 0,
-        transition: phase === 'entering'
-          ? 'transform 0.55s cubic-bezier(0.34,1.56,0.64,1), opacity 0.4s ease'
-          : 'transform 0.4s ease-in, opacity 0.4s ease-in',
+        width: '308px', maxWidth: 'calc(100vw - 44px)',
+        background: 'white', borderRadius: '22px', overflow: 'hidden',
+        boxShadow: '0 16px 56px rgba(0,115,188,0.24), 0 4px 20px rgba(0,0,0,0.08)',
+        border: '1px solid rgba(0,115,188,0.13)',
+        transform: isVis ? 'translateY(0) scale(1)' : phase === 'leaving' ? 'translateY(14px) scale(0.95)' : 'translateY(32px) scale(0.88)',
+        opacity: isVis ? 1 : 0,
+        transition: phase === 'leaving'
+          ? 'transform 0.4s ease-in, opacity 0.4s ease-in'
+          : 'transform 0.58s cubic-bezier(0.34,1.56,0.64,1), opacity 0.42s ease',
       }}>
+        {/* Top gradient stripe */}
+        <div style={{ height: '4px', background: 'linear-gradient(90deg, #0073bc, #00a8e0, #00d4ff)' }} />
 
-        {/* Top gradient bar */}
-        <div style={{
-          height: '4px',
-          background: 'linear-gradient(90deg, #0073bc 0%, #00a8e0 50%, #00d4ff 100%)',
-        }} />
-
-        {/* Header section */}
+        {/* Header */}
         <div style={{
           background: 'linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%)',
           padding: '16px 16px 12px',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '12px',
-          position: 'relative',
+          display: 'flex', alignItems: 'center', gap: '12px',
         }}>
-          {/* Decorative water drops */}
           <div style={{
-            position: 'absolute', top: '8px', right: '48px',
-            width: '8px', height: '12px',
-            background: 'rgba(0,115,188,0.12)',
-            borderRadius: '50% 50% 50% 50% / 60% 60% 40% 40%',
-            transform: 'rotate(-20deg)',
-          }} />
-          <div style={{
-            position: 'absolute', top: '14px', right: '38px',
-            width: '5px', height: '8px',
-            background: 'rgba(0,115,188,0.08)',
-            borderRadius: '50% 50% 50% 50% / 60% 60% 40% 40%',
-            transform: 'rotate(10deg)',
-          }} />
-
-          {/* Avatar */}
-          <div style={{
-            width: '52px', height: '52px', flexShrink: 0,
+            width: '54px', height: '54px', flexShrink: 0,
             background: 'linear-gradient(135deg, #0073bc, #00a8e0)',
-            borderRadius: '50%',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            boxShadow: '0 4px 16px rgba(0,115,188,0.35)',
-            border: '3px solid white',
+            borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center',
+            boxShadow: '0 4px 18px rgba(0,115,188,0.38)', border: '3px solid white',
           }}>
             <OrbiAvatar size={38} animate />
           </div>
-
-          <div style={{ flex: 1, minWidth: 0 }}>
+          <div style={{ flex: 1 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
               <span style={{ fontSize: '15px', fontWeight: 800, color: '#0073bc' }}>Orbi</span>
               <span style={{
                 fontSize: '10px', fontWeight: 600, color: '#059669',
                 background: '#d1fae5', padding: '1px 7px', borderRadius: '10px',
-                border: '1px solid #a7f3d0',
-              }}>Online ●</span>
+                border: '1px solid #a7f3d0', letterSpacing: '0.02em',
+              }}>● Online</span>
             </div>
-            <div style={{ fontSize: '11px', color: '#6b7280', marginTop: '2px' }}>
-              Orbit Engineering Assistant 🌊
+            <div style={{ fontSize: '11.5px', color: '#6b7280', marginTop: '2px' }}>
+              OES Sales & Support AI
             </div>
           </div>
-
-          {/* Close btn */}
-          <button
-            onClick={dismiss}
-            aria-label="Dismiss"
+          <button onClick={dismiss} aria-label="Dismiss"
             style={{
-              alignSelf: 'flex-start',
-              background: 'rgba(0,0,0,0.05)', border: 'none',
-              cursor: 'pointer', color: '#9ca3af',
-              width: '24px', height: '24px',
-              borderRadius: '6px', display: 'flex',
-              alignItems: 'center', justifyContent: 'center',
+              alignSelf: 'flex-start', background: 'rgba(0,0,0,0.06)', border: 'none',
+              cursor: 'pointer', color: '#9ca3af', width: '26px', height: '26px',
+              borderRadius: '7px', display: 'flex', alignItems: 'center', justifyContent: 'center',
               transition: 'all 0.2s', flexShrink: 0,
             }}
-            onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.background = 'rgba(0,0,0,0.1)'; (e.currentTarget as HTMLButtonElement).style.color = '#4b5563'; }}
-            onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background = 'rgba(0,0,0,0.05)'; (e.currentTarget as HTMLButtonElement).style.color = '#9ca3af'; }}
+            onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.background = 'rgba(0,0,0,0.12)'; }}
+            onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background = 'rgba(0,0,0,0.06)'; }}
           >
             <X size={13} />
           </button>
@@ -339,48 +245,35 @@ function GreetingToast({ onClose, onOpenChat }: { onClose: () => void; onOpenCha
         <div style={{ padding: '12px 16px 14px' }}>
           <div style={{
             background: 'linear-gradient(135deg, #f8fbff, #f0f9ff)',
-            borderRadius: '14px 14px 14px 4px',
-            padding: '12px 14px',
-            border: '1px solid rgba(0,115,188,0.1)',
+            borderRadius: '4px 16px 16px 16px',
+            padding: '12px 14px', border: '1px solid rgba(0,115,188,0.1)',
             fontSize: '13px', color: '#374151', lineHeight: 1.6,
-            position: 'relative',
           }}>
-            <span style={{ fontSize: '15px' }}>👋</span> <strong style={{ color: '#0073bc' }}>Namaste!</strong> I'm Orbi, your Orbit Engineering assistant.
+            <span style={{ fontSize: '16px' }}>👋</span> <strong style={{ color: '#0073bc' }}>Namaste!</strong> I'm <strong>Orbi</strong>, your Orbit Engineering assistant.
             <br /><br />
-            Need help with <strong>water solutions</strong>, <strong>solar projects</strong>, or product enquiries? I'm here 24/7! ✨
+            Ask me about <strong>water solutions</strong>, <strong>SCADA</strong>, <strong>solar</strong>, or get a <strong>product quote</strong> — I'm here to help! ✨
           </div>
 
-          {/* CTA Button */}
-          <button
-            onClick={() => { dismiss(); onOpenChat(); }}
+          {/* CTA */}
+          <button onClick={() => { dismiss(); onOpenChat(); }}
             style={{
-              marginTop: '10px',
-              width: '100%',
-              padding: '11px',
+              marginTop: '10px', width: '100%', padding: '11px 0',
               background: 'linear-gradient(135deg, #0073bc 0%, #00a8e0 100%)',
-              color: 'white',
-              border: 'none',
-              borderRadius: '12px',
-              fontSize: '13.5px',
-              fontWeight: 700,
-              cursor: 'pointer',
+              color: 'white', border: 'none', borderRadius: '13px',
+              fontSize: '13.5px', fontWeight: 700, cursor: 'pointer',
               letterSpacing: '0.02em',
-              boxShadow: '0 4px 14px rgba(0,115,188,0.35)',
-              transition: 'all 0.2s ease',
+              boxShadow: '0 4px 16px rgba(0,115,188,0.38)',
+              transition: 'all 0.22s ease',
               display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px',
             }}
-            onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.transform = 'translateY(-1px)'; (e.currentTarget as HTMLButtonElement).style.boxShadow = '0 6px 20px rgba(0,115,188,0.45)'; }}
-            onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.transform = 'translateY(0)'; (e.currentTarget as HTMLButtonElement).style.boxShadow = '0 4px 14px rgba(0,115,188,0.35)'; }}
+            onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.transform = 'translateY(-2px)'; (e.currentTarget as HTMLButtonElement).style.boxShadow = '0 7px 22px rgba(0,115,188,0.48)'; }}
+            onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.transform = ''; (e.currentTarget as HTMLButtonElement).style.boxShadow = '0 4px 16px rgba(0,115,188,0.38)'; }}
           >
-            <Sparkles size={15} />
-            Start Chatting with Orbi
+            <Sparkles size={15} /> Start Chatting with Orbi
           </button>
 
           {/* Progress bar */}
-          <div style={{
-            marginTop: '10px', height: '3px', background: '#f1f5f9',
-            borderRadius: '2px', overflow: 'hidden',
-          }}>
+          <div style={{ marginTop: '10px', height: '3px', background: '#f1f5f9', borderRadius: '2px', overflow: 'hidden' }}>
             <div style={{
               height: '100%', width: `${progress}%`,
               background: 'linear-gradient(90deg, #0073bc, #00d4ff)',
@@ -388,35 +281,22 @@ function GreetingToast({ onClose, onOpenChat }: { onClose: () => void; onOpenCha
             }} />
           </div>
           <p style={{ margin: '5px 0 0', fontSize: '10px', color: '#9ca3af', textAlign: 'center' }}>
-            Auto-closing in a moment…
+            Auto-closing soon…
           </p>
         </div>
       </div>
 
-      {/* Tail arrow */}
+      {/* Tail */}
       <div style={{
-        position: 'absolute', bottom: '-8px', right: '36px',
-        width: '16px', height: '16px',
-        background: 'white',
+        position: 'absolute', bottom: '-8px', right: '38px',
+        width: '16px', height: '16px', background: 'white',
         transform: 'rotate(45deg)',
         borderRight: '1px solid rgba(0,115,188,0.12)',
         borderBottom: '1px solid rgba(0,115,188,0.12)',
-        boxShadow: '3px 3px 5px rgba(0,0,0,0.03)',
       }} />
     </div>
   );
 }
-
-// ============================================================
-//  QUICK REPLIES
-// ============================================================
-const QUICK_REPLIES = [
-  { icon: '🌊', label: 'Water Projects' },
-  { icon: '☀️', label: 'Solar Solutions' },
-  { icon: '⚙️', label: 'SCADA & Automation' },
-  { icon: '📞', label: 'Contact & Location' },
-  { icon: '💼', label: 'Get a Quote' },
-];
 
 // ============================================================
 //  CONTACT CARD
@@ -427,16 +307,16 @@ function ContactCard() {
       background: 'linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%)',
       borderRadius: '14px', padding: '14px',
       border: '1px solid rgba(0,115,188,0.18)',
-      fontSize: '12.5px', lineHeight: 1.6,
+      fontSize: '12.5px', lineHeight: 1.6, marginTop: '8px',
     }}>
-      <p style={{ margin: '0 0 10px', fontWeight: 700, color: '#0073bc', fontSize: '13.5px' }}>
+      <p style={{ margin: '0 0 10px', fontWeight: 700, color: '#0073bc', fontSize: '13px' }}>
         🏢 Orbit Engineering Solutions
       </p>
       <div style={{ display: 'flex', alignItems: 'center', gap: '7px', marginBottom: '5px' }}>
         <Phone size={11} color="#0073bc" style={{ flexShrink: 0 }} />
         <span>
           <a href="tel:7024128029" style={{ color: '#0073bc', textDecoration: 'none', fontWeight: 600 }}>+91 70241 28029</a>
-          {' | '}
+          {'  |  '}
           <a href="tel:9039075049" style={{ color: '#0073bc', textDecoration: 'none', fontWeight: 600 }}>+91 9039075049</a>
         </span>
       </div>
@@ -453,21 +333,20 @@ function ContactCard() {
       <p style={{ margin: '0 0 10px', fontSize: '11px', color: '#6b7280' }}>
         🕐 Mon–Sat: 10:00 AM – 7:00 PM | Sun: Closed
       </p>
-      <a
-        href={CONTACT.whatsappLink}
-        target="_blank" rel="noopener noreferrer"
+      <a href={CONTACT.whatsappLink} target="_blank" rel="noopener noreferrer"
         style={{
-          display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px',
-          padding: '9px', background: '#25D366', color: 'white',
-          borderRadius: '10px', textDecoration: 'none', fontWeight: 700, fontSize: '12.5px',
+          display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '7px',
+          padding: '10px', background: '#25D366', color: 'white',
+          borderRadius: '11px', textDecoration: 'none', fontWeight: 700, fontSize: '13px',
+          transition: 'opacity 0.2s',
         }}
         onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.opacity = '0.88'; }}
         onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.opacity = '1'; }}
       >
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="white">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="white">
           <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" />
         </svg>
-        WhatsApp Us Now
+        WhatsApp Us Now — Instant Response!
       </a>
     </div>
   );
@@ -493,7 +372,7 @@ function RenderText({ text }: { text: string }) {
 }
 
 // ============================================================
-//  USE WINDOW SIZE HOOK
+//  MOBILE DETECTION HOOK
 // ============================================================
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(() => window.innerWidth < 640);
@@ -513,46 +392,59 @@ export default function ChatbotWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const [greetingActive, setGreetingActive] = useState(false);
   const [greetingDone, setGreetingDone] = useState(false);
+  const [convPhase, setConvPhase] = useState<ConvPhase>('greeting');
+  const [showQuickReplies, setShowQuickReplies] = useState(true);
+  const [reEngaged, setReEngaged] = useState(false); // re-engagement badge
 
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 'welcome',
       role: 'bot',
-      text: "Namaste! 🙏 I'm **Orbi**, your Orbit Engineering assistant!\n\nI can help you with:\n• 🌊 Water infrastructure & SCADA\n• ☀️ Solar energy solutions\n• ⚙️ Products, specs & quotes\n• 📞 Connecting you to our expert team\n\nHow may I assist you today?",
+      text: "Namaste! 🙏 I'm **Orbi**, Orbit Engineering Solutions ka AI assistant!\n\nMain aapki help kar sakta hoon:\n• 🌊 Water Infrastructure & SCADA systems\n• ☀️ Solar energy solutions\n• ⚙️ Industrial automation & IoT\n• 📋 Product info, specs & quotes\n• 📞 Expert team se connect karna\n\nAap kya dhundh rahe hain aaj? 😊",
       timestamp: new Date(),
     },
   ]);
   const [inputText, setInputText] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [geminiHistory, setGeminiHistory] = useState<GeminiMessage[]>([]);
-  const [showQuickReplies, setShowQuickReplies] = useState(true);
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const messageCountRef = useRef(0);
 
+  // ── Session management (greeting only, NOT chat history — privacy) ──
   useEffect(() => {
     const seen = sessionStorage.getItem('orbi-greeted');
     if (!seen) setGreetingActive(true);
     else setGreetingDone(true);
   }, []);
 
+  // ── Auto-scroll ──
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages, isTyping]);
 
+  // ── Focus input when opened ──
   useEffect(() => {
     if (isOpen) setTimeout(() => inputRef.current?.focus(), 350);
   }, [isOpen]);
 
-  // Lock body scroll on mobile when chat is open
+  // ── Lock body scroll on mobile ──
   useEffect(() => {
-    if (isMobile && isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
+    if (isMobile && isOpen) document.body.style.overflow = 'hidden';
+    else document.body.style.overflow = '';
     return () => { document.body.style.overflow = ''; };
   }, [isMobile, isOpen]);
+
+  // ── Re-engagement badge: show notification badge if user has had 2+ messages and closed ──
+  useEffect(() => {
+    if (!isOpen && messageCountRef.current >= 2) {
+      const t = setTimeout(() => setReEngaged(true), 4000);
+      return () => clearTimeout(t);
+    } else {
+      setReEngaged(false);
+    }
+  }, [isOpen]);
 
   const dismissGreeting = useCallback(() => {
     setGreetingActive(false);
@@ -568,119 +460,151 @@ export default function ChatbotWidget() {
   const sendMessage = useCallback(async (text: string) => {
     const trimmed = text.trim();
     if (!trimmed || isTyping) return;
+
     setShowQuickReplies(false);
     setInputText('');
-    const userMsg: Message = { id: `u-${Date.now()}`, role: 'user', text: trimmed, timestamp: new Date() };
-    setMessages(prev => [...prev, userMsg]);
+    setReEngaged(false);
+
+    const userMsg: Message = {
+      id: `u-${Date.now()}`,
+      role: 'user',
+      text: trimmed,
+      timestamp: new Date(),
+    };
+
+    setMessages(prev => {
+      const next = [...prev, userMsg];
+      messageCountRef.current = next.filter(m => m.role === 'user').length;
+      // Update phase
+      const newPhase = detectPhase(next, convPhase);
+      setConvPhase(newPhase);
+      return next;
+    });
+
     setIsTyping(true);
+
     try {
-      const reply = await callGemini(geminiHistory, trimmed);
-      const botMsg: Message = { id: `b-${Date.now()}`, role: 'bot', text: reply, timestamp: new Date() };
+      const reply = await callOrbi(geminiHistory, trimmed);
+      const showContact = CONTACT_TRIGGER_REGEX.test(trimmed) || CONTACT_TRIGGER_REGEX.test(reply);
+
+      const botMsg: Message = {
+        id: `b-${Date.now()}`,
+        role: 'bot',
+        text: reply,
+        timestamp: new Date(),
+        showContact,
+      };
+
       setMessages(prev => [...prev, botMsg]);
       setGeminiHistory(prev => [
         ...prev,
         { role: 'user', parts: [{ text: trimmed }] },
         { role: 'model', parts: [{ text: reply }] },
       ]);
+
+      // Show quick replies after bot responds (if we have few messages)
+      if (messages.length < 4) setShowQuickReplies(true);
+
     } catch {
       setMessages(prev => [...prev, {
-        id: `e-${Date.now()}`, role: 'bot',
-        text: 'Oops! 😅 Network issue. Please humse directly contact karein:\n📞 +91 70241 28029\n📧 info@orbitengineerings.com',
+        id: `e-${Date.now()}`,
+        role: 'bot',
+        text: 'Network issue aa gaya 😅\nSeedha humse contact karein:\n📞 **+91 70241 28029**\n💬 **WhatsApp: +91 9039075048**',
         timestamp: new Date(),
+        showContact: true,
       }]);
     } finally {
       setIsTyping(false);
     }
-  }, [isTyping, geminiHistory]);
+  }, [isTyping, geminiHistory, convPhase, messages.length]);
+
+  const clearChat = useCallback(() => {
+    setMessages([{
+      id: 'welcome-' + Date.now(),
+      role: 'bot',
+      text: "Namaste! 🙏 I'm **Orbi**, Orbit Engineering Solutions ka AI assistant!\n\nMain aapki help kar sakta hoon:\n• 🌊 Water Infrastructure & SCADA systems\n• ☀️ Solar energy solutions\n• ⚙️ Industrial automation & IoT\n• 📋 Product info, specs & quotes\n• 📞 Expert team se connect karna\n\nAap kya dhundh rahe hain aaj? 😊",
+      timestamp: new Date(),
+    }]);
+    setGeminiHistory([]);
+    setConvPhase('greeting');
+    setShowQuickReplies(true);
+    messageCountRef.current = 0;
+  }, []);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(inputText); }
   };
 
-  const toggleChat = () => { setIsOpen(o => !o); if (greetingActive) dismissGreeting(); };
-  const fmtTime = (d: Date) => d.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
-  const isContactMsg = (t: string) =>
-    /contact|phone|number|address|location|email|whatsapp|reach|call|office|bhopal|hours|timing/i.test(t);
+  const toggleChat = () => {
+    setIsOpen(o => !o);
+    if (greetingActive) dismissGreeting();
+    setReEngaged(false);
+  };
 
-  // ── Responsive dimensions ──
+  const fmtTime = (d: Date) => d.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
+
+  // ── Responsive layout ──
   const chatW = isMobile ? '100vw' : 'min(440px, calc(100vw - 48px))';
-  const chatH = isMobile ? '100dvh' : 'min(620px, calc(100dvh - 110px))';
+  const chatH = isMobile ? '100dvh' : 'min(630px, calc(100dvh - 108px))';
   const chatBottom = isMobile ? '0' : '92px';
   const chatRight = isMobile ? '0' : '20px';
-  const chatBorderRadius = isMobile ? '0' : '24px';
+  const chatBR = isMobile ? '0' : '24px';
+
+  const quickReplies = PHASE_QUICK_REPLIES[convPhase];
+  const isFirstMessage = messages.length === 1;
 
   return (
     <>
-      {/* ── Global Animations ── */}
+      {/* ── Global CSS ── */}
       <style>{`
-        @keyframes orbi-float {
-          0%,100% { transform:translateY(0); }
-          50%      { transform:translateY(-5px); }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        @keyframes orbi-float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-5px)} }
+        @keyframes orbi-pulse-ring { 0%{transform:scale(1);opacity:.6} 100%{transform:scale(1.75);opacity:0} }
+        @keyframes orbi-window-desktop {
+          0%{transform:scale(0.85) translateY(20px);opacity:0}
+          100%{transform:scale(1) translateY(0);opacity:1}
         }
-        @keyframes orbi-pulse-ring {
-          0%   { transform:scale(1);    opacity:0.6; }
-          100% { transform:scale(1.7);  opacity:0; }
+        @keyframes orbi-window-mobile {
+          0%{transform:translateY(100%);opacity:0}
+          100%{transform:translateY(0);opacity:1}
         }
-        @keyframes orbi-window-open {
-          0%   { transform:scale(0.85) translateY(20px); opacity:0; }
-          100% { transform:scale(1)    translateY(0);    opacity:1; }
-        }
-        @keyframes orbi-mobile-open {
-          0%   { transform:translateY(100%); opacity:0; }
-          100% { transform:translateY(0);    opacity:1; }
-        }
-        @keyframes orbi-dot {
-          0%,60%,100% { transform:translateY(0);   opacity:0.35; }
-          30%          { transform:translateY(-7px); opacity:1; }
-        }
-        @keyframes orbi-msg-bot {
-          from { transform:translateX(-16px); opacity:0; }
-          to   { transform:translateX(0);     opacity:1; }
-        }
-        @keyframes orbi-msg-user {
-          from { transform:translateX(16px); opacity:0; }
-          to   { transform:translateX(0);    opacity:1; }
-        }
-        @keyframes orbi-shimmer {
-          0%   { background-position:200% center; }
-          100% { background-position:-200% center; }
-        }
-        .orbi-window-desktop { animation: orbi-window-open 0.42s cubic-bezier(0.34,1.56,0.64,1) forwards; }
-        .orbi-window-mobile  { animation: orbi-mobile-open 0.38s cubic-bezier(0.22,1,0.36,1) forwards; }
-        .orbi-msg-bot  { animation: orbi-msg-bot  0.3s ease-out; }
-        .orbi-msg-user { animation: orbi-msg-user 0.3s ease-out; }
+        @keyframes orbi-dot { 0%,60%,100%{transform:translateY(0);opacity:.35} 30%{transform:translateY(-7px);opacity:1} }
+        @keyframes orbi-msg-in-bot  { from{transform:translateX(-16px);opacity:0} to{transform:translateX(0);opacity:1} }
+        @keyframes orbi-msg-in-user { from{transform:translateX(16px);opacity:0} to{transform:translateX(0);opacity:1} }
+        @keyframes orbi-badge-pop { 0%{transform:scale(0)} 60%{transform:scale(1.2)} 100%{transform:scale(1)} }
+
+        .orbi-desktop  { animation: orbi-window-desktop 0.42s cubic-bezier(0.34,1.56,0.64,1) forwards; }
+        .orbi-mobile   { animation: orbi-window-mobile  0.38s cubic-bezier(0.22,1,0.36,1) forwards; }
+        .orbi-msg-bot  { animation: orbi-msg-in-bot  0.3s ease-out; }
+        .orbi-msg-user { animation: orbi-msg-in-user 0.3s ease-out; }
         .orbi-dot1 { animation: orbi-dot 1.3s 0s    infinite; }
         .orbi-dot2 { animation: orbi-dot 1.3s 0.22s infinite; }
         .orbi-dot3 { animation: orbi-dot 1.3s 0.44s infinite; }
-        .orbi-scroll::-webkit-scrollbar { width:5px; }
-        .orbi-scroll::-webkit-scrollbar-track { background:#f0f9ff; border-radius:3px; }
-        .orbi-scroll::-webkit-scrollbar-thumb { background:#bae6fd; border-radius:3px; }
-        .orbi-scroll::-webkit-scrollbar-thumb:hover { background:#7dd3fc; }
+        .orbi-badge { animation: orbi-badge-pop 0.4s cubic-bezier(0.34,1.56,0.64,1) both; }
+
+        .orbi-scroll::-webkit-scrollbar { width: 5px; }
+        .orbi-scroll::-webkit-scrollbar-track { background: #f0f9ff; }
+        .orbi-scroll::-webkit-scrollbar-thumb { background: #bae6fd; border-radius: 3px; }
+        .orbi-scroll::-webkit-scrollbar-thumb:hover { background: #7dd3fc; }
+
         .orbi-chip {
-          transition: all 0.22s ease !important;
+          transition: all 0.2s ease !important;
         }
         .orbi-chip:hover {
-          background: linear-gradient(135deg,#0073bc,#00a8e0) !important;
+          background: linear-gradient(135deg, #0073bc, #00a8e0) !important;
           color: white !important;
           border-color: transparent !important;
-          transform: translateY(-1px);
-          box-shadow: 0 4px 12px rgba(0,115,188,0.28) !important;
+          transform: translateY(-2px);
+          box-shadow: 0 5px 14px rgba(0,115,188,0.32) !important;
         }
-        .orbi-send-btn:hover  { opacity:0.9; transform:scale(1.08); }
-        .orbi-send-btn:active { transform:scale(0.93); }
-        .orbi-close-btn:hover { background:rgba(255,255,255,0.28) !important; }
+        .orbi-send:hover  { opacity: .9; transform: scale(1.08); }
+        .orbi-send:active { transform: scale(.93); }
+        .orbi-close:hover { background: rgba(255,255,255,.28) !important; }
         .orbi-input-wrap:focus-within {
           border-color: #0073bc !important;
-          box-shadow: 0 0 0 3px rgba(0,115,188,0.12) !important;
+          box-shadow: 0 0 0 3px rgba(0,115,188,0.13) !important;
         }
-        @media (max-width: 639px) {
-          .orbi-chat-btn {
-            width: 56px !important;
-            height: 56px !important;
-            bottom: 16px !important;
-            right: 16px !important;
-          }
-        }
+        .orbi-clr:hover { background: rgba(0,115,188,0.1) !important; color: #0073bc !important; }
       `}</style>
 
       {/* ── Greeting Toast ── */}
@@ -688,65 +612,53 @@ export default function ChatbotWidget() {
         <GreetingToast onClose={dismissGreeting} onOpenChat={openFromGreeting} />
       )}
 
-      {/* ── Mobile Overlay Backdrop ── */}
+      {/* ── Mobile backdrop ── */}
       {isMobile && isOpen && (
-        <div
-          onClick={toggleChat}
-          style={{
-            position: 'fixed', inset: 0,
-            background: 'rgba(0,0,0,0.4)',
-            zIndex: 9997,
-            backdropFilter: 'blur(3px)',
-          }}
-        />
+        <div onClick={toggleChat} style={{
+          position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.4)',
+          zIndex: 9996, backdropFilter: 'blur(3px)',
+        }} />
       )}
 
       {/* ── Chat Window ── */}
       {isOpen && (
         <div
-          className={isMobile ? 'orbi-window-mobile' : 'orbi-window-desktop'}
+          className={isMobile ? 'orbi-mobile' : 'orbi-desktop'}
           role="dialog"
-          aria-label="Orbi — Orbit Engineering Chatbot"
+          aria-label="Orbi — OES Sales & Support AI"
           aria-modal="true"
           style={{
-            position: 'fixed',
-            bottom: chatBottom,
-            right: chatRight,
-            width: chatW,
-            height: chatH,
-            zIndex: 9998,
-            display: 'flex',
-            flexDirection: 'column',
-            borderRadius: chatBorderRadius,
-            overflow: 'hidden',
+            position: 'fixed', bottom: chatBottom, right: chatRight,
+            width: chatW, height: chatH, zIndex: 9998,
+            display: 'flex', flexDirection: 'column',
+            borderRadius: chatBR, overflow: 'hidden',
             background: 'white',
             boxShadow: isMobile
               ? '0 -8px 40px rgba(0,0,0,0.15)'
-              : '0 28px 80px rgba(0,115,188,0.2), 0 8px 32px rgba(0,0,0,0.1)',
+              : '0 28px 80px rgba(0,115,188,0.22), 0 8px 32px rgba(0,0,0,0.1)',
             border: isMobile ? 'none' : '1px solid rgba(0,115,188,0.1)',
             fontFamily: "'Inter', system-ui, sans-serif",
           }}
         >
           {/* ─── HEADER ─── */}
           <div style={{
-            background: 'linear-gradient(135deg, #0073bc 0%, #0060a0 40%, #003d6b 100%)',
+            background: 'linear-gradient(135deg, #0073bc 0%, #005fa3 45%, #003d6b 100%)',
             padding: isMobile ? '14px 16px 12px' : '16px 20px 14px',
-            display: 'flex', alignItems: 'center', gap: '14px',
+            display: 'flex', alignItems: 'center', gap: '13px',
             flexShrink: 0, position: 'relative', overflow: 'hidden',
           }}>
-            {/* Wave decoration */}
+            {/* Wave */}
             <svg style={{ position: 'absolute', bottom: 0, left: 0, opacity: 0.1 }}
               viewBox="0 0 440 32" height="32" width="100%" preserveAspectRatio="none">
               <path d="M0 22 Q55 8,110 20 Q165 32,220 16 Q275 2,330 18 Q385 34,440 18 L440 32 L0 32Z" fill="white" />
             </svg>
-
-            {/* Stars decoration */}
-            <div style={{ position: 'absolute', top: '10px', right: '70px', opacity: 0.25 }}>
-              <svg width="40" height="20" viewBox="0 0 40 20">
-                <circle cx="5" cy="10" r="1.5" fill="white" />
-                <circle cx="15" cy="5" r="1" fill="white" />
-                <circle cx="25" cy="14" r="1.2" fill="white" />
-                <circle cx="35" cy="7" r="1" fill="white" />
+            {/* Stars */}
+            <div style={{ position: 'absolute', top: '10px', right: '72px', opacity: 0.22 }}>
+              <svg width="42" height="18" viewBox="0 0 42 18">
+                <circle cx="5" cy="9" r="1.5" fill="white" />
+                <circle cx="14" cy="4" r="1" fill="white" />
+                <circle cx="25" cy="13" r="1.3" fill="white" />
+                <circle cx="36" cy="6" r="1" fill="white" />
               </svg>
             </div>
 
@@ -755,25 +667,23 @@ export default function ChatbotWidget() {
               <div style={{
                 width: isMobile ? '48px' : '54px',
                 height: isMobile ? '48px' : '54px',
-                background: 'rgba(255,255,255,0.15)',
-                borderRadius: '50%',
+                background: 'rgba(255,255,255,0.14)', borderRadius: '50%',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 border: '2.5px solid rgba(255,255,255,0.32)',
                 backdropFilter: 'blur(6px)',
-                boxShadow: '0 4px 16px rgba(0,0,0,0.2)',
+                boxShadow: '0 4px 18px rgba(0,0,0,0.22)',
               }}>
                 <OrbiAvatar size={isMobile ? 36 : 40} animate />
               </div>
               <div style={{
                 position: 'absolute', bottom: 2, right: 2,
-                width: '13px', height: '13px',
-                background: '#4ade80', borderRadius: '50%',
-                border: '2.5px solid white',
-                boxShadow: '0 0 6px rgba(74,222,128,0.6)',
+                width: '13px', height: '13px', background: '#4ade80',
+                borderRadius: '50%', border: '2.5px solid white',
+                boxShadow: '0 0 7px rgba(74,222,128,0.65)',
               }} />
             </div>
 
-            {/* Name + Status */}
+            {/* Name */}
             <div style={{ flex: 1, minWidth: 0 }}>
               <div style={{ color: 'white', fontWeight: 800, fontSize: isMobile ? '17px' : '18px', lineHeight: 1.2 }}>
                 Orbi
@@ -782,44 +692,54 @@ export default function ChatbotWidget() {
                 🌊 Orbit Engineering Assistant
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '5px', marginTop: '4px' }}>
-                <div style={{ width: '7px', height: '7px', background: '#4ade80', borderRadius: '50%', boxShadow: '0 0 4px rgba(74,222,128,0.8)' }} />
-                <span style={{ color: 'rgba(255,255,255,0.7)', fontSize: '11px' }}>Online · Replies instantly</span>
+                <div style={{ width: '7px', height: '7px', background: '#4ade80', borderRadius: '50%', boxShadow: '0 0 5px rgba(74,222,128,0.8)' }} />
+                <span style={{ color: 'rgba(255,255,255,0.7)', fontSize: '11px' }}>Online · Powered by Gemini AI</span>
               </div>
             </div>
 
-            {/* Close */}
-            <button
-              onClick={toggleChat}
-              className="orbi-close-btn"
-              aria-label="Close chat"
-              style={{
-                background: 'rgba(255,255,255,0.15)', border: '1px solid rgba(255,255,255,0.25)',
-                borderRadius: '10px', color: 'white',
-                width: '34px', height: '34px',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                cursor: 'pointer', flexShrink: 0, transition: 'background 0.2s',
-              }}
-            >
-              <ChevronDown size={18} />
-            </button>
+            {/* Header actions */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', flexShrink: 0 }}>
+              {/* Clear chat */}
+              <button onClick={clearChat} className="orbi-clr" title="Start fresh conversation"
+                aria-label="Clear chat"
+                style={{
+                  background: 'rgba(255,255,255,0.12)', border: '1px solid rgba(255,255,255,0.2)',
+                  borderRadius: '8px', color: 'rgba(255,255,255,0.8)',
+                  width: '30px', height: '30px', display: 'flex', alignItems: 'center',
+                  justifyContent: 'center', cursor: 'pointer', transition: 'all 0.2s',
+                }}>
+                <RotateCcw size={14} />
+              </button>
+              {/* Close */}
+              <button onClick={toggleChat} className="orbi-close" aria-label="Close chat"
+                style={{
+                  background: 'rgba(255,255,255,0.14)', border: '1px solid rgba(255,255,255,0.25)',
+                  borderRadius: '10px', color: 'white',
+                  width: '34px', height: '34px', display: 'flex', alignItems: 'center',
+                  justifyContent: 'center', cursor: 'pointer', transition: 'background 0.2s',
+                }}>
+                <ChevronDown size={18} />
+              </button>
+            </div>
           </div>
 
-          {/* ─── MESSAGES ─── */}
+          {/* ─── MESSAGES AREA ─── */}
           <div className="orbi-scroll" style={{
             flex: 1, overflowY: 'auto',
             padding: isMobile ? '14px 12px' : '18px 16px',
-            background: 'linear-gradient(180deg, #f8fbff 0%, #ffffff 50%)',
+            background: 'linear-gradient(180deg, #f8fbff 0%, #ffffff 40%)',
             display: 'flex', flexDirection: 'column', gap: '14px',
           }}>
             {/* Date separator */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
               <div style={{ flex: 1, height: '1px', background: 'rgba(0,115,188,0.08)' }} />
-              <span style={{ fontSize: '11px', color: '#9ca3af', fontWeight: 500, whiteSpace: 'nowrap' }}>
-                {new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'short' })}
+              <span style={{ fontSize: '11px', color: '#9ca3af', fontWeight: 500 }}>
+                {new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}
               </span>
               <div style={{ flex: 1, height: '1px', background: 'rgba(0,115,188,0.08)' }} />
             </div>
 
+            {/* Messages */}
             {messages.map(msg => (
               <div key={msg.id}
                 className={msg.role === 'bot' ? 'orbi-msg-bot' : 'orbi-msg-user'}
@@ -828,30 +748,28 @@ export default function ChatbotWidget() {
                   flexDirection: msg.role === 'bot' ? 'row' : 'row-reverse',
                   alignItems: 'flex-end', gap: '10px',
                 }}>
-                {/* Bot icon */}
+                {/* Avatar */}
                 {msg.role === 'bot' && (
                   <div style={{
                     width: '32px', height: '32px', flexShrink: 0,
                     background: 'linear-gradient(135deg, #0073bc, #00a8e0)',
-                    borderRadius: '50%',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center',
                     boxShadow: '0 3px 10px rgba(0,115,188,0.3)',
                   }}>
                     <OrbiAvatar size={24} />
                   </div>
                 )}
 
-                <div style={{ maxWidth: '78%' }}>
+                <div style={{ maxWidth: isMobile ? '82%' : '78%' }}>
                   {/* Bubble */}
                   <div style={{
-                    padding: isMobile ? '10px 14px' : '12px 16px',
+                    padding: isMobile ? '10px 13px' : '12px 16px',
                     borderRadius: msg.role === 'bot' ? '18px 18px 18px 5px' : '18px 18px 5px 18px',
                     background: msg.role === 'bot'
-                      ? 'linear-gradient(135deg, #0073bc 0%, #005a94 100%)'
+                      ? 'linear-gradient(135deg, #0073bc 0%, #005494 100%)'
                       : 'white',
                     color: msg.role === 'bot' ? 'white' : '#111827',
-                    fontSize: isMobile ? '14px' : '14px',
-                    lineHeight: 1.6,
+                    fontSize: '14px', lineHeight: 1.65,
                     boxShadow: msg.role === 'bot'
                       ? '0 4px 16px rgba(0,115,188,0.3)'
                       : '0 2px 10px rgba(0,0,0,0.07)',
@@ -862,8 +780,8 @@ export default function ChatbotWidget() {
                   </div>
 
                   {/* Contact card */}
-                  {msg.role === 'bot' && isContactMsg(msg.text) && msg.id !== 'welcome' && (
-                    <div style={{ marginTop: '10px' }}><ContactCard /></div>
+                  {msg.role === 'bot' && msg.showContact && msg.id !== 'welcome' && (
+                    <ContactCard />
                   )}
 
                   {/* Time */}
@@ -892,7 +810,7 @@ export default function ChatbotWidget() {
                 </div>
                 <div style={{
                   padding: '14px 18px', borderRadius: '18px 18px 18px 5px',
-                  background: 'linear-gradient(135deg, #0073bc, #005a94)',
+                  background: 'linear-gradient(135deg, #0073bc, #005494)',
                   display: 'flex', gap: '6px', alignItems: 'center',
                   boxShadow: '0 4px 16px rgba(0,115,188,0.3)',
                 }}>
@@ -903,17 +821,20 @@ export default function ChatbotWidget() {
               </div>
             )}
 
-            {/* Quick replies */}
-            {showQuickReplies && messages.length === 1 && !isTyping && (
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginTop: '6px' }}>
-                {QUICK_REPLIES.map(qr => (
+            {/* Quick reply chips — phase-aware */}
+            {showQuickReplies && !isTyping && (
+              <div style={{
+                display: 'flex', flexWrap: 'wrap', gap: '8px',
+                marginTop: isFirstMessage ? '6px' : '2px',
+              }}>
+                {quickReplies.map(qr => (
                   <button key={qr.label} className="orbi-chip"
                     onClick={() => sendMessage(qr.label)}
                     style={{
-                      padding: '7px 14px', background: 'white', color: '#0073bc',
+                      padding: '7px 13px', background: 'white', color: '#0073bc',
                       border: '1.5px solid #0073bc', borderRadius: '22px',
                       fontSize: '12.5px', fontWeight: 600, cursor: 'pointer',
-                      display: 'flex', alignItems: 'center', gap: '6px',
+                      display: 'flex', alignItems: 'center', gap: '5px',
                       boxShadow: '0 2px 6px rgba(0,115,188,0.12)',
                     }}>
                     {qr.icon} {qr.label}
@@ -925,13 +846,39 @@ export default function ChatbotWidget() {
             <div ref={messagesEndRef} />
           </div>
 
-          {/* ─── INPUT ─── */}
+          {/* ─── INPUT AREA ─── */}
           <div style={{
-            padding: isMobile ? '12px 12px 16px' : '14px 16px 16px',
+            padding: isMobile ? '10px 12px 14px' : '13px 16px 16px',
             background: 'white',
             borderTop: '1px solid rgba(0,115,188,0.07)',
             flexShrink: 0,
           }}>
+            {/* WhatsApp quick-connect bar */}
+            <div style={{
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              gap: '6px', marginBottom: '10px',
+            }}>
+              <div style={{ flex: 1, height: '1px', background: 'rgba(0,115,188,0.06)' }} />
+              <a href={CONTACT.whatsappLink} target="_blank" rel="noopener noreferrer"
+                style={{
+                  display: 'flex', alignItems: 'center', gap: '5px',
+                  fontSize: '11px', color: '#25D366', fontWeight: 600,
+                  textDecoration: 'none', padding: '3px 8px',
+                  background: '#f0fdf4', borderRadius: '10px',
+                  border: '1px solid #bbf7d0', transition: 'all 0.2s',
+                }}
+                onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.background = '#dcfce7'; }}
+                onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.background = '#f0fdf4'; }}
+              >
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="#25D366">
+                  <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" />
+                </svg>
+                Quick WhatsApp Chat
+              </a>
+              <div style={{ flex: 1, height: '1px', background: 'rgba(0,115,188,0.06)' }} />
+            </div>
+
+            {/* Input box */}
             <div className="orbi-input-wrap" style={{
               display: 'flex', alignItems: 'center', gap: '10px',
               background: '#f8fbff', borderRadius: '16px',
@@ -944,18 +891,17 @@ export default function ChatbotWidget() {
                 value={inputText}
                 onChange={e => setInputText(e.target.value)}
                 onKeyDown={handleKeyDown}
-                placeholder="Ask me anything about OES…"
+                placeholder={isTyping ? 'Orbi is thinking…' : 'Kuch bhi puchh sakte hain…'}
                 disabled={isTyping}
-                aria-label="Type your message"
+                aria-label="Type your message to Orbi"
                 style={{
                   flex: 1, border: 'none', background: 'transparent',
                   fontSize: isMobile ? '15px' : '14px', color: '#111827',
-                  outline: 'none', fontFamily: "'Inter', system-ui, sans-serif",
-                  minWidth: 0,
+                  outline: 'none', fontFamily: "'Inter', system-ui, sans-serif", minWidth: 0,
                 }}
               />
               <button
-                id="orbi-send-btn" className="orbi-send-btn"
+                id="orbi-send-btn" className="orbi-send"
                 onClick={() => sendMessage(inputText)}
                 disabled={!inputText.trim() || isTyping}
                 aria-label="Send message"
@@ -969,16 +915,16 @@ export default function ChatbotWidget() {
                   cursor: inputText.trim() && !isTyping ? 'pointer' : 'not-allowed',
                   flexShrink: 0, transition: 'all 0.2s ease',
                   boxShadow: inputText.trim() && !isTyping ? '0 3px 10px rgba(0,115,188,0.35)' : 'none',
-                }}
-              >
+                }}>
                 <Send size={17} color={inputText.trim() && !isTyping ? 'white' : '#9ca3af'} />
               </button>
             </div>
+
             <p style={{
-              margin: '8px 0 0', fontSize: '10.5px', color: '#9ca3af',
+              margin: '7px 0 0', fontSize: '10.5px', color: '#9ca3af',
               textAlign: 'center', letterSpacing: '0.01em',
             }}>
-              🤖 Powered by Orbi AI · Orbit Engineering Solutions
+              🤖 Orbi AI · Orbit Engineering Solutions · Each session is private &amp; independent
             </p>
           </div>
         </div>
@@ -996,23 +942,36 @@ export default function ChatbotWidget() {
           <>
             <div style={{
               position: 'absolute', inset: '-12px', borderRadius: '50%',
-              border: '2px solid rgba(0,115,188,0.4)',
-              animation: 'orbi-pulse-ring 2.4s ease-out infinite',
-              pointerEvents: 'none',
+              border: '2px solid rgba(0,115,188,0.42)',
+              animation: 'orbi-pulse-ring 2.4s ease-out infinite', pointerEvents: 'none',
             }} />
             <div style={{
               position: 'absolute', inset: '-12px', borderRadius: '50%',
               border: '2px solid rgba(0,115,188,0.22)',
-              animation: 'orbi-pulse-ring 2.4s ease-out 0.8s infinite',
-              pointerEvents: 'none',
+              animation: 'orbi-pulse-ring 2.4s ease-out 0.8s infinite', pointerEvents: 'none',
             }} />
           </>
+        )}
+
+        {/* Re-engagement notification badge */}
+        {reEngaged && !isOpen && (
+          <div className="orbi-badge" style={{
+            position: 'absolute', top: '-8px', left: '-8px',
+            background: '#ef4444', color: 'white',
+            borderRadius: '50%', width: '22px', height: '22px',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            fontSize: '12px', fontWeight: 700, zIndex: 1,
+            border: '2px solid white',
+            boxShadow: '0 2px 8px rgba(239,68,68,0.45)',
+          }}>
+            <MessageCircle size={12} />
+          </div>
         )}
 
         <button
           id="orbi-chat-toggle"
           onClick={toggleChat}
-          aria-label={isOpen ? 'Close Orbi chat' : 'Open Orbi — Orbit Engineering Assistant'}
+          aria-label={isOpen ? 'Close Orbi chat' : 'Open Orbi — OES Sales & Support AI'}
           style={{
             width: isMobile ? '58px' : '64px',
             height: isMobile ? '58px' : '64px',
@@ -1022,8 +981,8 @@ export default function ChatbotWidget() {
             border: 'none', borderRadius: '50%', cursor: 'pointer',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             boxShadow: isOpen
-              ? '0 8px 28px rgba(239,68,68,0.45)'
-              : '0 8px 28px rgba(0,115,188,0.45)',
+              ? '0 8px 28px rgba(239,68,68,0.48)'
+              : '0 8px 28px rgba(0,115,188,0.48)',
             position: 'relative', zIndex: 1,
             transition: 'all 0.35s cubic-bezier(0.34,1.56,0.64,1)',
           }}

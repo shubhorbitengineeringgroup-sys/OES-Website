@@ -1,0 +1,11 @@
+name = "orbi-proxy"
+main = "src/index.ts"
+compatibility_date = "2024-05-29"
+
+# We will define the secrets (API keys) via Cloudflare dashboard or Wrangler CLI,
+# but for local dev, we can define dummy vars or let wrangler prompt.
+# DO NOT put actual keys here as this file goes into git.
+
+[vars]
+ALLOWED_ORIGINS = "https://orbitengineerings.com,https://www.orbitengineerings.com,http://localhost:5173"
+OPENROUTER_MODEL = "google/gemma-4-26b-a4b-it:free"
