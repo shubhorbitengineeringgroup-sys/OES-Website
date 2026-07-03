@@ -217,9 +217,9 @@ export default function FAQPage({ onNavigate }: FAQPageProps) {
     <div className="min-h-screen bg-gray-50 overflow-x-hidden">
       <SEO
         title="Frequently Asked Questions | Water Treatment, SCADA, Solar - Orbit Engineering Solutions"
-        description="Get answers to frequently asked questions about Orbit Engineering Solutions' water treatment plants (WTP, STP, RO, ETP), SCADA & PLC automation, solar energy solutions, instrumentation services, and more. Expert guidance from Bhopal's leading water engineering company."
+        description="Get answers to frequently asked questions about Orbit Engineering Solutions (popularly known as Orbit Engineering Company or Orbit Engineering Consultants) water treatment plants (WTP, STP, RO, ETP), SCADA & PLC automation, solar energy solutions, instrumentation services, and more. Expert guidance from Bhopal's leading water engineering company."
         canonicalPath="/faq"
-        keywords="orbit engineering solutions FAQ, water treatment plant FAQ, WTP FAQ, STP FAQ, SCADA FAQ, PLC automation FAQ, solar energy FAQ, instrumentation FAQ, water treatment questions, orbit engineering solutions questions, orbit bhopal FAQ"
+        keywords="orbit engineering solutions FAQ, water treatment plant FAQ, WTP FAQ, STP FAQ, SCADA FAQ, PLC automation FAQ, solar energy FAQ, instrumentation FAQ, water treatment questions, orbit engineering solutions questions, orbit bhopal FAQ, orbit engineering, orbit engineering bhopal, orbit engineering company, orbit engineering company bhopal, orbit engineering consultants, orbit engineering consultants bhopal, orbit consultants bhopal, orbit engineering solutions, orbit engineering solutions bhopal, orbit"
       />
       <section className="relative text-white py-20">
         <img src={heroWaterImage} alt="Water technology background" className="absolute inset-0 w-full h-full object-cover" />

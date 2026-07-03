@@ -4,6 +4,7 @@ import { ArrowUp } from 'lucide-react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import LogoLoader from './components/LogoLoader';
+import ChatbotWidget from './components/Chatbot/ChatbotWidget';
 import { buildProductsData, flattenProducts, type ProductItem } from './data/products';
 import { RAW_SUB_PRODUCTS } from './data/rawProducts';
 
@@ -150,10 +151,13 @@ function AppContent() {
       </div>
       <Footer onNavigate={handleNavigate} />
 
-      {/* Back to Top Button */}
+      {/* Orbi AI Chatbot */}
+      <ChatbotWidget />
+
+      {/* Back to Top Button — positioned above chatbot button */}
       <button
         onClick={scrollToTop}
-        className={`fixed bottom-8 right-8 z-50 p-3 bg-[#0073bc] text-white rounded-full shadow-lg hover:bg-[#005a94] transition-all duration-300 transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-[#0073bc] focus:ring-offset-2 ${showBackToTop ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'
+        className={`fixed bottom-24 right-5 z-50 p-3 bg-[#0073bc] text-white rounded-full shadow-lg hover:bg-[#005a94] transition-all duration-300 transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-[#0073bc] focus:ring-offset-2 ${showBackToTop ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'
           }`}
         aria-label="Back to top"
       >

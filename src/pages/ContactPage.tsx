@@ -25,9 +25,9 @@ export default function ContactPage() {
     <div className="min-h-screen bg-gray-50 overflow-x-hidden">
       <SEO
         title="Contact Orbit Engineering Solutions Bhopal | Free Consultation for Water Treatment & Automation"
-        description="Contact Orbit Engineering Solutions for water treatment, SCADA & PLC automation needs. Phone: +91 70241 28029, +91 90390 75049. Email: info@orbitengineerings.com, service@orbitengineerings.com"
+        description="Contact Orbit Engineering Solutions (often referred to as Orbit Engineering Company or Orbit Engineering Consultants) for water treatment, SCADA & PLC automation needs. Phone: +91 70241 28029, +91 90390 75049. Email: info@orbitengineerings.com, service@orbitengineerings.com"
         canonicalPath="/contact"
-        keywords="contact Orbit Engineering Solutions, Orbit Engineering Solutions Bhopal address, Orbit Engineering Bhopal address, orbit engineering contact number, orbit engineering phone number, water treatment consultation Bhopal, SCADA automation quote, orbitengineerings contact, orbit engineering solutions contact, orbit bhopal contact, orbit bhopal office, orbit engineering solutions phone, orbit engineering solutions email, info@orbitengineerings.com, service@orbitengineerings.com, +91 9039075049"
+        keywords="contact Orbit Engineering Solutions, Orbit Engineering Solutions Bhopal address, Orbit Engineering Bhopal address, orbit engineering contact number, orbit engineering phone number, water treatment consultation Bhopal, SCADA automation quote, orbitengineerings contact, orbit engineering solutions contact, orbit bhopal contact, orbit bhopal office, orbit engineering solutions phone, orbit engineering solutions email, info@orbitengineerings.com, service@orbitengineerings.com, +91 9039075049, orbit engineering, orbit engineering bhopal, orbit engineering company, orbit engineering company bhopal, orbit engineering consultants, orbit engineering consultants bhopal, orbit consultants bhopal, orbit engineering solutions, orbit engineering solutions bhopal, orbit"
       />
       {/* Hidden H1 for SEO */}
       <h1 className="sr-only">Contact Orbit Engineering Solutions Bhopal | Office address, phone numbers, and email for water treatment experts</h1>
@@ -45,7 +45,7 @@ export default function ContactPage() {
                 Get In Touch
               </AnimatedHeading>
               <p className="text-gray-600 mb-8 leading-relaxed">
-                Whether you're planning a new water treatment facility, looking to upgrade existing infrastructure, or need technical consultation, our team is ready to help. Fill out the form and we'll get back to you within 24 hours.
+                Whether you're planning a new water treatment facility, looking to upgrade existing infrastructure, or need technical consultation, our team at Orbit Engineering Solutions (also known as Orbit Engineering Company or Orbit Engineering Consultants) is ready to help. Fill out the form and we'll get back to you within 24 hours.
               </p>
 
               <MotionStagger className="space-y-6" stagger={0.06}>
