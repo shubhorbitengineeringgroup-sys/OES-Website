@@ -25,27 +25,27 @@ const CONTACT = OES_KNOWLEDGE.company.contact;
 
 const PHASE_QUICK_REPLIES: Record<ConvPhase, { icon: string; label: string }[]> = {
   greeting: [
-    { icon: '🌊', label: 'Water Solutions' },
-    { icon: '☀️', label: 'Solar Projects' },
+    { icon: '🏛️', label: 'Government Project' },
+    { icon: '🏭', label: 'Industrial Project' },
+    { icon: '🌊', label: 'Water Treatment' },
     { icon: '⚙️', label: 'SCADA & Automation' },
-    { icon: '📋', label: 'Get a Quote' },
-    { icon: '📞', label: 'Contact Us' },
+    { icon: '📞', label: 'Talk to Expert' },
   ],
   discovery: [
     { icon: '🌊', label: 'Flow Meters' },
-    { icon: '📊', label: 'Water Quality Analyzers' },
+    { icon: '📊', label: 'Water Quality' },
     { icon: '🔧', label: 'Valves & Piping' },
     { icon: '🖥️', label: 'PLC / SCADA' },
-    { icon: '📷', label: 'Surveillance Cameras' },
+    { icon: '📋', label: 'Request Datasheet' },
   ],
   pitching: [
     { icon: '📄', label: 'Request Datasheet' },
-    { icon: '💰', label: 'Get a Quote' },
+    { icon: '📋', label: 'Get a Quote' },
     { icon: '🤝', label: 'Free Consultation' },
-    { icon: '💬', label: 'WhatsApp Expert' },
+    { icon: '📞', label: 'Talk to Expert' },
   ],
   closing: [
-    { icon: '💬', label: 'WhatsApp Now' },
+    { icon: '💬', label: 'WhatsApp Us' },
     { icon: '📞', label: 'Call Us' },
     { icon: '📧', label: 'Email Us' },
     { icon: '🔍', label: 'More Products' },
@@ -142,11 +142,10 @@ function OrbiAvatar({ size = 40, animate = false }: { size?: number; animate?: b
 }
 
 // ============================================================
-//  GREETING TOAST
+//  GREETING TOAST — macOS Notification Card Style
 // ============================================================
 function GreetingToast({ onClose, onOpenChat }: { onClose: () => void; onOpenChat: () => void }) {
-  const [phase, setPhase] = useState<'hidden' | 'visible' | 'leaving'>('hidden');
-  const [progress, setProgress] = useState(100);
+  const [phase, setPhase] = useState<'hidden' | 'entering' | 'visible' | 'leaving'>('hidden');
   const dismissedRef = useRef(false);
 
   const dismiss = useCallback(() => {
@@ -156,149 +155,279 @@ function GreetingToast({ onClose, onOpenChat }: { onClose: () => void; onOpenCha
     setTimeout(onClose, 450);
   }, [onClose]);
 
+  // 1) Delay launch
   useEffect(() => {
-    const t = setTimeout(() => setPhase('visible'), 2800);
+    const t = setTimeout(() => setPhase('entering'), 1600);
     return () => clearTimeout(t);
   }, []);
 
+  // 2) Transition to visible after slide animation finishes (400ms)
+  useEffect(() => {
+    if (phase !== 'entering') return;
+    const t = setTimeout(() => setPhase('visible'), 400);
+    return () => clearTimeout(t);
+  }, [phase]);
+
+  // 3) Auto-dismiss after 6 seconds
   useEffect(() => {
     if (phase !== 'visible') return;
-    const tick = setInterval(() => {
-      setProgress(p => {
-        const next = Math.max(0, p - 1.43); // ~7s
-        if (next <= 0) { clearInterval(tick); dismiss(); }
-        return next;
-      });
-    }, 100);
-    return () => clearInterval(tick);
+    const t = setTimeout(() => dismiss(), 6000);
+    return () => clearTimeout(t);
   }, [phase, dismiss]);
 
   if (phase === 'hidden') return null;
-  const isVis = phase === 'visible';
+
+  const isLeaving = phase === 'leaving';
 
   return (
-    <div role="status" aria-live="polite" style={{
-      position: 'fixed', bottom: '100px', right: '22px', zIndex: 10001,
-      fontFamily: "'Inter', system-ui, sans-serif",
-    }}>
-      {/* Glow */}
-      <div style={{
-        position: 'absolute', inset: '-8px', borderRadius: '28px',
-        background: 'linear-gradient(135deg, rgba(0,115,188,0.18), rgba(0,212,255,0.1))',
-        filter: 'blur(10px)',
-        opacity: isVis ? 1 : 0, transition: 'opacity 0.5s ease', pointerEvents: 'none',
-      }} />
+    <>
+      <style>{`
+        /* ── Entrance: 10-stop high-resolution harmonic oscillator spring curve ── */
+        @keyframes orbi-mac-slide-up {
+          0% {
+            transform: translate3d(0, 110px, 0) scale(0.72) rotate(-5deg);
+            opacity: 0;
+            filter: blur(8px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+          }
+          32% {
+            transform: translate3d(0, -15px, 0) scale(1.045) rotate(2deg);
+            opacity: 0.95;
+            filter: blur(0px);
+            box-shadow: 0 20px 40px rgba(0, 115, 188, 0.12);
+          }
+          48% {
+            transform: translate3d(0, 6px, 0) scale(0.97) rotate(-1deg);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.05);
+          }
+          62% {
+            transform: translate3d(0, -2.5px, 0) scale(1.015) rotate(0.4deg);
+            box-shadow: 0 18px 35px rgba(0, 115, 188, 0.1);
+          }
+          74% {
+            transform: translate3d(0, 1px, 0) scale(0.993) rotate(-0.15deg);
+          }
+          85% {
+            transform: translate3d(0, -0.4px, 0) scale(1.004) rotate(0.05deg);
+          }
+          94% {
+            transform: translate3d(0, 0.1px, 0) scale(0.998) rotate(-0.02deg);
+          }
+          100% {
+            transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+            opacity: 1;
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.08), 0 4px 16px rgba(0, 115, 188, 0.06);
+          }
+        }
 
-      {/* Card */}
-      <div style={{
-        width: '308px', maxWidth: 'calc(100vw - 44px)',
-        background: 'white', borderRadius: '22px', overflow: 'hidden',
-        boxShadow: '0 16px 56px rgba(0,115,188,0.24), 0 4px 20px rgba(0,0,0,0.08)',
-        border: '1px solid rgba(0,115,188,0.13)',
-        transform: isVis ? 'translateY(0) scale(1)' : phase === 'leaving' ? 'translateY(14px) scale(0.95)' : 'translateY(32px) scale(0.88)',
-        opacity: isVis ? 1 : 0,
-        transition: phase === 'leaving'
-          ? 'transform 0.4s ease-in, opacity 0.4s ease-in'
-          : 'transform 0.58s cubic-bezier(0.34,1.56,0.64,1), opacity 0.42s ease',
-      }}>
-        {/* Top gradient stripe */}
-        <div style={{ height: '4px', background: 'linear-gradient(90deg, #0073bc, #00a8e0, #00d4ff)' }} />
+        /* ── Exit: iOS-style elastic release & arching sweep ── */
+        @keyframes orbi-mac-slide-left {
+          0% {
+            transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+            opacity: 1;
+            filter: blur(0px);
+          }
+          14% {
+            transform: translate3d(12px, -3px, 0) scale(1.035) rotate(2.2deg);
+            opacity: 1;
+          }
+          28% {
+            transform: translate3d(-8px, 1px, 0) scale(0.98) rotate(-1.5deg);
+          }
+          100% {
+            transform: translate3d(-150%, 25px, 0) scale(0.75) rotate(-12deg);
+            opacity: 0;
+            filter: blur(6px);
+          }
+        }
 
-        {/* Header */}
-        <div style={{
-          background: 'linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%)',
-          padding: '16px 16px 12px',
-          display: 'flex', alignItems: 'center', gap: '12px',
-        }}>
-          <div style={{
-            width: '54px', height: '54px', flexShrink: 0,
-            background: 'linear-gradient(135deg, #0073bc, #00a8e0)',
-            borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center',
-            boxShadow: '0 4px 18px rgba(0,115,188,0.38)', border: '3px solid white',
-          }}>
-            <OrbiAvatar size={38} animate />
-          </div>
-          <div style={{ flex: 1 }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-              <span style={{ fontSize: '15px', fontWeight: 800, color: '#0073bc' }}>Orbi</span>
-              <span style={{
-                fontSize: '10px', fontWeight: 600, color: '#059669',
-                background: '#d1fae5', padding: '1px 7px', borderRadius: '10px',
-                border: '1px solid #a7f3d0', letterSpacing: '0.02em',
-              }}>● Online</span>
-            </div>
-            <div style={{ fontSize: '11.5px', color: '#6b7280', marginTop: '2px' }}>
-              OES Sales & Support AI
-            </div>
-          </div>
-          <button onClick={dismiss} aria-label="Dismiss"
+        /* ── Waving hand emoji ── */
+        @keyframes orbi-mac-hand-wave {
+          0%, 100% { transform: rotate(0deg); }
+          20% { transform: rotate(14deg); }
+          40% { transform: rotate(-8deg); }
+          60% { transform: rotate(14deg); }
+          80% { transform: rotate(-4deg); }
+        }
+
+        .orbi-mac-card {
+          will-change: transform, opacity;
+        }
+
+        .orbi-mac-card.entering {
+          animation: orbi-mac-slide-up 0.82s cubic-bezier(0.25, 1.25, 0.5, 1) forwards;
+        }
+
+        .orbi-mac-card.visible {
+          transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+          opacity: 1;
+        }
+
+        .orbi-mac-card.leaving {
+          animation: orbi-mac-slide-left 0.62s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        .orbi-mac-wave-emoji {
+          display: inline-block;
+          animation: orbi-mac-hand-wave 1.6s ease-in-out 1.2s infinite alternate;
+        }
+
+        .orbi-mac-open-btn {
+          transition: all 0.2s ease-in-out;
+        }
+
+        .orbi-mac-open-btn:hover {
+          transform: translateY(-1.5px);
+          background: linear-gradient(135deg, #005f9e 0%, #0093c4 100%) !important;
+          box-shadow: 0 6px 18px rgba(0, 115, 188, 0.38) !important;
+        }
+
+        .orbi-mac-open-btn:active {
+          transform: translateY(0) scale(0.98);
+        }
+      `}</style>
+
+      {/* Main positioning wrapper above FAB on the left */}
+      <div
+        role="status"
+        aria-live="polite"
+        style={{
+          position: 'fixed',
+          bottom: '100px',
+          left: '16px',
+          zIndex: 10001,
+          fontFamily: "'Inter', system-ui, sans-serif",
+          pointerEvents: isLeaving ? 'none' : 'auto',
+        }}
+      >
+        {/* macOS Style Notification Card */}
+        <div
+          className={`orbi-mac-card ${phase}`}
+          style={{
+            width: '312px',
+            maxWidth: 'calc(100vw - 36px)',
+            background: '#ffffff',
+            borderRadius: '16px',
+            boxShadow: '0 16px 48px rgba(0, 0, 0, 0.08), 0 4px 16px rgba(0, 115, 188, 0.06)',
+            border: '1px solid rgba(0, 115, 188, 0.08)',
+            borderLeft: '4px solid #0073bc', // macOS-style custom highlight border
+            cursor: 'pointer',
+            padding: '16px',
+            position: 'relative',
+          }}
+          onClick={() => { dismiss(); onOpenChat(); }}
+        >
+          {/* Close button */}
+          <button
+            onClick={e => { e.stopPropagation(); dismiss(); }}
+            aria-label="Dismiss message"
             style={{
-              alignSelf: 'flex-start', background: 'rgba(0,0,0,0.06)', border: 'none',
-              cursor: 'pointer', color: '#9ca3af', width: '26px', height: '26px',
-              borderRadius: '7px', display: 'flex', alignItems: 'center', justifyContent: 'center',
-              transition: 'all 0.2s', flexShrink: 0,
+              position: 'absolute',
+              top: '12px',
+              right: '12px',
+              background: 'transparent',
+              border: 'none',
+              cursor: 'pointer',
+              color: '#9ca3af',
+              width: '22px',
+              height: '22px',
+              borderRadius: '6px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              transition: 'all 0.2s',
             }}
-            onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.background = 'rgba(0,0,0,0.12)'; }}
-            onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background = 'rgba(0,0,0,0.06)'; }}
+            onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.background = '#f3f4f6'; (e.currentTarget as HTMLButtonElement).style.color = '#4b5563'; }}
+            onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background = 'transparent'; (e.currentTarget as HTMLButtonElement).style.color = '#9ca3af'; }}
           >
-            <X size={13} />
-          </button>
-        </div>
-
-        {/* Message bubble */}
-        <div style={{ padding: '12px 16px 14px' }}>
-          <div style={{
-            background: 'linear-gradient(135deg, #f8fbff, #f0f9ff)',
-            borderRadius: '4px 16px 16px 16px',
-            padding: '12px 14px', border: '1px solid rgba(0,115,188,0.1)',
-            fontSize: '13px', color: '#374151', lineHeight: 1.6,
-          }}>
-            <span style={{ fontSize: '16px' }}>👋</span> <strong style={{ color: '#0073bc' }}>Namaste!</strong> I'm <strong>Orbi</strong>, your Orbit Engineering assistant.
-            <br /><br />
-            Ask me about <strong>water solutions</strong>, <strong>SCADA</strong>, <strong>solar</strong>, or get a <strong>product quote</strong> — I'm here to help! ✨
-          </div>
-
-          {/* CTA */}
-          <button onClick={() => { dismiss(); onOpenChat(); }}
-            style={{
-              marginTop: '10px', width: '100%', padding: '11px 0',
-              background: 'linear-gradient(135deg, #0073bc 0%, #00a8e0 100%)',
-              color: 'white', border: 'none', borderRadius: '13px',
-              fontSize: '13.5px', fontWeight: 700, cursor: 'pointer',
-              letterSpacing: '0.02em',
-              boxShadow: '0 4px 16px rgba(0,115,188,0.38)',
-              transition: 'all 0.22s ease',
-              display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px',
-            }}
-            onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.transform = 'translateY(-2px)'; (e.currentTarget as HTMLButtonElement).style.boxShadow = '0 7px 22px rgba(0,115,188,0.48)'; }}
-            onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.transform = ''; (e.currentTarget as HTMLButtonElement).style.boxShadow = '0 4px 16px rgba(0,115,188,0.38)'; }}
-          >
-            <Sparkles size={15} /> Start Chatting with Orbi
+            <X size={12} />
           </button>
 
-          {/* Progress bar */}
-          <div style={{ marginTop: '10px', height: '3px', background: '#f1f5f9', borderRadius: '2px', overflow: 'hidden' }}>
+          {/* Card Header */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '10px' }}>
             <div style={{
-              height: '100%', width: `${progress}%`,
-              background: 'linear-gradient(90deg, #0073bc, #00d4ff)',
-              borderRadius: '2px', transition: 'width 0.1s linear',
-            }} />
+              width: '34px', height: '34px',
+              background: 'linear-gradient(135deg, #0073bc, #00a8e0)',
+              borderRadius: '50%',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              boxShadow: '0 3px 8px rgba(0, 115, 188, 0.2)',
+              border: '2.5px solid white',
+            }}>
+              <OrbiAvatar size={24} animate />
+            </div>
+            <div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                <span style={{ fontSize: '13.5px', fontWeight: 800, color: '#005b94' }}>Orbi</span>
+                <span style={{
+                  fontSize: '8px', fontWeight: 700, color: '#059669',
+                  background: '#d1fae5', padding: '0.5px 5px', borderRadius: '6px',
+                  border: '1px solid #a7f3d0',
+                }}>● Online</span>
+              </div>
+            </div>
           </div>
-          <p style={{ margin: '5px 0 0', fontSize: '10px', color: '#9ca3af', textAlign: 'center' }}>
-            Auto-closing soon…
-          </p>
-        </div>
-      </div>
 
-      {/* Tail */}
-      <div style={{
-        position: 'absolute', bottom: '-8px', right: '38px',
-        width: '16px', height: '16px', background: 'white',
-        transform: 'rotate(45deg)',
-        borderRight: '1px solid rgba(0,115,188,0.12)',
-        borderBottom: '1px solid rgba(0,115,188,0.12)',
-      }} />
-    </div>
+          {/* Message text */}
+          <div style={{
+            fontSize: '13px',
+            color: '#1f2937',
+            lineHeight: 1.55,
+            marginBottom: '12px',
+          }}>
+            <span className="orbi-mac-wave-emoji">👋</span>{' '}
+            <strong style={{ color: '#0073bc' }}>Hey there!</strong> I'm <strong>Orbi</strong>, your OES engineering assistant.
+            <p style={{ margin: '4px 0 0', color: '#4b5563', fontSize: '12px' }}>
+              Have questions about water solutions, SCADA, or solar infrastructure? Let's chat! 💧
+            </p>
+          </div>
+
+          {/* CTA Button */}
+          <button
+            className="orbi-mac-open-btn"
+            onClick={e => { e.stopPropagation(); dismiss(); onOpenChat(); }}
+            style={{
+              width: '100%',
+              padding: '9.5px 0',
+              background: 'linear-gradient(135deg, #0073bc 0%, #00a8e0 100%)',
+              color: '#ffffff',
+              border: 'none',
+              borderRadius: '10px',
+              fontSize: '12.5px',
+              fontWeight: 700,
+              cursor: 'pointer',
+              letterSpacing: '0.02em',
+              boxShadow: '0 4px 12px rgba(0, 115, 188, 0.25)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '6px',
+            }}
+          >
+            <Sparkles size={13} />
+            Chat with Orbi
+          </button>
+        </div>
+
+        {/* Small pointer tail pointing towards FAB */}
+        <div
+          className={`orbi-mac-card ${phase}`}
+          style={{
+            position: 'absolute',
+            bottom: '-5px',
+            left: '38px',
+            width: '10px',
+            height: '10px',
+            background: '#ffffff',
+            transform: 'rotate(45deg)',
+            borderLeft: '1px solid rgba(0, 115, 188, 0.08)',
+            borderBottom: '1px solid rgba(0, 115, 188, 0.08)',
+            boxShadow: '-1px 1px 3px rgba(0, 0, 0, 0.02)',
+            pointerEvents: 'none',
+            zIndex: -1,
+          }}
+        />
+      </div>
+    </>
   );
 }
 
@@ -791,7 +920,7 @@ export default function ChatbotWidget() {
     {
       id: 'welcome',
       role: 'bot',
-      text: "Hello! 🙏 I'm **Orbi**, the AI assistant for Orbit Engineering Solutions (OES)!\n\nI can help you with:\n• 🌊 Water Infrastructure & SCADA systems\n• ☀️ Solar energy solutions\n• ⚙️ Industrial automation & IoT\n• 📋 Product specifications & quotations\n• 📞 Connecting with our expert team\n\nWhat are you looking for today? 😊",
+      text: "Hello! 👋 I'm **Orbi** — the AI assistant for Orbit Engineering Solutions (OES).\n\nOES has 25+ years of expertise in:\n• 🌊 Water Infrastructure & Treatment Plants\n• ⚙️ SCADA, PLC & Industrial Automation\n• ☀️ Solar Energy Solutions\n• 📊 Flow Meters, Analyzers & Sensors\n• 🔧 Installation, Commissioning & AMC\n\nIs your project for the government sector or private industry? Let me know, and I'll suggest the right solution. 😊",
       timestamp: new Date(),
     },
   ]);
@@ -974,7 +1103,7 @@ export default function ChatbotWidget() {
     setMessages([{
       id: 'welcome-' + Date.now(),
       role: 'bot',
-      text: "Hello! 🙏 I'm **Orbi**, the AI assistant for Orbit Engineering Solutions (OES)!\n\nI can help you with:\n• 🌊 Water Infrastructure & SCADA systems\n• ☀️ Solar energy solutions\n• ⚙️ Industrial automation & IoT\n• 📋 Product specifications & quotations\n• 📞 Connecting with our expert team\n\nWhat are you looking for today? 😊",
+      text: "Hello! 👋 I'm **Orbi** — the AI assistant for Orbit Engineering Solutions (OES).\n\nOES has 25+ years of expertise in:\n• 🌊 Water Infrastructure & Treatment Plants\n• ⚙️ SCADA, PLC & Industrial Automation\n• ☀️ Solar Energy Solutions\n• 📊 Flow Meters, Analyzers & Sensors\n• 🔧 Installation, Commissioning & AMC\n\nIs your project for the government sector or private industry? Let me know, and I'll suggest the right solution. 😊",
       timestamp: new Date(),
     }]);
     setGeminiHistory([]);
@@ -1000,7 +1129,7 @@ export default function ChatbotWidget() {
   const chatW = isMobile ? '100vw' : 'min(440px, calc(100vw - 48px))';
   const chatH = isMobile ? '100dvh' : 'min(630px, calc(100dvh - 108px))';
   const chatBottom = isMobile ? '0' : '92px';
-  const chatRight = isMobile ? '0' : '20px';
+  const chatLeft = isMobile ? '0' : '20px';
   const chatBR = isMobile ? '0' : '24px';
 
   const isFirstMessage = messages.length === 1;
@@ -1013,7 +1142,8 @@ export default function ChatbotWidget() {
         @keyframes orbi-float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-5px)} }
         @keyframes orbi-pulse-ring { 0%{transform:scale(1);opacity:.6} 100%{transform:scale(1.75);opacity:0} }
         @keyframes orbi-window-desktop {
-          0%{transform:scale(0.85) translateY(20px);opacity:0}
+          0%{transform:scale(0.88) translateY(24px) translateX(-10px);opacity:0}
+          50%{transform:scale(1.02) translateY(-4px);opacity:1}
           100%{transform:scale(1) translateY(0);opacity:1}
         }
         @keyframes orbi-window-mobile {
@@ -1080,7 +1210,7 @@ export default function ChatbotWidget() {
           aria-label="Orbi — OES Sales & Support AI"
           aria-modal="true"
           style={{
-            position: 'fixed', bottom: chatBottom, right: chatRight,
+            position: 'fixed', bottom: chatBottom, left: chatLeft,
             width: chatW, height: chatH, zIndex: 9998,
             display: 'flex', flexDirection: 'column',
             borderRadius: chatBR, overflow: 'hidden',
@@ -1391,7 +1521,7 @@ export default function ChatbotWidget() {
       <div style={{
         position: 'fixed',
         bottom: isMobile ? '16px' : '22px',
-        right: isMobile ? '16px' : '20px',
+        left: isMobile ? '16px' : '20px',
         zIndex: 9999,
       }}>
         {/* Pulse rings */}
