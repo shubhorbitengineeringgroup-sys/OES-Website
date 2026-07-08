@@ -8,6 +8,7 @@ import { AnimatedHeading } from '../components/Animated';
 import SEO from '../components/SEO';
 import mapGif from '../assets/my_VisitedPlaces.gif';
 import { Link } from 'react-router-dom';
+import { OES_EXPERIENCE_YEARS } from '../data/experience';
 
 // Department Banners
 import automationBanner from '../assets/team/automation_team_banner.png';
@@ -19,7 +20,7 @@ import financeBanner from '../assets/team/finance_accounts_banner.png';
 export default function AboutPage() {
   const stats = [
     {
-      value: '25+',
+      value: `${OES_EXPERIENCE_YEARS}+`,
       suffix: 'Years',
       label: 'Legacy of Trust',
       sub: 'Founded in 1998 in Bhopal'
@@ -149,7 +150,7 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen bg-gray-50 overflow-x-hidden">
       <SEO
-        title="About Orbit Engineering Solutions | 25+ Years of Water Engineering & Instrumentation Excellence in Bhopal, India"
+        title={`About Orbit Engineering Solutions | ${OES_EXPERIENCE_YEARS}+ Years of Water Engineering & Instrumentation Excellence in Bhopal, India`}
         description="Discover Orbit Engineering Solutions' legacy since 1998. ISO 9001 certified water engineering in Bhopal specializing in WTP, STP, RO, ETP, SCADA, PLC automation & solar. Phone: +91 70241 28029, +91 9039075049. Email: info@orbitengineerings.com"
         canonicalPath="/about"
         keywords="about Orbit Engineering Solutions, Orbit Engineering Solutions history, Orbit Engineering Group, water engineering company Bhopal, ISO certified water treatment company, Orbit Engineering Solutions mission vision, orbit engineering about, orbit bhopal about, instrumentation company Bhopal, solar energy company Bhopal, orbit engineering solutions about us, orbit engineering about us, orbit engineering, orbit engineering solutions, orbit engineering solutions bhopal, orbit engineering bhopal, orbit engineering company bhopal, orbit engineering company, orbit, orbit engineering consultants, orbit engineering consultants bhopal, orbit consultants bhopal, orbit engineering consultancy"
@@ -178,7 +179,7 @@ export default function AboutPage() {
                 We believe water engineering goes far beyond piping and steel staging. It is the life-sustaining foundation for economic progress and public health. 
               </p>
               <p className="text-base text-gray-500 leading-relaxed font-medium">
-                Over the past 25 years, Orbit Engineering Solutions (popularly known as Orbit Engineering Company or Orbit Engineering Consultants) has committed to creating intelligent, durable, and highly automated infrastructure that empowers communities and optimizes precious water resources across India.
+                Over the past {OES_EXPERIENCE_YEARS} years, Orbit Engineering Solutions (popularly known as Orbit Engineering Company or Orbit Engineering Consultants) has committed to creating intelligent, durable, and highly automated infrastructure that empowers communities and optimizes precious water resources across India.
               </p>
             </div>
 
@@ -384,7 +385,7 @@ export default function AboutPage() {
             EXPLORE OUR HISTORICAL TIMELINE
           </span>
           <h2 className="text-4xl md:text-5xl font-black tracking-tighter leading-tight max-w-3xl mx-auto">
-            Discover 25+ Years of Proven Engineering Excellence
+            Discover {OES_EXPERIENCE_YEARS}+ Years of Proven Engineering Excellence
           </h2>
           <p className="text-lg text-slate-300 max-w-2xl mx-auto font-light leading-relaxed">
             Since our founding in 1998, we have pioneered complex public utility schemes, advanced pumping systems, and robust automation across Central India. Click to explore our history.

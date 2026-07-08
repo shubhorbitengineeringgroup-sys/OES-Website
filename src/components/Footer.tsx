@@ -37,13 +37,28 @@ export default function Footer({ onNavigate }: FooterProps) {
                 <Linkedin className="h-5 w-5" />
               </a>
               <a
-                href="https://www.instagram.com/orbitengineering98?igsh=MWIzZ3BxNzF3NmplMw=="
+                href="https://www.instagram.com/orbitengineeringsolutions?igsh=ajgzcHllc2F2bDBi"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Orbit Engineering on Instagram"
                 className="text-gray-400 hover:text-[#E4405F] transition-colors"
               >
                 <Instagram className="h-5 w-5" />
+              </a>
+              <a
+                href="https://x.com/OrbitEngg"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Orbit Engineering on X"
+                className="text-gray-400 hover:text-black transition-colors"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  className="h-5 w-5"
+                >
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                </svg>
               </a>
               <a
                 href="https://wa.me/919039075048?text=Hello,%20I%20am%20interested%20in%20Orbit%20Engineering's%20services.%20Can%20you%20please%20tell%20me%20more%20about%20your%20work%20and%20how%20you%20can%20help%20me?"

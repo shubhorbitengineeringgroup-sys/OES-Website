@@ -5,6 +5,7 @@ import HeroSection from '../components/HeroSection';
 import SEO from '../components/SEO';
 import BrochureModal from '../components/BrochureModal';
 import { useNavigate } from 'react-router-dom';
+import { OES_EXPERIENCE_YEARS } from '../data/experience';
 import orbitBrochure from '../assets/Orbit brocher.pdf_.pdf';
 
 // ── All real product images (no flat icon folder used here) ───
@@ -531,7 +532,7 @@ export default function ProductsPage({ onNavigate }: ProductsPageProps) {
             { value: '16+', label: 'Product Categories' },
             { value: '200+', label: 'Products & Models' },
             { value: '500+', label: 'Projects Delivered' },
-            { value: '25+', label: 'Years of Expertise' },
+            { value: `${OES_EXPERIENCE_YEARS}+`, label: 'Years of Expertise' },
           ].map((s) => (
             <div key={s.label} className="flex items-center gap-2 text-white">
               <span className="text-lg font-black">{s.value}</span>

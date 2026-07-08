@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import { X, Send, ChevronDown, Phone, Mail, MapPin, Sparkles, RotateCcw, MessageCircle } from 'lucide-react';
 import { callOrbi, type GeminiMessage } from './chatbotApi';
 import { OES_KNOWLEDGE } from './chatbotKnowledge';
+import { OES_EXPERIENCE_YEARS } from '../../data/experience';
 
 // ============================================================
 //  TYPES
@@ -779,7 +780,7 @@ function getLocalResponse(query: string): {
   if (matches(['about', 'company', 'orbit', 'oes', 'experience', 'projects', 'owner', 'director', 'history', 'purana', 'kaise'])) {
     if (isHindiScript) {
       return {
-        text: "Orbit Engineering Solutions (OES) भोपाल, म.प्र. में स्थित एक ISO 9001:2015 कंपनी है। हम 1998 से (25+ साल) वाटर इंफ्रास्ट्रक्चर, ऑटोमेशन और सोलर प्रोजेक्ट्स डिलीवर कर रहे हैं।",
+        text: `Orbit Engineering Solutions (OES) भोपाल, म.प्र. में स्थित एक ISO 9001:2015 कंपनी है। हम 1998 से (${OES_EXPERIENCE_YEARS}+ साल) वाटर इंफ्रास्ट्रक्चर, ऑटोमेशन और सोलर प्रोजेक्ट्स डिलीवर कर रहे हैं।`,
         showForm: false,
         showContact: true,
         suggestions: [
@@ -789,7 +790,7 @@ function getLocalResponse(query: string): {
       };
     }
     return {
-      text: "Orbit Engineering Solutions (OES) is an ISO 9001:2015 engineering company based in Bhopal, MP. Established in 1998, we have 25+ years of experience delivering water, solar, and SCADA infrastructure.",
+      text: `Orbit Engineering Solutions (OES) is an ISO 9001:2015 engineering company based in Bhopal, MP. Established in 1998, we have ${OES_EXPERIENCE_YEARS}+ years of experience delivering water, solar, and SCADA infrastructure.`,
       showForm: false,
       showContact: true,
       suggestions: [
@@ -875,14 +876,261 @@ function getLocalResponse(query: string): {
 // ============================================================
 //  RENDER MARKDOWN LITE
 // ============================================================
+// ============================================================
+//  SMART LINK DETECTION — makes phone/email/WhatsApp/address
+//  auto-clickable inside any bot message
+// ============================================================
+
+// OES contact constants (single source of truth)
+const OES_CONTACTS = {
+  phones: ['+91 70241 28029', '+91 9039075049', '+91 9039075048'],
+  whatsapp: '+91 9039075048',
+  emails: ['info@orbitengineerings.com', 'service@orbitengineerings.com'],
+  address: 'Root Space, Char Imli, Mannipuram, Bhopal 462016',
+  mapsUrl: 'https://maps.google.com/?q=Root+Space+Char+Imli+Mannipuram+Bhopal+462016+MP',
+};
+
+/** Tokenise a line into plain-text and link segments */
+type Segment =
+  | { type: 'text'; value: string }
+  | { type: 'bold'; value: string }
+  | { type: 'phone'; value: string; href: string }
+  | { type: 'whatsapp'; value: string; href: string }
+  | { type: 'email'; value: string; href: string }
+  | { type: 'address'; value: string; href: string };
+
+function tokeniseLine(line: string): Segment[] {
+  // Regex patterns
+  const BOLD_RE    = /\*\*(.+?)\*\*/g;
+  // Indian mobile/landline: optional +91, then 10 digits (with spaces/dashes)
+  const PHONE_RE   = /(\+91[\s-]?\d{5}[\s-]?\d{5}|\b[6-9]\d{9}\b)/g;
+  const EMAIL_RE   = /([a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,})/g;
+
+  // Build a merged pattern with named groups
+  const MASTER_RE  = new RegExp(
+    `(?<bold>\\*\\*(.+?)\\*\\*)|(?<phone>\\+91[\\s\\-]?\\d{5}[\\s\\-]?\\d{5}|\\b[6-9]\\d{9}\\b)|(?<email>[a-zA-Z0-9._%+\\-]+@[a-zA-Z0-9.\\-]+\\.[a-zA-Z]{2,})`,
+    'g'
+  );
+
+  const whatsappNum = OES_CONTACTS.whatsapp.replace(/\D/g, ''); // digits only
+
+  const segments: Segment[] = [];
+  let lastIndex = 0;
+
+  // First check for address substring
+  const ADDRESS_TEXT = 'Root Space, Char Imli';
+  const addrIdx = line.indexOf(ADDRESS_TEXT);
+
+  for (const match of line.matchAll(MASTER_RE)) {
+    const start = match.index!;
+
+    // Push plain text before this match
+    if (start > lastIndex) {
+      segments.push({ type: 'text', value: line.slice(lastIndex, start) });
+    }
+
+    const full = match[0];
+    const groups = match.groups ?? {};
+
+    if (groups.bold !== undefined) {
+      segments.push({ type: 'bold', value: groups.bold.replace(/\*\*/g, '') });
+    } else if (groups.phone !== undefined) {
+      const digits = full.replace(/\D/g, '');
+      const isWhatsApp =
+        digits === whatsappNum ||
+        OES_CONTACTS.phones.some(p => p.replace(/\D/g, '') === digits && p.replace(/\D/g, '') === whatsappNum);
+      if (isWhatsApp) {
+        segments.push({
+          type: 'whatsapp',
+          value: full,
+          href: `https://wa.me/${digits}`,
+        });
+      } else {
+        segments.push({
+          type: 'phone',
+          value: full,
+          href: `tel:+${digits.startsWith('91') ? digits : '91' + digits}`,
+        });
+      }
+    } else if (groups.email !== undefined) {
+      segments.push({
+        type: 'email',
+        value: full,
+        href: `mailto:${full}`,
+      });
+    }
+
+    lastIndex = start + full.length;
+  }
+
+  // Remaining tail
+  if (lastIndex < line.length) {
+    segments.push({ type: 'text', value: line.slice(lastIndex) });
+  }
+
+  // Post-process: replace any text segment containing address substring with address link
+  return segments.flatMap(seg => {
+    if (seg.type !== 'text') return [seg];
+    const idx = seg.value.indexOf(ADDRESS_TEXT);
+    if (idx === -1) return [seg];
+    const result: Segment[] = [];
+    if (idx > 0) result.push({ type: 'text', value: seg.value.slice(0, idx) });
+    // find end of address (up to end of line or next comma-group)
+    const addrEnd = seg.value.indexOf('\n', idx) === -1
+      ? seg.value.length
+      : seg.value.indexOf('\n', idx);
+    result.push({
+      type: 'address',
+      value: seg.value.slice(idx, addrEnd),
+      href: OES_CONTACTS.mapsUrl,
+    });
+    if (addrEnd < seg.value.length) {
+      result.push({ type: 'text', value: seg.value.slice(addrEnd) });
+    }
+    return result;
+  });
+}
+
+const baseLinkStyle: React.CSSProperties = {
+  display: 'inline-flex',
+  alignItems: 'center',
+  gap: '5px',
+  fontWeight: 600,
+  textDecoration: 'none',
+  borderRadius: '8px',
+  padding: '3px 8px',
+  margin: '2px 3px',
+  fontSize: '13px',
+  boxShadow: '0 2px 6px rgba(0,0,0,0.1)',
+  transition: 'all 0.2s ease',
+  border: '1px solid',
+  verticalAlign: 'middle',
+};
+
 function RenderText({ text }: { text: string }) {
   return (
     <>
       {text.split('\n').map((line, i, arr) => {
-        const parts = line.split(/\*\*(.+?)\*\*/g);
+        const segments = tokeniseLine(line);
         return (
           <span key={i}>
-            {parts.map((p, j) => j % 2 === 1 ? <strong key={j}>{p}</strong> : p)}
+            {segments.map((seg, j) => {
+              switch (seg.type) {
+                case 'bold':
+                  return <strong key={j}>{seg.value}</strong>;
+
+                case 'phone':
+                  return (
+                    <a
+                      key={j}
+                      href={seg.href}
+                      className="orbi-bot-link-phone"
+                      style={{
+                        ...baseLinkStyle,
+                        background: 'rgba(255, 255, 255, 0.15)',
+                        borderColor: 'rgba(255, 255, 255, 0.35)',
+                        color: '#f0f9ff',
+                      }}
+                      title="Tap to call"
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.background = 'rgba(255, 255, 255, 0.28)';
+                        e.currentTarget.style.transform = 'translateY(-1px)';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.background = 'rgba(255, 255, 255, 0.15)';
+                        e.currentTarget.style.transform = 'none';
+                      }}
+                    >
+                      📞 {seg.value}
+                    </a>
+                  );
+
+                case 'whatsapp':
+                  return (
+                    <a
+                      key={j}
+                      href={seg.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="orbi-bot-link-wa"
+                      style={{
+                        ...baseLinkStyle,
+                        background: 'rgba(37, 211, 102, 0.18)',
+                        borderColor: 'rgba(37, 211, 102, 0.4)',
+                        color: '#a7f3d0',
+                      }}
+                      title="Open WhatsApp"
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.background = 'rgba(37, 211, 102, 0.28)';
+                        e.currentTarget.style.transform = 'translateY(-1px)';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.background = 'rgba(37, 211, 102, 0.18)';
+                        e.currentTarget.style.transform = 'none';
+                      }}
+                    >
+                      💬 {seg.value}
+                    </a>
+                  );
+
+                case 'email':
+                  return (
+                    <a
+                      key={j}
+                      href={seg.href}
+                      className="orbi-bot-link-email"
+                      style={{
+                        ...baseLinkStyle,
+                        background: 'rgba(255, 255, 255, 0.15)',
+                        borderColor: 'rgba(255, 255, 255, 0.35)',
+                        color: '#f0f9ff',
+                      }}
+                      title="Send email"
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.background = 'rgba(255, 255, 255, 0.28)';
+                        e.currentTarget.style.transform = 'translateY(-1px)';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.background = 'rgba(255, 255, 255, 0.15)';
+                        e.currentTarget.style.transform = 'none';
+                      }}
+                    >
+                      📧 {seg.value}
+                    </a>
+                  );
+
+                case 'address':
+                  return (
+                    <a
+                      key={j}
+                      href={seg.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="orbi-bot-link-addr"
+                      style={{
+                        ...baseLinkStyle,
+                        background: 'rgba(253, 186, 116, 0.15)',
+                        borderColor: 'rgba(253, 186, 116, 0.35)',
+                        color: '#ffedd5',
+                      }}
+                      title="Open in Google Maps"
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.background = 'rgba(253, 186, 116, 0.25)';
+                        e.currentTarget.style.transform = 'translateY(-1px)';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.background = 'rgba(253, 186, 116, 0.15)';
+                        e.currentTarget.style.transform = 'none';
+                      }}
+                    >
+                      📍 {seg.value}
+                    </a>
+                  );
+
+                default:
+                  return <span key={j}>{(seg as { value: string }).value}</span>;
+              }
+            })}
             {i < arr.length - 1 && <br />}
           </span>
         );
@@ -890,6 +1138,7 @@ function RenderText({ text }: { text: string }) {
     </>
   );
 }
+
 
 // ============================================================
 //  MOBILE DETECTION HOOK
@@ -920,7 +1169,7 @@ export default function ChatbotWidget() {
     {
       id: 'welcome',
       role: 'bot',
-      text: "Hello! 👋 I'm **Orbi** — the AI assistant for Orbit Engineering Solutions (OES).\n\nOES has 25+ years of expertise in:\n• 🌊 Water Infrastructure & Treatment Plants\n• ⚙️ SCADA, PLC & Industrial Automation\n• ☀️ Solar Energy Solutions\n• 📊 Flow Meters, Analyzers & Sensors\n• 🔧 Installation, Commissioning & AMC\n\nIs your project for the government sector or private industry? Let me know, and I'll suggest the right solution. 😊",
+      text: `Hello! 👋 I'm **Orbi** — the AI assistant for Orbit Engineering Solutions (OES).\n\nOES has ${OES_EXPERIENCE_YEARS}+ years of expertise in:\n• 🌊 Water Infrastructure & Treatment Plants\n• ⚙️ SCADA, PLC & Industrial Automation\n• ☀️ Solar Energy Solutions\n• 📊 Flow Meters, Analyzers & Sensors\n• 🔧 Installation, Commissioning & AMC\n\nIs your project for the government sector or private industry? Let me know, and I'll suggest the right solution. 😊`,
       timestamp: new Date(),
     },
   ]);
@@ -1103,7 +1352,7 @@ export default function ChatbotWidget() {
     setMessages([{
       id: 'welcome-' + Date.now(),
       role: 'bot',
-      text: "Hello! 👋 I'm **Orbi** — the AI assistant for Orbit Engineering Solutions (OES).\n\nOES has 25+ years of expertise in:\n• 🌊 Water Infrastructure & Treatment Plants\n• ⚙️ SCADA, PLC & Industrial Automation\n• ☀️ Solar Energy Solutions\n• 📊 Flow Meters, Analyzers & Sensors\n• 🔧 Installation, Commissioning & AMC\n\nIs your project for the government sector or private industry? Let me know, and I'll suggest the right solution. 😊",
+      text: `Hello! 👋 I'm **Orbi** — the AI assistant for Orbit Engineering Solutions (OES).\n\nOES has ${OES_EXPERIENCE_YEARS}+ years of expertise in:\n• 🌊 Water Infrastructure & Treatment Plants\n• ⚙️ SCADA, PLC & Industrial Automation\n• ☀️ Solar Energy Solutions\n• 📊 Flow Meters, Analyzers & Sensors\n• 🔧 Installation, Commissioning & AMC\n\nIs your project for the government sector or private industry? Let me know, and I'll suggest the right solution. 😊`,
       timestamp: new Date(),
     }]);
     setGeminiHistory([]);

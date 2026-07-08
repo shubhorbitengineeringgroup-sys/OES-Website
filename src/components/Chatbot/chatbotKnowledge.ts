@@ -1,15 +1,11 @@
-// ============================================================
-//  OES COMPLETE KNOWLEDGE BASE
-//  Used by Orbi chatbot — compiled from website product data
-//  Enhanced with project portfolio, extended FAQs, and B2B context
-// ============================================================
+import { OES_EXPERIENCE_YEARS } from '../../data/experience';
 
 export const OES_KNOWLEDGE = {
 
   company: {
     name: 'Orbit Engineering Solutions (OES)',
     founded: 1998,
-    experience: '25+ years',
+    experience: `${OES_EXPERIENCE_YEARS}+ years`,
     location: 'Bhopal, Madhya Pradesh, India',
     certification: 'ISO 9001:2015 Certified',
     portfolio: '₹200+ Crore project portfolio',
@@ -39,7 +35,7 @@ export const OES_KNOWLEDGE = {
     ],
 
     whyOES: [
-      '25+ years of trusted experience in water & automation — est. 1998',
+      `${OES_EXPERIENCE_YEARS}+ years of trusted experience in water & automation — est. 1998`,
       'ISO 9001:2015 certified — process quality you can rely on',
       '₹200+ Cr project portfolio — government & industrial proven',
       'Local Bhopal presence — fast on-site support across MP',
@@ -553,7 +549,7 @@ export const OES_KNOWLEDGE = {
     },
     {
       q: 'What makes OES different from other vendors?',
-      a: '25+ years of MP-specific experience, ISO 9001:2015 quality assurance, a local Bhopal support team for fast response, single-window service from supply to AMC, and proven track record with government clients like MP Jal Nigam. We focus on long-term relationships, not one-time transactions.',
+      a: `${OES_EXPERIENCE_YEARS}+ years of MP-specific experience, ISO 9001:2015 quality assurance, a local Bhopal support team for fast response, single-window service from supply to AMC, and proven track record with government clients like MP Jal Nigam. We focus on long-term relationships, not one-time transactions.`,
     },
   ],
 
