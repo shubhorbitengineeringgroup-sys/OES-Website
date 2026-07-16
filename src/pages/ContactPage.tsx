@@ -105,8 +105,6 @@ export default function ContactPage() {
                     <div className="text-gray-600 space-y-1">
                       <div><a href="tel:7024128029" className="hover:text-[#0073bc] transition-colors">+91 70241 28029</a></div>
                       <div><a href="tel:9039075049" className="hover:text-[#0073bc] transition-colors">+91 9039075049</a></div>
-                      <div><a href="tel:+917440969201" className="hover:text-[#0073bc] transition-colors">+91 7440969201</a></div>
-                      <div><a href="tel:9893091450" className="hover:text-[#0073bc] transition-colors">+91 98930 91450</a></div>
                     </div>
                   </div>
                 </MotionFadeUp>

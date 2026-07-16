@@ -688,8 +688,6 @@ export default function AboutPage() {
               <div className="text-slate-400 text-sm space-y-2">
                 <p><a href="tel:7024128029" className="hover:text-blue-400 transition-colors font-semibold text-slate-300 block">+91 70241 28029</a></p>
                 <p><a href="tel:9039075049" className="hover:text-blue-400 transition-colors font-semibold text-slate-300 block">+91 9039075049</a></p>
-                <p><a href="tel:+917440969201" className="hover:text-blue-400 transition-colors font-semibold text-slate-300 block">+91 7440969201</a></p>
-                <p><a href="tel:9893091450" className="hover:text-blue-400 transition-colors block">+91 98930 91450</a></p>
               </div>
             </div>
 
