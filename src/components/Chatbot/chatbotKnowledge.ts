@@ -7,7 +7,7 @@ export const OES_KNOWLEDGE = {
     founded: 1998,
     experience: `${OES_EXPERIENCE_YEARS}+ years`,
     location: 'Bhopal, Madhya Pradesh, India',
-    certification: 'ISO 9001:2015 Certified',
+    certification: 'Triple ISO Certified: ISO 9001:2015 (QMS), ISO 14001:2015 (EMS) & ISO 45001:2018 (OH&S)',
     portfolio: '₹200+ Crore project portfolio',
     projects: '150+ mega schemes delivered',
     impact: 'Millions of lives impacted with clean drinking water across pan-India',
@@ -26,6 +26,7 @@ export const OES_KNOWLEDGE = {
       whatsapp: '+91 9039075048',
       whatsappLink: "https://wa.me/919039075048?text=Hello,%20I%20am%20interested%20in%20Orbit%20Engineering's%20services.",
       emails: ['info@orbitengineerings.com', 'service@orbitengineerings.com'],
+      indiamartStore: 'https://www.indiamart.com/orbit-engineering-solutions-bhopal/?srsltid=AfmBOoqv0uyKZ1nbWyrYQsROXsB8pmT8cHLbpbeCFKcDaUv1ZOyLiEcV',
       hours: 'Monday–Saturday: 10:00 AM – 7:00 PM | Sunday: Closed',
     },
 
@@ -36,7 +37,7 @@ export const OES_KNOWLEDGE = {
 
     whyOES: [
       `${OES_EXPERIENCE_YEARS}+ years of trusted experience in water & automation — est. 1998`,
-      'ISO 9001:2015 certified — process quality you can rely on',
+      'Triple ISO Certified (ISO 9001:2015, ISO 14001:2015 & ISO 45001:2018) — quality, environment & safety excellence',
       '₹200+ Cr project portfolio — government & industrial proven',
       'Local Bhopal presence — fast on-site support across MP',
       'Single-window solution: supply, install, commission, O&M',
@@ -496,7 +497,8 @@ export const OES_KNOWLEDGE = {
     { q: 'Do you provide AMC?', a: 'Yes — Annual Maintenance Contracts available for all our supplied equipment and installed systems.' },
     { q: 'Can I get a product datasheet?', a: 'Yes — datasheets available for all major products. Contact us or visit the Products section.' },
     { q: 'What is your project portfolio?', a: '₹200+ Crore portfolio, 150+ mega schemes including WTPs, STPs, SCADA automation, and solar projects.' },
-    { q: 'Are you ISO certified?', a: 'Yes — ISO 9001:2015 certified for quality management.' },
+    { q: 'Are you ISO certified?', a: 'Yes — Orbit Engineering Solutions is Triple ISO Certified: ISO 9001:2015 (Quality), ISO 14001:2015 (Environmental Management), and ISO 45001:2018 (Occupational Health & Safety) by Times Certification Services UK Ltd.' },
+    { q: 'Can I view your catalog on IndiaMART?', a: 'Yes! You can view our complete verified catalog and order directly on IndiaMART at https://www.indiamart.com/orbit-engineering-solutions-bhopal/' },
   ],
 
   // ============================================================

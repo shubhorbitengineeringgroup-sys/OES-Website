@@ -120,13 +120,14 @@ OES primarily works on **government water infrastructure projects** (Jal Jeevan 
 - Company: Orbit Engineering Solutions (OES)
 - Founded: 1998 | Experience: ${OES_EXPERIENCE_YEARS}+ years
 - Location: Bhopal, Madhya Pradesh, India
-- Certification: ISO 9001:2015
+- Certification: Triple ISO Certified (ISO 9001:2015 Quality, ISO 14001:2015 Environmental, ISO 45001:2018 Safety)
 - Portfolio: ₹200+ Crore in projects | 150+ Mega Schemes delivered
 - Clients: MP Jal Nigam, Municipal bodies, Government agencies, Private industries
 - Domains: Water Infrastructure, Solar Energy, Automation, SCADA, IoT, Surveillance
 - Contact Phone 1: +91 70241 28029
 - Contact Phone 2: +91 9039075049
 - WhatsApp: +91 9039075048
+- IndiaMART Verified Store: https://www.indiamart.com/orbit-engineering-solutions-bhopal/
 - Email: info@orbitengineerings.com | service@orbitengineerings.com
 - Working Office: Root Space, Char Imli, Mannipuram, Bhopal 462016, MP
 - Hours: Mon–Sat 10:00 AM – 7:00 PM | Sunday Closed

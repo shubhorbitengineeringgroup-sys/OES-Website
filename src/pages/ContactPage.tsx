@@ -3,6 +3,7 @@ import { Mail, Phone, MapPin, Send } from 'lucide-react';
 import HeroSection from '../components/HeroSection';
 import SEO from '../components/SEO';
 import heroSectionImage from '../assets/products/hero-section.jpg';
+import indiamartLogo from '../assets/indiamart-logo.png';
 import { MotionFadeUp, MotionStagger, AnimatedHeading } from '../components/Animated';
 // iconContact removed; hero uses shared HeroSection
 
@@ -108,9 +109,30 @@ export default function ContactPage() {
                     </div>
                   </div>
                 </MotionFadeUp>
+
+                <MotionFadeUp className="flex items-start space-x-4 pt-2">
+                  <div className="bg-[#002F52] text-white rounded-xl p-2.5 shadow-md flex items-center justify-center">
+                    <img src={indiamartLogo} alt="IndiaMART Marketplace" className="w-7 h-7 object-contain bg-white rounded-full p-0.5" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-gray-900 mb-1 flex items-center gap-2">
+                      <span>IndiaMART Storefront</span>
+                      <span className="text-[10px] bg-emerald-100 text-emerald-700 font-bold px-2 py-0.5 rounded-md uppercase">Verified</span>
+                    </h3>
+                    <p className="text-xs text-gray-500 mb-2">View complete product catalog & instant RFQs</p>
+                    <a
+                      href="https://www.indiamart.com/orbit-engineering-solutions-bhopal/?srsltid=AfmBOoqv0uyKZ1nbWyrYQsROXsB8pmT8cHLbpbeCFKcDaUv1ZOyLiEcV"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-xs font-extrabold text-[#002F52] hover:text-[#0073bc] underline transition-colors"
+                    >
+                      Visit Official IndiaMART Store ↗
+                    </a>
+                  </div>
+                </MotionFadeUp>
               </MotionStagger>
 
-              <div className="mt-12 bg-gradient-to-br from-[#0073bc] to-[#005a94] rounded-2xl p-8 text-white">
+              <div className="mt-8 bg-gradient-to-br from-[#0073bc] to-[#005a94] rounded-2xl p-8 text-white">
                 <h3 className="text-xl font-bold mb-4">Business Hours</h3>
                 <div className="space-y-2 text-blue-100">
                   <p>Monday - Saturday: 10:00 AM - 7:00 PM</p>

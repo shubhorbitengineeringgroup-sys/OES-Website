@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Menu, X, ChevronDown, Waves, Activity, Settings, Cpu, Camera, Wrench, Gauge, Droplets, Grid, Zap, Sun, RotateCw, FlaskConical, Anchor } from 'lucide-react';
 import logo2 from '../assets/Orbit logo_1.png';
+import indiamartLogo from '../assets/indiamart-logo.png';
 
 interface HeaderProps {
   onNavigate: (page: string) => void;
@@ -118,7 +119,7 @@ export default function Header({ onNavigate, currentPage }: HeaderProps) {
   }, []);
 
   return (
-    <header className="fixed top-0 left-0 w-full z-[1000] bg-white/90 backdrop-blur supports-[backdrop-filter]:bg-white/70 shadow-sm">
+    <header className="fixed top-0 left-0 w-full z-[1000] bg-white/90 backdrop-blur supports-[backdrop-filter]:bg-white/80 shadow-sm border-b border-gray-100">
       <div className="w-full px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           {/* Logo Group */}
@@ -422,6 +423,19 @@ export default function Header({ onNavigate, currentPage }: HeaderProps) {
                 </button>
               );
             })}
+
+            <div className="pt-4 border-t border-gray-100 mt-2 px-2">
+              <a
+                href="https://www.indiamart.com/orbit-engineering-solutions-bhopal/?srsltid=AfmBOoqv0uyKZ1nbWyrYQsROXsB8pmT8cHLbpbeCFKcDaUv1ZOyLiEcV"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center justify-center gap-2 bg-[#002F52] hover:bg-[#001f38] text-white text-xs font-bold py-3 px-4 rounded-xl shadow-md transition-all"
+              >
+                <img src={indiamartLogo} alt="IndiaMART" className="h-5 w-auto object-contain bg-white rounded-full p-0.5" />
+                <span>IndiaMART Storefront ↗</span>
+              </a>
+            </div>
           </div>
         </div>
       )

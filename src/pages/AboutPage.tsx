@@ -17,7 +17,17 @@ import itBanner from '../assets/team/it_infrastructure_banner.png';
 import businessBanner from '../assets/team/business_operations_banner.png';
 import financeBanner from '../assets/team/finance_accounts_banner.png';
 
+import { useState } from 'react';
+import IsoCertificateModal from '../components/IsoCertificateModal';
+
 export default function AboutPage() {
+  const [isoModalOpen, setIsoModalOpen] = useState(false);
+  const [selectedCertId, setSelectedCertId] = useState<'9001' | '14001' | '45001'>('9001');
+
+  const openIsoModal = (certId: '9001' | '14001' | '45001') => {
+    setSelectedCertId(certId);
+    setIsoModalOpen(true);
+  };
   const stats = [
     {
       value: `${OES_EXPERIENCE_YEARS}+`,
@@ -38,10 +48,10 @@ export default function AboutPage() {
       sub: 'WTP, STP, SCADA & Automation'
     },
     {
-      value: 'ISO',
-      suffix: '9001',
-      label: 'Quality Standards',
-      sub: 'Certified process assurance'
+      value: 'TRIPLE',
+      suffix: 'ISO',
+      label: 'Certified Standards',
+      sub: 'ISO 9001, 14001 & 45001 QMS/EMS/OH&S'
     },
     {
       value: 'Millions',
@@ -65,7 +75,7 @@ export default function AboutPage() {
     {
       icon: <Award className="h-8 w-8 text-blue-600" />,
       title: 'Excellence & Precision',
-      description: 'As an ISO 9001:2015 certified company, we ensure absolute precision across feasibility studies, detail engineering, components staging, and final field commission.'
+      description: 'As a Triple ISO Certified company (ISO 9001:2015 Quality, ISO 14001:2015 Environment, ISO 45001:2018 Health & Safety), we ensure absolute precision across feasibility studies, detail engineering, and field commissioning.'
     },
     {
       icon: <Leaf className="h-8 w-8 text-blue-600" />,
@@ -353,12 +363,12 @@ export default function AboutPage() {
             <div className="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-[2rem] p-8 text-white flex flex-col justify-between shadow-lg relative overflow-hidden group">
               <div className="absolute -top-10 -right-10 w-32 h-32 bg-white/10 rounded-full pointer-events-none" />
               <div className="space-y-4">
-                <span className="text-xs font-black tracking-[0.2em] uppercase text-blue-200">ISO 9001 CERTIFIED</span>
+                <span className="text-xs font-black tracking-[0.2em] uppercase text-blue-200">TRIPLE ISO CERTIFIED</span>
                 <h3 className="text-2xl font-black tracking-tight leading-tight">
                   Partner with India's Smart Water Specialists
                 </h3>
                 <p className="text-sm text-blue-100 font-medium leading-relaxed">
-                  Integrating dynamic SCADA, IoT automation, and high-precision instrumentation into major turnkey water schemes since 1998.
+                  Certified ISO 9001:2015, ISO 14001:2015 & ISO 45001:2018 for high-precision water SCADA, IoT automation, and turnkey engineering.
                 </p>
               </div>
 
@@ -370,6 +380,116 @@ export default function AboutPage() {
               </Link>
             </div>
 
+          </div>
+        </div>
+      </section>
+
+      {/* ── SECTION: OFFICIAL TRIPLE ISO CERTIFICATIONS SHOWCASE ── */}
+      <section className="py-20 bg-gradient-to-b from-slate-900 via-blue-950 to-slate-900 text-white relative overflow-hidden border-t border-b border-blue-900/50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+            <span className="text-xs font-black tracking-[0.25em] text-blue-400 uppercase bg-blue-500/10 border border-blue-400/20 px-4 py-2 rounded-full inline-block">
+              WORLD-CLASS QUALITY STANDARDS
+            </span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-tight">
+              Triple ISO Certified Engineering Organization
+            </h2>
+            <p className="text-gray-300 text-base md:text-lg font-light leading-relaxed">
+              M/S Orbit Engineering Solutions is independently assessed and certified by <strong className="text-white font-semibold">Times Certification Services UK Ltd (TCS-UK)</strong> with UKAF accreditation for design and manufacturing of automation and IoT equipment.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Card 1: ISO 9001:2015 */}
+            <div 
+              onClick={() => openIsoModal('9001')}
+              className="bg-slate-800/80 backdrop-blur border border-blue-500/30 rounded-3xl p-8 hover:border-blue-400 transition-all duration-300 shadow-xl flex flex-col justify-between group cursor-pointer hover:scale-[1.02]"
+            >
+              <div>
+                <div className="flex items-center justify-between mb-6">
+                  <div className="w-14 h-14 rounded-2xl bg-blue-600/20 border border-blue-500/40 flex items-center justify-center text-blue-400 font-bold text-xl group-hover:scale-110 transition-transform">
+                    QMS
+                  </div>
+                  <span className="text-xs font-bold text-blue-400 bg-blue-400/10 px-3 py-1 rounded-full border border-blue-400/30">ISO 9001:2015</span>
+                </div>
+                <h3 className="text-xl font-bold text-white mb-2">Quality Management System</h3>
+                <p className="text-sm text-gray-300 mb-6 font-medium leading-relaxed">
+                  Guarantees consistent product quality, robust process controls, and customer-centric engineering precision across all water automation systems.
+                </p>
+              </div>
+              <div className="pt-4 border-t border-slate-700/80 text-xs text-gray-400 space-y-1.5 font-mono">
+                <div className="flex justify-between"><span className="text-gray-500">Cert No:</span> <span className="text-blue-300 font-bold">26/Q/MSO07201</span></div>
+                <div className="flex justify-between"><span className="text-gray-500">Issued:</span> <span className="text-gray-300">20/07/2026</span></div>
+                <div className="flex justify-between"><span className="text-gray-500">Expiry:</span> <span className="text-gray-300">19/07/2029</span></div>
+                <div className="pt-2 text-right"><span className="text-[11px] font-sans font-bold text-blue-400 group-hover:underline">Inspect Certificate ↗</span></div>
+              </div>
+            </div>
+
+            {/* Card 2: ISO 14001:2015 */}
+            <div 
+              onClick={() => openIsoModal('14001')}
+              className="bg-slate-800/80 backdrop-blur border border-emerald-500/30 rounded-3xl p-8 hover:border-emerald-400 transition-all duration-300 shadow-xl flex flex-col justify-between group cursor-pointer hover:scale-[1.02]"
+            >
+              <div>
+                <div className="flex items-center justify-between mb-6">
+                  <div className="w-14 h-14 rounded-2xl bg-emerald-600/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 font-bold text-xl group-hover:scale-110 transition-transform">
+                    EMS
+                  </div>
+                  <span className="text-xs font-bold text-emerald-400 bg-emerald-400/10 px-3 py-1 rounded-full border border-emerald-400/30">ISO 14001:2015</span>
+                </div>
+                <h3 className="text-xl font-bold text-white mb-2">Environmental Management</h3>
+                <p className="text-sm text-gray-300 mb-6 font-medium leading-relaxed">
+                  Ensures sustainable eco-friendly manufacturing, minimal resource footprint, and green technology deployment for water treatment.
+                </p>
+              </div>
+              <div className="pt-4 border-t border-slate-700/80 text-xs text-gray-400 space-y-1.5 font-mono">
+                <div className="flex justify-between"><span className="text-gray-500">Cert No:</span> <span className="text-emerald-300 font-bold">26/E/MSE07202</span></div>
+                <div className="flex justify-between"><span className="text-gray-500">Issued:</span> <span className="text-gray-300">20/07/2026</span></div>
+                <div className="flex justify-between"><span className="text-gray-500">Expiry:</span> <span className="text-gray-300">19/07/2029</span></div>
+                <div className="pt-2 text-right"><span className="text-[11px] font-sans font-bold text-emerald-400 group-hover:underline">Inspect Certificate ↗</span></div>
+              </div>
+            </div>
+
+            {/* Card 3: ISO 45001:2018 */}
+            <div 
+              onClick={() => openIsoModal('45001')}
+              className="bg-slate-800/80 backdrop-blur border border-purple-500/30 rounded-3xl p-8 hover:border-purple-400 transition-all duration-300 shadow-xl flex flex-col justify-between group cursor-pointer hover:scale-[1.02]"
+            >
+              <div>
+                <div className="flex items-center justify-between mb-6">
+                  <div className="w-14 h-14 rounded-2xl bg-purple-600/20 border border-purple-500/40 flex items-center justify-center text-purple-400 font-bold text-xl group-hover:scale-110 transition-transform">
+                    OH&S
+                  </div>
+                  <span className="text-xs font-bold text-purple-400 bg-purple-400/10 px-3 py-1 rounded-full border border-purple-400/30">ISO 45001:2018</span>
+                </div>
+                <h3 className="text-xl font-bold text-white mb-2">Occupational Health & Safety</h3>
+                <p className="text-sm text-gray-300 mb-6 font-medium leading-relaxed">
+                  Committed to workforce safety, zero hazard workplace practices, and strict compliance during industrial staging and field commissioning.
+                </p>
+              </div>
+              <div className="pt-4 border-t border-slate-700/80 text-xs text-gray-400 space-y-1.5 font-mono">
+                <div className="flex justify-between"><span className="text-gray-500">Cert No:</span> <span className="text-purple-300 font-bold">26/O/MSS07203</span></div>
+                <div className="flex justify-between"><span className="text-gray-500">Issued:</span> <span className="text-gray-300">20/07/2026</span></div>
+                <div className="flex justify-between"><span className="text-gray-500">Expiry:</span> <span className="text-gray-300">19/07/2029</span></div>
+                <div className="pt-2 text-right"><span className="text-[11px] font-sans font-bold text-purple-400 group-hover:underline">Inspect Certificate ↗</span></div>
+              </div>
+            </div>
+          </div>
+
+          {/* Prominent Official ISO Scope Callout Banner */}
+          <div className="mt-12 p-6 rounded-3xl bg-gradient-to-r from-blue-950 via-slate-900 to-blue-950 border border-blue-400/40 shadow-2xl text-center relative overflow-hidden group">
+            <div className="absolute inset-0 bg-blue-500/5 group-hover:bg-blue-500/10 transition-all duration-500" />
+            <div className="relative z-10 space-y-2">
+              <span className="text-[10px] font-black uppercase tracking-[0.3em] text-emerald-400 bg-emerald-950/80 border border-emerald-500/30 px-3 py-1 rounded-full inline-block">
+                OFFICIAL ACCREDITED SCOPE (TCS-UK / UKAF)
+              </span>
+              <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+                "MANUFACTURER OF AUTOMATION AND IOT EQUIPMENTS"
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-300 max-w-3xl mx-auto font-medium">
+                Certified across design, fabrication, assembly, PLC/SCADA panel staging, smart telemetry sensor integration, and turnkey field deployment for Water & Industrial Infrastructure.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -524,7 +644,7 @@ export default function AboutPage() {
             </h2>
             <div className="h-1.5 w-24 bg-[#0073bc] mx-auto rounded-full mt-4" />
             <p className="text-lg text-gray-500 max-w-2xl mx-auto font-light leading-relaxed">
-              Orbit\'s engineering and operations are divided into five highly specialized, non-overlapping teams executing turnkey excellence.
+              Orbit's engineering and operations are divided into five highly specialized, non-overlapping teams executing turnkey excellence.
             </p>
           </div>
 
@@ -709,6 +829,12 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* ISO Certificate Modal */}
+      <IsoCertificateModal
+        isOpen={isoModalOpen}
+        onClose={() => setIsoModalOpen(false)}
+        defaultCertId={selectedCertId}
+      />
     </div>
   );
 }

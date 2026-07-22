@@ -7,6 +7,7 @@ import BrochureModal from '../components/BrochureModal';
 import { useNavigate } from 'react-router-dom';
 import { OES_EXPERIENCE_YEARS } from '../data/experience';
 import orbitBrochure from '../assets/Orbit brocher.pdf_.pdf';
+import indiamartLogo from '../assets/indiamart-logo.png';
 
 // ── All real product images (no flat icon folder used here) ───
 import imgWTP from '../assets/products/wtp plant.jpg';
@@ -574,7 +575,34 @@ export default function ProductsPage({ onNavigate }: ProductsPageProps) {
       </div>
 
       {/* Main grid */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        {/* B2B Marketplace & IndiaMART Direct Store Banner */}
+        <div className="mb-8 p-6 bg-gradient-to-r from-[#002F52] via-[#004b7c] to-[#002F52] rounded-3xl text-white shadow-xl border border-blue-400/20 flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden group">
+          <div className="absolute -right-10 -bottom-10 w-48 h-48 bg-emerald-500/10 rounded-full blur-2xl pointer-events-none group-hover:bg-emerald-500/20 transition-all duration-500" />
+          <div className="space-y-2 text-center md:text-left relative z-10">
+            <div className="inline-flex items-center gap-2 bg-emerald-500/20 border border-emerald-400/30 text-emerald-300 text-xs font-black uppercase tracking-wider px-3 py-1 rounded-full">
+              <img src={indiamartLogo} alt="IndiaMART Marketplace" className="h-4 w-auto object-contain bg-white rounded-full p-0.5" />
+              Verified Supplier on IndiaMART Marketplace
+            </div>
+            <h3 className="text-xl sm:text-2xl font-black tracking-tight text-white">
+              Buy & Request Quotes Directly via IndiaMART
+            </h3>
+            <p className="text-sm text-blue-100 max-w-xl font-medium">
+              Explore Orbit Engineering Solutions' complete product catalog, verified pricing, and instant RFQs on India's leading B2B marketplace.
+            </p>
+          </div>
+          <a
+            href="https://www.indiamart.com/orbit-engineering-solutions-bhopal/?srsltid=AfmBOoqv0uyKZ1nbWyrYQsROXsB8pmT8cHLbpbeCFKcDaUv1ZOyLiEcV"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="relative z-10 inline-flex items-center gap-2.5 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white text-sm font-extrabold px-6 py-3.5 rounded-2xl shadow-lg hover:shadow-emerald-500/25 transition-all duration-300 transform hover:scale-105 flex-shrink-0"
+          >
+            <img src={indiamartLogo} alt="IndiaMART Marketplace" className="h-5 w-auto object-contain bg-white rounded-full p-0.5" />
+            <span>Visit IndiaMART Store</span>
+            <ArrowRight className="w-4 h-4" />
+          </a>
+        </div>
 
         {/* Desktop: masonry 2-col */}
         <div className="hidden lg:grid lg:grid-cols-2 gap-6">

@@ -12,6 +12,7 @@ import sdvCatalogue from '../assets/SDV_Orbit.pdf';
 import scourMonitoringImage from '../assets/products/scour-monitoring.jpeg';
 import scourMonitoringBrochure from '../assets/Real-Time Scour Detection for Stronger Foundations.pdf';
 import orbitBrochure from '../assets/Orbit brocher.pdf_.pdf';
+import indiamartLogo from '../assets/indiamart-logo.png';
 
 interface ProductInfoPageProps {
   variant?: string;
@@ -1241,16 +1242,27 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
                       </span>
                     </div>
                   )}
-                  <button
-                    onClick={() => {
-                      handleGetQuote(selectedProduct.name);
-                      setSelectedProduct(null);
-                    }}
-                    className="w-full flex items-center justify-center space-x-3 bg-gradient-to-r from-[#0073bc] to-[#005a94] text-white py-3 rounded-xl font-black text-sm shadow-xl hover:shadow-2xl active:scale-95 transition-all"
-                  >
-                    <FlaskConical className="w-5 h-5" />
-                    <span>Inquire Now</span>
-                  </button>
+                  <div className="space-y-2">
+                    <button
+                      onClick={() => {
+                        handleGetQuote(selectedProduct.name);
+                        setSelectedProduct(null);
+                      }}
+                      className="w-full flex items-center justify-center space-x-3 bg-gradient-to-r from-[#0073bc] to-[#005a94] text-white py-3 rounded-xl font-black text-sm shadow-xl hover:shadow-2xl active:scale-95 transition-all"
+                    >
+                      <FlaskConical className="w-5 h-5" />
+                      <span>Inquire Now</span>
+                    </button>
+                    <a
+                      href="https://www.indiamart.com/orbit-engineering-solutions-bhopal/?srsltid=AfmBOoqv0uyKZ1nbWyrYQsROXsB8pmT8cHLbpbeCFKcDaUv1ZOyLiEcV"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full flex items-center justify-center space-x-2 bg-[#002F52] hover:bg-[#001d33] text-white py-2.5 rounded-xl font-bold text-xs shadow-md border border-blue-400/30 transition-all"
+                    >
+                      <img src={indiamartLogo} alt="IndiaMART Marketplace" className="h-4 w-auto object-contain bg-white rounded-full p-0.5" />
+                      <span>Buy / Inquire on IndiaMART Store ↗</span>
+                    </a>
+                  </div>
                 </div>
 
                 {/* Details Content */}
@@ -1323,16 +1335,27 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
                         {selectedProduct.badge}
                       </span>
                     )}
-                    <button
-                      onClick={() => {
-                        handleGetQuote(selectedProduct.name);
-                        setSelectedProduct(null);
-                      }}
-                      className="w-full flex items-center justify-center space-x-3 bg-gradient-to-r from-[#0073bc] to-[#005a94] text-white py-4 rounded-2xl font-black text-sm shadow-xl hover:shadow-2xl active:scale-95 transition-all"
-                    >
-                      <FlaskConical className="w-5 h-5" />
-                      <span>Inquire Now</span>
-                    </button>
+                    <div className="w-full space-y-2">
+                      <button
+                        onClick={() => {
+                          handleGetQuote(selectedProduct.name);
+                          setSelectedProduct(null);
+                        }}
+                        className="w-full flex items-center justify-center space-x-3 bg-gradient-to-r from-[#0073bc] to-[#005a94] text-white py-3.5 rounded-2xl font-black text-sm shadow-xl hover:shadow-2xl active:scale-95 transition-all"
+                      >
+                        <FlaskConical className="w-5 h-5" />
+                        <span>Inquire Now</span>
+                      </button>
+                      <a
+                        href="https://www.indiamart.com/orbit-engineering-solutions-bhopal/?srsltid=AfmBOoqv0uyKZ1nbWyrYQsROXsB8pmT8cHLbpbeCFKcDaUv1ZOyLiEcV"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-full flex items-center justify-center space-x-2 bg-[#002F52] hover:bg-[#001d33] text-white py-3 rounded-2xl font-bold text-xs shadow-md border border-blue-400/30 transition-all hover:scale-[1.02]"
+                      >
+                        <img src={indiamartLogo} alt="IndiaMART Marketplace" className="h-5 w-auto object-contain bg-white rounded-full p-0.5" />
+                        <span>View / Buy on IndiaMART Store ↗</span>
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>

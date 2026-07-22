@@ -3,6 +3,7 @@ import { X, Send, ChevronDown, Phone, Mail, MapPin, Sparkles, RotateCcw, Message
 import { callOrbi, type GeminiMessage } from './chatbotApi';
 import { OES_KNOWLEDGE } from './chatbotKnowledge';
 import { OES_EXPERIENCE_YEARS } from '../../data/experience';
+import indiamartLogo from '../../assets/indiamart-logo.png';
 
 // ============================================================
 //  TYPES
@@ -483,6 +484,20 @@ function ContactCard() {
         </svg>
         WhatsApp Us Now — Instant Response!
       </a>
+      <a href="https://www.indiamart.com/orbit-engineering-solutions-bhopal/?srsltid=AfmBOoqv0uyKZ1nbWyrYQsROXsB8pmT8cHLbpbeCFKcDaUv1ZOyLiEcV"
+        target="_blank" rel="noopener noreferrer"
+        style={{
+          display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '7px',
+          padding: '9px', background: '#002F52', color: 'white', border: '1px solid rgba(255,255,255,0.15)',
+          borderRadius: '11px', textDecoration: 'none', fontWeight: 700, fontSize: '12px',
+          transition: 'opacity 0.2s', marginTop: '6px'
+        }}
+        onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.opacity = '0.9'; }}
+        onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.opacity = '1'; }}
+      >
+        <img src={indiamartLogo} alt="IndiaMART Marketplace" style={{ height: '18px', width: 'auto', background: 'white', borderRadius: '50%', padding: '1px' }} />
+        <span>Verified Seller on IndiaMART ↗</span>
+      </a>
     </div>
   );
 }
@@ -780,7 +795,7 @@ function getLocalResponse(query: string): {
   if (matches(['about', 'company', 'orbit', 'oes', 'experience', 'projects', 'owner', 'director', 'history', 'purana', 'kaise'])) {
     if (isHindiScript) {
       return {
-        text: `Orbit Engineering Solutions (OES) भोपाल, म.प्र. में स्थित एक ISO 9001:2015 कंपनी है। हम 1998 से (${OES_EXPERIENCE_YEARS}+ साल) वाटर इंफ्रास्ट्रक्चर, ऑटोमेशन और सोलर प्रोजेक्ट्स डिलीवर कर रहे हैं।`,
+        text: `Orbit Engineering Solutions (OES) भोपाल, म.प्र. में स्थित एक Triple ISO Certified (ISO 9001:2015, ISO 14001:2015, ISO 45001:2018) इंजीनियरिंग कंपनी है। हम 1998 से (${OES_EXPERIENCE_YEARS}+ साल) वाटर इंफ्रास्ट्रक्चर, ऑटोमेशन और सोलर प्रोजेक्ट्स डिलीवर कर रहे हैं।`,
         showForm: false,
         showContact: true,
         suggestions: [
@@ -790,7 +805,7 @@ function getLocalResponse(query: string): {
       };
     }
     return {
-      text: `Orbit Engineering Solutions (OES) is an ISO 9001:2015 engineering company based in Bhopal, MP. Established in 1998, we have ${OES_EXPERIENCE_YEARS}+ years of experience delivering water, solar, and SCADA infrastructure.`,
+      text: `Orbit Engineering Solutions (OES) is a Triple ISO Certified (ISO 9001:2015 Quality, ISO 14001:2015 Environment, ISO 45001:2018 Safety) engineering company based in Bhopal, MP. Established in 1998, we have ${OES_EXPERIENCE_YEARS}+ years of experience delivering water, solar, and SCADA infrastructure.`,
       showForm: false,
       showContact: true,
       suggestions: [
