@@ -84,9 +84,11 @@ function OfficeImages() {
                 whileTap={{ scale: 0.98 }}
                 className="group relative overflow-hidden rounded-2xl sm:rounded-[36px] border border-white/80 bg-white shadow-xl sm:shadow-2xl transition-all duration-500 cursor-pointer w-full transform-gpu"
               >
-                {/* Floating Top Badge (Desktop Only) */}
-                <div className="hidden md:flex absolute top-4 left-4 z-20 items-center gap-2 px-4 py-2 rounded-full bg-slate-900/70 backdrop-blur-md border border-white/20 text-white text-xs font-medium shadow-lg">
-                  <MapPin className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
+                {/* Floating Top Badge (Mobile Overview + All Desktop) */}
+                <div className={`absolute top-3 left-3 sm:top-4 sm:left-4 z-20 items-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-slate-900/70 backdrop-blur-md border border-white/20 text-white text-[11px] sm:text-xs font-medium shadow-lg ${
+                  activeTab === 'all' ? 'flex' : 'hidden md:flex'
+                }`}>
+                  <MapPin className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-cyan-400 shrink-0" />
                   <span>Root Space • Exterior HQ</span>
                 </div>
 
@@ -101,18 +103,22 @@ function OfficeImages() {
                     alt="Root Space Exterior"
                     className="w-full h-full object-cover transition-transform duration-700 ease-out transform-gpu group-hover:scale-105"
                   />
-                  <div className="hidden md:block absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent opacity-85 group-hover:opacity-65 transition-opacity duration-500" />
+                  <div className={`absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent opacity-85 group-hover:opacity-65 transition-opacity duration-500 ${
+                    activeTab === 'all' ? 'block' : 'hidden md:block'
+                  }`} />
 
-                  {/* Bottom Architectural Info Banner (Desktop Only) */}
-                  <div className="hidden md:flex absolute bottom-0 inset-x-0 p-6 z-20 flex-row items-end justify-between text-white gap-2">
+                  {/* Bottom Architectural Info Banner (Mobile Overview + All Desktop) */}
+                  <div className={`absolute bottom-0 inset-x-0 p-4 sm:p-6 z-20 flex-col sm:flex-row sm:items-end justify-between text-white gap-2 items-start ${
+                    activeTab === 'all' ? 'flex' : 'hidden md:flex'
+                  }`}>
                     <div>
-                      <span className="text-xs uppercase tracking-wider text-cyan-300 font-semibold mb-1 block">
+                      <span className="text-[10px] sm:text-xs uppercase tracking-wider text-cyan-300 font-semibold mb-0.5 sm:mb-1 block">
                         Architectural Elevation
                       </span>
-                      <h4 className="text-xl font-bold leading-tight">Root Space Exterior</h4>
+                      <h4 className="text-base sm:text-xl font-bold leading-tight">Root Space Exterior</h4>
                     </div>
-                    <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 text-xs shrink-0">
-                      <Compass className="w-3.5 h-3.5 text-cyan-300" />
+                    <div className="flex items-center gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 text-[11px] sm:text-xs shrink-0">
+                      <Compass className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-cyan-300" />
                       <span>Prime Location</span>
                     </div>
                   </div>
@@ -132,9 +138,11 @@ function OfficeImages() {
                 whileTap={{ scale: 0.98 }}
                 className="group relative overflow-hidden rounded-2xl sm:rounded-[36px] border border-white/80 bg-white shadow-xl sm:shadow-2xl transition-all duration-500 cursor-pointer w-full transform-gpu"
               >
-                {/* Floating Top Badge (Desktop Only) */}
-                <div className="hidden md:flex absolute top-4 right-4 z-20 items-center gap-2 px-4 py-2 rounded-full bg-slate-900/70 backdrop-blur-md border border-white/20 text-white text-xs font-medium shadow-lg">
-                  <Sparkles className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                {/* Floating Top Badge (Mobile Overview + All Desktop) */}
+                <div className={`absolute top-3 right-3 sm:top-4 sm:right-4 z-20 items-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-slate-900/70 backdrop-blur-md border border-white/20 text-white text-[11px] sm:text-xs font-medium shadow-lg ${
+                  activeTab === 'all' ? 'flex' : 'hidden md:flex'
+                }`}>
+                  <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-amber-400 shrink-0" />
                   <span>Modern Co-Working Hub</span>
                 </div>
 
@@ -149,18 +157,22 @@ function OfficeImages() {
                     alt="Root Space Interior"
                     className="w-full h-full object-cover transition-transform duration-700 ease-out transform-gpu group-hover:scale-105"
                   />
-                  <div className="hidden md:block absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent opacity-85 group-hover:opacity-50 transition-opacity duration-500" />
+                  <div className={`absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent opacity-85 group-hover:opacity-50 transition-opacity duration-500 ${
+                    activeTab === 'all' ? 'block' : 'hidden md:block'
+                  }`} />
 
-                  {/* Bottom Architectural Info Banner (Desktop Only) */}
-                  <div className="hidden md:flex absolute bottom-0 inset-x-0 p-6 z-20 flex-row items-end justify-between text-white gap-2">
+                  {/* Bottom Architectural Info Banner (Mobile Overview + All Desktop) */}
+                  <div className={`absolute bottom-0 inset-x-0 p-4 sm:p-6 z-20 flex-col sm:flex-row sm:items-end justify-between text-white gap-2 items-start ${
+                    activeTab === 'all' ? 'flex' : 'hidden md:flex'
+                  }`}>
                     <div>
-                      <span className="text-xs uppercase tracking-wider text-amber-300 font-semibold mb-1 block">
+                      <span className="text-[10px] sm:text-xs uppercase tracking-wider text-amber-300 font-semibold mb-0.5 sm:mb-1 block">
                         Workspace Environment
                       </span>
-                      <h4 className="text-xl font-bold leading-tight">Root Space Interior</h4>
+                      <h4 className="text-base sm:text-xl font-bold leading-tight">Root Space Interior</h4>
                     </div>
-                    <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 text-xs shrink-0">
-                      <Maximize2 className="w-3.5 h-3.5 text-amber-300" />
+                    <div className="flex items-center gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 text-[11px] sm:text-xs shrink-0">
+                      <Maximize2 className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-amber-300" />
                       <span>Ergonomic Setup</span>
                     </div>
                   </div>
