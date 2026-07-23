@@ -1,71 +1,167 @@
-import { Mail, Briefcase, Target, Award, Users } from 'lucide-react';
+import { useState } from 'react';
+import { Mail, Briefcase, Target, Award, Users, Building2, Sparkles, MapPin, Maximize2, Compass, Layers } from 'lucide-react';
 import subHeadingImage from '../assets/products/sub-heading.jpg';
 import HeroSection from '../components/HeroSection';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { MotionFadeUp, MotionStagger, AnimatedHeading } from '../components/Animated';
 import SEO from '../components/SEO';
 // ourTeamIcon removed: using shared HeroSection component instead
 import manojImg from '../assets/team/manoj-tiwari.jpeg';
 import vijayImg from '../assets/team/vijay-tiwari-2.jpg';
-import office2 from '../assets/Office-2.jpeg';
-import reception from '../assets/reception.jpeg';
+import officeExterior from '../assets/root-space-exterior-im.jpeg';
+import officeInterior from '../assets/root-space-interior-img.jpeg';
 
 function OfficeImages() {
-  const slideRight = {
-    hidden: { x: -100, opacity: 0 },
-    visible: {
-      x: 0,
-      opacity: 1,
-      transition: {
-        duration: 1.2,
-        ease: [0.25, 0.1, 0.25, 1.0] as const
-      }
-    }
-  };
-
-  const slideLeft = {
-    hidden: { x: 100, opacity: 0 },
-    visible: {
-      x: 0,
-      opacity: 1,
-      transition: {
-        duration: 1.2,
-        ease: [0.25, 0.1, 0.25, 1.0] as const
-      }
-    }
-  };
+  const [activeTab, setActiveTab] = useState<'all' | 'exterior' | 'interior'>('all');
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-10 items-stretch relative">
-      <div className="overflow-hidden rounded-2xl border-2 border-transparent bg-white shadow-lg cursor-pointer transform-gpu w-full z-10">
-        <div className="w-full aspect-[3/2] overflow-hidden relative">
-          <motion.img
-            src={office2}
-            alt="Orbit Engineering Solutions Office"
-            loading="lazy"
-            className="w-full h-full object-cover"
-            variants={slideRight}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-10%" }}
-          />
+    <div className="w-full max-w-6xl mx-auto px-1 sm:px-4 relative">
+      {/* Ambient Silk Light Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] sm:w-[550px] h-[200px] sm:h-[320px] bg-gradient-to-r from-blue-400/15 via-cyan-400/10 to-indigo-500/15 rounded-full blur-3xl pointer-events-none" />
+
+      {/* Floating Glass Tab Switcher (Mobile Responsive & Touch Accessible) */}
+      <div className="flex justify-center mb-6 sm:mb-10 py-1 px-2">
+        <div className="inline-flex flex-wrap justify-center items-center gap-1.5 sm:gap-2 p-1.5 rounded-2xl sm:rounded-full bg-slate-900/5 backdrop-blur-xl border border-slate-200/80 shadow-inner max-w-full">
+          {[
+            { id: 'all', fullLabel: 'Overview Grid', shortLabel: 'Overview', icon: Layers },
+            { id: 'exterior', fullLabel: 'Exterior Architecture', shortLabel: 'Exterior', icon: Building2 },
+            { id: 'interior', fullLabel: 'Interior Workspace', shortLabel: 'Interior', icon: Sparkles }
+          ].map((tab) => {
+            const Icon = tab.icon;
+            const isActive = activeTab === tab.id;
+            return (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id as any)}
+                className={`relative px-3.5 sm:px-4 py-2 sm:py-2.5 min-h-[38px] sm:min-h-[44px] rounded-xl sm:rounded-full text-xs sm:text-sm font-semibold transition-colors duration-300 flex items-center gap-1.5 touch-manipulation ${
+                  isActive ? 'text-white' : 'text-gray-600 hover:text-gray-900'
+                }`}
+              >
+                {isActive && (
+                  <motion.div
+                    layoutId="activeTabPill"
+                    className="absolute inset-0 bg-[#0073bc] rounded-xl sm:rounded-full shadow-md z-0"
+                    transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                  />
+                )}
+                <span className="relative z-10 flex items-center gap-1.5">
+                  <Icon className="w-3.5 h-3.5 shrink-0" />
+                  <span className="hidden sm:inline">{tab.fullLabel}</span>
+                  <span className="inline sm:hidden">{tab.shortLabel}</span>
+                </span>
+              </button>
+            );
+          })}
         </div>
       </div>
 
-      <div className="overflow-hidden rounded-2xl border-2 border-transparent bg-white shadow-lg cursor-pointer transform-gpu w-full z-10">
-        <div className="w-full aspect-[3/2] overflow-hidden relative">
-          <motion.img
-            src={reception}
-            alt="Orbit Engineering Reception"
-            loading="lazy"
-            className="w-full h-full object-cover"
-            variants={slideLeft}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-10%" }}
-          />
-        </div>
-      </div>
+      {/* Scroll-triggered Entrance Wrapper */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.15 }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        className="w-full"
+      >
+        <motion.div
+          layout
+          className={`grid gap-6 sm:gap-8 items-center ${
+            activeTab === 'all'
+              ? 'grid-cols-1 lg:grid-cols-2'
+              : 'grid-cols-1 max-w-3xl mx-auto'
+          }`}
+        >
+          <AnimatePresence mode="wait">
+            {(activeTab === 'all' || activeTab === 'exterior') && (
+              <motion.div
+                key="exterior-card"
+                layout
+                initial={{ opacity: 0, scale: 0.94 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.94 }}
+                transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                whileHover={{ y: -6, scale: 1.01 }}
+                whileTap={{ scale: 0.98 }}
+                className="group relative overflow-hidden rounded-2xl sm:rounded-[36px] border border-white/80 bg-white shadow-xl sm:shadow-2xl transition-all duration-500 cursor-pointer w-full transform-gpu"
+              >
+                {/* Floating Top Badge */}
+                <div className="absolute top-3 left-3 sm:top-4 sm:left-4 z-20 flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-slate-900/70 backdrop-blur-md border border-white/20 text-white text-[11px] sm:text-xs font-medium shadow-lg">
+                  <MapPin className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-cyan-400 shrink-0" />
+                  <span>Root Space • Exterior HQ</span>
+                </div>
+
+                {/* Main Image View */}
+                <div className="w-full aspect-[4/3] sm:aspect-[16/10] overflow-hidden relative">
+                  <img
+                    src={officeExterior}
+                    alt="Root Space Exterior"
+                    className="w-full h-full object-cover transition-transform duration-700 ease-out transform-gpu group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent opacity-85 group-hover:opacity-65 transition-opacity duration-500" />
+
+                  {/* Bottom Architectural Info Banner */}
+                  <div className="absolute bottom-0 inset-x-0 p-4 sm:p-6 z-20 flex flex-col sm:flex-row sm:items-end justify-between text-white gap-2 items-start">
+                    <div>
+                      <span className="text-[10px] sm:text-xs uppercase tracking-wider text-cyan-300 font-semibold mb-0.5 sm:mb-1 block">
+                        Architectural Elevation
+                      </span>
+                      <h4 className="text-base sm:text-xl font-bold leading-tight">Root Space Exterior</h4>
+                    </div>
+                    <div className="flex items-center gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 text-[11px] sm:text-xs shrink-0">
+                      <Compass className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-cyan-300" />
+                      <span>Prime Location</span>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+
+            {(activeTab === 'all' || activeTab === 'interior') && (
+              <motion.div
+                key="interior-card"
+                layout
+                initial={{ opacity: 0, scale: 0.94 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.94 }}
+                transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                whileHover={{ y: -6, scale: 1.01 }}
+                whileTap={{ scale: 0.98 }}
+                className="group relative overflow-hidden rounded-2xl sm:rounded-[36px] border border-white/80 bg-white shadow-xl sm:shadow-2xl transition-all duration-500 cursor-pointer w-full transform-gpu"
+              >
+                {/* Floating Top Badge */}
+                <div className="absolute top-3 right-3 sm:top-4 sm:right-4 z-20 flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-slate-900/70 backdrop-blur-md border border-white/20 text-white text-[11px] sm:text-xs font-medium shadow-lg">
+                  <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-amber-400 shrink-0" />
+                  <span>Modern Co-Working Hub</span>
+                </div>
+
+                {/* Main Image View */}
+                <div className="w-full aspect-[4/3] sm:aspect-[16/10] overflow-hidden relative">
+                  <img
+                    src={officeInterior}
+                    alt="Root Space Interior"
+                    className="w-full h-full object-cover transition-transform duration-700 ease-out transform-gpu group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent opacity-85 group-hover:opacity-50 transition-opacity duration-500" />
+
+                  {/* Bottom Architectural Info Banner */}
+                  <div className="absolute bottom-0 inset-x-0 p-4 sm:p-6 z-20 flex flex-col sm:flex-row sm:items-end justify-between text-white gap-2 items-start">
+                    <div>
+                      <span className="text-[10px] sm:text-xs uppercase tracking-wider text-amber-300 font-semibold mb-0.5 sm:mb-1 block">
+                        Workspace Environment
+                      </span>
+                      <h4 className="text-base sm:text-xl font-bold leading-tight">Root Space Interior</h4>
+                    </div>
+                    <div className="flex items-center gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 text-[11px] sm:text-xs shrink-0">
+                      <Maximize2 className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-amber-300" />
+                      <span>Ergonomic Setup</span>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </motion.div>
+      </motion.div>
     </div>
   );
 }
@@ -324,12 +420,12 @@ export default function TeamPage() {
       </section>
 
 
-      {/* Our Office section inserted below Join Our Team */}
+      {/* Our Working Office section inserted below Join Our Team */}
       <section className="py-20 bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-6">
             <AnimatedHeading level={2} className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">
-              Our Office
+              Our Working Office
             </AnimatedHeading>
             <MotionFadeUp>
               <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
