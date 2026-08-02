@@ -53,16 +53,16 @@ export default function ProjectsPage({ initialFilter = 'all', onNavigate }: Proj
     {
       name: 'Gangadhar Meher Lift Irrigation Project',
       client: 'WRD Bhopal',
-      location: 'Madhya Pradesh',
+      location: 'Odisha',
       status: 'Completed',
       logo: bharatSarkarLogo
     },
     {
       name: 'Bankhedi Turnkey Project',
-      client: 'Central India Pvt Ltd',
+      client: 'MPUDC',
       location: 'Madhya Pradesh',
       status: 'Completed',
-      logo: centralIndiaLogo
+      logo: mpudclLogo
     },
   ];
 
