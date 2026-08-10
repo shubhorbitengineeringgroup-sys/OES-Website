@@ -606,8 +606,8 @@ export default function AboutPage() {
                 </p>
                 <div className="flex items-center justify-center sm:justify-start gap-2 text-gray-600 pt-2 border-t border-gray-100">
                   <Mail className="h-4 w-4 text-[#0073bc]" />
-                  <a href="mailto:vijay@orbitengineerings.com" className="text-xs hover:text-[#0073bc] transition-colors font-semibold text-gray-700">
-                    vijay@orbitengineerings.com
+                  <a href="mailto:vijaytiwari@orbitengineerings.com" className="text-xs hover:text-[#0073bc] transition-colors font-semibold text-gray-700">
+                    vijaytiwari@orbitengineerings.com
                   </a>
                 </div>
               </div>

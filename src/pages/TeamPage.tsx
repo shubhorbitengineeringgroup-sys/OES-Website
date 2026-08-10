@@ -210,7 +210,7 @@ export default function TeamPage() {
       name: 'Vijay Tiwari',
       role: 'Co-Founder & CTO',
       experience: '18+ Years Experience',
-      email: 'vijay@orbitengineerings.com',
+      email: 'vijaytiwari@orbitengineerings.com',
       description: 'Technical expert specializing in automation, IoT, and advanced water treatment systems',
       photo: vijayImg,
       imagePosition: 'top'

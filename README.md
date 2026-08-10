@@ -110,7 +110,7 @@ The website includes the following contact details that can be updated in the re
 - **Email**: info@syncwatertech.com
 - **Team Emails**:
   - rohit@syncwatertech.com
-  - vijay@syncwatertech.com
+  - vijaytiwari@orbitengineerings.com
 
 ## Notes
 
