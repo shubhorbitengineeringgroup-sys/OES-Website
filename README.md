@@ -105,11 +105,10 @@ src/
 
 The website includes the following contact details that can be updated in the respective components:
 
-- **Address**: Bhopal, Madhya Pradesh, India
-- **Phone**: To be updated
-- **Email**: info@syncwatertech.com
+- **Address**: First Floor, Shalimar Enclave, 12/2, E-3, Arera Colony, Bhopal, Madhya Pradesh 462016, India
+- **Phone**: +91-70241-28029 / +91-9039075049
+- **Email**: info@orbitengineerings.com
 - **Team Emails**:
-  - rohit@syncwatertech.com
   - vijaytiwari@orbitengineerings.com
 
 ## Notes

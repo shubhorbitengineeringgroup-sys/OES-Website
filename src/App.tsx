@@ -143,6 +143,7 @@ function AppContent() {
               <Route path="/product/:slug" element={<ProductDetailLoader productIndex={productIndex} onNavigate={handleNavigate} />} />
               <Route path="/clients" element={<ClientsPage />} />
               <Route path="/solutions" element={<FAQPage onNavigate={handleNavigate} />} />
+              <Route path="/faq" element={<FAQPage onNavigate={handleNavigate} />} />
               <Route path="/team" element={<TeamPage />} />
               <Route path="/contact" element={<ContactPage />} />
             </Routes>

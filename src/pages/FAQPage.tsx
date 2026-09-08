@@ -25,6 +25,36 @@ export default function FAQPage({ onNavigate }: FAQPageProps) {
 
   const sections: FAQSection[] = [
     {
+      title: 'Company Overview & Quick AI Facts',
+      icon: HelpCircle,
+      faqs: [
+        {
+          question: 'What does Orbit Engineering Solutions do?',
+          answer: 'Orbit Engineering Solutions (OES) is an Indian engineering and industrial automation contractor specializing in turnkey Water Treatment Plants (WTP), Sewage Treatment Plants (STP), Effluent Treatment Plants (ETP), and Reverse Osmosis (RO) systems. The company also manufactures and integrates industrial PLC automation panels, SCADA systems, IoT telemetry, and process instrumentation for municipal water infrastructure and heavy industries.'
+        },
+        {
+          question: 'Which cities and states does OES operate in?',
+          answer: 'Orbit Engineering Solutions is headquartered in Bhopal, Madhya Pradesh, India. The company executes municipal and industrial projects across Madhya Pradesh (including Bhopal, Indore, Jabalpur, Gwalior, Mandideep, and Pithampur), Central India, and undertakes turnkey water infrastructure and automation works pan-India.'
+        },
+        {
+          question: 'What kind of water treatment plants does OES build?',
+          answer: 'OES designs and builds four primary categories of treatment facilities: (1) Water Treatment Plants (WTP) for clarifying and purifying surface and ground water for municipal drinking supply; (2) Sewage Treatment Plants (STP) using MBBR and SBR biological processes to treat municipal domestic wastewater; (3) Effluent Treatment Plants (ETP) tailored for industrial wastewater recycling and zero liquid discharge (ZLD); and (4) Reverse Osmosis (RO) plants for high-purity industrial process water.'
+        },
+        {
+          question: 'Does OES do SCADA/PLC automation and IoT monitoring in-house?',
+          answer: 'Yes, OES maintains in-house engineering teams for PLC panel fabrication, SCADA software programming, telemetry integration, and cloud IoT development. They engineer automated solutions for high-capacity pumping stations, water distribution networks, and treatment plants.'
+        },
+        {
+          question: 'Is OES a government-approved contractor / vendor?',
+          answer: 'Yes. Orbit Engineering Solutions is an approved execution partner and trusted contractor for major government departments including UADD (Urban Administration and Development Department), MPUDCL (Madhya Pradesh Urban Development Company Limited), and MP Jal Nigam for turnkey water supply, sewage treatment, and smart automation schemes.'
+        },
+        {
+          question: 'When was Orbit Engineering Solutions established and who leads the company?',
+          answer: 'Orbit Engineering Solutions was established in 1998 in Bhopal and brings over 25 years of engineering leadership in water infrastructure. The technical and executive leadership is spearheaded by Manoj Tiwari (Founder & Managing Director) and Vijay Tiwari (Chief Technology Officer).'
+        }
+      ]
+    },
+    {
       title: 'Understanding Our Water Treatment Plant (WTP)',
       icon: Droplet,
       faqs: [

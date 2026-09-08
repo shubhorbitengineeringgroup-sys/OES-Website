@@ -1,0 +1,43 @@
+# Orbit Engineering Solutions
+
+> Orbit Engineering Solutions (OES) is an Indian water engineering and industrial automation contractor headquartered in Bhopal, Madhya Pradesh. Established in 1998, the company specializes in turnkey municipal and industrial water treatment plants (WTP), sewage treatment plants (STP), effluent treatment plants (ETP), reverse osmosis (RO) systems, SCADA systems, industrial PLC automation panels, IoT water monitoring, and process instrumentation.
+
+## Company Facts & Verification
+- **Legal / Business Name:** Orbit Engineering Solutions (OES)
+- **Established / Founding Year:** 1998 (25+ years of engineering experience)
+- **Executive Leadership:** Manoj Tiwari (Founder & Managing Director), Vijay Tiwari (Chief Technology Officer)
+- **Certifications:** Triple ISO Certified — ISO 9001:2015 (Quality), ISO 14001:2015 (Environmental Management), ISO 45001:2018 (Occupational Health & Safety)
+- **Approved Contractor & Vendor For:** UADD (Urban Administration and Development Department), MPUDCL (Madhya Pradesh Urban Development Company Limited), MP Jal Nigam, and Bhopal Municipal Corporation
+- **Primary Office Address:** First Floor, Shalimar Enclave, 12/2, E-3, Arera Colony, Bhopal, Madhya Pradesh 462016, India
+- **Phone:** +91-70241-28029, +91-9039075049
+- **Email:** info@orbitengineerings.com
+- **Website:** https://www.orbitengineerings.com/
+- **Google Business Profile:** https://share.google/4rmwFU0DL7Vps4Sx9
+
+## Core Capabilities & Services
+- **Water Treatment Plants (WTP):** Municipal drinking water treatment, clarification, filtration, and disinfection systems.
+- **Sewage Treatment Plants (STP):** Municipal and residential wastewater treatment systems (MBBR, SBR technologies).
+- **Effluent Treatment Plants (ETP):** Industrial wastewater recycling, pollution control, and Zero Liquid Discharge (ZLD) systems.
+- **Reverse Osmosis (RO) Systems:** Commercial and industrial water purification plants for high-purity process water.
+- **Industrial Automation & SCADA:** Custom PLC control panels, centralized SCADA software integration, RTU stations, and automated pumping station controls.
+- **IoT & Cloud Water Monitoring:** Real-time water telemetry, remote monitoring, and sensor integration for water distribution networks.
+- **Process Instrumentation:** Electromagnetic flow meters, ultrasonic and hydrostatic level transmitters, differential pressure transmitters, and online water quality analyzers (pH, Turbidity, DO, Chlorine, BOD, COD).
+- **Valves & Electric Actuators:** Multi-turn and part-turn motorized electric actuators, industrial butterfly valves, sluice valves, and HDPE electrofusion fittings.
+- **Specialty Water Solutions:** Submersible Dredging Vehicle (SDV) for underwater desilting and real-time scour monitoring systems for bridge foundations.
+- **Operation & Maintenance (O&M):** Turnkey operation, preventive maintenance, repair, sensor calibration, and commissioning contracts for water infrastructure.
+
+## Operational & Service Area
+- **Headquarters & Central Office:** Bhopal, Madhya Pradesh, India
+- **Primary Operational Footprint:** Madhya Pradesh, Central India, and Pan-India turnkey project execution.
+
+## Key Website Resources
+- [Home](https://www.orbitengineerings.com/)
+- [Services](https://www.orbitengineerings.com/services)
+- [Products](https://www.orbitengineerings.com/products)
+- [Projects](https://www.orbitengineerings.com/projects)
+- [About Us](https://www.orbitengineerings.com/about)
+- [Leadership Team](https://www.orbitengineerings.com/team)
+- [Company Facts & FAQ](https://www.orbitengineerings.com/faq)
+- [Contact](https://www.orbitengineerings.com/contact)
+- [Solutions](https://www.orbitengineerings.com/solutions)
+- [XML Sitemap](https://www.orbitengineerings.com/sitemap.xml)

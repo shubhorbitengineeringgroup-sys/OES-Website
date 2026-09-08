@@ -1,233 +1,384 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-  <!-- Main Pages -->
   <url>
     <loc>https://www.orbitengineerings.com/</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-09-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.orbitengineerings.com/products</loc>
-    <lastmod>2026-03-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.orbitengineerings.com/og-image.png</image:loc>
+      <image:title>Orbit Engineering Solutions | India's Leading Water Treatment, SCADA &amp; PLC Automation Company - Bhopal</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://www.orbitengineerings.com/services</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-09-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.orbitengineerings.com/og-image.png</image:loc>
+      <image:title>Water Engineering, SCADA &amp; Automation Services | Orbit Engineering Solutions Bhopal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.orbitengineerings.com/products</loc>
+    <lastmod>2026-09-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.orbitengineerings.com/og-image.png</image:loc>
+      <image:title>Water Treatment &amp; Industrial Automation Products | Orbit Engineering Solutions</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://www.orbitengineerings.com/projects</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-09-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.orbitengineerings.com/og-image.png</image:loc>
+      <image:title>Water Infrastructure &amp; SCADA Projects Portfolio | Orbit Engineering Solutions</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://www.orbitengineerings.com/about</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-09-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.orbitengineerings.com/team</loc>
-    <lastmod>2026-03-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.orbitengineerings.com/og-image.png</image:loc>
+      <image:title>About Orbit Engineering Solutions | 25+ Years Legacy in Water Infrastructure &amp; Automation</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://www.orbitengineerings.com/contact</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-09-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.orbitengineerings.com/clients</loc>
-    <lastmod>2026-03-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.orbitengineerings.com/og-image.png</image:loc>
+      <image:title>Contact Orbit Engineering Solutions Bhopal | Free Engineering Consultation &amp; Quote</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://www.orbitengineerings.com/solutions</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-09-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.orbitengineerings.com/og-image.png</image:loc>
+      <image:title>Water Treatment, SCADA &amp; Solar FAQs | Orbit Engineering Solutions</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.orbitengineerings.com/faq</loc>
+    <lastmod>2026-09-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.orbitengineerings.com/og-image.png</image:loc>
+      <image:title>Company Facts &amp; Frequently Asked Questions (FAQ) | Orbit Engineering Solutions</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.orbitengineerings.com/team</loc>
+    <lastmod>2026-09-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.orbitengineerings.com/og-image.png</image:loc>
+      <image:title>Our Leadership &amp; Engineering Team | Orbit Engineering Solutions Bhopal</image:title>
+    </image:image>
   </url>
-
-  <!-- Product Category Pages -->
+  <url>
+    <loc>https://www.orbitengineerings.com/clients</loc>
+    <lastmod>2026-09-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.orbitengineerings.com/og-image.png</image:loc>
+      <image:title>Our Clients &amp; Partners | Trusted by Government &amp; Industry Leaders Across India</image:title>
+    </image:image>
+  </url>
   <url>
     <loc>https://www.orbitengineerings.com/products/flow-meters</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-09-08</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.orbitengineerings.com/og-image.png</image:loc>
+      <image:title>Electromagnetic &amp; Bulk Flow Meters | Industrial Water Meters - Orbit Engineering</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://www.orbitengineerings.com/products/analyzers</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-09-08</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.orbitengineerings.com/products/air-quality-analyzers</loc>
-    <lastmod>2026-03-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.orbitengineerings.com/products/gas-analyzers</loc>
-    <lastmod>2026-03-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.orbitengineerings.com/og-image.png</image:loc>
+      <image:title>Online Water Quality Analyzers (pH, Turbidity, BOD, COD, Chlorine) | Orbit Engineering</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://www.orbitengineerings.com/products/level-transmitters</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-09-08</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.orbitengineerings.com/products/level-transmitter</loc>
-    <lastmod>2026-03-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.orbitengineerings.com/products/level-switch</loc>
-    <lastmod>2026-03-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.orbitengineerings.com/products/levels</loc>
-    <lastmod>2026-03-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.orbitengineerings.com/og-image.png</image:loc>
+      <image:title>Level Transmitters &amp; Level Switches (Ultrasonic, Hydrostatic, Radar) | Orbit Engineering</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://www.orbitengineerings.com/products/pressure-sensors</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-09-08</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.orbitengineerings.com/products/pressure-transmitter</loc>
-    <lastmod>2026-03-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.orbitengineerings.com/products/pressure-sensor</loc>
-    <lastmod>2026-03-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.orbitengineerings.com/products/pressure</loc>
-    <lastmod>2026-03-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.orbitengineerings.com/og-image.png</image:loc>
+      <image:title>Industrial Pressure Transmitters &amp; DP Sensors | Orbit Engineering Solutions</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://www.orbitengineerings.com/products/valves-piping</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-09-08</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.orbitengineerings.com/products/valves</loc>
-    <lastmod>2026-03-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.orbitengineerings.com/og-image.png</image:loc>
+      <image:title>Industrial Butterfly Valves, Sluice Valves &amp; HDPE Piping | Orbit Engineering</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://www.orbitengineerings.com/products/automation</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-09-08</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.orbitengineerings.com/og-image.png</image:loc>
+      <image:title>SCADA Systems, Industrial PLC Panels &amp; IoT Water Telemetry | Orbit Engineering</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://www.orbitengineerings.com/products/cameras</loc>
-    <lastmod>2026-03-17</lastmod>
+    <loc>https://www.orbitengineerings.com/products/electric-actuators</loc>
+    <lastmod>2026-09-08</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.orbitengineerings.com/products/jointing</loc>
-    <lastmod>2026-03-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.orbitengineerings.com/products/chlorination</loc>
-    <lastmod>2026-03-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.orbitengineerings.com/products/chlorinators</loc>
-    <lastmod>2026-03-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.orbitengineerings.com/products/transformers</loc>
-    <lastmod>2026-03-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.orbitengineerings.com/og-image.png</image:loc>
+      <image:title>Electric Multi-Turn &amp; Part-Turn Valve Actuators | Orbit Engineering Solutions</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://www.orbitengineerings.com/products/solar</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-09-08</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.orbitengineerings.com/og-image.png</image:loc>
+      <image:title>Solar Water Pumping Systems &amp; Solar Panels (PM-KUSUM) | Orbit Engineering</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://www.orbitengineerings.com/products/solar-modules</loc>
-    <lastmod>2026-03-17</lastmod>
+    <loc>https://www.orbitengineerings.com/products/chlorination</loc>
+    <lastmod>2026-09-08</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-
-  <!-- Electric Actuators -->
-  <url>
-    <loc>https://www.orbitengineerings.com/products/electric-actuators</loc>
-    <lastmod>2026-03-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.orbitengineerings.com/og-image.png</image:loc>
+      <image:title>Gas Chlorination Systems, Electro-Chlorinators &amp; Dosing Units | Orbit Engineering</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://www.orbitengineerings.com/products/actuators</loc>
-    <lastmod>2026-03-17</lastmod>
+    <loc>https://www.orbitengineerings.com/products/transformers</loc>
+    <lastmod>2026-09-08</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.orbitengineerings.com/og-image.png</image:loc>
+      <image:title>Distribution Transformers, Auto-Transformers &amp; SF6 Breakers | Orbit Engineering</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://www.orbitengineerings.com/products/part-turn-actuators</loc>
-    <lastmod>2026-03-17</lastmod>
+    <loc>https://www.orbitengineerings.com/products/jointing</loc>
+    <lastmod>2026-09-08</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.orbitengineerings.com/og-image.png</image:loc>
+      <image:title>HDPE Pipe Butt Fusion &amp; Electrofusion Jointing Machines | Orbit Engineering</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://www.orbitengineerings.com/products/multi-turn-actuators</loc>
-    <lastmod>2026-03-17</lastmod>
+    <loc>https://www.orbitengineerings.com/products/cameras</loc>
+    <lastmod>2026-09-08</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.orbitengineerings.com/og-image.png</image:loc>
+      <image:title>Industrial CCTV &amp; PTZ Vision Systems for Water Plants | Orbit Engineering</image:title>
+    </image:image>
   </url>
-
-  <!-- Specialty Products -->
   <url>
     <loc>https://www.orbitengineerings.com/products/sdv</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-09-08</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.orbitengineerings.com/og-image.png</image:loc>
+      <image:title>Submersible Dredging Vehicle (SDV) | Underwater Silt Clearing Robot - Orbit Engineering</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://www.orbitengineerings.com/products/scour-monitoring</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-09-08</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.orbitengineerings.com/og-image.png</image:loc>
+      <image:title>Real-Time Scour Detection &amp; Bridge Foundation Monitoring System | Orbit Engineering</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.orbitengineerings.com/products/air-quality-analyzers</loc>
+    <lastmod>2026-09-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.orbitengineerings.com/og-image.png</image:loc>
+      <image:title>Continuous Ambient Air Quality Analyzers (PM2.5, PM10) | Orbit Engineering</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.orbitengineerings.com/products/gas-analyzers</loc>
+    <lastmod>2026-09-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.orbitengineerings.com/og-image.png</image:loc>
+      <image:title>Industrial Gas Analyzers (SOx, NOx, CO, CO2, Methane) | Orbit Engineering</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.orbitengineerings.com/products/levels</loc>
+    <lastmod>2026-09-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.orbitengineerings.com/og-image.png</image:loc>
+      <image:title>Level Transmitters &amp; Level Switches | Orbit Engineering</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.orbitengineerings.com/products/level-transmitter</loc>
+    <lastmod>2026-09-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.orbitengineerings.com/og-image.png</image:loc>
+      <image:title>Ultrasonic &amp; Hydrostatic Level Transmitters | Orbit Engineering</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.orbitengineerings.com/products/level-switch</loc>
+    <lastmod>2026-09-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.orbitengineerings.com/og-image.png</image:loc>
+      <image:title>Float &amp; Conductive Level Switches | Orbit Engineering</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.orbitengineerings.com/products/pressure</loc>
+    <lastmod>2026-09-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.orbitengineerings.com/og-image.png</image:loc>
+      <image:title>Industrial Pressure Transmitters &amp; Sensors | Orbit Engineering</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.orbitengineerings.com/products/pressure-transmitter</loc>
+    <lastmod>2026-09-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.orbitengineerings.com/og-image.png</image:loc>
+      <image:title>Smart Digital Pressure Transmitters | Orbit Engineering</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.orbitengineerings.com/products/pressure-sensor</loc>
+    <lastmod>2026-09-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.orbitengineerings.com/og-image.png</image:loc>
+      <image:title>Industrial Pressure Sensors &amp; Transducers | Orbit Engineering</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.orbitengineerings.com/products/valves</loc>
+    <lastmod>2026-09-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.orbitengineerings.com/og-image.png</image:loc>
+      <image:title>Industrial Water Valves &amp; Actuated Valves | Orbit Engineering</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.orbitengineerings.com/products/actuators</loc>
+    <lastmod>2026-09-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.orbitengineerings.com/og-image.png</image:loc>
+      <image:title>Electric Valve Actuators (Multi-Turn &amp; Part-Turn) | Orbit Engineering</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.orbitengineerings.com/products/part-turn-actuators</loc>
+    <lastmod>2026-09-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.orbitengineerings.com/og-image.png</image:loc>
+      <image:title>Electric Part-Turn Valve Actuators | Orbit Engineering</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.orbitengineerings.com/products/multi-turn-actuators</loc>
+    <lastmod>2026-09-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.orbitengineerings.com/og-image.png</image:loc>
+      <image:title>Electric Multi-Turn Valve Actuators | Orbit Engineering</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.orbitengineerings.com/products/chlorinators</loc>
+    <lastmod>2026-09-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.orbitengineerings.com/og-image.png</image:loc>
+      <image:title>Gas Chlorinators &amp; Electro-Chlorination Systems | Orbit Engineering</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.orbitengineerings.com/products/solar-modules</loc>
+    <lastmod>2026-09-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.orbitengineerings.com/og-image.png</image:loc>
+      <image:title>High-Efficiency Solar PV Modules &amp; Pumping | Orbit Engineering</image:title>
+    </image:image>
   </url>
 </urlset>

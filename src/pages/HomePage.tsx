@@ -287,16 +287,16 @@ export default function HomePage({ onNavigate }: HomePageProps) {
         canonicalPath="/"
         keywords="Orbit Engineering Solutions, Orbit Engineering, Orbit Engineering Group, orbit engineering solutions bhopal, orbit bhopal, orbit engineering company, orbit engineering solutions india, water treatment plant Bhopal, WTP services, STP services, RO services, ETP services, WTP STP RO ETP, SCADA automation India, PLC automation water, instrumentation services, instrumentation company Bhopal, instrumentation and control, solar services, solar services Bhopal, solar energy solutions, orbitengineerings.com, water infrastructure company India, Bhopal engineering, smart water management, IoT water monitoring, water treatment company near me, best water treatment company India, water treatment plant Madhya Pradesh, SCADA system price, PLC panel manufacturer, flow meter manufacturer, level transmitter, pressure transmitter, water analyzer, chlorinator, turnkey automation, Jal Jeevan Mission, MP Jal Nigam, MPUDCL, orbit engg, orbit eng solutions, orbit engineering solutons, water treatment, water treatment plant, water purification, service@orbitengineerings.com, +91 9039075049, orbit engineering consultants, orbit engineering consultants bhopal, orbit consultants bhopal, orbit engineering consultancy, orbit engineering company bhopal"
       />
-      {/* Hidden H1 for SEO */}
-      <h1 className="sr-only">Orbit Engineering Solutions Bhopal | Water Treatment Plants (WTP), SCADA, PLC Automation & Sustainable Engineering Solutions</h1>
-
       <section className="relative text-white overflow-hidden">
         <HeroBackgroundSlider />
         <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
             <div className="w-full lg:pr-4">
               <div className="mb-6 md:mb-8">
-                <motion.h2
+                <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#7dd3fc] font-semibold text-xs sm:text-sm tracking-wide uppercase mb-4">
+                  ✦ Water Treatment Plants • SCADA & PLC Automation • Bhopal, India
+                </span>
+                <motion.h1
                   className="text-[2.2rem] sm:text-4xl md:text-5xl lg:text-[3.8rem] font-extrabold mb-4 leading-[1.3] md:leading-[1.15] drop-shadow-2xl tracking-tight text-white flex flex-col items-start gap-y-1 md:gap-y-2"
                 >
                   {/* Line 1 */}
@@ -349,7 +349,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
                       </motion.span>
                     ))}
                   </span>
-                </motion.h2>
+                </motion.h1>
               </div>
 
               <motion.div

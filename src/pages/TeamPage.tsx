@@ -262,10 +262,10 @@ export default function TeamPage() {
         title="Meet Our Team | Manoj Tiwari & Vijay Tiwari - Water Infrastructure Leaders | Orbit Engineering Solutions"
         description="Meet the visionaries at Orbit Engineering Solutions Bhopal. Founded by Manoj Tiwari (MD, 40+ years) and led by Vijay Tiwari (CTO, 18+ years), our ISO 9001 certified team brings decades of expertise in WTP, STP, SCADA automation & IoT-based water management."
         canonicalPath="/team"
-        keywords="Manoj Tiwari Orbit Engineering, Manoj Tiwari, Vijay Tiwari CTO, Vijay Tiwari, Orbit Engineering Solutions team, water engineering experts Bhopal, Rohit Arora Orbit, Amit Tiwari Orbit, Manoj Tiwari engineering Bhopal, Vijay Tiwari engineering, orbit engineering team, orbit engineering solutions team, manoj tivari, vijay tivari, manoj tewari, vijay tewari, orbit engineering, orbit engineering bhopal, orbit engineering company, orbit engineering company bhopal, orbit engineering consultants, orbit engineering consultants bhopal, orbit consultants bhopal, orbit engineering solutions, orbit engineering solutions bhopal, orbit"
+        keywords="Manoj Tiwari Orbit Engineering, Manoj Tiwari, Vijay Tiwari CTO, Vijay Tiwari, Orbit Engineering Solutions team, water engineering experts Bhopal, Manoj Tiwari engineering Bhopal, Vijay Tiwari engineering, orbit engineering team, orbit engineering solutions team, manoj tivari, vijay tivari, manoj tewari, vijay tewari, orbit engineering, orbit engineering bhopal, orbit engineering company, orbit engineering company bhopal, orbit engineering consultants, orbit engineering consultants bhopal, orbit consultants bhopal, orbit engineering solutions, orbit engineering solutions bhopal"
       />
       {/* Hidden H1 for SEO */}
-      <h1 className="sr-only">Orbit Engineering Solutions Team | Manoj Tiwari, Vijay Tiwari, Rohit Arora & Amit Tiwari - Experts in Water Infrastructure & Automation</h1>
+      <h1 className="sr-only">Orbit Engineering Solutions Team | Manoj Tiwari & Vijay Tiwari - Experts in Water Infrastructure & Automation</h1>
 
       <HeroSection title="Our Team" subtitle="Meet the visionaries driving water innovation" />
 

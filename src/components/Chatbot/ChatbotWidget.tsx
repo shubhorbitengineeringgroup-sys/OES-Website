@@ -819,7 +819,7 @@ function getLocalResponse(query: string): {
   if (matches(['contact', 'number', 'phone', 'mobile', 'email', 'address', 'location', 'office', 'timing'])) {
     if (isHindiScript) {
       return {
-        text: "हमारा ऑफिस **Root Space, Char Imli, Bhopal** में है। हमसे फ़ोन पर बात करने के लिए कॉल करें: **+91 70241 28029** या WhatsApp करें: **+91 9039075048**।",
+        text: "हमारा ऑफिस **Root Space, Char Imli, Bhopal** में है। हमसे फ़ोन पर बात करने के लिए कॉल करें: **+91 70241 28029** या WhatsApp करें: **+91 9039075049**।",
         showForm: true,
         showContact: true,
         suggestions: [
@@ -829,7 +829,7 @@ function getLocalResponse(query: string): {
       };
     }
     return {
-      text: "Our office is at **Root Space, Char Imli, Bhopal**. Call us at **+91 70241 28029** or WhatsApp at **+91 9039075048** for any queries.",
+      text: "Our office is at **Root Space, Char Imli, Bhopal**. Call us at **+91 70241 28029** or WhatsApp at **+91 9039075049** for any queries.",
       showForm: true,
       showContact: true,
       suggestions: [

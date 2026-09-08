@@ -6,5 +6,5 @@ import react from '@vitejs/plugin-react'
 // in GitHub Actions or local env. Otherwise falls back to /OES-Website/ for github.io.
 export default defineConfig({
   plugins: [react()],
-  base: process.env.VITE_CUSTOM_DOMAIN === 'true' ? '/' : '/OES-Website/',
+  base: '/',
 })

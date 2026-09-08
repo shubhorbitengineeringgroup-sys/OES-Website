@@ -3,24 +3,105 @@
 
 User-agent: *
 Allow: /
-Disallow: /assets/
-Disallow: /*.pdf$
+Disallow: /orbi-proxy/
+Disallow: /api/
 
-# Allow search engine crawlers to index all pages
+# --- Major Search Engine Crawlers ---
 User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
 Allow: /
 
 User-agent: Bingbot
 Allow: /
 
-User-agent: Yandex
+# --- OpenAI (ChatGPT, Search, Training) ---
+User-agent: GPTBot
 Allow: /
 
-User-agent: DuckDuckBot
+User-agent: ChatGPT-User
 Allow: /
 
-User-agent: Baiduspider
+User-agent: OAI-SearchBot
+Allow: /
+
+# --- Anthropic (Claude) ---
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+# --- Google AI (Gemini & AI Overviews) ---
+User-agent: Google-Extended
+Allow: /
+
+User-agent: GoogleOther
+Allow: /
+
+# --- Perplexity AI ---
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# --- Meta AI ---
+User-agent: FacebookBot
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: Meta-ExternalFetcher
+Allow: /
+
+# --- Apple (Apple Intelligence & Siri) ---
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# --- Amazon (Rufus / Alexa) ---
+User-agent: Amazonbot
+Allow: /
+
+# --- Mistral AI ---
+User-agent: MistralAI-User
+Allow: /
+
+# --- DuckDuckGo AI ---
+User-agent: DuckAssistBot
+Allow: /
+
+# --- Cohere AI ---
+User-agent: cohere-ai
+Allow: /
+
+# --- Common Crawl (Feeds Open & Research LLMs) ---
+User-agent: CCBot
+Allow: /
+
+# --- ByteDance ---
+User-agent: Bytespider
+Allow: /
+
+# --- Social & OpenGraph Previews ---
+User-agent: Twitterbot
+Allow: /
+
+User-agent: facebookexternalhit
 Allow: /
 
 # Sitemap location
 Sitemap: https://www.orbitengineerings.com/sitemap.xml
+
+
