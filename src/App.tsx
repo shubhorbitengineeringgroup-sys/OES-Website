@@ -88,18 +88,23 @@ function AppContent() {
   };
 
   const getActivePage = () => {
-    const p = location.pathname;
+    // Normalize path: lowercase and strip trailing slash (except root '/')
+    const p = location.pathname.toLowerCase().replace(/\/+$/, '') || '/';
     if (p === '/') return 'home';
     if (p === '/projects') return 'projects';
     if (p === '/about') return 'about';
     if (p === '/services') return 'services';
     if (p === '/products') return 'products';
     if (p === '/clients') return 'clients';
-    if (p === '/solutions') return 'faq';
+    if (p === '/solutions' || p === '/faq') return 'faq';
     if (p === '/team') return 'team';
     if (p === '/contact') return 'contact';
-    if (p.startsWith('/products/')) return `product-info:${p.split('/').pop()}`;
-    return 'home';
+    if (p.startsWith('/products/')) {
+      const parts = p.split('/').filter(Boolean);
+      return parts.length >= 2 ? `product-info:${parts[1]}` : 'products';
+    }
+    if (p.startsWith('/product/')) return 'products';
+    return '';
   };
 
   const [showBackToTop, setShowBackToTop] = useState(false);
@@ -146,6 +151,7 @@ function AppContent() {
               <Route path="/faq" element={<FAQPage onNavigate={handleNavigate} />} />
               <Route path="/team" element={<TeamPage />} />
               <Route path="/contact" element={<ContactPage />} />
+              <Route path="*" element={<HomePage onNavigate={handleNavigate} />} />
             </Routes>
           </Suspense>
         </main>
