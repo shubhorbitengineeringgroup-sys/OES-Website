@@ -916,10 +916,7 @@ type Segment =
 
 function tokeniseLine(line: string): Segment[] {
   // Regex patterns
-  const BOLD_RE    = /\*\*(.+?)\*\*/g;
   // Indian mobile/landline: optional +91, then 10 digits (with spaces/dashes)
-  const PHONE_RE   = /(\+91[\s-]?\d{5}[\s-]?\d{5}|\b[6-9]\d{9}\b)/g;
-  const EMAIL_RE   = /([a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,})/g;
 
   // Build a merged pattern with named groups
   const MASTER_RE  = new RegExp(
@@ -934,7 +931,6 @@ function tokeniseLine(line: string): Segment[] {
 
   // First check for address substring
   const ADDRESS_TEXT = 'Root Space, Char Imli';
-  const addrIdx = line.indexOf(ADDRESS_TEXT);
 
   for (const match of line.matchAll(MASTER_RE)) {
     const start = match.index!;

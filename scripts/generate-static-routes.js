@@ -8,8 +8,8 @@ const projectRoot = path.resolve(__dirname, '..');
 const distDir = path.resolve(projectRoot, 'dist');
 const publicDir = path.resolve(projectRoot, 'public');
 
-const BASE_URL = 'https://www.orbitengineerings.com';
-const TODAY = new Date().toISOString().split('T')[0];
+const BASE_URL = 'https://orbitengineerings.com';
+
 
 // Define all routes with rich SEO data and pre-rendered semantic HTML
 const routes = [
@@ -611,7 +611,7 @@ function createPageHtml(templateHtml, route) {
   }
 
   // 5. Replace canonical URL
-  const canonicalUrl = `${BASE_URL}${route.path === '/' ? '/' : route.path}`;
+  const canonicalUrl = `${BASE_URL}${route.path === '/' ? '/' : (route.path === '/solutions' ? '/faq' : route.path) + '/'}`;
   html = html.replace(/<link\s+rel="canonical"\s+href=".*?"\s*\/?>/is, `<link rel="canonical" href="${canonicalUrl}" />`);
 
   // 6. Replace OpenGraph tags
@@ -679,6 +679,7 @@ function createPageHtml(templateHtml, route) {
           ${route.highlights.map(h => `<li style="margin-bottom: 8px;"><strong>${h.split(':')[0]}</strong>${h.includes(':') ? ':' + h.split(':').slice(1).join(':') : ''}</li>`).join('\n          ')}
         </ul>
       </section>` : ''}
+      <nav aria-label="Product categories"><h2>Explore our products</h2><ul>${routes.filter(item => item.path.startsWith('/products/') && item.path !== route.path).map(item => `<li><a href="${item.path}">${(item.heading || item.title).replace(/&/g, '&amp;')}</a></li>`).join('')}</ul></nav>
       <section style="margin-top: 30px; padding: 15px; background-color: #f8fafc; border-radius: 8px;">
         <h3>Contact Orbit Engineering Solutions</h3>
         <p>Head Office: First Floor, Shalimar Enclave, 12/2, E-3, Arera Colony, Bhopal, Madhya Pradesh – 462016</p>
@@ -743,11 +744,11 @@ function main() {
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 `;
 
-  routes.forEach((route) => {
-    const loc = `${BASE_URL}${route.path === '/' ? '/' : route.path}`;
+  routes.filter(route => route.path !== '/solutions').forEach((route) => {
+    const loc = `${BASE_URL}${route.path === '/' ? '/' : route.path + '/'}`;
     sitemapXml += `  <url>
     <loc>${loc}</loc>
-    <lastmod>${TODAY}</lastmod>
+
     <changefreq>${route.changefreq || 'monthly'}</changefreq>
     <priority>${route.priority || '0.7'}</priority>
     <image:image>
@@ -762,8 +763,8 @@ function main() {
 
   // Write sitemap to dist/ and public/
   fs.writeFileSync(path.resolve(distDir, 'sitemap.xml'), sitemapXml, 'utf8');
-  fs.writeFileSync(path.resolve(publicDir, 'sitemap.xml'), sitemapXml, 'utf8');
-  console.log(`  ✓ Sitemap written to dist/sitemap.xml and public/sitemap.xml (${routes.length} URLs indexed)`);
+
+  console.log(`  ✓ Sitemap written to dist/sitemap.xml  (${routes.length} URLs generated)`);
 
   // Ensure robots.txt is present in dist
   const publicRobots = path.resolve(publicDir, 'robots.txt');

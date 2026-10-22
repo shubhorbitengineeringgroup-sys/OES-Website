@@ -44,8 +44,8 @@ export default function SEO({ title, description, keywords, canonicalPath, jsonL
         if (twitterDescription) twitterDescription.setAttribute('content', description);
 
         if (canonicalPath) {
-            const baseUrl = 'https://www.orbitengineerings.com';
-            const canonicalUrl = `${baseUrl}${canonicalPath}`;
+            const baseUrl = 'https://orbitengineerings.com';
+            const canonicalUrl = `${baseUrl}${canonicalPath === '/' ? '/' : canonicalPath.replace(/\/+$/, '') + '/'}`;
 
             let canonicalLink = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
             if (!canonicalLink) {
@@ -76,8 +76,8 @@ export default function SEO({ title, description, keywords, canonicalPath, jsonL
         }
 
         return () => {
-            // Cleanup schema on unmount if needed
-            // But we mostly want it to persist until next SEO update
+            document.getElementById('ld-json-schema')?.remove();
+
         }
 
     }, [title, description, keywords, canonicalPath, jsonLd]);

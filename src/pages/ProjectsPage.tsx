@@ -7,7 +7,6 @@ import { Building2, CheckCircle2, Clock, MapPin } from 'lucide-react';
 
 import mpudclLogo from '../assets/clients/mpudcl-indore-district.png';
 import bharatSarkarLogo from '../assets/clients/bharat-sarkar.png';
-import centralIndiaLogo from '../assets/clients/central-india-pvt-ltd.png';
 import mpJalNigamLogo from '../assets/clients/mp-jal-nigam.png';
 
 interface ProjectsPageProps {

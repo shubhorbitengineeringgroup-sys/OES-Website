@@ -1,5 +1,5 @@
 # Robots.txt for Orbit Engineering Solutions
-# https://www.orbitengineerings.com
+# https://orbitengineerings.com
 
 User-agent: *
 Allow: /
@@ -102,6 +102,6 @@ User-agent: facebookexternalhit
 Allow: /
 
 # Sitemap location
-Sitemap: https://www.orbitengineerings.com/sitemap.xml
+Sitemap: https://orbitengineerings.com/sitemap.xml
 
 

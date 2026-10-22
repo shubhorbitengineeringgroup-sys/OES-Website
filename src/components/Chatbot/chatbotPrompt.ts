@@ -77,7 +77,6 @@ function buildExtendedFAQ(): string {
 }
 
 export function buildSystemPrompt(detectedLang: 'english' | 'hindi' | 'hinglish' = 'english'): string {
-  const co = OES_KNOWLEDGE.company;
 
   const langInstruction =
     detectedLang === 'hindi'
