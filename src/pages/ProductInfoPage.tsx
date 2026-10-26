@@ -366,7 +366,7 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
         'Perimeter security',
         'Process monitoring',
         'Equipment inspection',
-        'Safety compliance',
+        'Review applicable safety requirements for the selected model',
         'Remote site management',
         'Incident documentation'
       ],
@@ -389,7 +389,7 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
         'Multiple pipe size capability',
         'Portable and stationary models',
         'Quality monitoring systems',
-        'Compliance certification'
+        'Project-specific standards and documentation review'
       ],
       applications: [
         'HDPE pipe joining',
@@ -481,7 +481,7 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
     },
     'chlorinators': {
       title: 'Chlorinators',
-      description: 'Safe and efficient chlorination systems for water disinfection and purification.',
+      description: 'Chlorination equipment for water disinfection, selected and operated according to the treatment design.',
       icon: FlaskConical,
       features: [
         'Vacuum operated safety',
@@ -574,9 +574,9 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
         'High efficiency up to 20.10%',
         'Excellent high-temperature performance',
         'Advanced PERC and Bifacial technologies',
-        '12-year product warranty',
-        '30-year linear performance warranty',
-        'Certified for harsh environmental conditions'
+        'Product warranty terms confirmed in the quotation',
+        'Performance warranty depends on selected manufacturer and model',
+        'Environmental suitability to be confirmed for the selected model'
       ],
       applications: [
         'Residential rooftop solar',
@@ -591,13 +591,13 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
         { parameter: 'Wattage Range', value: '315 Wp – 550 Wp' },
         { parameter: 'Peak Efficiency', value: 'Up to 20.10%' },
         { parameter: 'System Voltage', value: '1500 V DC' },
-        { parameter: 'Product Warranty', value: '12 Years' },
-        { parameter: 'Performance Warranty', value: '30 Years' }
+        { parameter: 'Product Warranty', value: 'As specified in the quotation' },
+        { parameter: 'Performance Warranty', value: 'Manufacturer and model dependent' }
       ]
     },
     'air-quality-analyzers': {
       title: 'Air Quality Analyzers',
-      description: 'Advanced monitoring systems for SOx, NOx, PM10, and PM2.5 to ensure environmental compliance and safety.',
+      description: 'Advanced monitoring systems for SOx, NOx, PM10, and PM2.5 for environmental monitoring; applicable compliance and safety requirements need project-specific assessment.',
       icon: Gauge,
       features: [
         'Real-time pollutant monitoring',
@@ -715,11 +715,11 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
     },
     'sdv': {
       title: 'Submersible Dredging Vehicle (SDV)',
-      description: 'A remotely operated underwater robotic system designed for safe and efficient removal of sludge, silt, and debris without human entry.',
+      description: 'A remotely operated underwater robotic system designed for remotely controlled removal of sludge, silt, and debris without human entry.',
       icon: Anchor,
       image: sdvImage,
       features: [
-        'Depth Rating: Operates safely up to 50 meters underwater',
+        'Depth Rating: Indicative depth up to 50 meters; confirm model and site conditions',
         'Remote Operation: Fully controlled remotely with hydraulic and radio controls',
         'Integrated Suction System: Built-in dredging pump for efficient sludge removal',
         'Advanced Monitoring: Equipped with HD cameras and sonar for real-time visibility',
@@ -816,10 +816,6 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
         "name": item.name,
         "image": `https://www.orbitengineerings.com${item.image.startsWith('/') ? '' : '/'}${item.image}`,
         "description": item.paragraphs?.[0] || page.description,
-        "brand": {
-          "@type": "Brand",
-          "name": "Orbit Engineering Solutions"
-        },
         "url": `https://www.orbitengineerings.com/products/${variant}`
       }
     }))
@@ -833,6 +829,8 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
         canonicalPath={`/products/${variant}`}
         jsonLd={productSchema}
       />
+
+      <p className="mx-auto max-w-7xl px-4 py-5 text-sm leading-relaxed text-gray-600">Catalogue descriptions, images and specifications are indicative and may vary by manufacturer and model. Confirm current datasheets, certification documents, application suitability, availability and warranty terms in the written quotation. Installation and operation require an appropriate technical and safety assessment.</p>
 
       {/* Hero Section */}
       <section className="relative py-16 md:py-20 bg-gradient-to-br from-[#0073bc] to-[#005a94] text-white overflow-hidden">
@@ -948,7 +946,7 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
                 <div>
                   <h2 className="text-3xl font-bold text-gray-900 mb-4">Overview</h2>
                   <p className="text-gray-600 leading-relaxed text-lg mb-6">
-                    Submersible Dredging Vehicle (SDV) is a remotely operated underwater robotic system designed for safe and efficient removal of sludge, silt, and debris without human entry. It is ideal for reservoirs, storage tanks, sewage plants, and industrial water bodies, reducing operational risk and improving cleaning efficiency.
+                    Submersible Dredging Vehicle (SDV) is a remotely operated underwater robotic system designed for remotely controlled removal of sludge, silt, and debris without human entry. It is ideal for reservoirs, storage tanks, sewage plants, and industrial water bodies, reducing operational risk and improving cleaning efficiency.
                   </p>
                   <div className="grid grid-cols-2 gap-4">
                     {[
@@ -997,7 +995,7 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
                 <div>
                   <h2 className="text-3xl font-bold text-gray-900 mb-4">Overview</h2>
                   <p className="text-gray-600 leading-relaxed text-lg mb-6">
-                    Orbit Engineering's Scour Monitoring System is an advanced IoT-based solution designed to monitor soil erosion (scour), water level, and structural stability around bridge foundations and hydraulic structures. The system continuously collects real-time data and sends it to a cloud dashboard, enabling engineers to take preventive action and ensure structural safety.
+                    Orbit Engineering's Scour Monitoring System is an advanced IoT-based solution designed to monitor soil erosion (scour), water level, and structural stability around bridge foundations and hydraulic structures. The system continuously collects real-time data and sends it to a cloud dashboard, supporting engineering inspection and maintenance decisions; monitoring does not establish structural safety.
                   </p>
                   <div className="grid grid-cols-2 gap-4">
                     {[

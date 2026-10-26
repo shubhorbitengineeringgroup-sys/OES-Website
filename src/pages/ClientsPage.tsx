@@ -1,12 +1,11 @@
-import { useState, useMemo } from 'react';
-import { Mail, Phone, MapPin, Clock, Send, CheckCircle, Users, Star } from 'lucide-react';
+import { useState, useMemo, useRef } from 'react';
+import { Mail, Phone, MapPin, Clock, Send, CheckCircle, Users, Building2 } from 'lucide-react';
 import HeroSection from '../components/HeroSection';
 import SEO from '../components/SEO';
 import { motion } from 'framer-motion';
 import { MotionFadeUp, AnimatedHeading } from '../components/Animated';
-import mpJalNigam from '../assets/clients/mp-jal-nigam.png';
-import bharatSarkar from '../assets/clients/bharat-sarkar.png';
-import mpudclIndoreDistrict from '../assets/clients/mpudcl-indore-district.png';
+import LeadConsentFields from '../components/LeadConsentFields';
+import { submitLead } from '../lib/leadSubmission';
 import lupinPharmaceuticals from '../assets/clients/lupin-pharmaceuticals.png';
 import vindhayachalDistillery from '../assets/clients/vindhayachal-distillery.png';
 import dblBuildcon from '../assets/clients/dbl-buildcon.png';
@@ -15,23 +14,19 @@ import prismCement from '../assets/clients/prism-cement.png';
 import centralIndia from '../assets/clients/central-india-pvt-ltd.png';
 import cmrLogo from '../assets/clients/cmr_logo.jpg';
 import hegLimited from '../assets/clients/HEG.png';
-import indianRailways from '../assets/clients/Indian Railways.png';
 import laxmiCivilEngineering from '../assets/clients/laxmii.png';
 import omConstruction from '../assets/clients/om.jpeg';
 
-import indoreMunicipal from '../assets/clients/indore municipal corporation.png';
 import larsenToubro from "../assets/clients/larsen- toubro's.png";
-import bmcLogo from '../assets/clients/mpudcl-bhopal.jpg';
 import heroSectionImage from '../assets/products/hero-section.jpg';
 import bhelLogo from '../assets/clients/bhel.jpg';
-import pwdLogo from '../assets/clients/pwd.png';
-import gemLogo from '../assets/clients/gem.jpg';
-import mesLogo from '../assets/clients/military-engineer-services.jpg';
 
 export default function ClientsPage() {
   const [formData, setFormData] = useState({ fullName: '', email: '', phone: '', message: '' });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState('');
+  const pending = useRef(false);
 
   // Dynamically import all images in src/assets/partners using Vite's recommended query form
   const clients = useMemo(() => {
@@ -59,28 +54,38 @@ export default function ClientsPage() {
     return partnersArray.sort((a, b) => a.name.localeCompare(b.name));
   }, []);
 
-  const onSubmit = async (e: React.FormEvent) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (pending.current) return;
+    const form = e.currentTarget;
+    pending.current = true;
     setIsSubmitting(true);
-    await new Promise(r => setTimeout(r, 800));
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    setFormData({ fullName: '', email: '', phone: '', message: '' });
-    setTimeout(() => setIsSubmitted(false), 4000);
+    setError('');
+    try {
+      await submitLead(new FormData(form), 'clients', window.location.pathname);
+      setIsSubmitted(true);
+      setFormData({ fullName: '', email: '', phone: '', message: '' });
+      form.reset();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Your message could not be sent. Please try again.');
+    } finally {
+      pending.current = false;
+      setIsSubmitting(false);
+    }
   };
 
   return (
     <div className="min-h-screen bg-gray-50">
       <SEO
-        title="Our Clients & Partners | MP Jal Nigam, MPUDCL, L&T, BHEL - Orbit Engineering Solutions"
-        description="Orbit Engineering Solutions proudly serves 23+ government & private organizations including MP Jal Nigam, MPUDCL, Bhopal Municipal Corporation, L&T, BHEL, Indian Railways, Lupin Pharma, Dilip Buildcon & more. Trusted partner for water infrastructure across India."
+        title="Organisation & Manufacturer References | Orbit Engineering Solutions"
+        description="Organisation and manufacturer names referenced in our portfolio and catalogue. Confirm project scope, current relationship and supporting records with our team."
         canonicalPath="/clients"
-        keywords="MP Jal Nigam, MPUDCL Bhopal, Bhopal Municipal Corporation, Indore Municipal Corporation, Larsen Toubro, L&T, BHEL, Indian Railways, Dilip Buildcon, Tejas Construction, Lupin Pharmaceuticals, Prism Cement, HEG Limited, CMR Infrastructure, Military Engineer Services, Public Works Department, GeM Government, water infrastructure partners, orbit engineering solutions clients, orbit engineering clients, government water contractor MP, orbitengineerings clients, water treatment client list, trusted water company India, orbit engineering, orbit engineering bhopal, orbit engineering company, orbit engineering company bhopal, orbit engineering consultants, orbit engineering consultants bhopal, orbit consultants bhopal, orbit engineering solutions, orbit engineering solutions bhopal, orbit"
+        keywords="Orbit Engineering Solutions, organisation references, project scope, water infrastructure, automation equipment, manufacturer catalogue, Bhopal"
       />
       {/* Hidden H1 for SEO */}
-      <h1 className="sr-only">Orbit Engineering Solutions Clients | Trusted by MPUDCL, MP Jal Nigam, and municipal corporations across India</h1>
+      <h1 className="sr-only">Orbit Engineering Solutions | Organisation & Manufacturer References</h1>
 
-      <HeroSection title="Our Trusted Clients" subtitle="Building long-term partnerships with government and private organizations" />
+      <HeroSection title="Organisation References" subtitle="Names referenced in our portfolio and product catalogue" />
 
       {/* Named clients grid like the reference */}
       <section className="py-14 bg-gray-50">
@@ -88,13 +93,12 @@ export default function ClientsPage() {
           <div className="text-center mb-8">
             <div className="inline-flex items-center gap-2 border border-indigo-300 text-indigo-700 rounded-full px-4 py-2 mb-4 shadow-sm bg-white">
               <Users className="h-4 w-4" />
-              <Star className="h-4 w-4 fill-indigo-400 text-indigo-400" />
-              <span className="text-sm font-semibold">Valued Clients</span>
+              <span className="text-sm font-semibold">Portfolio References</span>
             </div>
             <AnimatedHeading level={2} className="text-3xl md:text-4xl font-bold text-gray-900">
-              Serving <span className="text-indigo-600">Government & Private Enterprises</span>
+              <span className="text-indigo-600">Organisation References</span>
             </AnimatedHeading>
-            <p className="text-gray-600 mt-3">Trusted by leading organizations across India for water infrastructure solutions</p>
+            <p className="text-gray-600 mt-3">These names identify portfolio references. Confirm our particular work, contracted scope, relationship and supporting records with the team. A reference does not imply endorsement, direct appointment or responsibility for an entire scheme.</p>
           </div>
 
           <div className="bg-white rounded-3xl shadow-sm ring-1 ring-black/5 p-6 md:p-8">
@@ -120,20 +124,18 @@ export default function ClientsPage() {
                   'Laxmi Civil Engineering',
                   'OM Construction',
                   'Indore Municipal Corporation',
-                  "Larsen & Toubro's",
+                  "Larsen & Toubro",
                   'Bharat Heavy Electricals Limited',
                   'Public Works Department',
-                  'GeM Government',
-                  'Military Engineer Services'
                 ];
 
                 const logoMap: Record<string, string | null> = {
-                  'MP Jal Nigam': mpJalNigam,
-                  'MPUDCL Bhopal': bharatSarkar,
-                  'Bhopal Municipal Corporation': bmcLogo,
-                  'Indore District Administration': mpudclIndoreDistrict,
-                  'Tikamgarh Nagar Parishads': bharatSarkar,
-                  'WRD Bhopal': bharatSarkar,
+                  'MP Jal Nigam': null,
+                  'MPUDCL Bhopal': null,
+                  'Bhopal Municipal Corporation': null,
+                  'Indore District Administration': null,
+                  'Tikamgarh Nagar Parishads': null,
+                  'WRD Bhopal': null,
                   'Prism Cement': prismCement,
                   'Lupin Pharmaceuticals': lupinPharmaceuticals,
                   'Vindhyachal Distillery': vindhayachalDistillery,
@@ -142,15 +144,13 @@ export default function ClientsPage() {
                   'Tejas Construction': tejasConstructions,
                   'CMR Infrastructure': cmrLogo,
                   'HEG Limited': hegLimited,
-                  'Indian Railways': indianRailways,
+                  'Indian Railways': null,
                   'Laxmi Civil Engineering': laxmiCivilEngineering,
                   'OM Construction': omConstruction,
-                  'Indore Municipal Corporation': indoreMunicipal,
-                  "Larsen & Toubro's": larsenToubro,
+                  'Indore Municipal Corporation': null,
+                  "Larsen & Toubro": larsenToubro,
                   'Bharat Heavy Electricals Limited': bhelLogo,
-                  'Public Works Department': pwdLogo,
-                  'GeM Government': gemLogo,
-                  'Military Engineer Services': mesLogo
+                  'Public Works Department': null,
                 };
 
                 return displayNames.map((name) => {
@@ -170,7 +170,7 @@ export default function ClientsPage() {
                             </div>
                           ) : (
                             <div className="h-[100px] w-[100px] rounded-lg bg-indigo-100 flex items-center justify-center">
-                              <div className="h-5 w-5 rounded-full bg-indigo-300" />
+                              <Building2 aria-hidden="true" className="h-8 w-8 text-indigo-500" />
                             </div>
                           )}
                         </div>
@@ -189,14 +189,15 @@ export default function ClientsPage() {
       <section className="py-12 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="relative rounded-xl overflow-hidden mb-12">
-            <img src={heroSectionImage} alt="Partners background" className="absolute inset-0 w-full h-full object-cover" />
+            <img src={heroSectionImage} alt="Water engineering background" className="absolute inset-0 w-full h-full object-cover" />
             <div className="absolute inset-0 bg-black/50" />
             <div className="relative z-10 py-16 px-4 text-center">
               <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-2">
-                Our Partners
+                Manufacturers & Brands
               </h2>
             </div>
           </div>
+          <p className="mx-auto max-w-4xl text-center text-sm leading-relaxed text-gray-600">Names and marks below identify manufacturers referenced in our product catalogue and belong to their respective owners. Confirm the selected manufacturer, availability and any distributor authorisation for your quotation. Their inclusion does not imply endorsement, an authorised dealership or an exclusive partnership.</p>
           <div className="space-y-12 overflow-hidden py-8">
             {/* First Row: Left-to-Right (First 6 partners) */}
             <div className="relative flex overflow-hidden">
@@ -355,19 +356,23 @@ export default function ClientsPage() {
             <div className="bg-white rounded-2xl shadow-lg p-6 md:p-8 border border-gray-100">
               <h3 className="text-2xl font-bold text-gray-900 mb-6">send us a message</h3>
               {isSubmitted ? (
-                <div className="text-center py-12">
+                <div role="status" className="text-center py-12">
                   <div className="bg-green-100 rounded-full p-4 inline-block mb-4">
                     <CheckCircle className="h-12 w-12 text-green-600" />
                   </div>
                   <h4 className="text-xl font-bold text-gray-900 mb-2">Message Sent Successfully!</h4>
-                  <p className="text-gray-600">We will get back to you within 24 hours.</p>
+                  <p className="text-gray-600">Your inquiry was accepted. Our team will respond during business hours.</p>
+                  <button type="button" onClick={() => setIsSubmitted(false)} className="mt-5 font-medium text-[#0073bc] underline">Send another inquiry</button>
                 </div>
               ) : (
-                <form onSubmit={onSubmit} className="space-y-6">
+                <form onSubmit={onSubmit} aria-busy={isSubmitting} className="space-y-6">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Full Name *</label>
+                    <label htmlFor="clients-fullName" className="block text-sm font-medium text-gray-700 mb-2">Full Name *</label>
                     <input
+                      disabled={isSubmitting}
                       type="text"
+                      name="fullName"
+                      id="clients-fullName"
                       required
                       value={formData.fullName}
                       onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
@@ -376,9 +381,12 @@ export default function ClientsPage() {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
+                    <label htmlFor="clients-email" className="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
                     <input
+                      disabled={isSubmitting}
                       type="email"
+                      name="email"
+                      id="clients-email"
                       required
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -387,9 +395,12 @@ export default function ClientsPage() {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+                    <label htmlFor="clients-phone" className="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
                     <input
+                      disabled={isSubmitting}
                       type="tel"
+                      name="phone"
+                      id="clients-phone"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0073bc] focus:border-transparent outline-none"
@@ -397,8 +408,11 @@ export default function ClientsPage() {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Message *</label>
+                    <label htmlFor="clients-message" className="block text-sm font-medium text-gray-700 mb-2">Message *</label>
                     <textarea
+                      disabled={isSubmitting}
+                      name="message"
+                      id="clients-message"
                       required
                       rows={6}
                       value={formData.message}
@@ -407,6 +421,8 @@ export default function ClientsPage() {
                       placeholder="Tell us about your project or inquiry..."
                     />
                   </div>
+                  <LeadConsentFields formType="clients" disabled={isSubmitting} />
+                  {error && <p role="alert" className="rounded-lg bg-red-50 p-3 text-sm text-red-700">{error}</p>}
                   <button
                     type="submit"
                     disabled={isSubmitting}

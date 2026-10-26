@@ -29,43 +29,17 @@ export default function AboutPage() {
     setIsoModalOpen(true);
   };
   const stats = [
-    {
-      value: `${OES_EXPERIENCE_YEARS}+`,
-      suffix: 'Years',
-      label: 'Legacy of Trust',
-      sub: 'Founded in 1998 in Bhopal'
-    },
-    {
-      value: '₹200+',
-      suffix: 'Cr',
-      label: 'Project Portfolio',
-      sub: 'Turnkey public & industrial works'
-    },
-    {
-      value: '150+',
-      suffix: 'Projects',
-      label: 'Mega Schemes Delivered',
-      sub: 'WTP, STP, SCADA & Automation'
-    },
-    {
-      value: 'TRIPLE',
-      suffix: 'ISO',
-      label: 'Certified Standards',
-      sub: 'ISO 9001, 14001 & 45001 QMS/EMS/OH&S'
-    },
-    {
-      value: 'Millions',
-      suffix: 'Lives',
-      label: 'Impacted with Pure Water',
-      sub: 'Pan-India rural & urban schemes'
-    }
+    { value: 'Water', suffix: '', label: 'Treatment & Supply', sub: 'WTP, STP, ETP & RO systems' },
+    { value: 'Controls', suffix: '', label: 'Automation & Monitoring', sub: 'PLC, SCADA, RTU & IoT integration' },
+    { value: 'Bhopal', suffix: '', label: 'Business Location', sub: 'Madhya Pradesh, India' },
+    { value: 'Support', suffix: '', label: 'Project Services', sub: 'Design, commissioning & agreed maintenance' }
   ];
 
   const coreValues = [
     {
       icon: <Shield className="h-8 w-8 text-blue-600" />,
       title: 'Accountability & Integrity',
-      description: 'We hold ourselves to the highest standards, honoring every commitment made to our government, industrial, and community stakeholders. Transparency is our baseline.'
+      description: 'We aim to communicate project scope, responsibilities and progress clearly with clients and project stakeholders.'
     },
     {
       icon: <Activity className="h-8 w-8 text-blue-600" />,
@@ -75,7 +49,7 @@ export default function AboutPage() {
     {
       icon: <Award className="h-8 w-8 text-blue-600" />,
       title: 'Excellence & Precision',
-      description: 'As a Triple ISO Certified company (ISO 9001:2015 Quality, ISO 14001:2015 Environment, ISO 45001:2018 Health & Safety), we ensure absolute precision across feasibility studies, detail engineering, and field commissioning.'
+      description: 'We plan project requirements, document engineering decisions, and discuss inspection and commissioning criteria with clients.'
     },
     {
       icon: <Leaf className="h-8 w-8 text-blue-600" />,
@@ -144,12 +118,12 @@ export default function AboutPage() {
     },
     {
       name: 'Finance, Accounts & Corporate Governance',
-      tagline: 'Fiduciary governance, invoices auditing & ISO compliance',
+      tagline: 'Accounts, invoice review & project documentation',
       banner: financeBanner,
       icon: <Coins className="h-6 w-6 text-rose-600" />,
       focusAreas: [
         'Project accounting, budgeting, and cost allocations',
-        'Audits management, tax compliance (GST) & ISO billing',
+        'Accounts review, tax records & billing documentation',
         'Vendor account disbursements & contract auditing',
         'Payroll administration & corporate governance compliance'
       ],
@@ -161,9 +135,9 @@ export default function AboutPage() {
     <div className="min-h-screen bg-gray-50 overflow-x-hidden">
       <SEO
         title={`About Orbit Engineering Solutions | ${OES_EXPERIENCE_YEARS}+ Years of Water Engineering & Instrumentation Excellence in Bhopal, India`}
-        description="Discover Orbit Engineering Solutions' legacy since 1998. ISO 9001 certified water engineering in Bhopal specializing in WTP, STP, RO, ETP, SCADA, PLC automation & solar. Phone: +91 70241 28029, +91 9039075049. Email: info@orbitengineerings.com"
+        description="Discover Orbit Engineering Solutions' legacy since 1998. Water engineering in Bhopal specializing in WTP, STP, RO, ETP, SCADA, PLC automation & solar. Phone: +91 70241 28029, +91 9039075049. Email: info@orbitengineerings.com"
         canonicalPath="/about"
-        keywords="about Orbit Engineering Solutions, Orbit Engineering Solutions history, Orbit Engineering Group, water engineering company Bhopal, ISO certified water treatment company, Orbit Engineering Solutions mission vision, orbit engineering about, orbit bhopal about, instrumentation company Bhopal, solar energy company Bhopal, orbit engineering solutions about us, orbit engineering about us, orbit engineering, orbit engineering solutions, orbit engineering solutions bhopal, orbit engineering bhopal, orbit engineering company bhopal, orbit engineering company, orbit, orbit engineering consultants, orbit engineering consultants bhopal, orbit consultants bhopal, orbit engineering consultancy"
+        keywords="about Orbit Engineering Solutions, Orbit Engineering Solutions history, Orbit Engineering Group, water engineering company Bhopal, water treatment services, Orbit Engineering Solutions mission vision, orbit engineering about, orbit bhopal about, instrumentation company Bhopal, solar energy company Bhopal, orbit engineering solutions about us, orbit engineering about us, orbit engineering, orbit engineering solutions, orbit engineering solutions bhopal, orbit engineering bhopal, orbit engineering company bhopal, orbit engineering company, orbit, orbit engineering consultants, orbit engineering consultants bhopal, orbit consultants bhopal, orbit engineering consultancy"
       />
       {/* Hidden H1 for SEO */}
       <h1 className="sr-only">About Orbit Engineering Solutions Bhopal | Innovating water infrastructure since 1998 with advanced engineering and technology</h1>
@@ -269,7 +243,7 @@ export default function AboutPage() {
               </p>
               
               <p className="text-base text-gray-500 leading-relaxed font-medium">
-                We design and commission turnkey engineering systems that ensure absolute water purification, waste mitigation, and automated real-time control. Our focus is on supporting municipal corporations, government schemes like Jal Jeevan Mission, and premier industries with zero compromise on efficiency.
+                We design and commission water treatment and automation systems according to agreed project requirements. Treatment outcomes depend on raw water, process design, operation and testing.
               </p>
 
               {/* Background badge icon */}
@@ -297,11 +271,11 @@ export default function AboutPage() {
               </h3>
 
               <p className="text-lg text-gray-700 leading-relaxed font-semibold mb-6">
-                To be India's premier, highly trusted engineering house for smart and ecologically resilient water infrastructure.
+                To contribute to practical, sustainable water infrastructure through engineering and automation.
               </p>
 
               <p className="text-base text-gray-500 leading-relaxed font-medium">
-                We envision a future where advanced cloud-telemetry and automation conserve every drop of water. Through clean STP/ETP reclamation and high-efficiency solar pumping networks, we aim to secure vital resources for growing generations, bridging technological supremacy with deep community responsibility.
+                We envision a future where advanced cloud-telemetry and automation conserve every drop of water. Through clean STP/ETP reclamation and high-efficiency solar pumping networks, we aim to secure vital resources for growing generations, bridging engineering capability with deep community responsibility.
               </p>
 
               {/* Background badge icon */}
@@ -363,12 +337,12 @@ export default function AboutPage() {
             <div className="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-[2rem] p-8 text-white flex flex-col justify-between shadow-lg relative overflow-hidden group">
               <div className="absolute -top-10 -right-10 w-32 h-32 bg-white/10 rounded-full pointer-events-none" />
               <div className="space-y-4">
-                <span className="text-xs font-black tracking-[0.2em] uppercase text-blue-200">TRIPLE ISO CERTIFIED</span>
+                <span className="text-xs font-black tracking-[0.2em] uppercase text-blue-200">PROJECT ENGINEERING</span>
                 <h3 className="text-2xl font-black tracking-tight leading-tight">
                   Partner with India's Smart Water Specialists
                 </h3>
                 <p className="text-sm text-blue-100 font-medium leading-relaxed">
-                  Certified ISO 9001:2015, ISO 14001:2015 & ISO 45001:2018 for high-precision water SCADA, IoT automation, and turnkey engineering.
+                  Discuss water SCADA, IoT automation and engineering requirements with our team, including the documentation needed for the selected scope.
                 </p>
               </div>
 
@@ -384,117 +358,14 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ── SECTION: OFFICIAL TRIPLE ISO CERTIFICATIONS SHOWCASE ── */}
-      <section className="py-20 bg-gradient-to-b from-slate-900 via-blue-950 to-slate-900 text-white relative overflow-hidden border-t border-b border-blue-900/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-            <span className="text-xs font-black tracking-[0.25em] text-blue-400 uppercase bg-blue-500/10 border border-blue-400/20 px-4 py-2 rounded-full inline-block">
-              WORLD-CLASS QUALITY STANDARDS
-            </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-tight">
-              Triple ISO Certified Engineering Organization
-            </h2>
-            <p className="text-gray-300 text-base md:text-lg font-light leading-relaxed">
-              M/S Orbit Engineering Solutions is independently assessed and certified by <strong className="text-white font-semibold">Times Certification Services UK Ltd (TCS-UK)</strong> with UKAF accreditation for design and manufacturing of automation and IoT equipment.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Card 1: ISO 9001:2015 */}
-            <div 
-              onClick={() => openIsoModal('9001')}
-              className="bg-slate-800/80 backdrop-blur border border-blue-500/30 rounded-3xl p-8 hover:border-blue-400 transition-all duration-300 shadow-xl flex flex-col justify-between group cursor-pointer hover:scale-[1.02]"
-            >
-              <div>
-                <div className="flex items-center justify-between mb-6">
-                  <div className="w-14 h-14 rounded-2xl bg-blue-600/20 border border-blue-500/40 flex items-center justify-center text-blue-400 font-bold text-xl group-hover:scale-110 transition-transform">
-                    QMS
-                  </div>
-                  <span className="text-xs font-bold text-blue-400 bg-blue-400/10 px-3 py-1 rounded-full border border-blue-400/30">ISO 9001:2015</span>
-                </div>
-                <h3 className="text-xl font-bold text-white mb-2">Quality Management System</h3>
-                <p className="text-sm text-gray-300 mb-6 font-medium leading-relaxed">
-                  Guarantees consistent product quality, robust process controls, and customer-centric engineering precision across all water automation systems.
-                </p>
-              </div>
-              <div className="pt-4 border-t border-slate-700/80 text-xs text-gray-400 space-y-1.5 font-mono">
-                <div className="flex justify-between"><span className="text-gray-500">Cert No:</span> <span className="text-blue-300 font-bold">26/Q/MSO07201</span></div>
-                <div className="flex justify-between"><span className="text-gray-500">Issued:</span> <span className="text-gray-300">20/07/2026</span></div>
-                <div className="flex justify-between"><span className="text-gray-500">Expiry:</span> <span className="text-gray-300">19/07/2029</span></div>
-                <div className="pt-2 text-right"><span className="text-[11px] font-sans font-bold text-blue-400 group-hover:underline">Inspect Certificate ↗</span></div>
-              </div>
-            </div>
-
-            {/* Card 2: ISO 14001:2015 */}
-            <div 
-              onClick={() => openIsoModal('14001')}
-              className="bg-slate-800/80 backdrop-blur border border-emerald-500/30 rounded-3xl p-8 hover:border-emerald-400 transition-all duration-300 shadow-xl flex flex-col justify-between group cursor-pointer hover:scale-[1.02]"
-            >
-              <div>
-                <div className="flex items-center justify-between mb-6">
-                  <div className="w-14 h-14 rounded-2xl bg-emerald-600/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 font-bold text-xl group-hover:scale-110 transition-transform">
-                    EMS
-                  </div>
-                  <span className="text-xs font-bold text-emerald-400 bg-emerald-400/10 px-3 py-1 rounded-full border border-emerald-400/30">ISO 14001:2015</span>
-                </div>
-                <h3 className="text-xl font-bold text-white mb-2">Environmental Management</h3>
-                <p className="text-sm text-gray-300 mb-6 font-medium leading-relaxed">
-                  Ensures sustainable eco-friendly manufacturing, minimal resource footprint, and green technology deployment for water treatment.
-                </p>
-              </div>
-              <div className="pt-4 border-t border-slate-700/80 text-xs text-gray-400 space-y-1.5 font-mono">
-                <div className="flex justify-between"><span className="text-gray-500">Cert No:</span> <span className="text-emerald-300 font-bold">26/E/MSE07202</span></div>
-                <div className="flex justify-between"><span className="text-gray-500">Issued:</span> <span className="text-gray-300">20/07/2026</span></div>
-                <div className="flex justify-between"><span className="text-gray-500">Expiry:</span> <span className="text-gray-300">19/07/2029</span></div>
-                <div className="pt-2 text-right"><span className="text-[11px] font-sans font-bold text-emerald-400 group-hover:underline">Inspect Certificate ↗</span></div>
-              </div>
-            </div>
-
-            {/* Card 3: ISO 45001:2018 */}
-            <div 
-              onClick={() => openIsoModal('45001')}
-              className="bg-slate-800/80 backdrop-blur border border-purple-500/30 rounded-3xl p-8 hover:border-purple-400 transition-all duration-300 shadow-xl flex flex-col justify-between group cursor-pointer hover:scale-[1.02]"
-            >
-              <div>
-                <div className="flex items-center justify-between mb-6">
-                  <div className="w-14 h-14 rounded-2xl bg-purple-600/20 border border-purple-500/40 flex items-center justify-center text-purple-400 font-bold text-xl group-hover:scale-110 transition-transform">
-                    OH&S
-                  </div>
-                  <span className="text-xs font-bold text-purple-400 bg-purple-400/10 px-3 py-1 rounded-full border border-purple-400/30">ISO 45001:2018</span>
-                </div>
-                <h3 className="text-xl font-bold text-white mb-2">Occupational Health & Safety</h3>
-                <p className="text-sm text-gray-300 mb-6 font-medium leading-relaxed">
-                  Committed to workforce safety, zero hazard workplace practices, and strict compliance during industrial staging and field commissioning.
-                </p>
-              </div>
-              <div className="pt-4 border-t border-slate-700/80 text-xs text-gray-400 space-y-1.5 font-mono">
-                <div className="flex justify-between"><span className="text-gray-500">Cert No:</span> <span className="text-purple-300 font-bold">26/O/MSS07203</span></div>
-                <div className="flex justify-between"><span className="text-gray-500">Issued:</span> <span className="text-gray-300">20/07/2026</span></div>
-                <div className="flex justify-between"><span className="text-gray-500">Expiry:</span> <span className="text-gray-300">19/07/2029</span></div>
-                <div className="pt-2 text-right"><span className="text-[11px] font-sans font-bold text-purple-400 group-hover:underline">Inspect Certificate ↗</span></div>
-              </div>
-            </div>
-          </div>
-
-          {/* Prominent Official ISO Scope Callout Banner */}
-          <div className="mt-12 p-6 rounded-3xl bg-gradient-to-r from-blue-950 via-slate-900 to-blue-950 border border-blue-400/40 shadow-2xl text-center relative overflow-hidden group">
-            <div className="absolute inset-0 bg-blue-500/5 group-hover:bg-blue-500/10 transition-all duration-500" />
-            <div className="relative z-10 space-y-2">
-              <span className="text-[10px] font-black uppercase tracking-[0.3em] text-emerald-400 bg-emerald-950/80 border border-emerald-500/30 px-3 py-1 rounded-full inline-block">
-                OFFICIAL ACCREDITED SCOPE (TCS-UK / UKAF)
-              </span>
-              <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight">
-                "MANUFACTURER OF AUTOMATION AND IOT EQUIPMENTS"
-              </h3>
-              <p className="text-xs sm:text-sm text-slate-300 max-w-3xl mx-auto font-medium">
-                Certified across design, fabrication, assembly, PLC/SCADA panel staging, smart telemetry sensor integration, and turnkey field deployment for Water & Industrial Infrastructure.
-              </p>
-            </div>
-          </div>
+      <section className="bg-slate-900 py-16 text-white">
+        <div className="mx-auto max-w-3xl px-4 text-center">
+          <h2 className="mb-4 text-3xl font-bold">Project documentation</h2>
+          <p className="mb-6 text-slate-300">Discuss the selected equipment, applicable standards, inspection records and documentation required for your project with our team. Confirm any certification against its current certificate and scope.</p>
+          <button type="button" onClick={() => openIsoModal('9001')} className="rounded-full bg-[#0073bc] px-6 py-3 font-semibold text-white">Request certification information</button>
         </div>
       </section>
 
-      {/* ── SECTION 4: HIGH-IMPACT LEGACY TIMELINE CTA ── */}
       <section className="relative text-white py-24 bg-slate-900 overflow-hidden">
         {/* Background image & gradient overlay */}
         <img src={headingBg} alt="Timeline Background" className="absolute inset-0 w-full h-full object-cover opacity-20 pointer-events-none select-none scale-105" />
@@ -505,7 +376,7 @@ export default function AboutPage() {
             EXPLORE OUR HISTORICAL TIMELINE
           </span>
           <h2 className="text-4xl md:text-5xl font-black tracking-tighter leading-tight max-w-3xl mx-auto">
-            Discover {OES_EXPERIENCE_YEARS}+ Years of Proven Engineering Excellence
+            Discover {OES_EXPERIENCE_YEARS}+ Years of Water Engineering
           </h2>
           <p className="text-lg text-slate-300 max-w-2xl mx-auto font-light leading-relaxed">
             Since our founding in 1998, we have pioneered complex public utility schemes, advanced pumping systems, and robust automation across Central India. Click to explore our history.
@@ -534,7 +405,7 @@ export default function AboutPage() {
             </h2>
             <div className="h-1.5 w-24 bg-[#0073bc] mx-auto rounded-full mt-4" />
             <p className="text-lg text-gray-500 max-w-2xl mx-auto font-light leading-relaxed">
-              Decades of combined technical and management expertise driving Orbit's engineering supremacy.
+              Decades of combined technical and management expertise driving Orbit's engineering work.
             </p>
           </div>
 
@@ -551,7 +422,7 @@ export default function AboutPage() {
               <div className="w-40 h-40 overflow-hidden rounded-2xl shadow-md border-2 border-gray-100 flex-shrink-0">
                 <img
                   src={manojImg}
-                  alt="Manoj Tiwari - Managing Director of Orbit Engineering Solutions Bhopal"
+                  alt="Manoj Tiwari - Project Management of Orbit Engineering Solutions Bhopal"
                   className="w-full h-full object-cover transition-transform duration-500 hover:scale-115"
                   loading="lazy"
                 />
@@ -559,13 +430,13 @@ export default function AboutPage() {
               <div className="space-y-3 text-center sm:text-left flex-grow">
                 <h3 className="text-2xl font-bold text-gray-900">Manoj Tiwari</h3>
                 <p className="text-[#0073bc] font-extrabold uppercase tracking-widest text-xs">
-                  Managing Director
+                  Project Management
                 </p>
                 <span className="inline-block px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-xs font-semibold text-gray-600">
-                  40+ Years of Industry Excellence
+                  Water Infrastructure
                 </span>
                 <p className="text-sm text-gray-500 leading-relaxed font-medium">
-                  A visionary water industry stalwart leading state-level municipal staging schemes, HDPE pipelines procurement, and heavy engineering works.
+                  Focuses on water infrastructure project planning, procurement and coordination.
                 </p>
                 <div className="flex items-center justify-center sm:justify-start gap-2 text-gray-600 pt-2 border-t border-gray-100">
                   <Mail className="h-4 w-4 text-[#0073bc]" />
@@ -576,7 +447,7 @@ export default function AboutPage() {
               </div>
             </motion.div>
 
-            {/* CTO - Vijay Tiwari */}
+            {/* CTO - Vijay Kumar Tiwari */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -587,19 +458,19 @@ export default function AboutPage() {
               <div className="w-40 h-40 overflow-hidden rounded-2xl shadow-md border-2 border-gray-100 flex-shrink-0">
                 <img
                   src={vijayImg}
-                  alt="Vijay Tiwari - Co-Founder & CTO of Orbit Engineering Solutions Bhopal"
+                  alt="Vijay Kumar Tiwari - Proprietor of Orbit Engineering Solutions Bhopal"
                   className="w-full h-full object-cover transition-transform duration-500 hover:scale-115"
                   loading="lazy"
                   style={{ objectPosition: 'top' }}
                 />
               </div>
               <div className="space-y-3 text-center sm:text-left flex-grow">
-                <h3 className="text-2xl font-bold text-gray-900">Vijay Tiwari</h3>
+                <h3 className="text-2xl font-bold text-gray-900">Vijay Kumar Tiwari</h3>
                 <p className="text-[#0073bc] font-extrabold uppercase tracking-widest text-xs">
-                  Co-Founder & CTO
+                  Proprietor
                 </p>
                 <span className="inline-block px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-xs font-semibold text-gray-600">
-                  18+ Years of Technological Leadership
+                  Engineering & Technical Operations
                 </span>
                 <p className="text-sm text-gray-500 leading-relaxed font-medium">
                   An instrumentation technologist specializing in distributed SCADA monitoring, automated PLC panels, remote telemetry RTUs, and smart IoT setups.
@@ -727,7 +598,7 @@ export default function AboutPage() {
           <div className="text-center mb-12">
             <span className="inline-block text-[11px] font-bold uppercase tracking-[0.2em] text-[#0073bc] mb-3">✦ Our Footprint</span>
             <AnimatedHeading level={2} className="text-3xl md:text-4xl font-black text-gray-900 mb-4 tracking-tight">
-              Trusted Across Madhya Pradesh & India
+              Water Infrastructure & Automation
             </AnimatedHeading>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto font-light leading-relaxed">
               From our main headquarters in Bhopal to water treatment assets built all over the country, our operational map showcases years of execution success.

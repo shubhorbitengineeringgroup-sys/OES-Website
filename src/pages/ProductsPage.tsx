@@ -5,7 +5,6 @@ import HeroSection from '../components/HeroSection';
 import SEO from '../components/SEO';
 import BrochureModal from '../components/BrochureModal';
 import { useNavigate } from 'react-router-dom';
-import { OES_EXPERIENCE_YEARS } from '../data/experience';
 import orbitBrochure from '../assets/Orbit brocher.pdf_.pdf';
 import indiamartLogo from '../assets/indiamart-logo.png';
 
@@ -229,7 +228,7 @@ const CATEGORIES: Category[] = [
     accent: 'green',
     accentHex: '#16a34a',
     route: 'chlorinators',
-    tagline: 'Automated chlorine dosing systems ensuring safe drinking water',
+    tagline: 'Chlorine dosing equipment for water treatment applications',
     items: [
       { name: 'Chlorine Dosing Systems', img: imgChlorinator },
       { name: 'Electrolysis System (CHLORINSITU)', img: imgChlorinsitu },
@@ -514,7 +513,7 @@ export default function ProductsPage({ onNavigate }: ProductsPageProps) {
     <div className="min-h-screen bg-[#f5f8fc]">
       <SEO
         title="Water Treatment Products, Instrumentation & Automation Solutions | Orbit Engineering Solutions Bhopal"
-        description="Explore Orbit Engineering Solutions' 200+ precision-engineered products: WTP, STP, RO, ETP, electromagnetic flow meters, SCADA systems, PLC panels, level transmitters, pressure sensors, pH analyzers, solar panels, electric actuators, transformers, HDPE jointing machines, surveillance cameras & more. Best prices in India."
+        description="Explore Orbit Engineering Solutions' product catalogue: WTP, STP, RO, ETP, electromagnetic flow meters, SCADA systems, PLC panels, level transmitters, pressure sensors, pH analyzers, solar panels, electric actuators, transformers, HDPE jointing machines, surveillance cameras & more. Confirm model specifications, availability and commercial terms with our team."
         canonicalPath="/products"
         keywords="water treatment products India, flow meter supplier Bhopal, electromagnetic flow meter, SCADA system price, PLC panel manufacturer, level transmitter dealer, pressure sensor India, pH analyzer, turbidity analyzer, electric actuator, solar panel, transformer, butterfly valve, HDPE jointing machine, submersible dredging vehicle, scour monitoring system, instrumentation products, instrumentation equipment, water treatment equipment, WTP products, STP products, RO system price, ETP equipment, solar pump price, orbit engineering solutions products, orbitengineerings products, water treatment products Bhopal, industrial automation products, orbit engineering, orbit engineering bhopal, orbit engineering company, orbit engineering company bhopal, orbit engineering consultants, orbit engineering consultants bhopal, orbit consultants bhopal, orbit engineering solutions, orbit engineering solutions bhopal, orbit"
       />
@@ -530,10 +529,10 @@ export default function ProductsPage({ onNavigate }: ProductsPageProps) {
       <div className="bg-[#0073bc]">
         <div className="max-w-7xl mx-auto px-4 py-3 flex flex-wrap items-center justify-center gap-x-10 gap-y-2">
           {[
-            { value: '16+', label: 'Product Categories' },
-            { value: '200+', label: 'Products & Models' },
-            { value: '500+', label: 'Projects Delivered' },
-            { value: `${OES_EXPERIENCE_YEARS}+`, label: 'Years of Expertise' },
+            { value: 'Water', label: 'Treatment Equipment' },
+            { value: 'Controls', label: 'Automation & Instrumentation' },
+            { value: 'Project', label: 'Services' },
+            { value: 'Bhopal', label: 'Madhya Pradesh' },
           ].map((s) => (
             <div key={s.label} className="flex items-center gap-2 text-white">
               <span className="text-lg font-black">{s.value}</span>
@@ -583,13 +582,13 @@ export default function ProductsPage({ onNavigate }: ProductsPageProps) {
           <div className="space-y-2 text-center md:text-left relative z-10">
             <div className="inline-flex items-center gap-2 bg-emerald-500/20 border border-emerald-400/30 text-emerald-300 text-xs font-black uppercase tracking-wider px-3 py-1 rounded-full">
               <img src={indiamartLogo} alt="IndiaMART Marketplace" className="h-4 w-auto object-contain bg-white rounded-full p-0.5" />
-              Verified Supplier on IndiaMART Marketplace
+              Orbit Engineering Solutions on IndiaMART
             </div>
             <h3 className="text-xl sm:text-2xl font-black tracking-tight text-white">
-              Buy & Request Quotes Directly via IndiaMART
+              View Our IndiaMART Listing
             </h3>
             <p className="text-sm text-blue-100 max-w-xl font-medium">
-              Explore Orbit Engineering Solutions' complete product catalog, verified pricing, and instant RFQs on India's leading B2B marketplace.
+              Visit our third-party IndiaMART listing to explore products and request a quotation. IndiaMART applies its own terms and privacy practices.
             </p>
           </div>
           <a

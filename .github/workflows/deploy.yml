@@ -35,10 +35,22 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Test consent and Worker flows
+        run: npm test
+
+      - name: Check application types
+        run: npm run typecheck
+
+      - name: Check Worker types
+        run: npm run typecheck:worker
+
       - name: Build
         run: npm run build
         env:
           VITE_CUSTOM_DOMAIN: true
+
+      - name: Verify published legal pages and local assets
+        run: npm run test:built
 
       - name: Setup Pages
         uses: actions/configure-pages@v5

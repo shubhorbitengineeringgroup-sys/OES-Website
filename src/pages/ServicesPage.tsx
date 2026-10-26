@@ -58,7 +58,7 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
       icon: Wrench,
       image: iconInstallationCommissioning,
       title: 'Installation & Commissioning',
-      desc: 'Flawless execution from blueprint to reality',
+      desc: 'Installation, testing and system handover',
       color: 'cyan' as keyof typeof colorMap,
       items: [
         'Complete system installation',
@@ -72,14 +72,14 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
       icon: Settings,
       image: iconOMServices,
       title: 'Operation & Maintenance',
-      desc: 'Ensuring longevity and peak performance',
+      desc: 'Maintenance and operational support',
       color: 'amber' as keyof typeof colorMap,
       items: [
         'Preventive maintenance programs',
         'Emergency repair services',
         'System upgrades and retrofits',
         'Performance monitoring',
-        '24/7 technical support'
+        'Support under agreed service terms'
       ]
     },
     {

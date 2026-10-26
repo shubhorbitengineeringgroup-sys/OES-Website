@@ -1,8 +1,9 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback, useId } from 'react';
+import { Link } from 'react-router-dom';
 import { X, Send, ChevronDown, Phone, Mail, MapPin, Sparkles, RotateCcw, MessageCircle } from 'lucide-react';
 import { callOrbi, type GeminiMessage } from './chatbotApi';
 import { OES_KNOWLEDGE } from './chatbotKnowledge';
-import { OES_EXPERIENCE_YEARS } from '../../data/experience';
+import { AI_NOTICE_VERSION, AI_PROVIDER_REVIEWED, AI_PROVIDER_DISCLOSURE } from '../../data/legalContent.mjs';
 import indiamartLogo from '../../assets/indiamart-logo.png';
 
 // ============================================================
@@ -24,6 +25,7 @@ type ConvPhase = 'greeting' | 'discovery' | 'pitching' | 'closing';
 //  CONSTANTS
 // ============================================================
 const CONTACT = OES_KNOWLEDGE.company.contact;
+const EXTERNAL_AI_READY = AI_PROVIDER_REVIEWED && AI_PROVIDER_DISCLOSURE.trim().length > 0;
 
 const PHASE_QUICK_REPLIES: Record<ConvPhase, { icon: string; label: string }[]> = {
   greeting: [
@@ -482,7 +484,7 @@ function ContactCard() {
         <svg width="15" height="15" viewBox="0 0 24 24" fill="white">
           <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" />
         </svg>
-        WhatsApp Us Now — Instant Response!
+        Contact us on WhatsApp
       </a>
       <a href="https://www.indiamart.com/orbit-engineering-solutions-bhopal/?srsltid=AfmBOoqv0uyKZ1nbWyrYQsROXsB8pmT8cHLbpbeCFKcDaUv1ZOyLiEcV"
         target="_blank" rel="noopener noreferrer"
@@ -496,7 +498,7 @@ function ContactCard() {
         onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.opacity = '1'; }}
       >
         <img src={indiamartLogo} alt="IndiaMART Marketplace" style={{ height: '18px', width: 'auto', background: 'white', borderRadius: '50%', padding: '1px' }} />
-        <span>Verified Seller on IndiaMART ↗</span>
+        <span>View our IndiaMART profile ↗</span>
       </a>
     </div>
   );
@@ -510,17 +512,21 @@ function CallbackForm({ defaultInterest = '' }: { defaultInterest?: string }) {
   const [phone, setPhone] = useState('');
   const [interest, setInterest] = useState(defaultInterest);
   const [submitted, setSubmitted] = useState(false);
+  const [handoffConsent, setHandoffConsent] = useState(false);
+  const [draftUrl, setDraftUrl] = useState('');
+  const fieldId = useId();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!name.trim() || !phone.trim()) return;
+    if (!name.trim() || !phone.trim() || !handoffConsent) return;
 
     // Send to WhatsApp
     const message = `Namaste Orbit Engineering! I'm interested in your services.\n\n👤 Name: ${name}\n📞 Phone: ${phone}\n⚙️ Requirement/Interest: ${interest || 'General Enquiry'}`;
     const url = `https://wa.me/919039075048?text=${encodeURIComponent(message)}`;
     
+    setDraftUrl(url);
     setSubmitted(true);
-    window.open(url, '_blank');
+    window.open(url, '_blank', 'noopener,noreferrer');
   };
 
   if (submitted) {
@@ -533,10 +539,11 @@ function CallbackForm({ defaultInterest = '' }: { defaultInterest?: string }) {
         textAlign: 'center', color: '#065f46',
       }}>
         <div style={{ fontSize: '20px', marginBottom: '5px' }}>✓</div>
-        <strong>Request Submitted!</strong>
+        <strong>WhatsApp draft prepared</strong>
         <p style={{ margin: '5px 0 0', fontSize: '11px', color: '#047857' }}>
-          Opening WhatsApp Chat to complete details...
+          Please press Send in WhatsApp to deliver your request. Opening a draft does not send it.
         </p>
+        <a href={draftUrl} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', marginTop: '8px', color: '#075985', textDecoration: 'underline' }}>Open WhatsApp draft</a>
       </div>
     );
   }
@@ -554,9 +561,9 @@ function CallbackForm({ defaultInterest = '' }: { defaultInterest?: string }) {
       </p>
       
       <div style={{ marginBottom: '8px' }}>
-        <label style={{ display: 'block', marginBottom: '3px', fontWeight: 600, color: '#475569' }}>Name</label>
+        <label htmlFor={`${fieldId}-name`} style={{ display: 'block', marginBottom: '3px', fontWeight: 600, color: '#475569' }}>Name</label>
         <input 
-          type="text" 
+          id={`${fieldId}-name`} type="text"
           required
           value={name}
           onChange={e => setName(e.target.value)}
@@ -569,9 +576,9 @@ function CallbackForm({ defaultInterest = '' }: { defaultInterest?: string }) {
       </div>
 
       <div style={{ marginBottom: '8px' }}>
-        <label style={{ display: 'block', marginBottom: '3px', fontWeight: 600, color: '#475569' }}>Mobile Number</label>
+        <label htmlFor={`${fieldId}-phone`} style={{ display: 'block', marginBottom: '3px', fontWeight: 600, color: '#475569' }}>Mobile Number</label>
         <input 
-          type="tel" 
+          id={`${fieldId}-phone`} type="tel"
           required
           value={phone}
           onChange={e => setPhone(e.target.value)}
@@ -584,9 +591,9 @@ function CallbackForm({ defaultInterest = '' }: { defaultInterest?: string }) {
       </div>
 
       <div style={{ marginBottom: '12px' }}>
-        <label style={{ display: 'block', marginBottom: '3px', fontWeight: 600, color: '#475569' }}>Requirement (Optional)</label>
+        <label htmlFor={`${fieldId}-interest`} style={{ display: 'block', marginBottom: '3px', fontWeight: 600, color: '#475569' }}>Requirement (Optional)</label>
         <input 
-          type="text" 
+          id={`${fieldId}-interest`} type="text"
           value={interest}
           onChange={e => setInterest(e.target.value)}
           placeholder="e.g. Flow Meter, Solar Project"
@@ -597,12 +604,16 @@ function CallbackForm({ defaultInterest = '' }: { defaultInterest?: string }) {
         />
       </div>
 
+      <label style={{ display: 'flex', gap: '7px', alignItems: 'flex-start', marginBottom: '10px', lineHeight: 1.5, color: '#334155' }}>
+        <input type="checkbox" required checked={handoffConsent} onChange={e => setHandoffConsent(e.target.checked)} style={{ marginTop: '3px' }} />
+        <span>I am 18 or over and want to open my details in WhatsApp to request a callback/quote. I will send the draft myself. WhatsApp processes the handoff under its own terms. <Link to="/privacy-policy" target="_blank" rel="noopener noreferrer" style={{ color: '#075985', textDecoration: 'underline' }}>Privacy Policy</Link></span>
+      </label>
       <button type="submit" style={{
         width: '100%', padding: '8px', background: 'linear-gradient(135deg, #0073bc, #00a8e0)',
         color: 'white', borderRadius: '8px', border: 'none', fontWeight: 700,
         cursor: 'pointer', transition: 'transform 0.1s',
       }}>
-        Submit & Chat on WhatsApp
+        Prepare WhatsApp draft
       </button>
     </form>
   );
@@ -621,11 +632,22 @@ function getLocalResponse(query: string): {
   const matches = (keywords: string[]) => keywords.some(kw => q.includes(kw));
   const isHindiScript = /[\u0900-\u097F]/.test(query);
 
+  if (matches(['water treatment', 'water solutions', 'wtp', 'stp', 'sewage', 'effluent', 'reverse osmosis', 'government project', 'industrial project', 'जल समाधान'])) {
+    return {
+      text: isHindiScript
+        ? 'OES से **Water Treatment, Sewage/Effluent Treatment, RO और PLC/SCADA** की आवश्यकताओं पर बात करें। उपयुक्त समाधान के लिए क्षमता, पानी की गुणवत्ता, स्थान और प्रोजेक्ट की जरूरतों की समीक्षा जरूरी है। यह FAQ एक सामान्य परिचय है; डिजाइन और व्यावसायिक शर्तों की हमारी टीम से पुष्टि करें।'
+        : 'You can discuss **Water Treatment, Sewage/Effluent Treatment, RO and PLC/SCADA** requirements with OES. The right solution depends on capacity, water quality, location and project specifications. This local FAQ is a general introduction; confirm design suitability and commercial terms with our team.',
+      showForm: false,
+      showContact: true,
+      suggestions: [{ icon: '⚙️', label: 'SCADA & Automation' }, { icon: '📞', label: 'Contact our team' }],
+    };
+  }
+
   // 1. Flow Measurement
   if (matches(['flow', 'meter', 'prepaid', 'ultrasonic', 'electromagnetic', 'turbine', 'speed', 'pipeline', 'pani', 'water meter'])) {
     if (isHindiScript) {
       return {
-        text: "ओरबिट इंजीनियरिंग (OES) **Electromagnetic Flow Meters** (15mm से 2000mm) और **Smart Prepaid Water Meters** बनाती है। ये सिस्टम्स WTP और STP के लिए बेस्ट हैं और बहुत एक्यूरेट रीडिंग देते हैं।",
+        text: "OES से **Electromagnetic Flow Meters** और **Smart Prepaid Water Meters** की जानकारी लें। उपलब्ध आकार, सटीकता और WTP/STP में उपयुक्तता चुने गए मॉडल और लिखित स्पेसिफिकेशन पर निर्भर करते हैं।",
         showForm: true,
         showContact: false,
         suggestions: [
@@ -636,7 +658,7 @@ function getLocalResponse(query: string): {
       };
     }
     return {
-      text: "OES deals in high-accuracy **Electromagnetic Flow Meters** (sizes 15mm to 2000mm) and **Smart Prepaid Water Meters**. These are best suited for WTP/STP flow tracking and telemetry integration.",
+      text: "Ask OES about **Electromagnetic Flow Meters** and **Smart Prepaid Water Meters**. Available sizes, accuracy and WTP/STP suitability depend on the selected model and written specifications.",
       showForm: true,
       showContact: false,
       suggestions: [
@@ -651,7 +673,7 @@ function getLocalResponse(query: string): {
   if (matches(['ph', 'turbidity', 'chlorine', 'analyzer', 'quality', 'do', 'bod', 'cod', 'analyser', 'choke', 'water quality'])) {
     if (isHindiScript) {
       return {
-        text: "हम **Water Quality Analyzers** (जैसे pH, Turbidity, Chlorine, DO, BOD, COD) और ऑनलाइन मॉनिटरिंग सिस्टम्स प्रोवाइड करते हैं जो जल जीवन मिशन और सरकारी नियमों के अनुसार बिलकुल सटीक काम करते हैं।",
+        text: "हम **Water Quality Analyzers** (जैसे pH, Turbidity, Chlorine, DO, BOD, COD) और ऑनलाइन मॉनिटरिंग सिस्टम्स प्रोवाइड करते हैं प्रोजेक्ट की आवश्यकताओं के अनुसार चुने जाते हैं। मॉडल की उपयुक्तता हमारी टीम से पुष्टि करें।",
         showForm: true,
         showContact: false,
         suggestions: [
@@ -661,7 +683,7 @@ function getLocalResponse(query: string): {
       };
     }
     return {
-      text: "We provide high-precision **Water Quality Analyzers** (pH, Turbidity, Chlorine, DO, BOD, COD) and online WTP monitoring systems built for municipal compliance and JJM schemes.",
+      text: "Ask us about **Water Quality Analyzers** (pH, Turbidity, Chlorine, DO, BOD, COD) and online WTP monitoring systems available for municipal and industrial monitoring; suitability depends on the selected model and project requirements.",
       showForm: true,
       showContact: false,
       suggestions: [
@@ -699,7 +721,7 @@ function getLocalResponse(query: string): {
   if (matches(['scada', 'plc', 'rtu', 'panel', 'automation', 'telemetry', 'iot', 'cloud', 'software', 'control room', 'remote'])) {
     if (isHindiScript) {
       return {
-        text: "हम **PLC & SCADA Control Panels** (Siemens, Schneider, ABB) डिज़ाइन करते हैं। हमारा GPRS Telemetry सिस्टम पानी के फ्लो और क्वालिटी का डेटा क्लाउड पर लाइव भेजता है।",
+        text: "हम **PLC & SCADA Control Panels** डिज़ाइन करते हैं। हमारा GPRS Telemetry सिस्टम पानी के फ्लो और क्वालिटी का डेटा क्लाउड पर लाइव भेजता है।",
         showForm: true,
         showContact: false,
         suggestions: [
@@ -709,7 +731,7 @@ function getLocalResponse(query: string): {
       };
     }
     return {
-      text: "We supply complete **PLC & SCADA Panels** (Siemens, Schneider, ABB), remote RTUs, and GPRS cloud telemetry systems to monitor flows and plant quality data in real-time.",
+      text: "We supply complete **PLC & SCADA Panels**, remote RTUs, and GPRS cloud telemetry systems to monitor flows and plant quality data in real-time.",
       showForm: true,
       showContact: false,
       suggestions: [
@@ -747,7 +769,7 @@ function getLocalResponse(query: string): {
   if (matches(['transformer', 'voltage', 'power', 'substation', 'electricity', 'current', 'bijli'])) {
     if (isHindiScript) {
       return {
-        text: "हम **Power and Distribution Transformers** (50 MVA, 132 KV class तक) और कंप्लीट इलेक्ट्रिकल सबस्टेशन की डिजाइन और कमीशनिंग का काम करते हैं।",
+        text: "OES से **Power and Distribution Transformers** और इलेक्ट्रिकल सबस्टेशन की आवश्यकताओं पर बात करें। क्षमता, डिजाइन और सप्लाई का दायरा लिखित कोटेशन में पुष्टि किया जाएगा।",
         showForm: true,
         showContact: false,
         suggestions: [
@@ -757,7 +779,7 @@ function getLocalResponse(query: string): {
       };
     }
     return {
-      text: "OES commissions and supplies high-performance **Power and Distribution Transformers** (up to 50 MVA, 132 KV class) and designs electrical substations.",
+      text: "Discuss **Power and Distribution Transformers** and electrical-substation requirements with OES. Available ratings, design and supply scope must be confirmed in the written quotation.",
       showForm: true,
       showContact: false,
       suggestions: [
@@ -795,7 +817,7 @@ function getLocalResponse(query: string): {
   if (matches(['about', 'company', 'orbit', 'oes', 'experience', 'projects', 'owner', 'director', 'history', 'purana', 'kaise'])) {
     if (isHindiScript) {
       return {
-        text: `Orbit Engineering Solutions (OES) भोपाल, म.प्र. में स्थित एक Triple ISO Certified (ISO 9001:2015, ISO 14001:2015, ISO 45001:2018) इंजीनियरिंग कंपनी है। हम 1998 से (${OES_EXPERIENCE_YEARS}+ साल) वाटर इंफ्रास्ट्रक्चर, ऑटोमेशन और सोलर प्रोजेक्ट्स डिलीवर कर रहे हैं।`,
+        text: 'Orbit Engineering Solutions (OES) भोपाल, म.प्र. में स्थित एक प्रोप्राइटरशिप है। हम वाटर इंफ्रास्ट्रक्चर, ऑटोमेशन और सोलर समाधानों में काम करते हैं। प्रोजेक्ट और प्रमाणपत्र की जानकारी हमारी टीम से पुष्टि करें।',
         showForm: false,
         showContact: true,
         suggestions: [
@@ -805,7 +827,7 @@ function getLocalResponse(query: string): {
       };
     }
     return {
-      text: `Orbit Engineering Solutions (OES) is a Triple ISO Certified (ISO 9001:2015 Quality, ISO 14001:2015 Environment, ISO 45001:2018 Safety) engineering company based in Bhopal, MP. Established in 1998, we have ${OES_EXPERIENCE_YEARS}+ years of experience delivering water, solar, and SCADA infrastructure.`,
+      text: 'Orbit Engineering Solutions (OES) is a proprietorship based in Bhopal, MP, working in water infrastructure, automation and solar solutions. Contact our team for current project references and certification documents.',
       showForm: false,
       showContact: true,
       suggestions: [
@@ -819,7 +841,7 @@ function getLocalResponse(query: string): {
   if (matches(['contact', 'number', 'phone', 'mobile', 'email', 'address', 'location', 'office', 'timing'])) {
     if (isHindiScript) {
       return {
-        text: "हमारा ऑफिस **Root Space, Char Imli, Bhopal** में है। हमसे फ़ोन पर बात करने के लिए कॉल करें: **+91 70241 28029** या WhatsApp करें: **+91 9039075049**।",
+        text: "हमारा ऑफिस **Root Space, Char Imli, Bhopal** में है। हमसे फ़ोन पर बात करने के लिए कॉल करें: **+91 70241 28029** या WhatsApp करें: **+91 9039075048**।",
         showForm: true,
         showContact: true,
         suggestions: [
@@ -829,7 +851,7 @@ function getLocalResponse(query: string): {
       };
     }
     return {
-      text: "Our office is at **Root Space, Char Imli, Bhopal**. Call us at **+91 70241 28029** or WhatsApp at **+91 9039075049** for any queries.",
+      text: "Our office is at **Root Space, Char Imli, Bhopal**. Call us at **+91 70241 28029** or WhatsApp at **+91 9039075048** for any queries.",
       showForm: true,
       showContact: true,
       suggestions: [
@@ -843,7 +865,7 @@ function getLocalResponse(query: string): {
   if (matches(['price', 'cost', 'rate', 'daam', 'bhaav', 'rupay', 'pais'])) {
     if (isHindiScript) {
       return {
-        text: "ओरबिट के सभी इंजीनियरिंग सॉल्यूशंस कस्टमाइज्ड होते हैं (जैसे पाइपलाइन व्यास, फ्लो वॉल्यूम और विशिष्टताओं के आधार पर)। इसलिए हम सटीक कोटेशन चर्चा के बाद ही प्रदान करते हैं। आप आश्वस्त रहें, हमारी दरें बाजार दर से बहुत प्रतिस्पर्धी होंगी। कृपया नीचे दिए गए फॉर्म में अपनी बुनियादी जानकारी दर्ज करें, हमारी टीम 24 घंटे में आपको कस्टमाइज्ड कोट देगी। 😊",
+        text: "ओरबिट के सभी इंजीनियरिंग सॉल्यूशंस कस्टमाइज्ड होते हैं (जैसे पाइपलाइन व्यास, फ्लो वॉल्यूम और विशिष्टताओं के आधार पर)। इसलिए हम सटीक कोटेशन चर्चा के बाद ही प्रदान करते हैं। आप आश्वस्त रहें, व्यावसायिक शर्तें लिखित कोटेशन में दी जाएंगी। कृपया नीचे दिए गए फॉर्म में अपनी बुनियादी जानकारी दर्ज करें, हमारी टीम आपकी आवश्यकताओं की समीक्षा करके संपर्क करेगी। 😊",
         showForm: true,
         showContact: false,
         suggestions: [
@@ -853,7 +875,7 @@ function getLocalResponse(query: string): {
       };
     }
     return {
-      text: "All engineering and instrumentation projects at OES are customized based on technical factors (pipeline sizing, automation level, flow rate). Thus, we provide tailored quotes after evaluating requirements. Rest assured, our pricing is highly competitive. Fill in the form below, and our sales team will reach out with a custom proposal within 24 hours. 😊",
+      text: "All engineering and instrumentation projects at OES are customized based on technical factors (pipeline sizing, automation level, flow rate). Thus, we provide tailored quotes after evaluating requirements. Commercial terms will be set out in the quotation. Use the form below to prepare a WhatsApp request for our sales team. 😊",
       showForm: true,
       showContact: false,
       suggestions: [
@@ -1176,23 +1198,29 @@ export default function ChatbotWidget() {
   const [showQuickReplies, setShowQuickReplies] = useState(true);
   const [reEngaged, setReEngaged] = useState(false); // re-engagement badge
 
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      id: 'welcome',
-      role: 'bot',
-      text: `Hello! 👋 I'm **Orbi** — the AI assistant for Orbit Engineering Solutions (OES).\n\nOES has ${OES_EXPERIENCE_YEARS}+ years of expertise in:\n• 🌊 Water Infrastructure & Treatment Plants\n• ⚙️ SCADA, PLC & Industrial Automation\n• ☀️ Solar Energy Solutions\n• 📊 Flow Meters, Analyzers & Sensors\n• 🔧 Installation, Commissioning & AMC\n\nIs your project for the government sector or private industry? Let me know, and I'll suggest the right solution. 😊`,
-      timestamp: new Date(),
-    },
-  ]);
+  const welcomeMessage = (): Message => ({
+    id: `welcome-${Date.now()}`,
+    role: 'bot',
+    text: "Hello! I'm **Orbi**, the Orbit Engineering assistant. You can browse local FAQs about water treatment, automation, solar and instrumentation. Local FAQs are processed in your browser. Opening WhatsApp or choosing external AI shares messages as explained in our Privacy Policy. External AI is available only after provider review and your explicit choice. Please do not enter sensitive or confidential information.",
+    timestamp: new Date(),
+  });
+  const [messages, setMessages] = useState<Message[]>(() => [welcomeMessage()]);
+  const [aiConsent, setAiConsent] = useState(false);
+  const [adultConfirmed, setAdultConfirmed] = useState(false);
+  const [aiPermissionChecked, setAiPermissionChecked] = useState(false);
+  const requestRef = useRef<AbortController | null>(null);
+  const generationRef = useRef(0);
+  const sendLockRef = useRef(false);
+  useEffect(() => () => { generationRef.current += 1; requestRef.current?.abort(); }, []);
   const [inputText, setInputText] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [geminiHistory, setGeminiHistory] = useState<GeminiMessage[]>([]);
   const [quickReplies, setQuickReplies] = useState<{ icon?: string; label: string }[]>(PHASE_QUICK_REPLIES.greeting);
-  const [statusColor, setStatusColor] = useState<'green' | 'yellow' | 'red'>('green');
+  const [statusColor, setStatusColor] = useState<'green' | 'yellow' | 'red'>('yellow');
 
   // Monitor online status
   useEffect(() => {
-    const handleOnline = () => setStatusColor(prev => prev === 'red' ? 'green' : prev);
+    const handleOnline = () => setStatusColor('yellow');
     const handleOffline = () => setStatusColor('red');
     window.addEventListener('online', handleOnline);
     window.addEventListener('offline', handleOffline);
@@ -1209,7 +1237,8 @@ export default function ChatbotWidget() {
 
   // ── Session management (greeting only, NOT chat history — privacy) ──
   useEffect(() => {
-    const seen = sessionStorage.getItem('orbi-greeted');
+    let seen: string | null = null;
+    try { seen = sessionStorage.getItem('orbi-greeted'); } catch { /* Storage may be disabled. */ }
     if (!seen) setGreetingActive(true);
     else setGreetingDone(true);
   }, []);
@@ -1244,7 +1273,7 @@ export default function ChatbotWidget() {
   const dismissGreeting = useCallback(() => {
     setGreetingActive(false);
     setGreetingDone(true);
-    sessionStorage.setItem('orbi-greeted', '1');
+    try { sessionStorage.setItem('orbi-greeted', '1'); } catch { /* Greeting remains usable without storage. */ }
   }, []);
 
   const openFromGreeting = useCallback(() => {
@@ -1254,7 +1283,11 @@ export default function ChatbotWidget() {
 
   const sendMessage = useCallback(async (text: string) => {
     const trimmed = text.trim();
-    if (!trimmed || isTyping) return;
+    if (!trimmed || trimmed.length > 500 || sendLockRef.current) return;
+    sendLockRef.current = true;
+    const generation = ++generationRef.current;
+    const controller = new AbortController();
+    requestRef.current = controller;
 
     setShowQuickReplies(false);
     setInputText('');
@@ -1278,8 +1311,20 @@ export default function ChatbotWidget() {
 
     setIsTyping(true);
 
+    const appendLocalReply = () => {
+      const result = getLocalResponse(trimmed);
+      setStatusColor('yellow');
+      setMessages(prev => [...prev, { id: `b-${Date.now()}`, role: 'bot', text: result.text, timestamp: new Date(), showContact: result.showContact, showForm: result.showForm }]);
+      setQuickReplies(result.suggestions);
+      setShowQuickReplies(true);
+    };
     try {
-      const reply = await callOrbi(geminiHistory, trimmed);
+      if (!EXTERNAL_AI_READY || !aiConsent || !adultConfirmed) {
+        appendLocalReply();
+        return;
+      }
+      const reply = await callOrbi(geminiHistory, trimmed, { consent: aiConsent, adult: adultConfirmed, consentVersion: AI_NOTICE_VERSION, signal: controller.signal });
+      if (generationRef.current !== generation || controller.signal.aborted) return;
       
       // Parse suggestions
       let cleanReply = reply;
@@ -1315,7 +1360,7 @@ export default function ChatbotWidget() {
 
       setMessages(prev => [...prev, botMsg]);
       setGeminiHistory(prev => [
-        ...prev,
+        ...prev.slice(-14),
         { role: 'user', parts: [{ text: trimmed }] },
         { role: 'model', parts: [{ text: reply }] },
       ]);
@@ -1329,47 +1374,34 @@ export default function ChatbotWidget() {
       setStatusColor(navigator.onLine ? 'green' : 'red');
       setShowQuickReplies(true);
 
-    } catch (apiError) {
-      console.warn('[Orbi] Live API failed, falling back to Local QA.', apiError);
-      
-      // Get response from local database
-      const localResult = getLocalResponse(trimmed);
-      setStatusColor('yellow'); // Local Fallback indicator
-
-      const botMsg: Message = {
-        id: `b-${Date.now()}`,
-        role: 'bot',
-        text: localResult.text,
-        timestamp: new Date(),
-        showContact: localResult.showContact,
-        showForm: localResult.showForm,
-      };
-
-      setMessages(prev => [...prev, botMsg]);
-      setGeminiHistory(prev => [
-        ...prev,
-        { role: 'user', parts: [{ text: trimmed }] },
-        { role: 'model', parts: [{ text: localResult.text }] },
-      ]);
-
-      setQuickReplies(localResult.suggestions);
-      setShowQuickReplies(true);
+    } catch {
+      if (generationRef.current !== generation || controller.signal.aborted) return;
+      appendLocalReply();
     } finally {
-      setIsTyping(false);
+      if (generationRef.current === generation) {
+        requestRef.current = null;
+        sendLockRef.current = false;
+        setIsTyping(false);
+      }
     }
-  }, [isTyping, geminiHistory, convPhase, messages.length]);
+  }, [geminiHistory, convPhase, messages, aiConsent, adultConfirmed]);
 
   const clearChat = useCallback(() => {
-    setMessages([{
-      id: 'welcome-' + Date.now(),
-      role: 'bot',
-      text: `Hello! 👋 I'm **Orbi** — the AI assistant for Orbit Engineering Solutions (OES).\n\nOES has ${OES_EXPERIENCE_YEARS}+ years of expertise in:\n• 🌊 Water Infrastructure & Treatment Plants\n• ⚙️ SCADA, PLC & Industrial Automation\n• ☀️ Solar Energy Solutions\n• 📊 Flow Meters, Analyzers & Sensors\n• 🔧 Installation, Commissioning & AMC\n\nIs your project for the government sector or private industry? Let me know, and I'll suggest the right solution. 😊`,
-      timestamp: new Date(),
-    }]);
+    generationRef.current += 1;
+    requestRef.current?.abort();
+    requestRef.current = null;
+    sendLockRef.current = false;
+    setIsTyping(false);
+    setInputText('');
+    setAiConsent(false);
+    setAdultConfirmed(false);
+    setAiPermissionChecked(false);
+    setMessages([welcomeMessage()]);
     setGeminiHistory([]);
     setConvPhase('greeting');
     setQuickReplies(PHASE_QUICK_REPLIES.greeting);
     setShowQuickReplies(true);
+    setStatusColor('yellow');
     messageCountRef.current = 0;
   }, []);
 
@@ -1398,7 +1430,6 @@ export default function ChatbotWidget() {
     <>
       {/* ── Global CSS ── */}
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
         @keyframes orbi-float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-5px)} }
         @keyframes orbi-pulse-ring { 0%{transform:scale(1);opacity:.6} 100%{transform:scale(1.75);opacity:0} }
         @keyframes orbi-window-desktop {
@@ -1543,9 +1574,10 @@ export default function ChatbotWidget() {
 
             {/* Header actions */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '6px', flexShrink: 0 }}>
+              {aiConsent && <button type="button" onClick={clearChat} style={{ color: 'white', background: 'rgba(255,255,255,0.15)', border: '1px solid rgba(255,255,255,0.4)', borderRadius: '8px', padding: '6px', fontSize: '11px', cursor: 'pointer' }}>Stop AI</button>}
               {/* Clear chat */}
-              <button onClick={clearChat} className="orbi-clr" title="Start fresh conversation"
-                aria-label="Clear chat"
+              <button onClick={clearChat} className="orbi-clr" title="Clear local chat and stop AI"
+                aria-label="Clear local chat and stop AI"
                 style={{
                   background: 'rgba(255,255,255,0.12)', border: '1px solid rgba(255,255,255,0.2)',
                   borderRadius: '8px', color: 'rgba(255,255,255,0.8)',
@@ -1583,6 +1615,21 @@ export default function ChatbotWidget() {
               <div style={{ flex: 1, height: '1px', background: 'rgba(0,115,188,0.08)' }} />
             </div>
 
+            <section aria-label="Chat privacy choices" style={{ background: '#eff6ff', border: '1px solid #bfdbfe', borderRadius: '12px', padding: '12px', fontSize: '12px', lineHeight: 1.55, color: '#1e3a5f' }}>
+              <strong>{aiConsent ? 'External AI enabled for this page' : 'Local FAQ mode'}</strong>
+              {!aiConsent && <>
+                <p style={{ margin: '6px 0' }}>{EXTERNAL_AI_READY
+                  ? `If you choose AI, your messages and subsequent AI chat history go to these reviewed processors: ${AI_PROVIDER_DISCLOSURE}. Providers may retain records. AI answers may be inaccurate; confirm technical and commercial details with our team.`
+                  : 'External AI is paused while provider privacy settings are reviewed. You can use local FAQs below without sending messages to an AI provider, or contact our team directly.'}</p>
+                {EXTERNAL_AI_READY && <>
+                  <label style={{ display: 'flex', gap: '7px', margin: '8px 0', alignItems: 'flex-start' }}><input type="checkbox" checked={adultConfirmed} onChange={e => setAdultConfirmed(e.target.checked)} /><span>I am 18 or over.</span></label>
+                  <label style={{ display: 'flex', gap: '7px', margin: '8px 0', alignItems: 'flex-start' }}><input type="checkbox" checked={aiPermissionChecked} onChange={e => setAiPermissionChecked(e.target.checked)} /><span>I agree to the described AI processing for answers to my questions. I will not enter personal, sensitive or confidential information.</span></label>
+                  <button type="button" disabled={!adultConfirmed || !aiPermissionChecked} onClick={() => { if (adultConfirmed && aiPermissionChecked) { setGeminiHistory([]); setAiConsent(true); } }} style={{ borderRadius: '7px', border: 0, background: '#0369a1', color: 'white', padding: '7px 10px', opacity: adultConfirmed && aiPermissionChecked ? 1 : 0.5 }}>Enable AI for this page</button>
+                </>}
+              </>}
+              {aiConsent && <p style={{ margin: '6px 0' }}>Stop AI to prevent further requests and clear local history. This cannot retract messages already transmitted or erase provider records. <button type="button" onClick={clearChat} style={{ color: '#075985', textDecoration: 'underline', background: 'none', border: 0, cursor: 'pointer', fontWeight: 700 }}>Stop AI chat</button></p>}
+              <p style={{ margin: '7px 0 0' }}><Link to="/privacy-policy" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'underline', color: '#075985' }}>Privacy Policy</Link> · <Link to="/contact" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'underline', color: '#075985' }}>Contact a person</Link></p>
+            </section>
             {/* Messages */}
             {messages.map(msg => (
               <div key={msg.id}
@@ -1740,6 +1787,7 @@ export default function ChatbotWidget() {
                 onKeyDown={handleKeyDown}
                 placeholder="Ask Orbi about products or services..."
                 disabled={isTyping}
+                maxLength={500}
                 aria-label="Type your message to Orbi"
                 style={{
                   flex: 1, border: 'none', background: 'transparent',
@@ -1771,7 +1819,7 @@ export default function ChatbotWidget() {
               margin: '7px 0 0', fontSize: '10.5px', color: '#9ca3af',
               textAlign: 'center', letterSpacing: '0.01em',
             }}>
-              🤖 Orbi AI · © 2026 Orbit Engineering Solutions
+              {aiConsent ? 'Orbi · AI mode' : 'Orbi · Local FAQ mode'} · Orbit Engineering Solutions
             </p>
           </div>
         </div>

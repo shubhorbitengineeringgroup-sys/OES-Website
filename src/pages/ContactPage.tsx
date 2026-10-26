@@ -1,10 +1,14 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
 import HeroSection from '../components/HeroSection';
 import SEO from '../components/SEO';
 import heroSectionImage from '../assets/products/hero-section.jpg';
 import indiamartLogo from '../assets/indiamart-logo.png';
 import { MotionFadeUp, MotionStagger, AnimatedHeading } from '../components/Animated';
+import LeadConsentFields from '../components/LeadConsentFields';
+import ClickToLoadMap from '../components/ClickToLoadMap';
+import { submitLead } from '../lib/leadSubmission';
+import { business } from '../data/legalContent.mjs';
 // iconContact removed; hero uses shared HeroSection
 
 export default function ContactPage() {
@@ -14,6 +18,31 @@ export default function ContactPage() {
     phone: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState('');
+  const pending = useRef(false);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (pending.current) return;
+    const form = e.currentTarget;
+    pending.current = true;
+    setIsSubmitting(true);
+    setIsSubmitted(false);
+    setError('');
+    try {
+      await submitLead(new FormData(form), 'contact', window.location.pathname);
+      setIsSubmitted(true);
+      setFormData({ fullName: '', email: '', phone: '', message: '' });
+      form.reset();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Your message could not be sent. Please try again.');
+    } finally {
+      pending.current = false;
+      setIsSubmitting(false);
+    }
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -46,7 +75,7 @@ export default function ContactPage() {
                 Get In Touch
               </AnimatedHeading>
               <p className="text-gray-600 mb-8 leading-relaxed">
-                Whether you're planning a new water treatment facility, looking to upgrade existing infrastructure, or need technical consultation, our team at Orbit Engineering Solutions (also known as Orbit Engineering Company or Orbit Engineering Consultants) is ready to help. Fill out the form and we'll get back to you within 24 hours.
+                Whether you're planning a new water treatment facility, looking to upgrade existing infrastructure, or need technical consultation, our team at Orbit Engineering Solutions is ready to help. Send us your business inquiry and our team will respond during business hours.
               </p>
 
               <MotionStagger className="space-y-6" stagger={0.06}>
@@ -72,10 +101,9 @@ export default function ContactPage() {
                         </a>
                       </div>
                       <div>
-                        <strong className="block text-gray-900">Head Office:</strong>
+                        <strong className="block text-gray-900">Business Address:</strong>
                         <a href="https://maps.google.com/?q=E-45,+Pride+City,+Katara+Hills,+Bhopal,+Madhya+Pradesh,+462043" target="_blank" rel="noopener noreferrer" className="hover:text-[#0073bc] transition-colors">
-                          E-45, Pride City, Katara Hills,<br />
-                          Bhopal, Madhya Pradesh, 462043
+                          {business.address}
                         </a>
                       </div>
                     </div>
@@ -117,7 +145,6 @@ export default function ContactPage() {
                   <div>
                     <h3 className="font-bold text-gray-900 mb-1 flex items-center gap-2">
                       <span>IndiaMART Storefront</span>
-                      <span className="text-[10px] bg-emerald-100 text-emerald-700 font-bold px-2 py-0.5 rounded-md uppercase">Verified</span>
                     </h3>
                     <p className="text-xs text-gray-500 mb-2">View complete product catalog & instant RFQs</p>
                     <a
@@ -126,7 +153,7 @@ export default function ContactPage() {
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-1.5 text-xs font-extrabold text-[#002F52] hover:text-[#0073bc] underline transition-colors"
                     >
-                      Visit Official IndiaMART Store ↗
+                      Visit our IndiaMART profile ↗
                     </a>
                   </div>
                 </MotionFadeUp>
@@ -146,8 +173,8 @@ export default function ContactPage() {
                 <AnimatedHeading level={3} className="text-2xl font-bold text-gray-900 mb-6">Send Us a Message</AnimatedHeading>
 
                 <form
-                  action="https://formspree.io/f/xeeoyary"
-                  method="POST"
+                  onSubmit={handleSubmit}
+                  aria-busy={isSubmitting}
                   className="space-y-6"
                 >
                   <div>
@@ -158,6 +185,7 @@ export default function ContactPage() {
                       Full Name *
                     </label>
                     <input
+                      disabled={isSubmitting}
                       type="text"
                       id="fullName"
                       name="fullName"
@@ -177,6 +205,7 @@ export default function ContactPage() {
                       Email Address *
                     </label>
                     <input
+                      disabled={isSubmitting}
                       type="email"
                       id="email"
                       name="email"
@@ -196,6 +225,7 @@ export default function ContactPage() {
                       Phone Number
                     </label>
                     <input
+                      disabled={isSubmitting}
                       type="tel"
                       id="phone"
                       name="phone"
@@ -214,6 +244,7 @@ export default function ContactPage() {
                       Message *
                     </label>
                     <textarea
+                      disabled={isSubmitting}
                       id="message"
                       name="message"
                       value={formData.message}
@@ -225,11 +256,16 @@ export default function ContactPage() {
                     />
                   </div>
 
+                  <LeadConsentFields formType="contact" disabled={isSubmitting} />
+                  {error && <p role="alert" className="rounded-lg bg-red-50 p-3 text-sm text-red-700">{error}</p>}
+                  {isSubmitted && <p role="status" className="rounded-lg bg-green-50 p-3 text-sm text-green-800">Your message was accepted. Our team will respond during business hours.</p>}
+
                   <button
                     type="submit"
-                    className="w-full bg-[#0073bc] text-white py-4 rounded-lg font-semibold hover:bg-[#005a94] transition-colors flex items-center justify-center space-x-2"
+                    disabled={isSubmitting}
+                    className="w-full bg-[#0073bc] text-white py-4 rounded-lg font-semibold hover:bg-[#005a94] transition-colors flex items-center justify-center space-x-2 disabled:opacity-60 disabled:cursor-not-allowed"
                   >
-                    <span>Send Message</span>
+                    <span>{isSubmitting ? 'Sending...' : 'Send Message'}</span>
                     <Send className="h-5 w-5" />
                   </button>
                 </form>
@@ -272,38 +308,7 @@ export default function ContactPage() {
                   </p>
                 </div>
               </div>
-              <div className="relative bg-white rounded-b-2xl overflow-hidden shadow-lg border border-gray-200 h-[400px]">
-                <iframe
-                  src="https://www.google.com/maps?q=23.216892,77.424965&z=17&output=embed"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  allowFullScreen={true}
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="Orbit Working Office - Bhopal"
-                />
-
-                {/* Visual Pin Icon */}
-                <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-20">
-                  <div className="bg-white p-2 rounded-full shadow-lg border-2 border-[#0073bc] transform -translate-y-4">
-                    <MapPin className="h-6 w-6 text-[#0073bc] fill-[#0073bc]/20" />
-                  </div>
-                </div>
-
-                {/* Clickable Overlay */}
-                <a
-                  href="https://www.google.com/maps?q=23.216892,77.424965"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="absolute inset-0 z-10 cursor-pointer"
-                  title="Open in Google Maps"
-                >
-                  <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-lg text-[#0073bc] text-xs font-semibold shadow-sm opacity-0 group-hover:opacity-100 transition-opacity">
-                    View on Google Maps
-                  </div>
-                </a>
-              </div>
+              <ClickToLoadMap title="Orbit Working Office - Bhopal" embedUrl="https://www.google.com/maps?q=23.216892,77.424965&z=17&output=embed" mapUrl="https://www.google.com/maps?q=23.216892,77.424965" />
             </div>
 
             {/* Branch Office Map */}
@@ -323,38 +328,7 @@ export default function ContactPage() {
                   </p>
                 </div>
               </div>
-              <div className="relative bg-white rounded-b-2xl overflow-hidden shadow-lg border border-gray-200 h-[400px]">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3667.432328148812!2d77.4286159!3d23.2162985!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x397c4273069151db%3A0xe549a909796677f2!2sShalimar%20Enclave%2C%20E3%2C%20Arera%20Colony%2C%20Bhopal%2C%20Madhya%20Pradesh%20462016!5e0!3m2!1sen!2sin!4v1703413554823!5m2!1sen!2sin"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  allowFullScreen={true}
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="Orbit Branch Office - Bhopal"
-                />
-
-                {/* Visual Pin Icon */}
-                <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-20">
-                  <div className="bg-white p-2 rounded-full shadow-lg border-2 border-[#0073bc] transform -translate-y-4">
-                    <MapPin className="h-6 w-6 text-[#0073bc] fill-[#0073bc]/20" />
-                  </div>
-                </div>
-
-                {/* Clickable Overlay */}
-                <a
-                  href="https://maps.google.com/?q=Flat+No.2,+Block+12,+Shalimar+Enclave,+E3+Arera+Colony,+Bhopal,+462016"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="absolute inset-0 z-10 cursor-pointer"
-                  title="Open in Google Maps"
-                >
-                  <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-lg text-[#0073bc] text-xs font-semibold shadow-sm opacity-0 group-hover:opacity-100 transition-opacity">
-                    View on Google Maps
-                  </div>
-                </a>
-              </div>
+              <ClickToLoadMap title="Orbit Branch Office - Bhopal" embedUrl="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3667.432328148812!2d77.4286159!3d23.2162985!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x397c4273069151db%3A0xe549a909796677f2!2sShalimar%20Enclave%2C%20E3%2C%20Arera%20Colony%2C%20Bhopal%2C%20Madhya%20Pradesh%20462016!5e0!3m2!1sen!2sin!4v1703413554823!5m2!1sen!2sin" mapUrl="https://maps.google.com/?q=Flat+No.2,+Block+12,+Shalimar+Enclave,+E3+Arera+Colony,+Bhopal,+462016" />
             </div>
 
             {/* Head Office Map */}
@@ -367,45 +341,14 @@ export default function ContactPage() {
                     <div className="bg-white/20 backdrop-blur-sm rounded-lg p-2">
                       <MapPin className="h-5 w-5 text-white" />
                     </div>
-                    <h3 className="text-xl font-bold text-white">Head Office</h3>
+                    <h3 className="text-xl font-bold text-white">Business Address</h3>
                   </div>
                   <p className="text-blue-100 text-sm">
-                    E-45, Pride City, Katara Hills, Bhopal, Madhya Pradesh, 462043
+                    {business.address}
                   </p>
                 </div>
               </div>
-              <div className="relative bg-white rounded-b-2xl overflow-hidden shadow-lg border border-gray-200 h-[400px]">
-                <iframe
-                  src="https://www.google.com/maps?q=E-45,+Pride+City,+Katara+Hills,+Bhopal,+Madhya+Pradesh,+462043&output=embed"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  allowFullScreen={true}
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="Orbit Head Office - Bhopal"
-                />
-
-                {/* Visual Pin Icon */}
-                <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-20">
-                  <div className="bg-white p-2 rounded-full shadow-lg border-2 border-[#0073bc] transform -translate-y-4">
-                    <MapPin className="h-6 w-6 text-[#0073bc] fill-[#0073bc]/20" />
-                  </div>
-                </div>
-
-                {/* Clickable Overlay */}
-                <a
-                  href="https://maps.google.com/?q=E-45,+Pride+City,+Katara+Hills,+Bhopal,+Madhya+Pradesh,+462043"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="absolute inset-0 z-10 cursor-pointer"
-                  title="Open in Google Maps"
-                >
-                  <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-lg text-[#0073bc] text-xs font-semibold shadow-sm opacity-0 group-hover:opacity-100 transition-opacity">
-                    View on Google Maps
-                  </div>
-                </a>
-              </div>
+              <ClickToLoadMap title="Orbit Head Office - Bhopal" embedUrl="https://www.google.com/maps?q=E-45,+Pride+City,+Katara+Hills,+Bhopal,+Madhya+Pradesh,+462043&output=embed" mapUrl="https://maps.google.com/?q=E-45,+Pride+City,+Katara+Hills,+Bhopal,+Madhya+Pradesh,+462043" />
             </div>
           </div>
         </div>

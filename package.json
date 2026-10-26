@@ -9,6 +9,9 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit -p tsconfig.app.json",
+    "typecheck:worker": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution bundler --lib ES2022,DOM --strict --skipLibCheck orbi-proxy/src/index.ts",
+    "test": "node --experimental-strip-types --test tests/leadSubmission.test.ts tests/worker.test.ts",
+    "test:built": "node --test tests/legalRoutes.test.mjs",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },

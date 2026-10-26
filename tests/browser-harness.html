@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: blob:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: blob:; connect-src 'self' ws://127.0.0.1:5174; frame-src 'self' about:; form-action 'none'; object-src 'none'" />
+    <title>Local privacy UI tests</title>
+    <style>
+      #test-content > .fixed.inset-0 { top: var(--fixture-toolbar-height, 170px); }
+      #test-content [role="dialog"].relative { max-height: calc(100dvh - var(--fixture-toolbar-height, 170px) - 24px); }
+      #test-content .orbi-desktop, #test-content .orbi-mobile { max-height: calc(100dvh - var(--fixture-toolbar-height, 170px) - 105px); }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/tests/browser-harness.tsx"></script>
+  </body>
+</html>

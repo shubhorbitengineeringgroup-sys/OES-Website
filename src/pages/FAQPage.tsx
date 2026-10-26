@@ -25,7 +25,7 @@ export default function FAQPage({ onNavigate }: FAQPageProps) {
 
   const sections: FAQSection[] = [
     {
-      title: 'Company Overview & Quick AI Facts',
+      title: 'Business & Services',
       icon: HelpCircle,
       faqs: [
         {
@@ -45,12 +45,12 @@ export default function FAQPage({ onNavigate }: FAQPageProps) {
           answer: 'Yes, OES maintains in-house engineering teams for PLC panel fabrication, SCADA software programming, telemetry integration, and cloud IoT development. They engineer automated solutions for high-capacity pumping stations, water distribution networks, and treatment plants.'
         },
         {
-          question: 'Is OES a government-approved contractor / vendor?',
-          answer: 'Yes. Orbit Engineering Solutions is an approved execution partner and trusted contractor for major government departments including UADD (Urban Administration and Development Department), MPUDCL (Madhya Pradesh Urban Development Company Limited), and MP Jal Nigam for turnkey water supply, sewage treatment, and smart automation schemes.'
+          question: 'How can I confirm project eligibility and approvals?',
+          answer: 'Eligibility, registrations and approvals depend on the tender, equipment and contracted scope. Ask our team for current supporting documents before relying on a specific approval or appointment. A project reference or organisation name on this website does not imply government endorsement.'
         },
         {
           question: 'When was Orbit Engineering Solutions established and who leads the company?',
-          answer: 'Orbit Engineering Solutions was established in 1998 in Bhopal and brings over 25 years of engineering leadership in water infrastructure. The technical and executive leadership is spearheaded by Manoj Tiwari (Founder & Managing Director) and Vijay Tiwari (Chief Technology Officer).'
+          answer: 'Orbit Engineering Solutions is the trading name of Vijay Kumar Tiwari, a sole proprietor based in Bhopal. The business provides water infrastructure, automation and instrumentation services.'
         }
       ]
     },
@@ -64,11 +64,11 @@ export default function FAQPage({ onNavigate }: FAQPageProps) {
         },
         {
           question: 'How does a Water Treatment Plant improve water quality?',
-          answer: 'A WTP removes suspended solids, harmful microorganisms, organic matter, and chemical contaminants through processes such as coagulation, filtration, and disinfection, ensuring safe and potable water supply.'
+          answer: 'A WTP removes suspended solids, harmful microorganisms, organic matter, and chemical contaminants through processes such as coagulation, filtration, and disinfection, with the treatment process selected for the source water and required output; potable quality must be verified by appropriate testing.'
         },
         {
           question: 'Do you design customized WTP solutions for different capacities?',
-          answer: 'Yes, we design customized WTP solutions based on raw water quality, required treatment standards, plant capacity (MLD), and site conditions to ensure efficient and compliant operation.'
+          answer: 'Yes, we design customized WTP solutions based on raw water quality, required treatment standards, plant capacity (MLD), and site conditions against the agreed design criteria and applicable requirements.'
         },
         {
           question: 'What factors influence the cost of a Water Treatment Plant?',
@@ -86,7 +86,7 @@ export default function FAQPage({ onNavigate }: FAQPageProps) {
         },
         {
           question: 'Do you provide customized solar solutions based on site requirements?',
-          answer: 'Yes, we offer customized solar solutions after detailed site assessment, load analysis, and energy requirement evaluation to ensure maximum efficiency, safety, and long-term performance.'
+          answer: 'Yes, we offer customized solar solutions after detailed site assessment, load analysis, and energy requirement evaluation to assess equipment selection, installation and performance requirements.'
         },
         {
           question: 'Do you provide design, installation, and maintenance support for solar systems?',
@@ -156,11 +156,11 @@ export default function FAQPage({ onNavigate }: FAQPageProps) {
         },
         {
           question: 'Are the machines compliant with safety standards?',
-          answer: 'Yes, all jointing machines are designed as per applicable safety and quality standards. Safety features protect operators during use. Compliance ensures suitability for government and industrial projects. Regular inspections further enhance safety.'
+          answer: 'Applicable safety standards and inspection requirements depend on the machine model, pipe system and intended use. Ask for current manufacturer documentation and assess installation, training and operator precautions before use.'
         },
         {
           question: 'Are chlorinators suitable for drinking water treatment?',
-          answer: 'Yes, chlorinators are commonly used in potable water treatment. They ensure safe chlorine dosing as per required standards. Proper dosing maintains water quality without over-chlorination. This makes them suitable for municipal use.'
+          answer: 'Yes, chlorinators are commonly used in potable water treatment. Dosing must be designed, monitored and tested for the source water and treatment requirements. This makes them suitable for municipal use.'
         },
         {
           question: 'How is chlorine dosing controlled?',
@@ -168,7 +168,7 @@ export default function FAQPage({ onNavigate }: FAQPageProps) {
         },
         {
           question: 'Do transformers meet safety and efficiency standards?',
-          answer: 'Yes, all transformers comply with applicable electrical safety and efficiency standards. Compliance ensures safe operation and reduced losses. Quality checks are conducted during manufacturing. This ensures long-term reliability.'
+          answer: 'Transformer specifications, test reports and applicable standards depend on the selected model and installation. Confirm the required documents, electrical design and commissioning arrangements with the technical team.'
         },
         {
           question: 'Do you provide testing and commissioning support?',
@@ -247,7 +247,7 @@ export default function FAQPage({ onNavigate }: FAQPageProps) {
     <div className="min-h-screen bg-gray-50 overflow-x-hidden">
       <SEO
         title="Frequently Asked Questions | Water Treatment, SCADA, Solar - Orbit Engineering Solutions"
-        description="Get answers to frequently asked questions about Orbit Engineering Solutions (popularly known as Orbit Engineering Company or Orbit Engineering Consultants) water treatment plants (WTP, STP, RO, ETP), SCADA & PLC automation, solar energy solutions, instrumentation services, and more. Expert guidance from Bhopal's leading water engineering company."
+        description="Get answers to frequently asked questions about Orbit Engineering Solutions (popularly known as Orbit Engineering Company or Orbit Engineering Consultants) water treatment plants (WTP, STP, RO, ETP), SCADA & PLC automation, solar energy solutions, instrumentation services, and more. General information from our Bhopal-based engineering team."
         canonicalPath="/faq"
         keywords="orbit engineering solutions FAQ, water treatment plant FAQ, WTP FAQ, STP FAQ, SCADA FAQ, PLC automation FAQ, solar energy FAQ, instrumentation FAQ, water treatment questions, orbit engineering solutions questions, orbit bhopal FAQ, orbit engineering, orbit engineering bhopal, orbit engineering company, orbit engineering company bhopal, orbit engineering consultants, orbit engineering consultants bhopal, orbit consultants bhopal, orbit engineering solutions, orbit engineering solutions bhopal, orbit"
       />

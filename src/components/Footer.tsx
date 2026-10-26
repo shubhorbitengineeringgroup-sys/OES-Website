@@ -1,5 +1,7 @@
 import { Mail, Phone, MapPin, Linkedin, Instagram } from 'lucide-react';
 import indiamartLogo from '../assets/indiamart-logo.png';
+import { Link } from 'react-router-dom';
+import { business, legalPages } from '../data/legalContent.mjs';
 
 interface FooterProps {
   onNavigate: (page: string) => void;
@@ -91,7 +93,7 @@ export default function Footer({ onNavigate }: FooterProps) {
                 rel="noopener noreferrer"
                 aria-label="Orbit Engineering Solutions on IndiaMART"
                 className="text-gray-400 hover:text-[#E31E24] transition-colors inline-flex items-center justify-center"
-                title="Verified Seller on IndiaMART Marketplace"
+                title="Orbit Engineering Solutions on IndiaMART"
               >
                 <svg
                   viewBox="0 0 100 100"
@@ -104,14 +106,9 @@ export default function Footer({ onNavigate }: FooterProps) {
                 </svg>
               </a>
             </div>
-            <div className="mt-6 pt-4 border-t border-gray-800">
-              <span className="text-[11px] font-semibold text-gray-400 tracking-wider uppercase block mb-2">Accreditations</span>
-              <div className="flex flex-wrap gap-1.5 mb-2">
-                <span className="text-[10px] font-bold bg-blue-950/80 text-blue-300 border border-blue-800/50 px-2 py-0.5 rounded">ISO 9001:2015</span>
-                <span className="text-[10px] font-bold bg-emerald-950/80 text-emerald-300 border border-emerald-800/50 px-2 py-0.5 rounded">ISO 14001:2015</span>
-                <span className="text-[10px] font-bold bg-purple-950/80 text-purple-300 border border-purple-800/50 px-2 py-0.5 rounded">ISO 45001:2018</span>
-              </div>
-              <span className="text-[9.5px] font-medium text-slate-400 block leading-tight">Certified Scope: Manufacturer of Automation & IoT Equipments (TCS-UK / UKAF)</span>
+            <div className="mt-6 pt-4 border-t border-gray-800 text-xs text-gray-400 leading-relaxed">
+              <p>{business.operator}</p>
+              <p className="mt-2">{business.entityType} · India B2B enquiries</p>
             </div>
           </div>
 
@@ -171,8 +168,8 @@ export default function Footer({ onNavigate }: FooterProps) {
                     rel="noopener noreferrer"
                     className="group"
                   >
-                    <span className="block font-medium text-white group-hover:text-[#0073bc] transition-colors">Head Office:</span>
-                    <span className="text-gray-400 group-hover:text-gray-300 transition-colors">E-45, Pride City, Katara Hills,<br />Bhopal, Madhya Pradesh, 462043</span>
+                    <span className="block font-medium text-white group-hover:text-[#0073bc] transition-colors">Business Address:</span>
+                    <span className="text-gray-400 group-hover:text-gray-300 transition-colors">{business.address}</span>
                   </a>
                 </div>
               </li>
@@ -215,7 +212,7 @@ export default function Footer({ onNavigate }: FooterProps) {
                 className="inline-flex items-center gap-2 bg-[#002F52] hover:bg-[#001f38] text-white text-xs font-bold px-3 py-2 rounded-lg border border-blue-500/30 transition-all hover:scale-105 shadow-md"
               >
                 <img src={indiamartLogo} alt="IndiaMART Marketplace" className="h-5 w-auto object-contain bg-white rounded-full p-0.5" />
-                <span>Verified Seller on IndiaMART ↗</span>
+                <span>Our IndiaMART profile ↗</span>
               </a>
             </div>
           </div>
@@ -223,13 +220,13 @@ export default function Footer({ onNavigate }: FooterProps) {
 
         <div className="mt-12 pt-8 border-t border-gray-800 text-center flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm text-gray-400">
-            &copy; {new Date().getFullYear()} <button onClick={() => onNavigate('home')} className="hover:text-[#0073bc] transition-colors">Orbit Engineering Solutions</button>. Established in <strong className="text-[#0073bc]">1998</strong>. All rights reserved.
+            &copy; {new Date().getFullYear()} <button onClick={() => onNavigate('home')} className="hover:text-[#0073bc] transition-colors">Orbit Engineering Solutions</button>. All rights reserved.
           </p>
-          <div className="text-xs text-gray-400 flex items-center gap-2">
-            <span>Triple ISO Certified:</span>
-            <span className="font-semibold text-gray-300">ISO 9001:2015 | 14001:2015 | 45001:2018</span>
-          </div>
+          <nav aria-label="Legal information" className="flex flex-wrap justify-center gap-x-4 gap-y-3 text-xs text-gray-300">
+            {legalPages.map((page) => <Link key={page.path} to={page.path} className="hover:text-white underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-400">{page.title}</Link>)}
+          </nav>
         </div>
+        <p className="mt-5 text-xs text-gray-400 text-center">Privacy / grievance: {business.grievanceName} · <a href={`mailto:${business.grievanceEmail}`} className="underline underline-offset-4">{business.grievanceEmail}</a> · <a href={`tel:${business.grievancePhoneHref}`} className="underline underline-offset-4">{business.grievancePhone}</a></p>
       </div>
     </footer>
   );

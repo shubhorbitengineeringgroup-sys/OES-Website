@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Secure proxy for Orbi Chatbot API keys",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "wrangler dev",
     "deploy": "wrangler deploy"

@@ -4,6 +4,7 @@
 // ============================================================
 
 import { buildSystemPrompt } from './chatbotPrompt';
+import { AI_NOTICE_VERSION, AI_PROVIDER_REVIEWED, AI_PROVIDER_DISCLOSURE } from '../../data/legalContent.mjs';
 
 export interface GeminiMessage {
   role: 'user' | 'model';
@@ -45,63 +46,44 @@ function toProxyMessages(history: GeminiMessage[], userText: string) {
   return messages;
 }
 
-export async function callOrbi(
-  history: GeminiMessage[],
-  userText: string
-): Promise<string> {
-  if (!PROXY_URL) {
-    return (
-      '⚠️ Chatbot security proxy is not configured.\n' +
-      '📞 **+91 70241 28029**\n📧 **info@orbitengineerings.com**'
-    );
-  }
-
-  const messages = toProxyMessages(history, userText);
-  const detectedLang = detectLanguage(userText);
-  const systemPrompt = buildSystemPrompt(detectedLang);
-
-  try {
-    const res = await fetch(PROXY_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        messages,
-        systemPrompt,
-      }),
-    });
-
-    if (res.status === 429) {
-      return detectedLang === 'english'
-        ? '🙏 I am a little busy right now. Please try again in a moment or reach us on WhatsApp: +91 9039075048'
-        : '🙏 Thoda busy hoon abhi. Ek second mein phir try karein ya seedha WhatsApp karein: +91 9039075048';
-    }
-
-    if (res.status === 403) {
-      return '🚫 Security system block. Please contact support.';
-    }
-
-    if (!res.ok) {
-      console.error(`[Orbi Proxy] Error ${res.status}`);
-      return detectedLang === 'english'
-        ? 'I am temporarily unavailable 😅 Please reach us directly:\n📞 **+91 70241 28029**\n💬 **WhatsApp: +91 9039075048**\n📧 **info@orbitengineerings.com**'
-        : 'Abhi main temporarily unavailable hoon 😅 Seedha humse baat karein:\n📞 **+91 70241 28029**\n💬 **WhatsApp: +91 9039075048**\n📧 **info@orbitengineerings.com**\n\nHamari team turant help karegi! 🙏';
-    }
-
-    const data = await res.json();
-    return data.text || (detectedLang === 'english'
-      ? 'There was a technical issue. Please try again in a moment.'
-      : 'Kuch technical issue aa gaya. Please thodi der baad try karein.');
-  } catch (networkErr) {
-    console.error(`[Orbi Proxy] Network error:`, networkErr);
-    return detectedLang === 'english'
-      ? `Network issue detected 😅 Please check your connection or reach us:\n📞 **+91 70241 28029**\n💬 **WhatsApp: +91 9039075048**`
-      : `Network issue aa raha hai 😅 Please check your internet connection ya seedha humse baat karein:\n📞 **+91 70241 28029**\n💬 **WhatsApp: +91 9039075048**`;
-  }
+export interface ChatPermission {
+  consent: boolean;
+  adult: boolean;
+  consentVersion: string;
+  signal?: AbortSignal;
 }
 
-// Status helper (for debugging, shown in clear chat or admin)
+export async function callOrbi(
+  history: GeminiMessage[],
+  userText: string,
+  permission: ChatPermission,
+): Promise<string> {
+  // Fail closed even if a caller accidentally bypasses the widget controls.
+  if (!AI_PROVIDER_REVIEWED || !AI_PROVIDER_DISCLOSURE.trim() || !permission.consent || !permission.adult || permission.consentVersion !== AI_NOTICE_VERSION) {
+    throw new Error('External AI has not been enabled with current consent.');
+  }
+  const messages = toProxyMessages(history, userText);
+  const detectedLang = detectLanguage(userText);
+  const response = await fetch(PROXY_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    signal: permission.signal,
+    body: JSON.stringify({
+      messages,
+      systemPrompt: buildSystemPrompt(detectedLang),
+      consent: true,
+      adult: true,
+      consentVersion: AI_NOTICE_VERSION,
+    }),
+  });
+  if (!response.ok) throw new Error('AI is unavailable. Please use local FAQ or contact our team.');
+  const data: unknown = await response.json();
+  if (!data || typeof data !== 'object' || !('text' in data) || typeof data.text !== 'string' || !data.text.trim()) {
+    throw new Error('AI returned an empty response.');
+  }
+  return data.text;
+}
+
 export function getProviderStatus(): string {
-  return PROXY_URL ? `✅ Secure Proxy Active (${PROXY_URL.split('//')[1].split('.')[0]})` : '❌ Proxy Missing';
+  return AI_PROVIDER_REVIEWED && AI_PROVIDER_DISCLOSURE.trim() ? 'External AI available after consent' : 'Local FAQ mode; external AI paused';
 }

@@ -1,137 +1,53 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-# Sync Water Tech Pvt Ltd - Corporate Website
+# Orbit Engineering Solutions website
 
-A professional, elegant, and responsive website for Sync Water Tech Pvt Ltd, showcasing their water infrastructure solutions and innovative technology.
+React 18, TypeScript, Vite and Tailwind corporate catalogue/enquiry website for
+Orbit Engineering Solutions, Bhopal. The operator is Vijay Kumar Tiwari, trading
+as Orbit Engineering Solutions (proprietorship). This site has no checkout.
 
-## Features
+## Development and checks
 
-- **Modern Design**: Clean, minimal interface with premium feel
-- **Fully Responsive**: Mobile-first design that works on all devices
-- **8 Complete Pages**:
-  - Home - Hero section with company overview and key services
-  - Projects - Completed and ongoing projects with filtering
-  - About - Company mission, vision, and why choose us
-  - Services - Comprehensive list of technical capabilities
-  - Products - Water treatment solutions and automation systems
-  - FAQ - Frequently asked questions with expandable answers
-  - Team - Leadership profiles and career opportunities
-  - Contact - Contact form and location information
+Use Node 22.18+ (CI Node 22) or Node 24 and install dependencies with npm ci.
 
-## Technology Stack
-
-- React 18 with TypeScript
-- Vite for fast development and building
-- Tailwind CSS for styling
-- Lucide React for icons
-- Inter font for professional typography
-
-## Design System
-
-### Colors
-- Primary Blue: `#0073bc`
-- Secondary Blue: `#005a94`
-- Dark Blue: `#004870`
-- White: `#ffffff`
-- Gray scale for text and backgrounds
-
-### Typography
-- Font Family: Inter (Google Fonts)
-- Heading sizes: 4xl to 5xl
-- Body text: Base to lg with good line height
-
-### Components
-- Rounded cards with subtle shadows (rounded-xl, rounded-2xl)
-- Gradient backgrounds for hero sections
-- Hover effects and transitions
-- Smooth scrolling navigation
-
-## Accessibility
-
-- Semantic HTML structure
-- Keyboard navigation support
-- Focus visible states
-- ARIA-friendly components
-- Alt text ready for images
-
-## Content Management
-
-All textual content is structured for easy editing. To update content:
-
-1. **Homepage**: Edit `src/pages/HomePage.tsx`
-2. **Projects**: Edit `src/pages/ProjectsPage.tsx`
-3. **About**: Edit `src/pages/AboutPage.tsx`
-4. **Services**: Edit `src/pages/ServicesPage.tsx`
-5. **Products**: Edit `src/pages/ProductsPage.tsx`
-6. **FAQ**: Edit `src/pages/FAQPage.tsx`
-7. **Team**: Edit `src/pages/TeamPage.tsx`
-8. **Contact**: Edit `src/pages/ContactPage.tsx` and `src/components/Footer.tsx`
-
-## Development
-
-```bash
-npm install
+```sh
 npm run dev
-```
-
-## Build
-
-```bash
+npm test
+npm run typecheck
+npm run typecheck:worker
 npm run build
+npm run test:built
 ```
 
-## Project Structure
+The build generates static direct-route HTML and a sitemap in dist/ for GitHub
+Pages. public/CNAME retains orbitengineerings.com. Pushing main triggers the
+existing deployment workflow, so complete the release review first.
 
-```
-src/
-├── components/
-│   ├── Header.tsx      # Sticky header with navigation
-│   └── Footer.tsx      # Footer with contact info and links
-├── pages/
-│   ├── HomePage.tsx    # Landing page
-│   ├── ProjectsPage.tsx
-│   ├── AboutPage.tsx
-│   ├── ServicesPage.tsx
-│   ├── ProductsPage.tsx
-│   ├── FAQPage.tsx
-│   ├── TeamPage.tsx
-│   └── ContactPage.tsx
-├── App.tsx             # Main app with routing
-├── index.css           # Global styles and animations
-└── main.tsx           # App entry point
-```
+## Privacy and business content
 
-## Contact Information
+- Shared policies, operator details and notice versions: src/data/legalContent.mjs.
+- Four legal pages use identical content in React and generated HTML.
+- Contact, client, quotation and brochure forms use Formspree with explicit
+  purpose consent, separate optional email marketing and versioned receipts.
+- Vijay Kumar Tiwari (Proprietor) is the Grievance Officer. See
+  [privacy operations and release checks](docs/privacy-operations.md).
+- AI is disabled pending provider review; local FAQs and direct contact work.
+  Browser and Worker independently enforce readiness and consent. Deploy the
+  Worker separately; never enable an undisclosed or unreviewed fallback.
+- Maps load on a click. Fonts are local with OFL licences.
+- scripts/build-brochures.py (Python + reportlab) generates three application
+  brochures and updates legacy corporate PDF paths together. Previous versions
+  remain in Git. .gitattributes protects PDF byte offsets.
 
-The website includes the following contact details that can be updated in the respective components:
+## Verification and delivery limits
 
-- **Address**: First Floor, Shalimar Enclave, 12/2, E-3, Arera Colony, Bhopal, Madhya Pradesh 462016, India
-- **Phone**: +91-70241-28029 / +91-9039075049
-- **Email**: info@orbitengineerings.com
-- **Team Emails**:
-  - vijaytiwari@orbitengineerings.com
+Tests mock external requests. Built-output checks verify shared legal text,
+metadata, sitemap, local assets and removed claims. Browser checks also use
+mocks; never send fictitious leads or prompts to production services.
 
-## Notes
+For manual browser checks, run `node scripts/privacy-test-server.mjs` and open
+`http://localhost:5174/tests/browser-harness.html`. This isolated fixture mocks
+all fetches and changes AI readiness only in memory; production flags stay off.
 
-- The contact form currently shows a success message on submission (frontend only)
-- Map integration placeholder is included on the contact page
-- All content is ready for CMS integration
-- Images should be added to match the design specifications
-- Logo should be replaced with the actual company logo
-
-## Future Enhancements
-
-- Backend integration for contact form
-- Google Maps integration
-- Image optimization and lazy loading
-- Blog/News section
-- Client testimonials
-- Case study detail pages
-- Search functionality
-- Multi-language support
-=======
-# OrbitEngineering-2
->>>>>>> 446fbf69c892490fcdcf7b7755b1e23d34b28609
-=======
-# OrbitEngineering-group
->>>>>>> b3eb9b91e344fb6b5e01fef36d1d299c4a460a55
+Account ownership/settings, GST address, image/logo rights, certification
+records, operational retention and final legal wording need the recorded
+business review before publication. Code cannot complete those external checks.
+Keep credentials and customer documents out of the repository.

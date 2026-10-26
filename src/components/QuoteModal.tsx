@@ -1,5 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import LeadConsentFields from './LeadConsentFields';
+import { submitLead } from '../lib/leadSubmission';
 
 type Props = {
     open: boolean;
@@ -11,11 +13,14 @@ export default function QuoteModal({ open, onClose, productName }: Props) {
     const formRef = useRef<HTMLFormElement | null>(null);
     const [loading, setLoading] = useState(false);
     const [submitted, setSubmitted] = useState(false);
+    const [error, setError] = useState('');
+    const pending = useRef(false);
 
     useEffect(() => {
-        if (open) {
+        if (open && !pending.current) {
             setSubmitted(false);
             setLoading(false);
+            setError('');
         }
     }, [open]);
 
@@ -23,32 +28,20 @@ export default function QuoteModal({ open, onClose, productName }: Props) {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (!formRef.current) return;
+        if (!formRef.current || pending.current) return;
+        const form = formRef.current;
+        pending.current = true;
         setLoading(true);
-
-        const formData = new FormData(formRef.current);
+        setError('');
 
         try {
-            const response = await fetch("https://formspree.io/f/xeeoyary", {
-                method: "POST",
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            });
-
-            if (response.ok) {
-                setSubmitted(true);
-                formRef.current.reset();
-                setTimeout(() => {
-                    onClose();
-                }, 3000);
-            } else {
-                alert("There was a problem sending your request. Please try again.");
-            }
-        } catch {
-            alert("There was a network error. Please try again.");
+            await submitLead(new FormData(form), 'quote', window.location.pathname);
+            setSubmitted(true);
+            form.reset();
+        } catch (err) {
+            setError(err instanceof Error ? err.message : 'Your request could not be sent. Please try again.');
         } finally {
+            pending.current = false;
             setLoading(false);
         }
     };
@@ -61,17 +54,20 @@ export default function QuoteModal({ open, onClose, productName }: Props) {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     className="absolute inset-0 bg-black/60 backdrop-blur-sm"
-                    onClick={onClose}
+                    onClick={() => { if (!pending.current) onClose(); }}
                 />
                 <motion.div
                     initial={{ opacity: 0, scale: 0.95, y: 20 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.95, y: 20 }}
                     className="relative bg-white rounded-2xl shadow-2xl w-full max-w-lg overflow-y-auto max-h-[90vh]"
+                    role="dialog"
+                    aria-modal="true"
+                    aria-labelledby="quote-title"
                 >
                     <div className="bg-[#0073bc] px-6 py-4 flex justify-between items-center text-white">
-                        <h3 className="text-xl font-bold">Get a Quote</h3>
-                        <button onClick={onClose} className="hover:bg-white/20 p-1 rounded-full transition-colors">
+                        <h3 id="quote-title" className="text-xl font-bold">Get a Quote</h3>
+                        <button onClick={onClose} disabled={loading} aria-label="Close quotation request" className="hover:bg-white/20 p-1 rounded-full transition-colors disabled:opacity-50">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                             </svg>
@@ -80,7 +76,7 @@ export default function QuoteModal({ open, onClose, productName }: Props) {
 
                     <div className="p-6">
                         {submitted ? (
-                            <div className="text-center py-8">
+                            <div role="status" className="text-center py-8">
                                 <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
                                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
@@ -90,13 +86,14 @@ export default function QuoteModal({ open, onClose, productName }: Props) {
                                 <p className="text-gray-600">We have received your request and will get back to you shortly.</p>
                             </div>
                         ) : (
-                            <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
+                            <form ref={formRef} onSubmit={handleSubmit} aria-busy={loading} className="space-y-4">
                                 {/* Hidden Subject Field for Formspree */}
                                 <input type="hidden" name="_subject" value={`New Quote Request: ${productName}`} />
 
                                 <div>
                                     <label htmlFor="productName" className="block text-sm font-medium text-gray-700 mb-1">Product Interested In</label>
                                     <input
+                                        disabled={loading}
                                         type="text"
                                         name="productName"
                                         id="productName"
@@ -109,6 +106,7 @@ export default function QuoteModal({ open, onClose, productName }: Props) {
                                 <div>
                                     <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Full Name *</label>
                                     <input
+                                        disabled={loading}
                                         type="text"
                                         name="name"
                                         id="name"
@@ -122,6 +120,7 @@ export default function QuoteModal({ open, onClose, productName }: Props) {
                                     <div>
                                         <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email Address *</label>
                                         <input
+                                            disabled={loading}
                                             type="email"
                                             name="email"
                                             id="email"
@@ -131,12 +130,12 @@ export default function QuoteModal({ open, onClose, productName }: Props) {
                                         />
                                     </div>
                                     <div>
-                                        <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">Phone Number *</label>
+                                        <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">Phone Number (optional)</label>
                                         <input
+                                            disabled={loading}
                                             type="tel"
                                             name="phone"
                                             id="phone"
-                                            required
                                             placeholder="+91 98765 43210"
                                             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0073bc] focus:border-transparent outline-none transition-all"
                                         />
@@ -146,6 +145,7 @@ export default function QuoteModal({ open, onClose, productName }: Props) {
                                 <div>
                                     <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">Message</label>
                                     <textarea
+                                        disabled={loading}
                                         name="message"
                                         id="message"
                                         rows={3}
@@ -153,6 +153,9 @@ export default function QuoteModal({ open, onClose, productName }: Props) {
                                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0073bc] focus:border-transparent outline-none transition-all resize-none"
                                     ></textarea>
                                 </div>
+
+                                <LeadConsentFields formType="quote" disabled={loading} />
+                                {error && <p role="alert" className="rounded-lg bg-red-50 p-3 text-sm text-red-700">{error}</p>}
 
                                 <button
                                     type="submit"

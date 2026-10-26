@@ -19,6 +19,7 @@ export default function ProductDetailPage({
   return (
     <div className="min-h-screen bg-gray-50">
       <HeroSection title={productName} />
+      <p className="mx-auto max-w-4xl px-4 pt-6 text-sm leading-relaxed text-gray-600">Product descriptions, images and technical values are indicative. Confirm the selected model, current manufacturer datasheet, applicable approvals, suitability and warranty terms in the written quotation before ordering.</p>
 
       <section className="py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">

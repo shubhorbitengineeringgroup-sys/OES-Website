@@ -351,7 +351,7 @@ export const RAW_SUB_PRODUCTS: RawGroup[] = [
         image: codAnalyzer,
         paragraphs: [
           'COD Analyzer (Chemical Oxygen Demand Analyzer) is a continuous water quality monitoring instrument used to measure COD levels in real time. It provides instant information about the organic pollution load in water and wastewater, helping operators maintain process efficiency, regulatory compliance, and environmental safety.',
-          'This system typically consists of a COD sensor and a digital analyzer/transmitter, suitable for uninterrupted 24×7 monitoring.'
+          'This system typically consists of a COD sensor and a digital analyzer/transmitter, intended for continuous monitoring subject to maintenance and operating conditions.'
         ],
         bullets: [
           'Real-Time COD Measurement – Continuous online monitoring',
@@ -1122,7 +1122,7 @@ export const RAW_SUB_PRODUCTS: RawGroup[] = [
         image: locomotiveTransformer,
         paragraphs: [
           'Locomotive and Trackside Power Transformers provide reliable and efficient power solutions for railway operations. They are engineered to withstand dynamic loads, ensure smooth traction, and support continuous, safe rail network performance.',
-          'Designed specifically for the demanding railway environment, these transformers handle the unique challenges of traction power systems. From high-speed trains to metro networks, our solutions ensure uninterrupted power delivery with robust vibration resistance.'
+          'Designed specifically for the demanding railway environment, these transformers handle the unique challenges of traction power systems. From high-speed trains to metro networks, our solutions support traction power delivery with robust vibration resistance.'
         ],
         bullets: [
           'Dynamic load handling',
@@ -1241,8 +1241,8 @@ export const RAW_SUB_PRODUCTS: RawGroup[] = [
           'Power Tolerance: 0 ~ +3 Wp',
           'Maximum System Voltage: 1500 V DC',
           'Cell Type: M2 Full Cells',
-          'Module Warranty: 12 Years',
-          'Linear Performance Warranty: 30 Years',
+          'Module warranty: confirm manufacturer and quotation terms',
+          'Performance warranty: confirm selected model and terms',
           'Application: On-grid and Off-grid solar projects',
           'Low degradation rate',
           'Stable performance in high temperature',
@@ -1262,8 +1262,8 @@ export const RAW_SUB_PRODUCTS: RawGroup[] = [
           'Power Tolerance: 0 ~ +3 Wp',
           'Maximum System Voltage: 1500 V DC',
           'Cell Type: G1 Full Cells',
-          'Module Warranty: 12 Years',
-          'Linear Performance Warranty: 30 Years',
+          'Module warranty: confirm manufacturer and quotation terms',
+          'Performance warranty: confirm selected model and terms',
           'Higher efficiency compared to poly modules',
           'Better performance in hot weather',
           'Larger surface area for better energy capture',
@@ -1284,8 +1284,8 @@ export const RAW_SUB_PRODUCTS: RawGroup[] = [
           'Lower temperature losses',
           'Improved durability',
           'Suitable for rooftop and utility scale',
-          '12 Years Product Warranty',
-          '30 Years Performance Warranty'
+          'Product warranty: as specified in the quotation',
+          'Performance warranty: manufacturer and model dependent'
         ]
       },
       {
@@ -1300,8 +1300,8 @@ export const RAW_SUB_PRODUCTS: RawGroup[] = [
           'Better ROI and efficiency',
           'Advanced Mono PERC cell technology',
           'Suitable for utility-scale and commercial projects',
-          '12 Years Product Warranty',
-          '30 Years Performance Warranty'
+          'Product warranty: as specified in the quotation',
+          'Performance warranty: manufacturer and model dependent'
         ]
       }
     ]

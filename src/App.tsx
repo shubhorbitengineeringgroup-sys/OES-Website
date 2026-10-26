@@ -7,6 +7,7 @@ import LogoLoader from './components/LogoLoader';
 import ChatbotWidget from './components/Chatbot/ChatbotWidget';
 import { buildProductsData, flattenProducts, type ProductItem } from './data/products';
 import { RAW_SUB_PRODUCTS } from './data/rawProducts';
+import { legalPages } from './data/legalContent.mjs';
 
 // Lazy load pages for performance
 const HomePage = lazy(() => import('./pages/HomePage'));
@@ -20,6 +21,7 @@ const TeamPage = lazy(() => import('./pages/TeamPage'));
 const ContactPage = lazy(() => import('./pages/ContactPage'));
 const ProductDetailPage = lazy(() => import('./pages/ProductDetailPage'));
 const ClientsPage = lazy(() => import('./pages/ClientsPage'));
+const LegalPage = lazy(() => import('./pages/LegalPage'));
 
 function ProductDetailLoader({ productIndex, onNavigate }: { productIndex: Record<string, ProductItem>, onNavigate: (p: string) => void }) {
   const { slug } = useParams() as { slug: string };
@@ -151,6 +153,7 @@ function AppContent() {
               <Route path="/faq" element={<FAQPage onNavigate={handleNavigate} />} />
               <Route path="/team" element={<TeamPage />} />
               <Route path="/contact" element={<ContactPage />} />
+              {legalPages.map((page) => <Route key={page.path} path={page.path} element={<LegalPage path={page.path} />} />)}
               <Route path="*" element={<HomePage onNavigate={handleNavigate} />} />
             </Routes>
           </Suspense>

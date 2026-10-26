@@ -6,7 +6,6 @@ import { AnimatedHeading } from '../components/Animated';
 import { Building2, CheckCircle2, Clock, MapPin } from 'lucide-react';
 
 import mpudclLogo from '../assets/clients/mpudcl-indore-district.png';
-import bharatSarkarLogo from '../assets/clients/bharat-sarkar.png';
 import mpJalNigamLogo from '../assets/clients/mp-jal-nigam.png';
 
 interface ProjectsPageProps {
@@ -54,7 +53,7 @@ export default function ProjectsPage({ initialFilter = 'all', onNavigate }: Proj
       client: 'WRD Bhopal',
       location: 'Odisha',
       status: 'Completed',
-      logo: bharatSarkarLogo
+      logo: null
     },
     {
       name: 'Bankhedi Turnkey Project',
@@ -66,14 +65,14 @@ export default function ProjectsPage({ initialFilter = 'all', onNavigate }: Proj
   ];
 
   const milestoneProjects = [
-    { year: '2015', name: 'Humidity & Temperature Control System', client: 'Prism Cement, Satna', description: 'Delivered a humidity and temperature control turnkey automation system, redefining industrial climate regulation.' },
-    { year: '2016', name: 'RO Plant Automation', client: 'Lupin, Mandideep', description: 'Executed a turnkey automation project for the reverse osmosis plant enhancing water purity assurance' },
-    { year: '2017', name: '40 KL Turnkey Automation', client: 'Vindhayachal Distillery, Pilukhedi (Bhopal)', description: 'Commissioned a 40 KL turnkey automation project, optimising distillery operations with precision control' },
-    { year: '2018', name: '3 MGD Water Treatment Plant', client: 'Bhopal Municipal Corporation, Idgah Hills', description: 'Implemented a 3 MGD water treatment plant with turnkey automation, raising municipal water reliability.' },
-    { year: '2020', name: 'Turnkey Instrumentation', client: 'MP Jal Nigam, Punjapura (Neemuch, Badhwani)', description: 'Completed a turnkey instrumentation project, strengthening regional water management capacity' },
-    { year: '2021', name: 'Water Supply Scheme Automation', client: 'Indore District (Betma, Gautampura, Depalpur)', description: 'Delivered a fully integrated water supply scheme automation, enhancing service delivery accuracy' },
-    { year: '2022', name: '45 MLD Turnkey Automation', client: 'Betul‑Bazar, Amla & Sarni Nagar Parishads (MP)', description: 'Executed a 45 MLD turnkey automation project, significantly boosting urban water infrastructure' },
-    { year: '2023', name: '7.6 MLD Sewage Treatment Plant', client: 'Gobranawapra STP (Raipur, C.G.)', description: 'Commissioned a 7.6 MLD sewage treatment plant, advancing environmental compliance through turnkey instrumentation and automation.' },
+    { year: '2015', name: 'Humidity & Temperature Control System', client: 'Prism Cement, Satna', description: 'Humidity and temperature control automation reference.' },
+    { year: '2016', name: 'RO Plant Automation', client: 'Lupin, Mandideep', description: 'Reverse osmosis plant automation reference.' },
+    { year: '2017', name: '40 KL Turnkey Automation', client: 'Vindhayachal Distillery, Pilukhedi (Bhopal)', description: 'Automation reference for a 40 KL installation.' },
+    { year: '2018', name: '3 MGD Water Treatment Plant', client: 'Bhopal Municipal Corporation, Idgah Hills', description: 'Automation reference associated with a 3 MGD water treatment plant.' },
+    { year: '2020', name: 'Turnkey Instrumentation', client: 'MP Jal Nigam, Punjapura (Neemuch, Badhwani)', description: 'Instrumentation reference for a water infrastructure scheme.' },
+    { year: '2021', name: 'Water Supply Scheme Automation', client: 'Indore District (Betma, Gautampura, Depalpur)', description: 'Water supply scheme automation reference.' },
+    { year: '2022', name: '45 MLD Turnkey Automation', client: 'Betul‑Bazar, Amla & Sarni Nagar Parishads (MP)', description: 'Automation reference associated with a 45 MLD scheme.' },
+    { year: '2023', name: '7.6 MLD Sewage Treatment Plant', client: 'Gobranawapra STP (Raipur, C.G.)', description: 'Instrumentation and automation reference associated with a 7.6 MLD sewage treatment plant.' },
   ];
 
   const ongoingProjects = [
@@ -194,14 +193,15 @@ export default function ProjectsPage({ initialFilter = 'all', onNavigate }: Proj
     <div className="min-h-screen bg-gray-50 overflow-x-hidden">
       <SEO
         title="Completed & Ongoing Water Infrastructure Projects | 45 MLD WTP, SCADA Automation - Orbit Engineering Solutions"
-        description="Explore Orbit Engineering Solutions' ₹200+ Cr project portfolio: 45 MLD WTP automation, multi-village water supply schemes, 7.6 MLD STP commissioning, SCADA integration for MP Jal Nigam, MPUDCL & Bhopal Municipal Corporation. Pan-India water infrastructure & instrumentation case studies."
+        description="Explore water infrastructure project references: 45 MLD WTP automation, multi-village water supply schemes, 7.6 MLD STP commissioning, SCADA integration for MP Jal Nigam, MPUDCL & Bhopal Municipal Corporation. Pan-India water infrastructure & instrumentation case studies."
         canonicalPath="/projects"
         keywords="water treatment project India, WTP automation project, SCADA project Bhopal, MP Jal Nigam project, MPUDCL water supply, Jal Jeevan Mission project, Amrut 2.0 project, Mandla water supply, Chhindwara water supply, water infrastructure case study, instrumentation project, Orbit Engineering Solutions projects, orbit engineering projects, orbit engineering, orbit engineering bhopal, orbit engineering company, orbit engineering company bhopal, orbit engineering consultants, orbit engineering consultants bhopal, orbit consultants bhopal, orbit engineering solutions, orbit engineering solutions bhopal, orbit"
       />
       {/* Hidden H1 for SEO */}
       <h1 className="sr-only">Orbit Engineering Solutions Projects | Completed and ongoing water infrastructure projects in India with SCADA & PLC automation</h1>
 
-      <HeroSection title="Our Projects" subtitle="Delivering water infrastructure excellence across India with PLC, SCADA & Automation Systems" />
+      <HeroSection title="Our Projects" subtitle="Water infrastructure, PLC, SCADA & automation project references" />
+      <p className="mx-auto max-w-5xl px-4 py-6 text-sm leading-relaxed text-gray-600">Project names and dates reflect portfolio records. Confirm our specific contracted scope, current status and supporting documents with the team. End-client and authority names identify the referenced schemes; they do not imply endorsement, direct appointment or responsibility for the whole project.</p>
 
       {/* Navigation Tabs */}
       <section className="py-8 bg-white border-b relative z-20">
@@ -323,11 +323,7 @@ export default function ProjectsPage({ initialFilter = 'all', onNavigate }: Proj
 
                     {/* Logo Container */}
                     <div className="absolute bottom-[6px] right-[6px] w-14 h-14 bg-white rounded-full shadow-[0_2px_15px_rgba(0,0,0,0.06)] p-2.5 flex items-center justify-center z-20 border border-[#0073bc]/30 group-hover:scale-110 transition-transform duration-300">
-                      <img
-                        src={project.logo}
-                        alt={`${project.client} logo`}
-                        className="w-full h-full object-contain"
-                      />
+                      {project.logo ? <img src={project.logo} alt={`${project.client} logo`} className="w-full h-full object-contain" /> : <Building2 aria-hidden="true" className="h-7 w-7 text-[#0073bc]" />}
                     </div>
                   </motion.div>
                 ))}
@@ -352,7 +348,7 @@ export default function ProjectsPage({ initialFilter = 'all', onNavigate }: Proj
                         <AnimatedHeading level={3} className="text-2xl font-bold text-gray-900">
                           Our Milestones
                         </AnimatedHeading>
-                        <p className="text-gray-600 mt-1 text-sm">These milestones illustrate our unwavering commitment to scalable turnkey automation solutions, grounded in robust project execution, technological excellence, and enduring impact across industrial, municipal, and water‑utility sectors.</p>
+                        <p className="text-gray-600 mt-1 text-sm">Selected portfolio references in water treatment, instrumentation and automation. The descriptions identify the type of work; project scope and supporting records are available for discussion with the team.</p>
                       </div>
                     </div>
                   </div>
@@ -490,11 +486,7 @@ export default function ProjectsPage({ initialFilter = 'all', onNavigate }: Proj
 
                     {/* Logo Container */}
                     <div className="absolute bottom-[6px] right-[6px] w-14 h-14 bg-white rounded-full shadow-[0_2px_15px_rgba(0,0,0,0.06)] p-2.5 flex items-center justify-center z-20 border border-[#0073bc]/30 group-hover:scale-110 transition-transform duration-300">
-                      <img
-                        src={project.logo}
-                        alt={`${project.client} logo`}
-                        className="w-full h-full object-contain"
-                      />
+                      {project.logo ? <img src={project.logo} alt={`${project.client} logo`} className="w-full h-full object-contain" /> : <Building2 aria-hidden="true" className="h-7 w-7 text-[#0073bc]" />}
                     </div>
                   </motion.div>
                 ))}

@@ -219,7 +219,7 @@ function AutomationSection() {
               variants={contentItemVariants}
               className="text-lg text-gray-600 leading-relaxed font-light"
             >
-              Orbit Engineering Solutions specialises in advanced automation — adopting state-of-the-art technologies to enhance water resource management, efficiency and sustainability:
+              Orbit Engineering Solutions specialises in advanced automation — adopting PLC, SCADA and monitoring technologies to enhance water resource management, efficiency and sustainability:
             </motion.p>
 
             {/* Bullet Points with staggered animations */}
@@ -282,10 +282,10 @@ export default function HomePage({ onNavigate }: HomePageProps) {
   return (
     <div className="min-h-screen overflow-x-hidden">
       <SEO
-        title="Orbit Engineering Solutions | #1 Water Treatment, SCADA & PLC Automation Company in India - Bhopal"
-        description="Orbit Engineering Solutions, Bhopal – India's most trusted water engineering since 1998. Experts in WTP, STP, RO, ETP, SCADA, PLC automation & IoT. ISO 9001 certified. ₹200+ Cr portfolio. Contact: +91 70241 28029, +91 9039075049 | info@orbitengineerings.com, service@orbitengineerings.com"
+        title="Orbit Engineering Solutions | Water Treatment, SCADA & PLC Automation Services - Bhopal"
+        description="Orbit Engineering Solutions provides water treatment, PLC/SCADA automation, instrumentation and solar project services from Bhopal, India. Contact our team to discuss a B2B requirement."
         canonicalPath="/"
-        keywords="Orbit Engineering Solutions, Orbit Engineering, Orbit Engineering Group, orbit engineering solutions bhopal, orbit bhopal, orbit engineering company, orbit engineering solutions india, water treatment plant Bhopal, WTP services, STP services, RO services, ETP services, WTP STP RO ETP, SCADA automation India, PLC automation water, instrumentation services, instrumentation company Bhopal, instrumentation and control, solar services, solar services Bhopal, solar energy solutions, orbitengineerings.com, water infrastructure company India, Bhopal engineering, smart water management, IoT water monitoring, water treatment company near me, best water treatment company India, water treatment plant Madhya Pradesh, SCADA system price, PLC panel manufacturer, flow meter manufacturer, level transmitter, pressure transmitter, water analyzer, chlorinator, turnkey automation, Jal Jeevan Mission, MP Jal Nigam, MPUDCL, orbit engg, orbit eng solutions, orbit engineering solutons, water treatment, water treatment plant, water purification, service@orbitengineerings.com, +91 9039075049, orbit engineering consultants, orbit engineering consultants bhopal, orbit consultants bhopal, orbit engineering consultancy, orbit engineering company bhopal"
+        keywords="Orbit Engineering Solutions, Orbit Engineering, Orbit Engineering Group, orbit engineering solutions bhopal, orbit bhopal, orbit engineering company, orbit engineering solutions india, water treatment plant Bhopal, WTP services, STP services, RO services, ETP services, WTP STP RO ETP, SCADA automation India, PLC automation water, instrumentation services, instrumentation company Bhopal, instrumentation and control, solar services, solar services Bhopal, solar energy solutions, orbitengineerings.com, water infrastructure company India, Bhopal engineering, smart water management, IoT water monitoring, water treatment company near me, water treatment services India, water treatment plant Madhya Pradesh, SCADA system price, PLC panel manufacturer, flow meter manufacturer, level transmitter, pressure transmitter, water analyzer, chlorinator, turnkey automation, Jal Jeevan Mission, MP Jal Nigam, MPUDCL, orbit engg, orbit eng solutions, orbit engineering solutons, water treatment, water treatment plant, water purification, service@orbitengineerings.com, +91 9039075049, orbit engineering consultants, orbit engineering consultants bhopal, orbit consultants bhopal, orbit engineering consultancy, orbit engineering company bhopal"
       />
       <section className="relative text-white overflow-hidden">
         <HeroBackgroundSlider />
@@ -458,7 +458,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
                   Est. 1998
                 </span>
                 <h3 className="text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tighter leading-[1.05] drop-shadow-lg">
-                  A Legacy of <br /><span className="text-blue-400">Excellence</span>
+                  Water <br /><span className="text-blue-400">Engineering</span>
                 </h3>
               </div>
             </div>
@@ -481,7 +481,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
 
                 <div className="space-y-8 flex-1">
                   <p className="text-gray-600 leading-[1.8] text-[16px] md:text-[17px]">
-                    Established in <strong className="text-[#0073bc] font-bold">1998</strong> in Bhopal, <strong className="text-gray-900 font-bold text-lg">Orbit Engineering Group</strong> (also known as <strong className="text-gray-900 font-semibold">Orbit Engineering Company</strong> or <strong className="text-gray-900 font-semibold">Orbit Engineering Solutions</strong>) builds on a legacy exceeding four decades of engineering excellence. We deliver turnkey systems — from design and steel fabrication to PLC/SCADA integration and long-term O&M — through a <strong className="text-[#0073bc] font-bold">Triple ISO Certified framework</strong> (<span className="text-[#0073bc] font-semibold">ISO 9001:2015 Quality, ISO 14001:2015 Environmental, ISO 45001:2018 Safety</span>) as an accredited <strong className="text-emerald-700 font-bold">Manufacturer of Automation & IoT Equipments</strong>.
+                    <strong className="text-gray-900">Orbit Engineering Solutions</strong> is the trading name of Vijay Kumar Tiwari, a sole proprietor based in Bhopal. Our services include water treatment systems, PLC/SCADA integration, instrumentation, installation and maintenance under an agreed project scope.
                   </p>
 
                   <motion.div

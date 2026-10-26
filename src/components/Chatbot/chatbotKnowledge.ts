@@ -3,14 +3,10 @@ import { OES_EXPERIENCE_YEARS } from '../../data/experience';
 export const OES_KNOWLEDGE = {
 
   company: {
-    name: 'Orbit Engineering Solutions (OES)',
+    name: 'Vijay Kumar Tiwari trading as Orbit Engineering Solutions (OES)',
     founded: 1998,
     experience: `${OES_EXPERIENCE_YEARS}+ years`,
     location: 'Bhopal, Madhya Pradesh, India',
-    certification: 'Triple ISO Certified: ISO 9001:2015 (QMS), ISO 14001:2015 (EMS) & ISO 45001:2018 (OH&S)',
-    portfolio: '₹200+ Crore project portfolio',
-    projects: '150+ mega schemes delivered',
-    impact: 'Millions of lives impacted with clean drinking water across pan-India',
     domains: ['Water Infrastructure', 'Solar Energy', 'Industrial Automation', 'SCADA/Telemetry', 'IoT Solutions', 'Surveillance Systems'],
     clients: 'Government bodies (MP Jal Nigam, Municipalities), Industries, Townships',
     tagline: 'Engineering solutions that protect lives and resources',
@@ -18,7 +14,7 @@ export const OES_KNOWLEDGE = {
     offices: [
       { type: 'Working Office', address: 'Root Space, Char Imli, Mannipuram, Bhopal 462016, MP' },
       { type: 'Branch Office', address: 'Flat No.2, Block 12, Shalimar Enclave, E3 Arera Colony, Bhopal 462016' },
-      { type: 'Head Office', address: 'E-45, Pride City, Katara Hills, Bhopal, Madhya Pradesh 462043' },
+      { type: 'Business Address', address: 'GF, E-45, Pride City, Katara Hills, Bhopal, Madhya Pradesh 462043' },
     ],
 
     contact: {
@@ -31,19 +27,17 @@ export const OES_KNOWLEDGE = {
     },
 
     team: [
-      { name: 'Manoj Tiwari', role: 'Director & Co-Founder', expertise: 'Project Management, Business Development' },
-      { name: 'Vijay Tiwari', role: 'Director & Co-Founder', expertise: 'Technical Operations, Engineering' },
+      { name: 'Manoj Tiwari', role: 'Project Management', expertise: 'Project Management, Business Development' },
+      { name: 'Vijay Kumar Tiwari', role: 'Proprietor', expertise: 'Technical Operations, Engineering' },
     ],
 
     whyOES: [
-      `${OES_EXPERIENCE_YEARS}+ years of trusted experience in water & automation — est. 1998`,
-      'Triple ISO Certified (ISO 9001:2015, ISO 14001:2015 & ISO 45001:2018) — quality, environment & safety excellence',
-      '₹200+ Cr project portfolio — government & industrial proven',
-      'Local Bhopal presence — fast on-site support across MP',
+      `${OES_EXPERIENCE_YEARS}+ years of business history in water & automation — est. 1998`,
+      'Local Bhopal presence — project services in Madhya Pradesh',
       'Single-window solution: supply, install, commission, O&M',
       'Expert in Jal Jeevan Mission, AMRUT, Smart Cities projects',
       'After-sales support & Annual Maintenance Contracts (AMC)',
-      'Trusted by MP Jal Nigam, municipalities, and private industries',
+      'Water infrastructure and industrial project services',
     ],
   },
 
@@ -79,7 +73,7 @@ export const OES_KNOWLEDGE = {
     {
       type: 'SCADA & Telemetry Systems',
       description: 'Remote monitoring of multiple pump stations, reservoirs, and treatment plants from a central control room using PLC, RTU, GPRS/4G telemetry',
-      scale: 'Managing 50–100+ remote sites from a single command center',
+      scale: 'Remote sites with capacity and architecture selected for the project',
     },
     {
       type: 'Industrial Automation',
@@ -95,7 +89,7 @@ export const OES_KNOWLEDGE = {
     jalJeevanMission: {
       name: 'Jal Jeevan Mission (JJM)',
       objective: 'Provide tap water connection to every rural household by 2024',
-      oesRole: 'Supply of flow meters, level sensors, chlorination systems, SCADA/telemetry, pipelines — all compliant with JJM technical specifications',
+      oesRole: 'Supply of flow meters, level sensors, chlorination systems, SCADA/telemetry, pipelines — subject to the selected project specifications',
       tenderProcess: 'State government tenders through NITI Aayog/DWSM portals, GeM, or direct procurement',
     },
     amrut: {
@@ -122,8 +116,8 @@ export const OES_KNOWLEDGE = {
           name: 'Electromagnetic Flow Meter',
           useCases: ['Drinking water pipelines', 'WTP/STP inlet-outlet', 'Municipal distribution', 'Irrigation', 'Chemicals'],
           keyFeatures: ['No moving parts', 'High accuracy', 'Works on Faraday\'s law', 'Suitable for conductive fluids', 'Low maintenance'],
-          bestFor: 'Water pipeline flow measurement — most popular for government WTPs',
-          certifications: 'IP67/IP68 rated, MID certified options available',
+          bestFor: 'Water pipeline flow measurement — for municipal and industrial water systems',
+          certifications: "Confirm the selected model, test reports and applicable certification documents with the team",
           sizes: '15mm to 2000mm pipe diameter',
         },
         {
@@ -131,7 +125,7 @@ export const OES_KNOWLEDGE = {
           useCases: ['Bulk water supply', 'Industrial metering', 'Tanker loading'],
           keyFeatures: ['Positive displacement', 'Long-term accuracy', 'Quick maintenance design', 'Electronic control available'],
           bestFor: 'Bulk water and liquid custody transfer metering',
-          certifications: 'OIML compliant options available',
+          certifications: "Confirm the selected model, test reports and applicable certification documents with the team",
           sizes: 'Various sizes for bulk metering applications',
         },
         {
@@ -139,7 +133,7 @@ export const OES_KNOWLEDGE = {
           useCases: ['Open channels', 'Rivers', 'Canals', 'Irrigation drainage'],
           keyFeatures: ['Non-contact measurement', 'No moving parts', 'Low maintenance', 'Ultrasonic pulse technology'],
           bestFor: 'Open channel flow measurement without pipe',
-          certifications: 'IP67 rated',
+          certifications: "Confirm the selected model, test reports and applicable certification documents with the team",
           sizes: 'Custom as per channel dimensions',
         },
         {
@@ -147,7 +141,7 @@ export const OES_KNOWLEDGE = {
           useCases: ['Residential billing', 'Commercial buildings', 'Municipal connections'],
           keyFeatures: ['Accurate billing', 'Volume measurement', 'Cubic meters / gallons', 'Rate-of-flow display'],
           bestFor: 'Residential and commercial water billing',
-          certifications: 'BIS IS:779 / IS:2373 compliant',
+          certifications: "Confirm the selected model, test reports and applicable certification documents with the team",
           sizes: '15mm to 50mm for domestic, larger for commercial',
         },
         {
@@ -155,7 +149,7 @@ export const OES_KNOWLEDGE = {
           useCases: ['Chemical dosing', 'Process industries', 'Critical applications'],
           keyFeatures: ['Direct mass measurement', 'No temp/pressure compensation needed', 'High accuracy', 'Digital smart transmitter', 'Rugged design'],
           bestFor: 'Precision mass flow measurement in process industries',
-          certifications: 'ATEX options for hazardous areas',
+          certifications: "Confirm the selected model, test reports and applicable certification documents with the team",
           sizes: 'Process line sizes',
         },
         {
@@ -163,7 +157,7 @@ export const OES_KNOWLEDGE = {
           useCases: ['Clean liquids', 'Water', 'Light oils', 'Chemicals'],
           keyFeatures: ['High accuracy', 'SS304/SS316 construction', 'Digital display', 'Fast response', 'Low pressure drop'],
           bestFor: 'Clean, low-viscosity liquid flow measurement',
-          certifications: 'ATEX options available',
+          certifications: "Confirm the selected model, test reports and applicable certification documents with the team",
           sizes: '10mm to 300mm',
         },
         {
@@ -171,7 +165,7 @@ export const OES_KNOWLEDGE = {
           useCases: ['Steam', 'Gas', 'Liquids', 'Compressed air'],
           keyFeatures: ['Ideal for steam/gas', 'No moving parts', 'Optional temp & pressure compensation', 'High stability'],
           bestFor: 'Steam, gas, and industrial flow measurement',
-          certifications: 'ATEX options, SIL2 capable',
+          certifications: "Confirm the selected model, test reports and applicable certification documents with the team",
           sizes: '15mm to 300mm',
         },
         {
@@ -179,7 +173,7 @@ export const OES_KNOWLEDGE = {
           useCases: ['Urban water utilities', 'Housing societies', 'Government water schemes'],
           keyFeatures: ['IoT/cloud connectivity', 'Prepaid management', 'Remote monitoring', 'Auto valve control', 'Tamper detection', 'Leak detection'],
           bestFor: 'Smart city water distribution, Jal Jeevan Mission projects',
-          certifications: 'Compliant with BIS and smart metering standards',
+          certifications: "Confirm the selected model, test reports and applicable certification documents with the team",
           sizes: '15mm to 50mm for consumer connections',
         },
         {
@@ -187,7 +181,7 @@ export const OES_KNOWLEDGE = {
           useCases: ['Homes', 'Apartments', 'Residential colonies'],
           keyFeatures: ['IoT enabled', 'Mobile app', 'Cloud dashboard', 'Leak detection', 'Battery operated'],
           bestFor: 'Household-level smart metering',
-          certifications: 'BIS approved',
+          certifications: "Confirm the selected model, test reports and applicable certification documents with the team",
           sizes: '15mm standard household size',
         },
         {
@@ -195,7 +189,7 @@ export const OES_KNOWLEDGE = {
           useCases: ['Municipal water boards', 'AMR/AMI systems', 'Bulk distribution'],
           keyFeatures: ['High accuracy', 'NB-IoT / LoRaWAN / RF', 'Real-time monitoring', 'Leak & tamper detection', 'Long battery life'],
           bestFor: 'City-level utility water management',
-          certifications: 'MID, WRAS, OIML compliant options',
+          certifications: "Confirm the selected model, test reports and applicable certification documents with the team",
           sizes: '15mm to 200mm depending on DMA zone',
         },
       ],
@@ -248,7 +242,7 @@ export const OES_KNOWLEDGE = {
       categoryName: 'Air Quality Analyzers',
       intro: 'Continuous emission and ambient air quality monitoring instruments',
       items: [
-        { name: 'SOx Analyzer', useCases: ['Flue gas monitoring', 'Boiler stacks', 'Industrial compliance'], keyFeatures: ['Continuous SO2/SO3 measurement', '24/7 operation', 'PLC/SCADA compatible'] },
+        { name: 'SOx Analyzer', useCases: ['Flue gas monitoring', 'Boiler stacks', 'Industrial compliance'], keyFeatures: ['Continuous SO2/SO3 measurement', 'Continuous monitoring subject to operating conditions', 'PLC/SCADA compatible'] },
         { name: 'NOx Analyzer', useCases: ['Combustion monitoring', 'Power plants', 'Emission compliance'], keyFeatures: ['NO and NO2 measurement', 'UV absorption technology', 'Chemiluminescence option'] },
         { name: 'PM10 Analyzer', useCases: ['Ambient air monitoring', 'CPCB compliance', 'Construction sites'], keyFeatures: ['Beta attenuation or optical method', 'Weatherproof cabinet', 'Continuous PM10 measurement'] },
         { name: 'PM2.5 Analyzer', useCases: ['Urban air quality', 'Public health monitoring', 'Environmental stations'], keyFeatures: ['Ultra-fine particle measurement', 'BAM or optical method', 'Size-selective inlet'] },
@@ -390,7 +384,7 @@ export const OES_KNOWLEDGE = {
       categoryName: 'Surveillance & Vision Systems',
       intro: 'Professional security cameras and video management for industrial and commercial sites',
       items: [
-        { name: 'Bullet Camera', useCases: ['Outdoor perimeter', 'Water plants', 'Parking lots'], keyFeatures: ['Weatherproof', 'IR night vision', '24/7 operation', 'High resolution'] },
+        { name: 'Bullet Camera', useCases: ['Outdoor perimeter', 'Water plants', 'Parking lots'], keyFeatures: ['Weatherproof', 'IR night vision', 'Continuous monitoring subject to operating conditions', 'High resolution'] },
         { name: 'Dome Camera', useCases: ['Indoor areas', 'Control rooms', 'Public spaces'], keyFeatures: ['360° coverage', 'Vandal-resistant', 'Discreet design', 'Wide angle'] },
         { name: 'PTZ Camera', useCases: ['Large area coverage', 'Perimeter tracking', 'Critical infrastructure'], keyFeatures: ['Pan-tilt-zoom', 'Remote operation', 'Auto-tracking', 'Motorized movement'] },
         { name: 'High Speed Camera', useCases: ['Process monitoring', 'Quality inspection', 'Research'], keyFeatures: ['High frame rate', 'Motion analysis', 'Professional grade'] },
@@ -472,7 +466,7 @@ export const OES_KNOWLEDGE = {
     },
     {
       name: 'Operation & Maintenance (O&M)',
-      details: ['Preventive maintenance programs', 'Emergency repair services', 'System upgrades and retrofits', 'Performance monitoring', '24/7 technical support', 'Annual Maintenance Contracts (AMC)'],
+      details: ['Preventive maintenance programs', 'Emergency repair services', 'System upgrades and retrofits', 'Performance monitoring', 'Support under agreed service terms', 'Annual Maintenance Contracts (AMC)'],
       description: 'Long-term O&M support to ensure peak plant performance',
     },
     {
@@ -494,11 +488,11 @@ export const OES_KNOWLEDGE = {
     { q: 'Do you supply and install?', a: 'Yes — OES is a single-window solution. We supply, install, commission, and provide O&M support.' },
     { q: 'Do you do government projects?', a: 'Yes — we work extensively with MP Jal Nigam, municipalities, and government agencies on Jal Jeevan Mission and AMRUT projects.' },
     { q: 'What areas do you serve?', a: 'Primarily Madhya Pradesh, but we handle pan-India projects. Headquartered in Bhopal.' },
-    { q: 'Do you provide AMC?', a: 'Yes — Annual Maintenance Contracts available for all our supplied equipment and installed systems.' },
+    { q: 'Do you provide AMC?', a: 'Maintenance scope, coverage and availability must be agreed in a written contract.' },
     { q: 'Can I get a product datasheet?', a: 'Yes — datasheets available for all major products. Contact us or visit the Products section.' },
-    { q: 'What is your project portfolio?', a: '₹200+ Crore portfolio, 150+ mega schemes including WTPs, STPs, SCADA automation, and solar projects.' },
-    { q: 'Are you ISO certified?', a: 'Yes — Orbit Engineering Solutions is Triple ISO Certified: ISO 9001:2015 (Quality), ISO 14001:2015 (Environmental Management), and ISO 45001:2018 (Occupational Health & Safety) by Times Certification Services UK Ltd.' },
-    { q: 'Can I view your catalog on IndiaMART?', a: 'Yes! You can view our complete verified catalog and order directly on IndiaMART at https://www.indiamart.com/orbit-engineering-solutions-bhopal/' },
+    { q: 'What is your project portfolio?', a: 'The website includes selected project references. Ask the team to confirm the relevant scope and supporting records.' },
+    { q: 'Are you ISO certified?', a: 'Certification status is not independently verified on this website. Ask the team for the current certificate, holder, scope, locations and validity before relying on it.' },
+    { q: 'Can I view your catalog on IndiaMART?', a: 'You can view our third-party listing and request information at https://www.indiamart.com/orbit-engineering-solutions-bhopal/' },
   ],
 
   // ============================================================
@@ -507,15 +501,15 @@ export const OES_KNOWLEDGE = {
   extendedFaqs: [
     {
       q: 'How do you handle government tender requirements?',
-      a: 'OES has extensive experience with government procurement processes — GeM portal registrations, direct tender submissions, CPWD/PWD empanelment, and JJM/AMRUT technical specifications. Our team assists clients in understanding technical specifications and preparing documentation. Contact our business development team for project-specific guidance.',
+      a: 'Tender eligibility, registrations and approvals must be verified for the particular procurement. Contact the team for project-specific technical documentation; do not assume empanelment or a government appointment.',
     },
     {
       q: 'What warranty do you provide on instruments?',
-      a: 'Standard warranty varies by product — typically 12 to 24 months from commissioning for most instruments. Beyond warranty, OES offers Annual Maintenance Contracts (AMC) for continued technical support, preventive maintenance, and emergency response.',
+      a: 'Warranty duration, exclusions and any maintenance service depend on the selected manufacturer, model and written quotation or contract. Ask the team to confirm them before ordering.',
     },
     {
       q: 'Do you provide training after installation?',
-      a: 'Yes — every installation includes operator training and handover documentation. Our commissioning engineers train the plant operators on system operation, routine checks, and basic troubleshooting before project handover.',
+      a: 'Operator training and handover documentation can form part of an agreed commissioning scope. Confirm the training, documentation and responsibilities in the quotation.',
     },
     {
       q: 'Can you integrate with existing SCADA or systems?',
@@ -523,11 +517,11 @@ export const OES_KNOWLEDGE = {
     },
     {
       q: 'What is the project execution timeline?',
-      a: 'Timelines depend on project scope. Instrument supply typically takes 2–8 weeks. Complete system projects (WTP automation, SCADA setup) take 2–6 months depending on size. OES follows structured project management with milestone tracking.',
+      a: 'Timelines depend on scope, manufacturer availability, site readiness and agreed milestones. Obtain a written project-specific delivery or execution schedule from the team.',
     },
     {
       q: 'Are your products ISI/BIS certified?',
-      a: 'Many of our products come with relevant certifications — BIS/IS marks, IP ratings, ATEX certification for hazardous areas, MID certification for meters, and ISO 9001:2015 quality management from OES itself. Specific certification details are available in product datasheets.',
+      a: 'Certification and approval requirements depend on the model and application. Request the current manufacturer datasheet, certification documents and test reports; no blanket certification claim applies to this catalogue.',
     },
     {
       q: 'Do you work with private companies or only government?',
@@ -535,11 +529,11 @@ export const OES_KNOWLEDGE = {
     },
     {
       q: 'What after-sales support do you provide?',
-      a: 'OES provides full after-sales support: 24/7 technical helpline, on-site emergency response (for MP locations), remote diagnostics, spare parts supply, annual calibration, and AMC packages. Our local Bhopal presence means faster response times compared to distant vendors.',
+      a: 'Discuss troubleshooting, spare parts, calibration, site attendance and maintenance options with the team. Availability, response times and charges depend on the written service agreement.',
     },
     {
       q: 'Can you provide project references?',
-      a: 'Yes — OES has worked on 150+ mega schemes. We can arrange reference site visits or share documented case studies for relevant project types upon request. Please contact our business development team.',
+      a: 'Ask our team for project references and supporting records relevant to your requirement. Any site visit is subject to the site operator’s permission and availability.',
     },
     {
       q: 'How is pricing determined for large projects?',
@@ -551,7 +545,7 @@ export const OES_KNOWLEDGE = {
     },
     {
       q: 'What makes OES different from other vendors?',
-      a: `${OES_EXPERIENCE_YEARS}+ years of MP-specific experience, ISO 9001:2015 quality assurance, a local Bhopal support team for fast response, single-window service from supply to AMC, and proven track record with government clients like MP Jal Nigam. We focus on long-term relationships, not one-time transactions.`,
+      a: 'OES provides water engineering and automation services from Bhopal. Discuss the selected scope, service arrangements and supporting project records with the team.',
     },
   ],
 

@@ -9,3 +9,11 @@ compatibility_date = "2024-05-29"
 [vars]
 ALLOWED_ORIGINS = "https://orbitengineerings.com,https://www.orbitengineerings.com,http://localhost:5173"
 OPENROUTER_MODEL = "google/gemma-4-26b-a4b-it:free"
+# Enable both server and frontend switches only after reviewing accounts,
+# models, retention, training settings and the matching public disclosures.
+AI_PROVIDER_REVIEWED = "false"
+# Comma-separated reviewed providers: gemini,openrouter. Empty fails closed.
+REVIEWED_PROVIDERS = ""
+# Required if openrouter is enabled: exact reviewed underlying model-host slugs.
+# Also name these processors in the frontend consent notice and Privacy Policy.
+OPENROUTER_REVIEWED_PROVIDERS = ""

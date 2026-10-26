@@ -200,16 +200,16 @@ export default function TeamPage() {
   const team: TeamMember[] = [
     {
       name: 'Manoj Tiwari',
-      role: 'Managing Director',
-      experience: '40+ Years Experience',
+      role: 'Project Management',
+      experience: 'Water Infrastructure',
       email: 'mktiwari@orbitengineering.com',
-      description: 'Visionary leader with expertise in water infrastructure and sustainable technology solutions',
+      description: 'Water infrastructure project planning and coordination',
       photo: manojImg
     },
     {
-      name: 'Vijay Tiwari',
-      role: 'Co-Founder & CTO',
-      experience: '18+ Years Experience',
+      name: 'Vijay Kumar Tiwari',
+      role: 'Proprietor',
+      experience: 'Automation & Instrumentation',
       email: 'vijaytiwari@orbitengineerings.com',
       description: 'Technical expert specializing in automation, IoT, and advanced water treatment systems',
       photo: vijayImg,
@@ -220,12 +220,12 @@ export default function TeamPage() {
   const teamStats = [
     {
       icon: <Award className="h-6 w-6 text-[#0073bc]" />,
-      title: "40-Year Legacy",
-      description: "Built on decades of steel staging and chlorination expertise"
+      title: "Water Infrastructure",
+      description: "Water treatment, steel fabrication and chlorination project support"
     },
     {
       icon: <Briefcase className="h-6 w-6 text-[#0073bc]" />,
-      title: "27-Year Automation Experience",
+      title: "Automation & SCADA",
       description: "Orbit Engineering's strength in automation and SCADA systems"
     },
     {
@@ -259,15 +259,15 @@ export default function TeamPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       <SEO
-        title="Meet Our Team | Manoj Tiwari & Vijay Tiwari - Water Infrastructure Leaders | Orbit Engineering Solutions"
-        description="Meet the visionaries at Orbit Engineering Solutions Bhopal. Founded by Manoj Tiwari (MD, 40+ years) and led by Vijay Tiwari (CTO, 18+ years), our ISO 9001 certified team brings decades of expertise in WTP, STP, SCADA automation & IoT-based water management."
+        title="Meet Our Team | Manoj Tiwari & Vijay Kumar Tiwari - Water Infrastructure Leaders | Orbit Engineering Solutions"
+        description="Meet the team at Orbit Engineering Solutions, the Bhopal-based sole proprietorship of Vijay Kumar Tiwari, providing water treatment, SCADA automation and instrumentation services."
         canonicalPath="/team"
-        keywords="Manoj Tiwari Orbit Engineering, Manoj Tiwari, Vijay Tiwari CTO, Vijay Tiwari, Orbit Engineering Solutions team, water engineering experts Bhopal, Manoj Tiwari engineering Bhopal, Vijay Tiwari engineering, orbit engineering team, orbit engineering solutions team, manoj tivari, vijay tivari, manoj tewari, vijay tewari, orbit engineering, orbit engineering bhopal, orbit engineering company, orbit engineering company bhopal, orbit engineering consultants, orbit engineering consultants bhopal, orbit consultants bhopal, orbit engineering solutions, orbit engineering solutions bhopal"
+        keywords="Manoj Tiwari Orbit Engineering, Manoj Tiwari, Vijay Kumar Tiwari Proprietor, Vijay Kumar Tiwari, Orbit Engineering Solutions team, water engineering experts Bhopal, Manoj Tiwari engineering Bhopal, Vijay Kumar Tiwari engineering, orbit engineering team, orbit engineering solutions team, manoj tivari, vijay tivari, manoj tewari, vijay tewari, orbit engineering, orbit engineering bhopal, orbit engineering company, orbit engineering company bhopal, orbit engineering consultants, orbit engineering consultants bhopal, orbit consultants bhopal, orbit engineering solutions, orbit engineering solutions bhopal"
       />
       {/* Hidden H1 for SEO */}
-      <h1 className="sr-only">Orbit Engineering Solutions Team | Manoj Tiwari & Vijay Tiwari - Experts in Water Infrastructure & Automation</h1>
+      <h1 className="sr-only">Orbit Engineering Solutions Team | Manoj Tiwari & Vijay Kumar Tiwari - Experts in Water Infrastructure & Automation</h1>
 
-      <HeroSection title="Our Team" subtitle="Meet the visionaries driving water innovation" />
+      <HeroSection title="Our Team" subtitle="Meet our engineering and business team" />
 
       <section className="py-24 bg-gray-50 border-y border-gray-100">
 
@@ -275,7 +275,7 @@ export default function TeamPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16 relative z-10">
             <AnimatedHeading level={2} className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 tracking-tight">
-              Meet the Visionaries
+              Meet the Team
             </AnimatedHeading>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               Our leadership team brings decades of combined experience in water technology and infrastructure
@@ -396,7 +396,7 @@ export default function TeamPage() {
                   <div>
                     <h4 className="font-semibold text-gray-900 mb-1">Meaningful Work</h4>
                     <p className="text-sm text-gray-600">
-                      Work on projects that impact millions of lives
+                      Work on water infrastructure and automation projects
                     </p>
                   </div>
                 </div>
